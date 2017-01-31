@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--xtools2_universal_type_manager-->
 <!--Rational Software Architect Designer 9.5-->
-<?com.ibm.xtools.emf.core.signature <signature id="com.ibm.xtools.mmi.ui.signatures.diagram" version="7.0.0"><feature description="" name="Piattaforma Rational Modeling (com.ibm.xtools.rmp)" url="" version="7.0.0"/></signature>?>
+<?com.ibm.xtools.emf.core.signature <signature id="com.ibm.xtools.mmi.ui.signatures.diagram" version="7.0.0"><feature description="" name="Rational Modeling Platform (com.ibm.xtools.rmp)" url="" version="7.0.0"/></signature>?>
 <?com.ibm.xtools.emf.core.signature <signature id="com.ibm.xtools.uml.msl.model" version="7.0.0"><feature description="" name="com.ibm.xtools.ruml.feature" url="" version="7.0.0"/></signature>?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Default="http:///schemas/Default/_fNm3AAqoEd6-N_NOT9vsCA/2" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmlns:umlnotation="http://www.ibm.com/xtools/1.5.3/Umlnotation" xsi:schemaLocation="http:///schemas/Default/_fNm3AAqoEd6-N_NOT9vsCA/2 pathmap://UML2_MSL_PROFILES/Default.epx#_fNwoAAqoEd6-N_NOT9vsCA?Default/Default? http://www.eclipse.org/uml2/schemas/Standard/1 pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w">
   <uml:Package xmi:id="_NfyHwOSzEeaqwtyUX-Dpqw" name="Use Case Diagrams">
@@ -238,6 +238,46 @@
           </children>
           <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jzrAkeSzEeaqwtyUX-Dpqw" points="[0, 214, 366, -3594]$[0, 2750, 366, -1058]$[-366, 2750, 0, -1058]$[-366, 3808, 0, 0]"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kekXsOSzEeaqwtyUX-Dpqw" id="(0.5001502742836187,0.0)"/>
+        </edges>
+        <edges xmi:type="umlnotation:UMLConnector" xmi:id="_M8-nUOfBEea-ws2xt6svxA" element="_M802UOfBEea-ws2xt6svxA" source="_ZCA00OSzEeaqwtyUX-Dpqw" target="_efr-cOSzEeaqwtyUX-Dpqw" fontName="Segoe UI" fontHeight="8" roundedBendpointsRadius="4" routing="Rectilinear" lineColor="8421504" lineWidth="1" showStereotype="Text">
+          <children xmi:type="notation:DecorationNode" xmi:id="_M8-nUufBEea-ws2xt6svxA" type="NameLabel">
+            <children xmi:type="notation:BasicDecorationNode" xmi:id="_M8-nVOfBEea-ws2xt6svxA" type="Stereotype"/>
+            <children xmi:type="notation:BasicDecorationNode" xmi:id="_M8-nVefBEea-ws2xt6svxA" type="Name"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_M8-nU-fBEea-ws2xt6svxA" y="-186"/>
+          </children>
+          <children xmi:type="notation:DecorationNode" xmi:id="_M8-nVufBEea-ws2xt6svxA" type="ToMultiplicityLabel" element="_M802VOfBEea-ws2xt6svxA">
+            <children xmi:type="notation:BasicDecorationNode" xmi:id="_M8-nWOfBEea-ws2xt6svxA" type="ToMultiplicity"/>
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_M8-nV-fBEea-ws2xt6svxA" y="396"/>
+          </children>
+          <children xmi:type="notation:DecorationNode" xmi:id="_M8-nWefBEea-ws2xt6svxA" type="ToRoleLabel" element="_M802VOfBEea-ws2xt6svxA">
+            <children xmi:type="notation:BasicDecorationNode" xmi:id="_M8-nW-fBEea-ws2xt6svxA" type="ToRole"/>
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_M8-nWufBEea-ws2xt6svxA" y="-397"/>
+          </children>
+          <children xmi:type="notation:DecorationNode" xmi:id="_M8-nXOfBEea-ws2xt6svxA" visible="false" type="FromMultiplicityLabel" element="_M802UefBEea-ws2xt6svxA">
+            <children xmi:type="notation:BasicDecorationNode" xmi:id="_M8-nXufBEea-ws2xt6svxA" type="FromMultiplicity"/>
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_M8-nXefBEea-ws2xt6svxA" y="396"/>
+          </children>
+          <children xmi:type="notation:DecorationNode" xmi:id="_M8-nX-fBEea-ws2xt6svxA" visible="false" type="FromRoleLabel" element="_M802UefBEea-ws2xt6svxA">
+            <children xmi:type="notation:BasicDecorationNode" xmi:id="_M8-nYefBEea-ws2xt6svxA" type="FromRole"/>
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_M8-nYOfBEea-ws2xt6svxA" y="-397"/>
+          </children>
+          <children xmi:type="notation:DecorationNode" xmi:id="_M8-nYufBEea-ws2xt6svxA" type="ToQualifierLabel" element="_M802VOfBEea-ws2xt6svxA">
+            <children xmi:type="notation:SemanticListCompartment" xmi:id="_M8-nZOfBEea-ws2xt6svxA" type="QualifierCompartment"/>
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_M8-nY-fBEea-ws2xt6svxA" y="-186"/>
+          </children>
+          <children xmi:type="notation:DecorationNode" xmi:id="_M8-nZefBEea-ws2xt6svxA" type="FromQualifierLabel" element="_M802UefBEea-ws2xt6svxA">
+            <children xmi:type="notation:SemanticListCompartment" xmi:id="_M8-nZ-fBEea-ws2xt6svxA" type="QualifierCompartment"/>
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_M8-nZufBEea-ws2xt6svxA" y="-186"/>
+          </children>
+          <children xmi:type="notation:DecorationNode" xmi:id="_M8-naOfBEea-ws2xt6svxA" type="ToConstraintLabel" element="_M802VOfBEea-ws2xt6svxA">
+            <children xmi:type="notation:ListCompartment" xmi:id="_M8-naufBEea-ws2xt6svxA" type="ToConstraintCompartment"/>
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_M8-naefBEea-ws2xt6svxA" y="1058"/>
+          </children>
+          <children xmi:type="notation:DecorationNode" xmi:id="_M8-na-fBEea-ws2xt6svxA" type="FromConstraintLabel" element="_M802UefBEea-ws2xt6svxA">
+            <children xmi:type="notation:ListCompartment" xmi:id="_M8-nbefBEea-ws2xt6svxA" type="FromConstraintCompartment"/>
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_M8-nbOfBEea-ws2xt6svxA" y="1058"/>
+          </children>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_M8-nUefBEea-ws2xt6svxA" points="[55, 7, -238, -23]$[249, 34, -44, 4]"/>
         </edges>
       </contents>
       <contents xmi:type="umlnotation:UMLDiagram" xmi:id="_AN7-wOTVEea6c_brzspzfA" type="Usecase" name="Book use case diagram">
@@ -747,7 +787,12 @@
         <body>&lt;p>Caso d'uso Consult&lt;/p>&lt;p class=&quot;MsoNormal&quot;>Formato dettagliato:&lt;/p>&lt;table border=&quot;1&quot;>&lt;col width=&quot;50.0%&quot;>&lt;/col>&lt;col width=&quot;50.0%&quot;>&lt;/col>&lt;tr>&lt;td>&lt;p>Sezione Caso d'uso&lt;/p>&lt;/td>&lt;td>&lt;p>Sale&lt;/p>&lt;/td>&lt;/tr>&lt;tr>&lt;td>&lt;p>Nome del caso d'uso&lt;/p>&lt;/td>&lt;td>&lt;p>Consult&lt;/p>&lt;/td>&lt;/tr>&lt;tr>&lt;td>&lt;p>Portata&lt;/p>&lt;/td>&lt;td>&lt;p>FlySMM&lt;/p>&lt;/td>&lt;/tr>&lt;tr>&lt;td>&lt;p>Livello&lt;/p>&lt;/td>&lt;td>&lt;p>Obiettivo Utente&lt;/p>&lt;/td>&lt;/tr>&lt;tr>&lt;td>&lt;p>Attore Primario&lt;/p>&lt;/td>&lt;td>&lt;p>Customer/Signed Customer&lt;/p>&lt;/td>&lt;/tr>&lt;tr>&lt;td>&lt;p>Parti interessate e interessi&lt;/p>&lt;/td>&lt;td>&lt;p>Prenotazioni ha l’interesse di ricevere le informazioni necessarie per procedere con la prenotazione&lt;/p>&lt;/td>&lt;/tr>&lt;tr>&lt;td>&lt;p>Precondizioni&lt;/p>&lt;/td>&lt;td>&lt;p>-&lt;/p>&lt;/td>&lt;/tr>&lt;tr>&lt;td>&lt;p>Garanzia di successo&lt;/p>&lt;/td>&lt;td>&lt;p>Bisogna avere a disposizione le informazioni dei voli scelti dall’utente come codice del volo, prezzo, numero di posti da prenotare&lt;/p>&lt;/td>&lt;/tr>&lt;tr>&lt;td>&lt;p>Scenario di successo primario&lt;/p>&lt;/td>&lt;td>&lt;ol>&lt;li>&lt;p>Il Customer/Signed Customer accede alla homepage del sistema FlySMM.&lt;/p>&lt;/li>&lt;li>&lt;p>Il sistema deve fornire all’utente la possibilità di inserire le località di partenza e di arrivo per il volo desiderato.&lt;/p>&lt;/li>&lt;li>&lt;p>Il sistema deve essere in grado di reperire i voli disponibile per la tratta scelta dall’utente e consentire all’utente di sceglierne una.&lt;/p>&lt;/li>&lt;li>&lt;p>Una volta confermata la scelta del volo desiderato il sistema procederà con la prenotazione del volo.&lt;/p>&lt;/li>&lt;/ol>&lt;/td>&lt;/tr>&lt;tr>&lt;td>&lt;p>Estensioni&lt;/p>&lt;/td>&lt;td>&lt;p>Non sono disponibili voli con i parametri inseriti dall’utente:&lt;/p>&lt;ol>&lt;li>&lt;p>Il Customer/Signed Customer accede alla homepage del sistema FlySMM il sistema deve fornire all’utente la possibilità di inserire le località di partenza e di arrivo per il volo desiderato,&lt;/p>&lt;/li>&lt;li>&lt;p>il sistema deve essere in grado di reperire i voli disponibile per la tratta scelta dall’utente&lt;/p>&lt;/li>&lt;li>&lt;p>non sono disponibili voli per i parametri inseriti il sistema:&lt;/p>&lt;/li>&lt;li>&lt;p>Il sistema cerca delle alternative cambiando data e ora avvisando l’utente delle modifiche apportate.&lt;/p>&lt;/li>&lt;li>&lt;p>Se non sono possibili alternative il sistema avvisa l’utente della indisponibilità del volo.&lt;/p>&lt;/li>&lt;/ol>&lt;/td>&lt;/tr>&lt;tr>&lt;td>&lt;p>Requisiti speciali&lt;/p>&lt;/td>&lt;td>&lt;p>Il sistema deve fornire i risultati della ricerca entro 1 minuto dalla richiesta.&lt;/p>&lt;/td>&lt;/tr>&lt;tr>&lt;td>&lt;p>Elenco delle variabili tecnologiche e dei dati&lt;/p>&lt;/td>&lt;td>&lt;p>-&lt;/p>&lt;/td>&lt;/tr>&lt;tr>&lt;td>&lt;p>Frequenza di ripetizione&lt;/p>&lt;/td>&lt;td>&lt;p>Elevata&lt;/p>&lt;/td>&lt;/tr>&lt;tr>&lt;td>&lt;p>Varie&lt;/p>&lt;/td>&lt;td>&lt;p>-&lt;/p>&lt;/td>&lt;/tr>&lt;/table>&lt;p>&lt;/p>&lt;p>&lt;/p></body>
       </ownedComment>
     </packagedElement>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_cfNUcOSzEeaqwtyUX-Dpqw" name="Checkout"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_cfNUcOSzEeaqwtyUX-Dpqw" name="Checkout">
+      <eAnnotations xmi:id="_PURO0OfBEea-ws2xt6svxA" source="uml2.diagrams"/>
+      <ownedComment xmi:id="_96iGYOfBEea-ws2xt6svxA" annotatedElement="_cfNUcOSzEeaqwtyUX-Dpqw">
+        <body>&lt;p class=&quot;MsoNormal&quot;>Caso d’uso: Checkout&lt;/p>&lt;p class=&quot;MsoNormal&quot;>Formato dettagliato&lt;/p>&lt;table class=&quot;MsoNormalTable&quot; border=&quot;1&quot;>&lt;col width=&quot;50.0%&quot;>&lt;/col>&lt;col width=&quot;50.0%&quot;>&lt;/col>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Sezione del caso d’uso&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Sale&lt;/p>&lt;/td>&lt;/tr>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Nome&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Checkout&lt;/p>&lt;/td>&lt;/tr>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Portata&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>FlySMM&lt;/p>&lt;/td>&lt;/tr>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Livello&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Obiettivo utente&lt;/p>&lt;/td>&lt;/tr>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Attore primario&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Signed Customer&lt;/p>&lt;/td>&lt;/tr>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Parti interessate&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Customer perchè può fare anche lui checkout dopo essersi loggato&lt;/p>&lt;/td>&lt;/tr>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Pre-condizioni&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>L’utente deve essere registrato.&lt;/p>&lt;p class=&quot;MsoNormal&quot;>L’utente deve essere loggato.&lt;/p>&lt;p class=&quot;MsoNormal&quot;>Deve esistere una prenotazione a titolo dell’utente registrato.&lt;/p>&lt;/td>&lt;/tr>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Garanzie di successo&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>La prenotazione è stata registrata.&lt;/p>&lt;p class=&quot;MsoNormal&quot;>Il pagamento è stato effettuato.&lt;/p>&lt;p class=&quot;MsoNormal&quot;>All’utente è arrivata la ricevuta di acquisto all’indirizzo di posta indicato.&lt;/p>&lt;p class=&quot;MsoNormal&quot;>All’utente è stato spedita una mail di avvenuta prenotazione con i dettagli della prenotazione, compreso il codice prenotazione per poterla modificare.&lt;/p>&lt;/td>&lt;/tr>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Scenario principale di successo&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>L’utente registrato arriva alla pagina per il checkout. Il sistema richiede le informazioni relative al pagamento. L’utente inserisce le informazioni sul pagamento. Il sistema le registra e le invia al sottosistema dei pagamenti per essere processate. Il sottosistema dei pagamenti restituisce l’ID della transazione e il codice di avvenuto pagamento. Il sistema comunica il successo della transazione. Il sistema invia una mail di conferma della prenotazione con i dettagli della prenotazione. Il sistema invia una mail con la ricevuta del pagamento.&lt;/p>&lt;/td>&lt;/tr>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Estensioni&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Il sottosistema dei pagamenti rifiuta la transazione:&lt;/p>&lt;p class=&quot;MsoNormal&quot;>Viene notificato all’utente il rifiuto della transazione insieme al codice dell’errore.&lt;/p>&lt;/td>&lt;/tr>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Requisiti non funzionali correlati&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>?&lt;/p>&lt;/td>&lt;/tr>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Frequenza di ripetizione&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Media&lt;/p>&lt;/td>&lt;/tr>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Varie&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>-&lt;/p>&lt;/td>&lt;/tr>&lt;/table>&lt;p>&lt;/p></body>
+      </ownedComment>
+    </packagedElement>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_dsiDMOSzEeaqwtyUX-Dpqw" name="Edit"/>
     <packagedElement xmi:type="uml:Component" xmi:id="_efH9wOSzEeaqwtyUX-Dpqw" name="Payment"/>
     <packagedElement xmi:type="uml:Association" xmi:id="_iBX8gOSzEeaqwtyUX-Dpqw" memberEnd="_iBcN8OSzEeaqwtyUX-Dpqw _iBhGcOSzEeaqwtyUX-Dpqw" navigableOwnedEnd="_iBcN8OSzEeaqwtyUX-Dpqw">
@@ -902,6 +947,16 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zf1DEOVFEeaeFY_vskE_yg"/>
       </ownedEnd>
     </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_M802UOfBEea-ws2xt6svxA" memberEnd="_M802UefBEea-ws2xt6svxA _M802VOfBEea-ws2xt6svxA" navigableOwnedEnd="_M802UefBEea-ws2xt6svxA">
+      <ownedEnd xmi:id="_M802UefBEea-ws2xt6svxA" name="payment" visibility="private" type="_efH9wOSzEeaqwtyUX-Dpqw" association="_M802UOfBEea-ws2xt6svxA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_M802U-fBEea-ws2xt6svxA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_M802UufBEea-ws2xt6svxA"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_M802VOfBEea-ws2xt6svxA" name="" visibility="private" type="_ZB8jYOSzEeaqwtyUX-Dpqw" association="_M802UOfBEea-ws2xt6svxA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_M802VufBEea-ws2xt6svxA" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_M802VefBEea-ws2xt6svxA"/>
+      </ownedEnd>
+    </packagedElement>
     <profileApplication xmi:id="_NfyHxOSzEeaqwtyUX-Dpqw">
       <eAnnotations xmi:id="_NfyHxeSzEeaqwtyUX-Dpqw" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
@@ -928,4 +983,5 @@
   <Default:Documentation xmi:id="_eA_MAOV-Eea4uvM5HuL60Q" base_Comment="_eA2CEOV-Eea4uvM5HuL60Q"/>
   <Default:Documentation xmi:id="_fywEkeV-Eea4uvM5HuL60Q" base_Comment="_fywEkOV-Eea4uvM5HuL60Q"/>
   <Default:Documentation xmi:id="_DUJWwOe_EeaRZZkXdN4PYg" base_Comment="_DOaiMOe_EeaRZZkXdN4PYg"/>
+  <Default:Documentation xmi:id="_961BUOfBEea-ws2xt6svxA" base_Comment="_96iGYOfBEea-ws2xt6svxA"/>
 </xmi:XMI>
