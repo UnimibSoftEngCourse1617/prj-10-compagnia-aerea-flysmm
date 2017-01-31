@@ -837,14 +837,14 @@
     </packagedElement>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_HFRqAOTVEea6c_brzspzfA" name="Book">
       <ownedComment xmi:id="_aLQGAOV9Eea4uvM5HuL60Q" annotatedElement="_HFRqAOTVEea6c_brzspzfA">
-        <body>&lt;p>Book:&lt;/p>&lt;p>Il cliente effettua la prenotazione del volo,&lt;/p>&lt;p>Le prenotazioni scadono 3 giorni prima del volo.&lt;/p></body>
+        <body>&lt;p>Book:&lt;/p>&lt;p>Il cliente effettua la prenotazione del volo,&lt;/p>&lt;p>Le prenotazioni scadono 3 giorni prima del volo.&lt;/p>&lt;p>Caso d’uso: Checkout&lt;/p>&lt;p class=&quot;MsoNormal&quot;>Formato dettagliato&lt;/p>&lt;table class=&quot;MsoNormalTable&quot; border=&quot;1&quot;>&lt;col width=&quot;50.0%&quot;>&lt;/col>&lt;col width=&quot;50.0%&quot;>&lt;/col>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Sezione del caso d’uso&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Book&lt;/p>&lt;/td>&lt;/tr>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Nome&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Book&lt;/p>&lt;/td>&lt;/tr>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Portata&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>FlySMM&lt;/p>&lt;/td>&lt;/tr>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Livello&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Obiettivo utente&lt;/p>&lt;/td>&lt;/tr>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Attore primario&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Signed Customer&lt;/p>&lt;/td>&lt;/tr>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Parti interessate&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Signed Customer perchè si può fare una prenotazione solo se si è registrati/loggati&lt;/p>&lt;/td>&lt;/tr>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Pre-condizioni&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>L’utente deve essere registrato.&lt;/p>&lt;p class=&quot;MsoNormal&quot;>L’utente deve essere loggato.&lt;/p>&lt;/td>&lt;/tr>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Garanzie di successo&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>La prenotazione è stata registrata.&lt;/p>&lt;p class=&quot;MsoNormal&quot;>All’utente è stato spedita una mail di avvenuta prenotazione con i dettagli e la data di scadenza entro il quale pagare.&lt;/p>&lt;/td>&lt;/tr>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Scenario principale di successo&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>L’utente registrato seleziona il/i volo/i. Gli vengono assegnati i posti richiesti.Gli viene chiesto quanti bagagli deve imbarcare. L'utente conferma i dati. Gli viene mandata una e-mail con i dettagli della prenotazione e la data entro cui pagare.&lt;/p>&lt;/td>&lt;/tr>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Estensioni&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>L'utente non effettua il chekout entro la scadenza.&lt;/p>&lt;p>Viene annullata la prenotazione.&lt;/p>&lt;/td>&lt;/tr>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Requisiti non funzionali correlati&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>?&lt;/p>&lt;/td>&lt;/tr>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Frequenza di ripetizione&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Alta&lt;/p>&lt;/td>&lt;/tr>&lt;tr style='height:14.0pt;'>&lt;td>&lt;p class=&quot;MsoNormal&quot;>Varie&lt;/p>&lt;/td>&lt;td>&lt;p class=&quot;MsoNormal&quot;>-&lt;/p>&lt;/td>&lt;/tr>&lt;/table>&lt;p>&lt;/p></body>
       </ownedComment>
       <include xmi:id="_UUEmkOTVEea6c_brzspzfA" addition="_HVPYoOTVEea6c_brzspzfA"/>
       <include xmi:id="_Uti2gOTVEea6c_brzspzfA" addition="_Hh5UkOTVEea6c_brzspzfA"/>
     </packagedElement>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_HVPYoOTVEea6c_brzspzfA" name="Delete">
       <ownedComment xmi:id="__nXiMOV9Eea4uvM5HuL60Q" annotatedElement="_HVPYoOTVEea6c_brzspzfA">
-        <body>&lt;p>Delete:&lt;/p>&lt;p>Viene cancellata la prenotazione del volo se il cliente non paga entro 24 ore.&lt;/p></body>
+        <body>&lt;p>Delete:&lt;/p>&lt;p>Viene cancellata la prenotazione del volo se il cliente non paga entro 24 ore dalla partenza del volo.&lt;/p></body>
       </ownedComment>
     </packagedElement>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_Hh5UkOTVEea6c_brzspzfA" name="Payment">
@@ -854,8 +854,10 @@
     </packagedElement>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_Hup-MOTVEea6c_brzspzfA" name="Notify">
       <ownedComment xmi:id="_eA2CEOV-Eea4uvM5HuL60Q" annotatedElement="_Hup-MOTVEea6c_brzspzfA">
-        <body>&lt;p>Notify:&lt;/p>&lt;p>Il sistema avvisa il cliente, 24 ore prima, che la sua prenotazione sta per scadere e lo invita a pagare.&lt;/p></body>
+        <body>&lt;p>Notify:&lt;/p>&lt;p>Scenario principale di successo: Il sistema avvisa il cliente, 24 ore prima, che la sua prenotazione sta per scadere e lo invita a pagare.&lt;/p></body>
       </ownedComment>
+      <extensionPoint xmi:id="_xfQwIOfPEeaDZPrg6ZaTdw" name="ExtensionPoint1"/>
+      <extensionPoint xmi:id="_xhxRkOfPEeaDZPrg6ZaTdw" name="ExtensionPoint2"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_TLspQOTVEea6c_brzspzfA" memberEnd="_TLvskOTVEea6c_brzspzfA _TLz-AOTVEea6c_brzspzfA" navigableOwnedEnd="_TLvskOTVEea6c_brzspzfA">
       <ownedEnd xmi:id="_TLvskOTVEea6c_brzspzfA" name="signed Customer" visibility="private" type="_ZB8jYOSzEeaqwtyUX-Dpqw" association="_TLspQOTVEea6c_brzspzfA">
