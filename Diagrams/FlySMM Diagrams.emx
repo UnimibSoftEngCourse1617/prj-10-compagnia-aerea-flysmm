@@ -35,7 +35,7 @@
           <children xmi:type="notation:BasicDecorationNode" xmi:id="_R3CL4-fUEea8-93zK-ZNLQ" type="Name"/>
           <children xmi:type="notation:BasicDecorationNode" xmi:id="_R3CL5OfUEea8-93zK-ZNLQ" type="Parent"/>
           <children xmi:type="umlnotation:UMLShapeCompartment" xmi:id="_R3CL5efUEea8-93zK-ZNLQ" type="PackageContents" collapsed="true" canonical="false"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_R24a5OfUEea8-93zK-ZNLQ" x="4488" y="5544" width="3408" height="1713"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_R24a5OfUEea8-93zK-ZNLQ" x="4356" y="5676" width="3408" height="1713"/>
         </children>
         <children xmi:type="umlnotation:UMLShape" xmi:id="_fQe5QOfUEea8-93zK-ZNLQ" element="_fQbO4OfUEea8-93zK-ZNLQ" fontName="Segoe UI" fontHeight="8" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label">
           <children xmi:type="notation:DecorationNode" xmi:id="_fQgHYOfUEea8-93zK-ZNLQ" type="ImageCompartment">
@@ -81,7 +81,7 @@
           <children xmi:type="notation:ListCompartment" xmi:id="_4uhZ5-fUEea8-93zK-ZNLQ" visible="false" type="RequiredInterfaceListCompartment"/>
           <children xmi:type="notation:ListCompartment" xmi:id="_4uhZ6OfUEea8-93zK-ZNLQ" visible="false" type="ProvidedInterfaceListCompartment"/>
           <children xmi:type="umlnotation:UMLShapeCompartment" xmi:id="_4uhZ6efUEea8-93zK-ZNLQ" visible="false" type="UseCaseShapeCompartment"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4uYP8efUEea8-93zK-ZNLQ" x="13992" y="6864"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4uYP8efUEea8-93zK-ZNLQ" x="18084" y="5940"/>
         </children>
         <children xmi:type="umlnotation:UMLShape" xmi:id="_9mxiQOfUEea8-93zK-ZNLQ" element="_9mnxQOfUEea8-93zK-ZNLQ" fontName="Segoe UI" fontHeight="8" transparency="0" lineColor="14263149" lineWidth="1" showStereotype="Label">
           <children xmi:type="notation:DecorationNode" xmi:id="_9mxiQufUEea8-93zK-ZNLQ" type="ImageCompartment">
@@ -143,7 +143,7 @@
             <children xmi:type="notation:BasicDecorationNode" xmi:id="_5R5-VefVEea8-93zK-ZNLQ" type="Name"/>
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5R5-U-fVEea8-93zK-ZNLQ" y="-186"/>
           </children>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_5R5-UefVEea8-93zK-ZNLQ" points="[40, 830, -9015, -174]$[40, 1033, -9015, 29]$[7840, 1033, -1215, 29]"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_5R5-UefVEea8-93zK-ZNLQ" points="[39, 830, -13108, 750]$[39, 1166, -13108, 1086]$[13187, 1166, 40, 1086]$[13187, 568, 40, 488]"/>
         </edges>
         <edges xmi:type="umlnotation:UMLConnector" xmi:id="_8lWsEefVEea8-93zK-ZNLQ" element="_8lWsEOfVEea8-93zK-ZNLQ" source="_OBGcIufUEea8-93zK-ZNLQ" target="_GzM1kufVEea8-93zK-ZNLQ" fontName="Segoe UI" fontHeight="8" roundedBendpointsRadius="4" routing="Rectilinear" lineColor="8421504" lineWidth="1" showStereotype="Text">
           <children xmi:type="notation:DecorationNode" xmi:id="_8lWsE-fVEea8-93zK-ZNLQ" type="NameLabel">
@@ -1122,7 +1122,7 @@
       </eAnnotations>
       <packagedElement xmi:type="uml:Dependency" xmi:id="_8lWsEOfVEea8-93zK-ZNLQ" supplier="_GzM1kOfVEea8-93zK-ZNLQ" client="_OA9SMOfUEea8-93zK-ZNLQ"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="_R24a4OfUEea8-93zK-ZNLQ" name="Sales" clientDependency="_5RwNUOfVEea8-93zK-ZNLQ">
+    <packagedElement xmi:type="uml:Package" xmi:id="_R24a4OfUEea8-93zK-ZNLQ" name="Sales" visibility="package" clientDependency="_5RwNUOfVEea8-93zK-ZNLQ">
       <eAnnotations xmi:id="_R24a4efUEea8-93zK-ZNLQ" source="uml2.diagrams" references="_R24a4ufUEea8-93zK-ZNLQ">
         <contents xmi:type="umlnotation:UMLDiagram" xmi:id="_R24a4ufUEea8-93zK-ZNLQ" type="Freeform" name="Main">
           <element xsi:nil="true"/>
@@ -1590,7 +1590,7 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_0kXSAOlSEeajyLIAO0VrnQ" name="Flight">
         <ownedAttribute xmi:id="_xo8NQulTEeajyLIAO0VrnQ" name="aircraft" visibility="private" type="_vdfCUOlTEeajyLIAO0VrnQ" association="_xozDUOlTEeajyLIAO0VrnQ">
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xo8NROlTEeajyLIAO0VrnQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xo8NROlTEeajyLIAO0VrnQ" value="*"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xo8NQ-lTEeajyLIAO0VrnQ" value="1"/>
         </ownedAttribute>
       </packagedElement>
@@ -1618,7 +1618,7 @@
       <packagedElement xmi:type="uml:Association" xmi:id="_f88soOlTEeajyLIAO0VrnQ" name="Departures" memberEnd="_f88soelTEeajyLIAO0VrnQ _f88spOlTEeajyLIAO0VrnQ"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_vdfCUOlTEeajyLIAO0VrnQ" name="Aircraft">
         <ownedAttribute xmi:id="_xozDUelTEeajyLIAO0VrnQ" name="flight" visibility="private" type="_0kXSAOlSEeajyLIAO0VrnQ" association="_xozDUOlTEeajyLIAO0VrnQ">
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xo8NQelTEeajyLIAO0VrnQ" value="*"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xo8NQelTEeajyLIAO0VrnQ" value="1"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xo8NQOlTEeajyLIAO0VrnQ" value="1"/>
         </ownedAttribute>
       </packagedElement>
