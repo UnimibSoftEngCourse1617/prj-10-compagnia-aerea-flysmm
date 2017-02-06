@@ -1064,8 +1064,16 @@
     <packagedElement xmi:type="uml:Actor" xmi:id="_jZPaAOVFEeaeFY_vskE_yg" name="User"/>
     <packagedElement xmi:type="uml:Actor" xmi:id="_kfEZoOVFEeaeFY_vskE_yg" name="Fidelity User"/>
     <packagedElement xmi:type="uml:Actor" xmi:id="_n1Q5YOVFEeaeFY_vskE_yg" name="Signed User"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_sjVyEOVFEeaeFY_vskE_yg" name="Account menagment"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_vCU9AOVFEeaeFY_vskE_yg" name="Sign-up"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_sjVyEOVFEeaeFY_vskE_yg" name="Account management">
+      <ownedComment xmi:id="_EHu4AOxuEeaM8_OB5P863g" annotatedElement="_sjVyEOVFEeaeFY_vskE_yg">
+        <body>&lt;p>&lt;span style=&quot;font-size:11pt;font-family:Calibri;&quot;>Account Management la registrazione al pacchetto fidelity prevede dei vantaggi come la notifica di promozioni e l’accumulo di punti personali. Il sistema invia all’utente delle email per consultare le varie promozioni in riserbo per lui. I punti sono accumulabili tramite i viaggi stessi e vanno in base alle miglia percorse 1 punto = 1 miglio, il sistema incrementa automaticamente il punteggio. L’utente in qualsiasi momento può ottenere/consultare l’estratto conto con i suoi punti e il dettaglio dei voli con le miglia.&lt;/span>&lt;/p></body>
+      </ownedComment>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_vCU9AOVFEeaeFY_vskE_yg" name="Sign-up">
+      <ownedComment xmi:id="_wi2jIOxtEeaM8_OB5P863g" annotatedElement="_vCU9AOVFEeaeFY_vskE_yg">
+        <body>&lt;p class=&quot;MsoNormal&quot;>Sing up l’utente può procedere alla registrazione in qualsiasi momento purché avvenga prima della prenotazione del volo. l’utente inserisce i dati necessari per la registrazione ( nome cognome CF e-mail password&lt;span>...&lt;/span>) il sistema elabora i dati e controlla che tutti i campi obbligatori siano stati rispettati, se l’esito è positivo l’utente viene registrato nel DB e può procedere con la prenotazione/acquisto biglietto.&lt;/p></body>
+      </ownedComment>
+    </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_x6PlUOVFEeaeFY_vskE_yg" memberEnd="_x6ZWUOVFEeaeFY_vskE_yg _x6ZWU-VFEeaeFY_vskE_yg" navigableOwnedEnd="_x6ZWUOVFEeaeFY_vskE_yg">
       <ownedEnd xmi:id="_x6ZWUOVFEeaeFY_vskE_yg" name="fidelity User" visibility="private" type="_kfEZoOVFEeaeFY_vskE_yg" association="_x6PlUOVFEeaeFY_vskE_yg">
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_x6ZWUuVFEeaeFY_vskE_yg" value="1"/>
@@ -2061,4 +2069,6 @@
   <Default:Documentation xmi:id="_961BUOfBEea-ws2xt6svxA" base_Comment="_96iGYOfBEea-ws2xt6svxA"/>
   <Standard:Subsystem xmi:id="_4uWawOfUEea8-93zK-ZNLQ" base_Component="_4uK0kOfUEea8-93zK-ZNLQ"/>
   <Standard:Subsystem xmi:id="_GzM1kefVEea8-93zK-ZNLQ" base_Component="_GzM1kOfVEea8-93zK-ZNLQ"/>
+  <Default:Documentation xmi:id="_wjAUIOxtEeaM8_OB5P863g" base_Comment="_wi2jIOxtEeaM8_OB5P863g"/>
+  <Default:Documentation xmi:id="_EH4B8OxuEeaM8_OB5P863g" base_Comment="_EHu4AOxuEeaM8_OB5P863g"/>
 </xmi:XMI>
