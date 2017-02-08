@@ -10,5 +10,6 @@
 <html>
 <body>
 	<h2>Hello World!</h2>
+	<a href="./App">ciao</a>
 </body>
 </html>
