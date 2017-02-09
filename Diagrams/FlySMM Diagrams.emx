@@ -2586,7 +2586,7 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IEWqYelUEeajyLIAO0VrnQ" value="1"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IEWqYOlUEeajyLIAO0VrnQ" value="1"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_NgAaxOlUEeajyLIAO0VrnQ" name="passagers" visibility="private" type="_sS0SkOlSEeajyLIAO0VrnQ" association="_NgAawOlUEeajyLIAO0VrnQ">
+        <ownedAttribute xmi:id="_NgAaxOlUEeajyLIAO0VrnQ" name="passengers" visibility="private" type="_sS0SkOlSEeajyLIAO0VrnQ" association="_NgAawOlUEeajyLIAO0VrnQ">
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NgAaxulUEeajyLIAO0VrnQ" value="1"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NgAaxelUEeajyLIAO0VrnQ" value="1"/>
         </ownedAttribute>
@@ -2605,6 +2605,9 @@
         <ownedAttribute xmi:id="_y0m1Qen6EeaivsbSfJ5PJQ" name="flight" visibility="private" type="_0kXSAOlSEeajyLIAO0VrnQ" association="_y0m1QOn6EeaivsbSfJ5PJQ">
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_y0m1Q-n6EeaivsbSfJ5PJQ" value="*"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_y0m1Qun6EeaivsbSfJ5PJQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ZBBqoO6pEea27vvSyUA6Lw" name="idBook" visibility="private">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="__TvwYOlTEeajyLIAO0VrnQ" name="Ticket">
