@@ -68,10 +68,10 @@ public class App extends HttpServlet {
 
 		// Create message object
 		Message message = new Message();
-		message.setMessage("Hello Javapapers !");
+		message.setMessage("Hello World!");
 
 		// Save
-		session.saveOrUpdate(message);
+		session.save(message);
 
 		// Commit transaction
 		session.getTransaction().commit();
