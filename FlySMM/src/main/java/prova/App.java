@@ -71,14 +71,17 @@ public class App extends HttpServlet {
 		System.out.println("Session Is Opened :: " + session.isOpen());
 		System.out.println("Session Is Connected :: " + session.isConnected());
 
-		/*
-		 * // Create message object Message message = new Message();
-		 * message.setMessage("Hello World!");
-		 * 
-		 * // Save session.save(message);
-		 * 
-		 * // Commit transaction session.getTransaction().commit();
-		 */
+		
+		 //Create message object 
+		 Message message = new Message();
+		 message.setMessage("Hello World!");
+		 
+		 //Save
+		 session.save(message);
+		 
+		 //Commit transaction 
+		 session.getTransaction().commit();
+		
 		System.exit(0);
 	}
 
