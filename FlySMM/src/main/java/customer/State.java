@@ -10,5 +10,5 @@ public abstract class State {
 	}
 
 
-	public abstract void isFidelity();
+	public abstract String isFidelity();
 }

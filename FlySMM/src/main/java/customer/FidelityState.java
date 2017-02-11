@@ -1,20 +1,25 @@
 package customer;
 
-public class FidelityState extends State {
+import java.time.LocalDate;
 
+public class FidelityState extends State {
+	
+	private LocalDate actualDate;
+	
 	public FidelityState(FidelityCustomer c) {
 		super(c);
-		System.out.print("Utente fedele");
-		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void isFidelity() {
-		// TODO Auto-generated method stub
+	public String isFidelity() {
+		
+		this.actualDate= LocalDate.now();
+		if(c.startDate.lengthOfYear()<=365){
+			return "Customer fidelity";
+		} else {
+			return c.setFidelity("Customer Unfidelity");
+		}
+		
 
-		// in questo metodo devo inserire quando passa da fidelity ad unfidelity
-		// e se passa creo un oggetto unfidelityCustomer
-		System.out.print("utente fedele");
 	}
 
 }
