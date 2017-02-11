@@ -2,14 +2,13 @@ package customer;
 
 public abstract class State {
 	
-	protected FidelityCustomer fidelityCustomer;
-
-	public State(FidelityCustomer fidelityCustomer) {
+	protected FidelityCustomer c;
+	
+	public State(FidelityCustomer c) {
 		super();
-		this.fidelityCustomer = fidelityCustomer;
+		this.c = c;
 	}
 
-	
 
 	public abstract void isFidelity();
 }

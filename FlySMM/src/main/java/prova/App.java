@@ -12,7 +12,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
-import prova.data.Message;
+
 /**
  * Servlet implementation class App
  */
@@ -66,17 +66,17 @@ public class App extends HttpServlet {
 		System.out.println("Session Is Opened :: "+session.isOpen());
 		System.out.println("Session Is Connected :: "+session.isConnected());	
 
-		// Create message object
-		Message message = new Message();
-		message.setMessage("Hello World!");
-
-		// Save
-		session.save(message);
-
-		// Commit transaction
-		session.getTransaction().commit();
-
-		System.exit(0);
+//		// Create message object
+//		Message message = new Message();
+//		message.setMessage("Hello World!");
+//
+//		// Save
+//		session.save(message);
+//
+//		// Commit transaction
+//		session.getTransaction().commit();
+// 
+//		System.exit(0);
 	}
 
 }
