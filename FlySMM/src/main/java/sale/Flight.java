@@ -12,7 +12,7 @@ public class Flight {
 	private Airport departureAirport;
 	private Date arrivalDateTime;
 	private Airport arrivalAirport;
-	private Book book;
+	private Book book; // ho bisogno di avere tutte le prenotazioni di un volo ?
 	
 	public Flight(Aircraft aircraft, String idFlight, Date departureDateTime, Airport departureAirport,
 			Date arrivalDateTime, Airport arrivalAirport, Book book) {
