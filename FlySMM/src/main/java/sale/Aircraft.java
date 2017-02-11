@@ -1,11 +1,5 @@
-/**
- * 
- */
 package sale;
 
-/**
- *
- */
 public class Aircraft {
 
 	private Flight flight;
@@ -15,9 +9,6 @@ public class Aircraft {
 	private float weightBound;
 	private String model;
 
-	/**
-	 * 
-	 */
 	public Aircraft(Flight flight, String idAircraft, String constructor, int totalSize, float weightBound,
 			String model) {
 		this.flight = flight;

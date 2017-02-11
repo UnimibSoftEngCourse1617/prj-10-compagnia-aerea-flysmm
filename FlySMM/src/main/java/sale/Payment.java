@@ -6,15 +6,15 @@ public class Payment {
 	private String cardNumber;
 	private String cvv;
 	private String owner;
-	private String address;
+	private Address cardOwnerAddress;
 	private Date expiredDate;
 	
-	public Payment(String cardNumber, String cvv, String owner, String address, Date expiredDate) {
+	public Payment(String cardNumber, String cvv, String owner, Address cardOwnerAddress, Date expiredDate) {
 		super();
 		this.cardNumber = cardNumber;
 		this.cvv = cvv;
 		this.owner = owner;
-		this.address = address;
+		this.cardOwnerAddress = cardOwnerAddress;
 		this.expiredDate = expiredDate;
 	}
 
@@ -30,8 +30,8 @@ public class Payment {
 		return owner;
 	}
 
-	public String getAddress() {
-		return address;
+	public Address getCardOwerAddress() {
+		return cardOwnerAddress;
 	}
 
 	public Date getExpiredDate() {
