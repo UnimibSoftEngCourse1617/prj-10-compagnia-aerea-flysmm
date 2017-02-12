@@ -2,7 +2,7 @@ package sale;
 
 import java.util.Date;
 import booking.Book;
-// TODO: modificare il nome del package book;
+
 
 public class Flight {
 	
