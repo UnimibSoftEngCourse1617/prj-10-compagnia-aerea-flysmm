@@ -1,7 +1,3 @@
-/*
- * TODO: modificare il diagramma delle classi aggiunta classe Andress
- * */
-
 package sale;
 
 public class Airport {
@@ -24,6 +20,8 @@ public class Airport {
 	public String getName() {
 		return name;
 	}
-
 	
+	public Address getAirportAndress() {
+		return airportAndress;
+	}
 }

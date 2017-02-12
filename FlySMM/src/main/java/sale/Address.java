@@ -1,7 +1,3 @@
-/*
- * TODO: modificare il diagramma delle classi aggiunta classe Andress
- * */
-
 package sale;
 
 import java.util.TimeZone;
