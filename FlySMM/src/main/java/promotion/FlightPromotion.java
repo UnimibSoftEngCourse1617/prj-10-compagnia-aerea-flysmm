@@ -1,23 +1,23 @@
 package promotion;
 
 public class FlightPromotion extends Promotion{
-	private String idFlight;
+	private long idFlight;
 	
 	public String notify_() { return "Nuova offerta sul volo X!"; }
-	public FlightPromotion(String idFlight){
+	public FlightPromotion(long idFlight){
 		this.setIdFlight(idFlight);
 	}
-	public FlightPromotion(int discountRate, boolean fidelity, int idPromo, String name, String idFlight){
+	public FlightPromotion(int discountRate, boolean fidelity, long idPromo, String name, long idFlight){
 		this.discountRate = discountRate;
 		this.fidelity = fidelity;
 		this.idPromo = idPromo;
 		this.name = name;
 		this.setIdFlight(idFlight);
 	}
-	public String getIdFlight() {
+	public long getIdFlight() {
 		return idFlight;
 	}
-	public void setIdFlight(String idFlight) {
+	public void setIdFlight(long idFlight) {
 		this.idFlight = idFlight;
 	}
 }
