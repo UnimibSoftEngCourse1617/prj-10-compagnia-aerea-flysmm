@@ -1,4 +1,4 @@
-package Book;
+package Booking;
 
 public class Book {
 
