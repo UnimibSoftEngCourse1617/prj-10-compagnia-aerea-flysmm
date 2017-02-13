@@ -1,3 +1,4 @@
+
 <html>
 <head>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -47,7 +48,7 @@
 				</div>
 
 				<div class="field">
-					<label>Volo per</label> <input name="aArrival" type="text"></input>
+          <label>Volo per</label> <input name="aArrival" type="text"></input>
 				</div>
 
 				<div class="three fields">
