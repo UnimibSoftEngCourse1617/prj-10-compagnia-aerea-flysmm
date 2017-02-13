@@ -12,18 +12,16 @@ PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
 		<property name="name" column="Name" type="String" />
 	</class>
 	
-	<!--<class name="promotion.FlightPromotion" table="promotion">
+	<class name="promotion.FlightPromotion" table="promotion">
 		<id name="idPromo" column="IdPromo" type="long">
 			<generator class="native" />
 		</id>
 		<property name="discountRate" column="Discount_rate" type="int" />
 		<property name="fidelity" column="fidelity" type="boolean" />
 		<property name="name" column="Name" type="String" />
-		<id name="IdPromo" column="idFlight" type="long">
-			<generator class="native" />
-		</id>
-		<property name="promotion" column="promotion" type="string" />
-	</class> -->
+		<!--<one-to-one name="idFlight" class="sale.Flight"
+			cascade="save-update"></one-to-one> -->
+	</class>
 	
 	<class name="promotion.SeasonPromotion" table="promotion">
 		<id name="idPromo" column="IdPromo" type="long">
