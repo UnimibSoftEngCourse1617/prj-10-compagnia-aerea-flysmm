@@ -1,21 +1,28 @@
 package customer;
 
-import java.time.LocalDate;
+
+import java.util.Date;
 
 public class FidelityCustomer extends Customer {
 
 	private int point;
 	protected State state;
-	protected LocalDate startDate;
+	protected Date startDate;
+	
+	public FidelityCustomer(int idCustomer, String name, String surname, String email, String password, String phoneNumber,
+			Date dateOfBirth){
+		super(idCustomer, name,surname, email, password,phoneNumber,dateOfBirth);
+		this.point = 0;
+		this.startDate = new Date();
+		this.state = new FidelityState(this);
+	}
 	
 	public FidelityCustomer(Customer c) {
 		super(c.getIdCustomer(), c.getName(), c.getSurname(), c.getEmail(), c.getPassword(), c.getPhoneNumber(),
 				c.getDateOfBirth());
 		this.point = 0;
-		this.startDate = LocalDate.now();
-		this.state = new FidelityState(c);
-		
-
+		this.startDate = new Date();
+		this.state = new FidelityState(this);
 	}
 
 	public void setFidelity(State state) {
@@ -23,6 +30,7 @@ public class FidelityCustomer extends Customer {
 	}
 
 	public State getState() {
+		this.state.changeFidelity();
 		return state;
 	}
 
@@ -34,11 +42,11 @@ public class FidelityCustomer extends Customer {
 		this.point = point;
 	}
 
-	public LocalDate getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(LocalDate startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
@@ -48,7 +56,7 @@ public class FidelityCustomer extends Customer {
 				+ getSurname() + ", getEmail()=" + getEmail() + ", getPassword()=" + getPassword()
 				+ ", getPhoneNumber()=" + getPhoneNumber() + ", getDateOfBirth()=" + getDateOfBirth() + ", toString()="
 				+ super.toString() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", point=" + point
-				+ ", state=" + state + ", localDate=" + startDate.lengthOfYear() + "]";
+				+ ", state=" + state + ", localDate=" + startDate.getTime() + "]";
 	}
 
 }

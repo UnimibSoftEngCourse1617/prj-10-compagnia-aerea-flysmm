@@ -45,7 +45,7 @@ public class App extends HttpServlet {
 		java.util.Date data = new Date(12 / 1 / 1992);
 		Customer c = new Customer(121, "luca", "lorusso", "dgs", "dgvs", "popo", data);
 		FidelityCustomer c2 = new FidelityCustomer(c);
-		response.getWriter().append(c.toString()).append(request.getContextPath());
+		//response.getWriter().append(c.toString()).append(request.getContextPath());
 		response.getWriter().append(c2.toString()).append(request.getContextPath()).append(c2.getState().toString());
 	}
 	/**

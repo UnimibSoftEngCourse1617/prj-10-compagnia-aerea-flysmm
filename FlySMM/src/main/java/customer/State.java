@@ -3,9 +3,9 @@ package customer;
 public abstract class State {
 	
 
-	protected Customer c;
+	protected FidelityCustomer c;
 	
-	public State(Customer c) {
+	public State(FidelityCustomer c) {
 		this.c = c;
 	}
 

@@ -8,7 +8,11 @@ public class UnfidelityState extends State {
 	}
 
 	@Override
-	public void changeFidelity() {};
+	public void changeFidelity() {
+		
+		 
+		
+	}
 
 	
 
