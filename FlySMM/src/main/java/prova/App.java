@@ -38,10 +38,10 @@ public class App extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//request.setAttribute("messa", mex);
-		//request.getRequestDispatcher("/src/main/webapp/hello.jsp").forward(request, response);
-		//configureUsingHibernateConfigXMLFile();
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		request.getRequestDispatcher("/webapp/index.jsp").forward(request, response);
+		configureUsingHibernateConfigXMLFile();
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 		java.util.Date data = new Date(12 / 1 / 1992);
 		Customer c = new Customer(121, "luca", "lorusso", "dgs", "dgvs", "popo", data);
 		FidelityCustomer c2 = new FidelityCustomer(c);
