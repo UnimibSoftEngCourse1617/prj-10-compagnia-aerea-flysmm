@@ -1,10 +1,10 @@
 package promotion;
 
 public abstract class Promotion {
-	private int discountRate;
-	private boolean fidelity;
-	private int idPromo;
-	private String name;
+	protected int discountRate;
+	protected boolean fidelity;
+	protected int idPromo;
+	protected String name;
 	
 	public abstract String notify_();
 }
