@@ -98,7 +98,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `flysmmDB`.`Promotion` (
   `IdPromo` INT NOT NULL,
   `Name` VARCHAR(45) NOT NULL,
-  `Promo_type` VARCHAR(15) NOT NULL,
+  `Fidelity` BOOLEAN NOT NULL,
+  `Start_Date` DATE NULL,
   `Expire_Date` DATE NULL,
   `Discount_rate` INT NULL,
   PRIMARY KEY (`IdPromo`))
