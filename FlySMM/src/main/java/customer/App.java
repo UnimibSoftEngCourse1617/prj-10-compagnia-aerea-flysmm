@@ -1,7 +1,7 @@
-package prova;
+package customer;
 
 import java.io.IOException;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,6 +24,7 @@ import customer.FidelityState;
 public class App extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	private Date data = new Date();
 	
 
 	/**
@@ -39,10 +40,10 @@ public class App extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("/webapp/index.jsp").forward(request, response);
-		configureUsingHibernateConfigXMLFile();
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		java.util.Date data = new Date(12 / 1 / 1992);
+//		request.getRequestDispatcher("/webapp/index.jsp").forward(request, response);
+//		configureUsingHibernateConfigXMLFile();
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 		Customer c = new Customer(121, "luca", "lorusso", "dgs", "dgvs", "popo", data);
 		FidelityCustomer c2 = new FidelityCustomer(c);
 		//response.getWriter().append(c.toString()).append(request.getContextPath());
