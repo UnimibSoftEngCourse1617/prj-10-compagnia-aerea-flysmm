@@ -8,10 +8,8 @@ public class UnfidelityState extends State {
 	}
 
 	@Override
-	public String isFidelity() {
+	public void changeFidelity() {};
 
-		String status = "Cuatomer Unfidelity";
-		return status;
-	}
+	
 
 }

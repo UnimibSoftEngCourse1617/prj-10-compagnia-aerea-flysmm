@@ -5,22 +5,24 @@ import java.time.LocalDate;
 public class FidelityCustomer extends Customer {
 
 	private int point;
-	protected String state;
+	protected State state;
 	protected LocalDate startDate;
+	
 	public FidelityCustomer(Customer c) {
 		super(c.getIdCustomer(), c.getName(), c.getSurname(), c.getEmail(), c.getPassword(), c.getPhoneNumber(),
 				c.getDateOfBirth());
 		this.point = 0;
-		this.state = "Fidelity";
 		this.startDate = LocalDate.now();
+		this.state = new FidelityState(c);
+		
 
 	}
 
-	public String setFidelity(String state) {
-		return this.state = state;
+	public void setFidelity(State state) {
+		this.state = state;
 	}
 
-	public String getState() {
+	public State getState() {
 		return state;
 	}
 

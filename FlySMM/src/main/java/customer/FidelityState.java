@@ -6,20 +6,15 @@ public class FidelityState extends State {
 	
 	private LocalDate actualDate;
 	
-	public FidelityState(FidelityCustomer c) {
+	public FidelityState(Customer c) {
 		super(c);
 	}
 
-	public String isFidelity() {
+	public void changeFidelity() {};
 		
-		this.actualDate= LocalDate.now();
-		if(c.startDate.lengthOfYear()<=365){
-			return "Customer fidelity";
-		} else {
-			return c.setFidelity("Customer Unfidelity");
-		}
+//		serve per cambiare lo stato da fidelity ad unfidelity
 		
-
-	}
+	
+	
 
 }

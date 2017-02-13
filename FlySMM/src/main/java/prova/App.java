@@ -23,9 +23,8 @@ import customer.FidelityState;
  */
 public class App extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private java.util.Date data = new Date(12 / 1 / 1992);
-	private Customer c = new Customer(121, "luca", "lorusso", "dgs", "dgvs", "popo", data);
-	private FidelityCustomer c2 = new FidelityCustomer(c);
+	
+	
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -43,9 +42,11 @@ public class App extends HttpServlet {
 		//request.getRequestDispatcher("/src/main/webapp/hello.jsp").forward(request, response);
 		//configureUsingHibernateConfigXMLFile();
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		
+		java.util.Date data = new Date(12 / 1 / 1992);
+		Customer c = new Customer(121, "luca", "lorusso", "dgs", "dgvs", "popo", data);
+		FidelityCustomer c2 = new FidelityCustomer(c);
 		response.getWriter().append(c.toString()).append(request.getContextPath());
-		response.getWriter().append(c2.toString()).append(request.getContextPath());
+		response.getWriter().append(c2.toString()).append(request.getContextPath()).append(c2.getState().toString());
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
