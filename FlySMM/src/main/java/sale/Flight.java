@@ -12,7 +12,7 @@ public class Flight {
 	private Airport departureAirport;
 	private Date arrivalDateTime;
 	private Airport arrivalAirport;
-	private Book book; // ho bisogno di avere tutte le prenotazioni di un volo ?
+	private Book book; // ho bisogno di avere tutte le prenotazioni di un volo ? //Secondo me no... (dbbd59)
 	
 	public Flight(Aircraft aircraft, String idFlight, Date departureDateTime, Airport departureAirport,
 			Date arrivalDateTime, Airport arrivalAirport, Book book) {
@@ -24,6 +24,13 @@ public class Flight {
 		this.arrivalDateTime = arrivalDateTime;
 		this.arrivalAirport = arrivalAirport;
 		this.book = book;
+	}
+
+	public Flight(String idFlight, Airport departureAirport, Airport arrivalAirport) {
+		super();
+		this.idFlight = idFlight;
+		this.departureAirport = departureAirport;
+		this.arrivalAirport = arrivalAirport;
 	}
 
 	public Aircraft getAircraft() {
