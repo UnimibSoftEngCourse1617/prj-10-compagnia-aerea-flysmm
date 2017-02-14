@@ -11,19 +11,19 @@ import java.util.Date;
 
 public class Book {
 	private String bookId;
-	private Customer userId;
-	private Flight flightId;
+	private int userId;
+	private String flightId;
 	private boolean payed;
 	private boolean expired;
 	private Date bookingDate;
 	private ArrayList<Passenger> listPassenger = new ArrayList<Passenger>();
 	private float totalPrice;
 
-	public Book(Customer userId, Flight flightId) {
+	public Book(Customer c, Flight f) {
 		super();
-		this.bookId = setBookId(flightId.getDepartureAirport().toString(), flightId.getArrivalAirport().toString());
-		this.userId = userId;
-		this.flightId = flightId;
+		this.bookId = setBookId(f.getDepartureAirport().getName(), f.getArrivalAirport().getName());
+		this.userId = c.getIdCustomer();
+		this.flightId = f.getIdFlight();
 		this.bookingDate = setBookingDate();
 	}
 
@@ -33,7 +33,7 @@ public class Book {
 
 	}
 
-	private void addPassenger(Passenger passenger) {
+	void addPassenger(Passenger passenger) {
 		this.listPassenger.add(passenger);
 	}
 
@@ -72,6 +72,12 @@ public class Book {
 
 	public void setTotalPrice(float totalPrice) {
 		this.totalPrice = totalPrice;
+	}
+
+	@Override
+	public String toString() {
+		return "Book [bookId=" + bookId + ", userId=" + userId + ", flightId=" + flightId + ", bookingDate="
+				+ bookingDate + ", listPassenger=" + listPassenger.toString() + "]";
 	}
 
 }
