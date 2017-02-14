@@ -4,9 +4,6 @@
 	<groupId>com.flysmm.javaweb.src.main.java</groupId>
 	<artifactId>FlySMM</artifactId>
 	<packaging>war</packaging>
-	<properties>
-    <failOnMissingWebXml>false</failOnMissingWebXml>
-	</properties>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>FlySMM Maven Webapp</name>
 	<url>http://maven.apache.org</url>

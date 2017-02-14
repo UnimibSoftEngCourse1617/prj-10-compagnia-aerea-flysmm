@@ -13,7 +13,6 @@
 		<property name="hibernate.connection.username">flysmmDB</property>
 		<property name="hibernate.connection.password">Flysmm.db</property>
 
-
 		<!-- SQL dialect -->
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<!-- Specify session context -->
