@@ -11,20 +11,24 @@ import java.util.Date;
 
 public class Book {
 	private String bookId;
-	private int userId;
-	private String flightId;
+	private Customer customer;
+	private Flight flight;
 	private boolean payed;
 	private boolean expired;
 	private Date bookingDate;
 	private ArrayList<Passenger> listPassenger = new ArrayList<Passenger>();
+	private ArrayList<Baggage> listBaggage = new ArrayList<Baggage>();
 	private float totalPrice;
 
 	public Book(Customer c, Flight f) {
 		super();
+		Passenger p = new Passenger(c.getName(), c.getSurname(), "ABC123DEF");
 		this.bookId = setBookId(f.getDepartureAirport().getName(), f.getArrivalAirport().getName());
-		this.userId = c.getIdCustomer();
-		this.flightId = f.getIdFlight();
+		this.customer = c;
+		this.flight = f;
 		this.bookingDate = setBookingDate();
+		addPassenger(p);
+
 	}
 
 	private String setBookId(String airport, String airport2) {
@@ -35,6 +39,10 @@ public class Book {
 
 	void addPassenger(Passenger passenger) {
 		this.listPassenger.add(passenger);
+	}
+
+	void addBaggage(Baggage b) {
+		this.listBaggage.add(b);
 	}
 
 	public String getBookId() {
@@ -74,10 +82,19 @@ public class Book {
 		this.totalPrice = totalPrice;
 	}
 
+	public int getTotalWeight() {
+		int totalWeight = 0;
+		for (Baggage b : listBaggage) {
+			totalWeight += b.getWeight();
+		}
+		return totalWeight;
+	}
+
 	@Override
 	public String toString() {
-		return "Book [bookId=" + bookId + ", userId=" + userId + ", flightId=" + flightId + ", bookingDate="
-				+ bookingDate + ", listPassenger=" + listPassenger.toString() + "]";
+		return "Book [bookId=" + bookId + ", customer=" + customer + ", flight=" + flight.toString() + ", bookingDate="
+				+ bookingDate + ", listPassenger=" + listPassenger.toString() + ", listBaggage="
+				+ listBaggage.toString() + "]";
 	}
 
 }

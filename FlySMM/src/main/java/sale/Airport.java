@@ -30,4 +30,9 @@ public class Airport {
 	public Address getAirportAndress() {
 		return airportAndress;
 	}
+
+	@Override
+	public String toString() {
+		return "Airport [name=" + name + "]";
+	}
 }
