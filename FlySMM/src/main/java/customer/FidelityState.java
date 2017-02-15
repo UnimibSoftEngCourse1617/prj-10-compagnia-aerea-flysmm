@@ -5,26 +5,20 @@ import java.util.concurrent.TimeUnit;
 
 public class FidelityState extends State {
 
-	private Date actualDate;
+	private Date actualDateFidelity;
 
 	public FidelityState(FidelityCustomer c) {
 		super(c);
-		this.actualDate= new Date(); 
+		this.actualDateFidelity = new Date();
 	}
 
 	// serve per cambiare lo stato da fidelity ad unfidelity
 	public void changeFidelity() {
-		
-		
-		if (getDateDiff(this.actualDate,c.startDate, TimeUnit.MINUTES) > 365){
-			c.setFidelity(new UnfidelityState(c));
-		} 
-		
-	}
 
-	public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
-		long diffInMillies = date2.getTime() - date1.getTime();
-		return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
+		if ((getDateDiff(this.actualDateFidelity, c.startDate, TimeUnit.MINUTES)/ (1000*60*60*24)) > 365) {
+			c.setFidelity(new UnfidelityState(c));
+		}
+
 	}
 
 }

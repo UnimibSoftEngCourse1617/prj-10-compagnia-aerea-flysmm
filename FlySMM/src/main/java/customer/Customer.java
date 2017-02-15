@@ -14,7 +14,6 @@ public class Customer {
 
 	public Customer(int idCustomer, String name, String surname, String email, String password, String phoneNumber,
 			Date dateOfBirth) {
-		super();
 		this.idCustomer = idCustomer;
 		this.name = name;
 		this.surname = surname;
@@ -22,6 +21,16 @@ public class Customer {
 		this.password = password;
 		this.phoneNumber = phoneNumber;
 		this.dateOfBirth = dateOfBirth;
+	}
+	
+	public Customer (FidelityCustomer fidelityCustomer){
+		this.idCustomer = fidelityCustomer.getIdCustomer();
+		this.name = fidelityCustomer.getName();
+		this.surname = fidelityCustomer.getSurname();
+		this.email = fidelityCustomer.getEmail();
+		this.password = fidelityCustomer.getPassword();
+		this.phoneNumber = fidelityCustomer.getPhoneNumber();
+		this.dateOfBirth = fidelityCustomer.getDateOfBirth();
 	}
 
 	public int getIdCustomer() {
