@@ -14,6 +14,8 @@ public class Flight {
 	private Airport arrivalAirport;
 	private Book book; // ho bisogno di avere tutte le prenotazioni di un volo ? //Secondo me no... (dbbd59)
 	
+	public Flight() {}
+	
 	public Flight(Aircraft aircraft, String idFlight, Date departureDateTime, Airport departureAirport,
 			Date arrivalDateTime, Airport arrivalAirport, Book book) {
 		super();
