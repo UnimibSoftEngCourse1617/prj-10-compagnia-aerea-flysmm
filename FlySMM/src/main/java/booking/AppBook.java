@@ -1,3 +1,4 @@
+
 package booking;
 
 import java.io.IOException;
@@ -53,14 +54,7 @@ public class AppBook extends HttpServlet {
 		b.addBaggage(v1);
 		response.getWriter().append(b.toString()).append(String.valueOf(b.getTotalWeight()));
 		Aircraft a11 = new Aircraft(new Flight(),1,"Airbus",387,3,"A380");
-		Aircraft a22 = new Aircraft(new Flight(),2,"Airbus",387,3,"A380");
-		writeAircraft(a11);
-		Scanner t = new Scanner(System.in);
-		String x = t.next();
-		if (x.equals("y"))
-			writeAircraft(a22);
-
-	}
+			}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
