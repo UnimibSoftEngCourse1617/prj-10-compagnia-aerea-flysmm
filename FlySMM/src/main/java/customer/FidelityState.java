@@ -15,10 +15,15 @@ public class FidelityState extends State {
 	// serve per cambiare lo stato da fidelity ad unfidelity
 	public void changeFidelity() {
 
-		if ((getDateDiff(this.actualDateFidelity, c.startDate, TimeUnit.MINUTES)/ (1000*60*60*24)) > 365) {
+		if ((getDateDiff(this.actualDateFidelity, c.startDate, TimeUnit.DAYS)) > 365) {
 			c.setFidelity(new UnfidelityState(c));
 		}
 
+	}
+
+	@Override
+	public String type() {
+		return "Fidelity Customer";
 	}
 
 }

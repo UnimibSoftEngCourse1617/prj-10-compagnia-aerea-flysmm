@@ -18,6 +18,7 @@
 		<!-- Specify session context -->
 		<property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
 		<mapping resource="aircraft.hbm.xml"/>
+		<mapping resource="customer.hbm.xml"/>
 	</session-factory>
 
 </hibernate-configuration>

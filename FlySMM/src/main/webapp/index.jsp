@@ -78,6 +78,7 @@
 	</div>
 	<!-- FINE area dedicata alla ricerca di un volo -->
 	<a href="./AppBook">ProvaBook</a>
+	<a href="./AppCustomer">ProvaCustomer</a>
 
 </body>
 </html>

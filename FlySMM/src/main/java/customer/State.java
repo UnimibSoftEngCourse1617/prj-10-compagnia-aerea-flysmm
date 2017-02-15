@@ -14,9 +14,10 @@ public abstract class State {
 
 
 	public abstract void changeFidelity();
+	public abstract String type();
 	
 	public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
 		long diffInMillies = date2.getTime() - date1.getTime();
-		return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
+		return timeUnit.convert(diffInMillies, TimeUnit.DAYS);
 	}
 }

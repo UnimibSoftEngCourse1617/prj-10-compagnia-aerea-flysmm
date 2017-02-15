@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="customer.Customer" table="Customer">
+      <id name="idCustomer" type="int" column="ID_Customer">
+         <generator class="native"/>
+      </id>
+      <property name="name" column="Name" type="string"/>
+      <property name="surname" column="Surname" type="long"/>
+      <property name="email" column="Email" type="float"/>
+      <property name="password" column="Password" type="string"/>
+	  <property name="phoneNumber" column="Phone_NO" type="string"/>
+	  <property name="dateOfBirth" column="Date_of_birth" type="string"/>
+	  <property name="point" column="Fidelity_Points" type="string"/>
+	  <property name="state" column="Type_of_customers" type="string"/>
+	 <!-- <property name="startDate" column="Constructor" type="string"/> --> 
+     
+   </class>
+</hibernate-mapping>

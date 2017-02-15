@@ -7,6 +7,7 @@ public class FidelityCustomer extends Customer {
 	private int point;
 	protected State state;
 	protected Date startDate;
+	protected Date lastestBook;
 
 	public FidelityCustomer(int idCustomer, String name, String surname, String email, String password,
 			String phoneNumber, Date dateOfBirth) {
@@ -53,8 +54,8 @@ public class FidelityCustomer extends Customer {
 	public String toString() {
 		return "FidelityCustomer [getIdCustomer()=" + getIdCustomer() + ", getName()=" + getName() + ", getSurname()="
 				+ getSurname() + ", getEmail()=" + getEmail() + ", getPassword()=" + getPassword()
-				+ ", getPhoneNumber()=" + getPhoneNumber() + ", getDateOfBirth()=" + getDateOfBirth() + ", toString()="
-				+ super.toString() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", point=" + point
+				+ ", getPhoneNumber()=" + getPhoneNumber() + ", getDateOfBirth()=" + getDateOfBirth()
+				 + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", point=" + point
 				+ ", state=" + state + ", localDate=" + startDate.getTime() + "]";
 	}
 
