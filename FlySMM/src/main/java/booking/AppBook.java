@@ -22,7 +22,7 @@ import customer.FidelityState;
 import sale.Aircraft;
 import sale.Airport;
 import sale.Flight;
-import sale.Passenger;
+import booking.Passenger;
 import servlets.SessionFactorySingleton;
 
 public class AppBook extends HttpServlet {
@@ -39,19 +39,21 @@ public class AppBook extends HttpServlet {
 		Customer c = new Customer(121, "luca", "lorusso", "dgs", "dgvs", "popo", data);
 		Airport a1 = new Airport("MXP", "Malpensa");
 		Airport a2 = new Airport("LIN", "Linate");
+		Flight f = new Flight("abc1234", a1, a2);
+		Book b = new Book(c, f);
+		
 		Passenger p = new Passenger("Chiara", "Ferragni", "SNUNTR777DPG");
 		Passenger p1 = new Passenger("Lara", "Cambiaghi", "LRCMB1234DPG");
 		Passenger p2 = new Passenger("Gianluca", "Guarnieri", "AJEJEBRZ987DPG");
-		Baggage v = new Baggage(p, 10);
-		Baggage v1 = new Baggage(p1, 10);
+		Baggage v = new Baggage(b,p,10);
+		Baggage v1 = new Baggage(b,p1, 10);
 
-		Flight f = new Flight("abc1234", a1, a2);
-		Book b = new Book(c, f);
 		b.addPassenger(p);
 		b.addPassenger(p1);
 		b.addPassenger(p2);
 		b.addBaggage(v);
 		b.addBaggage(v1);
+		
 		response.getWriter().append(b.toString()).append(String.valueOf(b.getTotalWeight()));
 		Aircraft a11 = new Aircraft(new Flight(),1,"Airbus",387,3,"A380");
 			}
