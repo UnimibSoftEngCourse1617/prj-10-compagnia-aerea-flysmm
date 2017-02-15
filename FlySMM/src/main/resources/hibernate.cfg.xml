@@ -9,7 +9,7 @@
 
 		<!-- Database connection settings -->
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/prova</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/flysmmdb</property>
 		<property name="hibernate.connection.username">flysmmDB</property>
 		<property name="hibernate.connection.password">Flysmm.db</property>
 
@@ -17,7 +17,7 @@
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<!-- Specify session context -->
 		<property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
-		
+		<mapping resource="aircraft.hbm.xml"/>
 	</session-factory>
 
 </hibernate-configuration>

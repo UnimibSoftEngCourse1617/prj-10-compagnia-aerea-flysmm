@@ -5,4 +5,14 @@
     http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 	<display-name>Archetype Created Web Application</display-name>
 	
+	 <servlet>
+        <servlet-name>AppBook</servlet-name>
+        <servlet-class>booking.AppBook</servlet-class>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>AppBook</servlet-name>
+        <url-pattern>/AppBook</url-pattern>
+    </servlet-mapping>
+	
 </web-app>

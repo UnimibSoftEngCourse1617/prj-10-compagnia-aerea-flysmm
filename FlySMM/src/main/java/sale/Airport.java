@@ -13,6 +13,12 @@ public class Airport {
 		this.airportAndress = airportAndress;
 	}
 
+	public Airport(String icao, String name) {
+		super();
+		this.icao = icao;
+		this.name = name;
+	}
+
 	public String getIcao() {
 		return icao;
 	}
@@ -23,5 +29,10 @@ public class Airport {
 	
 	public Address getAirportAndress() {
 		return airportAndress;
+	}
+
+	@Override
+	public String toString() {
+		return "Airport [name=" + name + "]";
 	}
 }
