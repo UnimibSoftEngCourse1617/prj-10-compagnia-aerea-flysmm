@@ -7,7 +7,7 @@ import javax.servlet.ServletException;
 public class PromoCommand extends FrontCommand {
 
 	@Override
-	public void process() throws ServletException, IOException {
+	public void dispatch() throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
 	}

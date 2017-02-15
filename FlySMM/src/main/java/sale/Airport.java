@@ -6,6 +6,21 @@ public class Airport {
 	private String name;
 	private Address airportAndress; 
 	
+	public void setIcao(String icao) {
+		this.icao = icao;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setAirportAndress(Address airportAndress) {
+		this.airportAndress = airportAndress;
+	}
+
+	public Airport() {
+	}
+
 	public Airport(String icao, String name, Address airportAndress) {
 		super();
 		this.icao = icao;
