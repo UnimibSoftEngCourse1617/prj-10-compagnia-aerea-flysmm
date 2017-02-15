@@ -3,13 +3,13 @@ package sale;
 public class Aircraft {
 
 	private Flight flight;
-	private String idAircraft;
+	private int idAircraft;
 	private String constructor;
-	private int totalSize;
+	private long totalSize;
 	private float weightBound;
 	private String model;
 
-	public Aircraft(Flight flight, String idAircraft, String constructor, int totalSize, float weightBound,
+	public Aircraft(Flight flight, int idAircraft, String constructor, long totalSize, float weightBound,
 			String model) {
 		this.flight = flight;
 		this.idAircraft = idAircraft;
@@ -23,15 +23,39 @@ public class Aircraft {
 		return flight;
 	}
 
-	public String getIdAircraft() {
+	public int getIdAircraft() {
 		return idAircraft;
+	}
+
+	public void setFlight(Flight flight) {
+		this.flight = flight;
+	}
+
+	public void setIdAircraft(int idAircraft) {
+		this.idAircraft = idAircraft;
+	}
+
+	public void setConstructor(String constructor) {
+		this.constructor = constructor;
+	}
+
+	public void setTotalSize(int totalSize) {
+		this.totalSize = totalSize;
+	}
+
+	public void setWeightBound(float weightBound) {
+		this.weightBound = weightBound;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
 	}
 
 	public String getConstructor() {
 		return constructor;
 	}
 
-	public int getTotalSize() {
+	public long getTotalSize() {
 		return totalSize;
 	}
 
