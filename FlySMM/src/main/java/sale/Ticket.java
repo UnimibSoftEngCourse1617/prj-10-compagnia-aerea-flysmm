@@ -1,5 +1,6 @@
 package sale;
 import booking.Book;
+import booking.Passenger;
 
 public class Ticket {
 	private Passenger passenger;
