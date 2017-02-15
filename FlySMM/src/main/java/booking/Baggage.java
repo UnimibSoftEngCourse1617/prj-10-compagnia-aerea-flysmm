@@ -14,10 +14,11 @@ public class Baggage {
 
 	public Baggage(Book b, Passenger p, int weight) {
 		super();
-		this.setBook(b);
+		this.baggageId = 1;
+		this.book = b;
 		this.passenger = p;
 		this.weight = weight;
-		this.baggageId = 1;
+
 	}
 
 	public int getWeight() {
@@ -36,13 +37,14 @@ public class Baggage {
 		return book;
 	}
 
-	public void setBook(Book book) {
-		this.book = book;
+	public Passenger getPassenger() {
+		return passenger;
 	}
 
 	@Override
 	public String toString() {
-		return "Baggage [baggageId=" + baggageId + ", weight=" + weight + ", passenger=" + passenger.toString() + "]";
+		return "baggageId=" + baggageId + ", weight=" + weight + ", passenger=" + passenger.getSurname() + ", book="
+				+ book.getBookId();
 	}
 
 }

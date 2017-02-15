@@ -17,7 +17,6 @@ public class Book {
 	private float totalPrice;
 	private boolean payed;
 	private boolean expired;
-	//private Date d = new Date((long) 1485345898343.0);
 
 	public Book() {
 		super();
@@ -46,12 +45,24 @@ public class Book {
 		this.listPassenger.add(passenger);
 	}
 
+	public ArrayList<Passenger> getListPassenger() {
+		return listPassenger;
+	}
+
 	void addFlight(Flight f) {
 		this.listFlight.add(f);
 	}
 
+	public ArrayList<Flight> getListFlight() {
+		return listFlight;
+	}
+
 	void addBaggage(Baggage b) {
 		this.listBaggage.add(b);
+	}
+
+	public ArrayList<Baggage> getListBaggage() {
+		return listBaggage;
 	}
 
 	public long getBookId() {
@@ -62,41 +73,39 @@ public class Book {
 		return payed;
 	}
 
-	public boolean isExpired() {
-		if (Book.getDateDiff(this.getBookingDate(), this.getDate(), TimeUnit.MINUTES) > 1440)
-			return true;
-		else
-			return false;
-	}
-
 	public void setPayed(boolean payed) {
 		this.payed = payed;
 	}
 
-	public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
-		long diffInMillies = date2.getTime() - date1.getTime();
-		return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
+	public boolean isExpired() {
+		return expired;
 	}
 
-	public void setExpired(boolean expired) {
-		this.expired = expired;
+	public boolean setExpired() {
+		if (Book.getDateDiff(this.getBookingDate(), this.getDate(), TimeUnit.MINUTES) > 1440) {
+			this.expired = true;
+			return true;
+		} else {
+			this.expired = false;
+
+			return false;
+		}
 	}
 
 	public Date setBookingDate() {
 		return getDate();
 	}
 
-	public Date getDate() {
-		Date date = new Date();
-		return date;
-	}
-
-	public float getTotalPrice() {
-		return totalPrice;
+	public Date getBookingDate() {
+		return bookingDate;
 	}
 
 	public void setTotalPrice(float totalPrice) {
 		this.totalPrice = totalPrice;
+	}
+
+	public float getTotalPrice() {
+		return totalPrice;
 	}
 
 	public int getTotalWeight() {
@@ -107,30 +116,21 @@ public class Book {
 		return totalWeight;
 	}
 
-	public ArrayList<Baggage> getListBaggage() {
-		return listBaggage;
+	public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
+		long diffInMillies = date2.getTime() - date1.getTime();
+		return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
 	}
 
-	public void setListBaggage(ArrayList<Baggage> listBaggage) {
-		this.listBaggage = listBaggage;
-	}
-
-	public ArrayList<Passenger> getListPassenger() {
-		return listPassenger;
-	}
-
-	public ArrayList<Flight> getListFlight() {
-		return listFlight;
-	}
-
-	public Date getBookingDate() {
-		return bookingDate;
+	public Date getDate() {
+		Date date = new Date();
+		return date;
 	}
 
 	@Override
 	public String toString() {
-		return "Book [bookId=" + bookId + ", customer=" + customer + ", bookingDate=" + bookingDate + ", listPassenger="
-				+ listPassenger + ", listBaggage=" + listBaggage + ", listFlight=" + listFlight + "]";
+		return "Book\nbookId=" + bookId + ", bookingDate=" + bookingDate + "\nlistPassenger=" + listPassenger.toString()
+				+ ", \nlistBaggage=" + listBaggage.toString() + ", \nlistFlight=" + listFlight.toString() + ", \npayed=" + payed
+				+ ", \nexpired=" + expired;
 	}
 
 }

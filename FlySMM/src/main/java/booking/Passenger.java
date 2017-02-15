@@ -24,13 +24,13 @@ public class Passenger {
 		return surname;
 	}
 
-	public String getFiscalcode() {
+	public String getDocument() {
 		return document;
 	}
 
 	@Override
 	public String toString() {
-		return "Passenger [name=" + name + ", surname=" + surname + ", fiscalcode=" + document + "]";
+		return "name=" + name + ", surname=" + surname + ", document=" + document;
 	}
 
 }
