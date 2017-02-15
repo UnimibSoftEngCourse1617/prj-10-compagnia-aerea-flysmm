@@ -18,7 +18,7 @@ public class UnfidelityState extends State {
 		if ((getDateDiff(this.actualDateUnfidelity, c.startDate, TimeUnit.MINUTES) / (1000 * 60 * 60 * 24)) > (365
 				* 2)) {
 			if (this.c instanceof FidelityCustomer){
-				//this.c = new Customer(c);
+			//this.c =new  Customer(c);
 			}
 		} else {
 			c.setFidelity(new FidelityState(c));
