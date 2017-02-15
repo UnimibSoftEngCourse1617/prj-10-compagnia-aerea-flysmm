@@ -1,8 +1,9 @@
+
 package booking;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
+import java.util.Scanner;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,9 +17,13 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
 import customer.Customer;
+import customer.FidelityCustomer;
+import customer.FidelityState;
+import sale.Aircraft;
 import sale.Airport;
 import sale.Flight;
-import booking.Passenger;
+import sale.Passenger;
+import servlets.SessionFactorySingleton;
 
 public class AppBook extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -34,53 +39,33 @@ public class AppBook extends HttpServlet {
 		Customer c = new Customer(121, "luca", "lorusso", "dgs", "dgvs", "popo", data);
 		Airport a1 = new Airport("MXP", "Malpensa");
 		Airport a2 = new Airport("LIN", "Linate");
-		Flight f1 = new Flight("abc1234", a1, a2);
-		Flight f2 = new Flight("abc1234", a2, a1);
-		Book b = new Book(c, f1, f2);
 		Passenger p = new Passenger("Chiara", "Ferragni", "SNUNTR777DPG");
 		Passenger p1 = new Passenger("Lara", "Cambiaghi", "LRCMB1234DPG");
 		Passenger p2 = new Passenger("Gianluca", "Guarnieri", "AJEJEBRZ987DPG");
-		Baggage v = new Baggage(b, p, 10);
-		Baggage v1 = new Baggage(b, p1, 10);
+		Baggage v = new Baggage(p, 10);
+		Baggage v1 = new Baggage(p1, 10);
 
+		Flight f = new Flight("abc1234", a1, a2);
+		Book b = new Book(c, f);
 		b.addPassenger(p);
 		b.addPassenger(p1);
 		b.addPassenger(p2);
 		b.addBaggage(v);
 		b.addBaggage(v1);
-		response.getWriter().append(b.toString());
-		System.out.println(b.isExpired());
-
-	}
+		response.getWriter().append(b.toString()).append(String.valueOf(b.getTotalWeight()));
+		Aircraft a11 = new Aircraft(new Flight(),1,"Airbus",387,3,"A380");
+			}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
 
-	public static void configureUsingHibernateConfigXMLFile() {
-		// Create configuration instance
-		Configuration configuration = new Configuration();
-		// Pass hibernate configuration file
-		configuration.configure("hibernate.cfg.xml");
-
-		// Since version 4.x, service registry is being used
-		ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-				.applySettings(configuration.getProperties()).build();
-
-		// Create session factory instance
-		SessionFactory factory = configuration.buildSessionFactory(serviceRegistry);
-
-		// Get current session
-		Session session = factory.getCurrentSession();
-
-		// Begin transaction
+	public static void writeAircraft(Aircraft a) {
+		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
 		session.getTransaction().begin();
-
-		// Print out all required information
-		System.out.println("Session Is Opened :: " + session.isOpen());
-		System.out.println("Session Is Connected :: " + session.isConnected());
-
+		session.save(a);
+		session.getTransaction().commit();
 	}
 
 }
