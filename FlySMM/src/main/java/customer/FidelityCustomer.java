@@ -1,6 +1,5 @@
 package customer;
 
-
 import java.util.Date;
 
 public class FidelityCustomer extends Customer {
@@ -8,15 +7,15 @@ public class FidelityCustomer extends Customer {
 	private int point;
 	protected State state;
 	protected Date startDate;
-	
-	public FidelityCustomer(int idCustomer, String name, String surname, String email, String password, String phoneNumber,
-			Date dateOfBirth){
-		super(idCustomer, name,surname, email, password,phoneNumber,dateOfBirth);
+
+	public FidelityCustomer(int idCustomer, String name, String surname, String email, String password,
+			String phoneNumber, Date dateOfBirth) {
+		super(idCustomer, name, surname, email, password, phoneNumber, dateOfBirth);
 		this.point = 0;
 		this.startDate = new Date();
 		this.state = new FidelityState(this);
 	}
-	
+
 	public FidelityCustomer(Customer c) {
 		super(c.getIdCustomer(), c.getName(), c.getSurname(), c.getEmail(), c.getPassword(), c.getPhoneNumber(),
 				c.getDateOfBirth());
