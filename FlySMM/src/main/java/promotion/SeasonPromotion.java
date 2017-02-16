@@ -1,6 +1,6 @@
 package promotion;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class SeasonPromotion extends Promotion{
 	private Date startDate;
@@ -17,11 +17,12 @@ public class SeasonPromotion extends Promotion{
 		this.setExpireDate(expireDate);
 	}
 	
-	public SeasonPromotion(int discountRate, boolean fidelity, long idPromo, String name, Date startDate, Date expireDate){
+	public SeasonPromotion(long idPromo, int discountRate, boolean fidelity, String name, String description, Date startDate, Date expireDate){
+		this.idPromo = idPromo;
 		this.discountRate = discountRate;
 		this.fidelity = fidelity;
-		this.idPromo = idPromo;
 		this.name = name;
+		this.description = description;
 		this.setStartDate(startDate);
 		this.setExpireDate(expireDate);
 	}
@@ -40,5 +41,13 @@ public class SeasonPromotion extends Promotion{
 	
 	public void setExpireDate(Date expireDate) {
 		this.expireDate = expireDate;
+	}
+	
+	@Override
+	public String toString() {
+		return "SeasonPromotion [getIdPromo()=" + getIdPromo() + ", getDiscountRate()=" + getDiscountRate() + ", getFidelity()="
+				+ isFidelity() + ", getName()=" + getName()
+				+ ", getDescription()=" + getDescription() + ", getStartDate()=" + getStartDate() + ", getExpireDate()="
+				+ getExpireDate()+ "]";
 	}
 }

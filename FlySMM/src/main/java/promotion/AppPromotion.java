@@ -12,16 +12,21 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+import promotion.SeasonPromotion;
+import servlets.SessionFactorySingleton;
+import promotion.FlightPromotion;
+import java.util.Date;
+
 /**
  * Servlet implementation class App
  */
-public class App extends HttpServlet {
+public class AppPromotion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public App() {
+    public AppPromotion() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,6 +37,11 @@ public class App extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		configureUsingHibernateConfigXMLFile();
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		SeasonPromotion p1 = new SeasonPromotion(123, 50, true, "Winter Promo", "loremipsum", new Date(), new Date());
+		FlightPromotion p2 = new FlightPromotion(124, 30, false, "boeing 77 Promo", "lorem_ipsum", 123);
+		writeSeasonPromotion(p1);
+		writeFlightPromotion(p2);
+		response.getWriter().append(p1.toString()).append(p2.toString());
 	}
 
 	/**
@@ -42,6 +52,20 @@ public class App extends HttpServlet {
 		doGet(request, response);
 	}
 	
+	public static void writeSeasonPromotion(SeasonPromotion p) {
+		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
+		session.getTransaction().begin();
+		session.save(p);
+		session.getTransaction().commit();
+	}
+	
+	public static void writeFlightPromotion(FlightPromotion p) {
+		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
+		session.getTransaction().begin();
+		session.save(p);
+		session.getTransaction().commit();
+	}
+
 	public static void configureUsingHibernateConfigXMLFile(){
 		// Create configuration instance
 		Configuration configuration = new Configuration();
@@ -77,5 +101,4 @@ public class App extends HttpServlet {
 
 		System.exit(0);
 	}
-
 }

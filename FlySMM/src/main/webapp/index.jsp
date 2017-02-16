@@ -85,6 +85,6 @@
 		</div>
 	</div>
 	<!-- FINE area dedicata alla ricerca di un volo -->
-
+	<a href="./AppPromotion">Prova_Promotion</a>
 </body>
 </html>

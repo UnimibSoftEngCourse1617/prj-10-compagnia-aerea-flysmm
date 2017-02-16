@@ -4,24 +4,26 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="promotion.SeasonPromotion" table="promotion">
-		<id name="document" type="long" column="IdPromo">
-			<generator class="native" />
-		</id>
-		<property name="name" column="Name" type="string" />
-		<property name="discountRate" column="Discount_rate" type="int" />
-		<property name="fidelity" column="Fidelity" type="boolean" />
-		<property name="description" column="Description" type="string" />
-		<property name="startDate" column="Start_Date" type="date" />
-		<property name="expireDate" column="Expire_Date" type="date" />
-	</class>
-	<class name="promotion.FlightPromotion" table="promotion">
+	<class name="promotion.Promotion" table="promotion">
 		<id name="idPromo" type="long" column="IdPromo">
 			<generator class="native" />
 		</id>
+		
+		<discriminator column="Fidelity" type="boolean" />
+		
 		<property name="name" column="Name" type="string" />
 		<property name="discountRate" column="Discount_rate" type="int" />
-		<property name="fidelity" column="Fidelity" type="boolean" />
+		<!--<property name="fidelity" column="Fidelity" type="boolean" />-->
 		<property name="description" column="Description" type="string" />
+		
+		<subclass name="promotion.SeasonPromotion" discriminator-value="true">
+        	<property name="startDate" column="Start_Date" type="date" />
+			<property name="expireDate" column="Expire_Date" type="date" />
+		</subclass>
+        
+        <subclass name="promotion.FlightPromotion" discriminator-value="false">
+        	<property name="idFlight" column="Flight_Flight_ID" type="string" />
+        </subclass>
+        
 	</class>
 </hibernate-mapping>
