@@ -85,11 +85,10 @@
 		</div>
 	</div>
 	<!-- FINE area dedicata alla ricerca di un volo -->
-<<<<<<< HEAD
+
 	<a href="./AppBook">ProvaBook</a>
 	<a href="./AppCustomer">ProvaCustomer</a>
-=======
->>>>>>> refs/remotes/origin/Deploy
+
 
 </body>
 </html>
