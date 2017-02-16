@@ -62,5 +62,11 @@ public class Flight {
 	public Book getBook() {
 		return book;
 	}
+
+	@Override
+	public String toString() {
+		return "idFlight=" + idFlight + ", departureAirport=" + departureAirport.getName() + ", arrivalAirport="
+				+ arrivalAirport.getName();
+	}
 	
 }
