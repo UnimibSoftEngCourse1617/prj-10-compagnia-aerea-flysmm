@@ -3,7 +3,7 @@ package booking;
 public class Passenger {
 	private String name;
 	private String surname;
-	private long document;
+	private long passengerId;
 
 	public Passenger() {
 		super();
@@ -23,10 +23,6 @@ public class Passenger {
 		return surname;
 	}
 
-	public long getDocument() {
-		return document;
-	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -35,13 +31,17 @@ public class Passenger {
 		this.surname = surname;
 	}
 
-	public void setDocument(long document) {
-		this.document = document;
+	public long getPassengerId() {
+		return passengerId;
+	}
+
+	public void setPassengerId(long passengerId) {
+		this.passengerId = passengerId;
 	}
 
 	@Override
 	public String toString() {
-		return "name=" + name + ", surname=" + surname + ", document=" + document;
+		return "name=" + name + ", surname=" + surname + ", document=" + passengerId;
 	}
 
 }
