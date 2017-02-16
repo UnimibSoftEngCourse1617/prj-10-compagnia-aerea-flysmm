@@ -43,7 +43,7 @@ public class AppBook extends HttpServlet {
 		Flight f = new Flight("abc1", a1, a2);
 		Flight f1 = new Flight("abc2", a1, a2);
 
-		Book b = new Book(c.getIdCustomer(), f, f1);
+		Book b = new Book();
 
 		Passenger p = new Passenger("Chiara", "Ferragni");
 		Passenger p1 = new Passenger("Lara", "Cambiaghi");
