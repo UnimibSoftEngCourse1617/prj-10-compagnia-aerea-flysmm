@@ -76,7 +76,9 @@ public class AppCustomer extends HttpServlet {
 		// Passenger p2 = new Passenger("Gianluca", "Guarnieri",
 		// "AJEJEBRZ987DPG");
 		Customer c = new Customer(121, "luca", "lorusso", "dgs", "dgvs", "popo", data);
+		FidelityCustomer c2 = new FidelityCustomer(11, "paolo", "dfibvi", "drgvegs", "dgwrfwfvs", "poefrepo", data);
 		writeCustomer(c);
+		writeCustomer(c2);
 		response.getWriter().append(c.toString()).append(String.valueOf(c.getDateOfBirth()));
 
 		
