@@ -7,8 +7,10 @@ public class FidelityCustomer extends Customer {
 	private int point;
 	protected State state;
 	protected Date startDate;
+	// settare la variabile lastBook con l'ultimo acquisto fatto
+	protected Date lastestBook;
 
-	public FidelityCustomer(int idCustomer, String name, String surname, String email, String password,
+	public FidelityCustomer(long idCustomer, String name, String surname, String email, String password,
 			String phoneNumber, Date dateOfBirth) {
 		super(idCustomer, name, surname, email, password, phoneNumber, dateOfBirth);
 		this.point = 0;
@@ -24,7 +26,7 @@ public class FidelityCustomer extends Customer {
 		this.state = new FidelityState(this);
 	}
 
-	public void setFidelity(State state) {
+	public void setState(State state) {
 		this.state = state;
 	}
 
@@ -53,9 +55,9 @@ public class FidelityCustomer extends Customer {
 	public String toString() {
 		return "FidelityCustomer [getIdCustomer()=" + getIdCustomer() + ", getName()=" + getName() + ", getSurname()="
 				+ getSurname() + ", getEmail()=" + getEmail() + ", getPassword()=" + getPassword()
-				+ ", getPhoneNumber()=" + getPhoneNumber() + ", getDateOfBirth()=" + getDateOfBirth() + ", toString()="
-				+ super.toString() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", point=" + point
-				+ ", state=" + state + ", localDate=" + startDate.getTime() + "]";
+				+ ", getPhoneNumber()=" + getPhoneNumber() + ", getDateOfBirth()=" + getDateOfBirth() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + ", point=" + point + ", state=" + state + ", localDate="
+				+ startDate.getTime() + "]";
 	}
 
 }

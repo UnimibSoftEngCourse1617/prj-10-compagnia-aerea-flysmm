@@ -17,10 +17,14 @@
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<!-- Specify session context -->
 		<property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
+
+		<mapping resource="customer.hbm.xml"/>
+
 		<mapping resource="aircraft.hbm.xml" />
 		<mapping resource="book.hbm.xml" />
 		<mapping resource="passenger.hbm.xml" />
 		<mapping resource="baggage.hbm.xml" />
+
 
 
 
