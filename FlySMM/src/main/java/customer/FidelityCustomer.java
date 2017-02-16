@@ -9,7 +9,7 @@ public class FidelityCustomer extends Customer {
 	protected Date startDate;
 	protected Date lastestBook;
 
-	public FidelityCustomer(int idCustomer, String name, String surname, String email, String password,
+	public FidelityCustomer(long idCustomer, String name, String surname, String email, String password,
 			String phoneNumber, Date dateOfBirth) {
 		super(idCustomer, name, surname, email, password, phoneNumber, dateOfBirth);
 		this.point = 0;
@@ -25,7 +25,7 @@ public class FidelityCustomer extends Customer {
 		this.state = new FidelityState(this);
 	}
 
-	public void setFidelity(State state) {
+	public void setState(State state) {
 		this.state = state;
 	}
 

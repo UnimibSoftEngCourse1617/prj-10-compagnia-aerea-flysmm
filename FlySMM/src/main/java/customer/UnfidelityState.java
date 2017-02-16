@@ -22,7 +22,7 @@ public class UnfidelityState extends State {
 				this.customer = new Customer(c);
 			}
 		} else {
-			c.setFidelity(new FidelityState(c));
+			c.setState(new FidelityState(c));
 		}
 
 	}

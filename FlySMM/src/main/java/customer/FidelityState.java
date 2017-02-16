@@ -16,7 +16,7 @@ public class FidelityState extends State {
 	public void changeFidelity() {
 
 		if ((getDateDiff(this.actualDateFidelity, c.startDate, TimeUnit.DAYS)) > 365) {
-			c.setFidelity(new UnfidelityState(c));
+			c.setState(new UnfidelityState(c));
 		}
 
 	}

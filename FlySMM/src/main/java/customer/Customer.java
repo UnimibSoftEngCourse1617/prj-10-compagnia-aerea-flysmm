@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Customer {
 
-	private int idCustomer;
+	private long idCustomer;
 	private String name;
 	private String surname;
 	private String email;
@@ -12,7 +12,7 @@ public class Customer {
 	private String phoneNumber;
 	private Date dateOfBirth;
 
-	public Customer(int idCustomer, String name, String surname, String email, String password, String phoneNumber,
+	public Customer(long idCustomer, String name, String surname, String email, String password, String phoneNumber,
 			Date dateOfBirth) {
 		this.idCustomer = idCustomer;
 		this.name = name;
@@ -33,12 +33,12 @@ public class Customer {
 		this.dateOfBirth = fidelityCustomer.getDateOfBirth();
 	}
 
-	public int getIdCustomer() {
+	public long getIdCustomer() {
 		return idCustomer;
 	}
 
-	public void setIdCustomer(int idCustomer) {
-		this.idCustomer = idCustomer;
+	public void setIdCustomer(long l) {
+		this.idCustomer = l;
 	}
 
 	public String getName() {
