@@ -18,7 +18,7 @@ public class Book {
 	private int payed;
 	private int expired;
 
-	private String documentP;
+	private long documentP;
 	private String flightId;
 
 	public Book() {
@@ -172,7 +172,7 @@ public class Book {
 		return date;
 	}
 
-	public String getDocumentP() {
+	public long getDocumentP() {
 		return documentP;
 	}
 
@@ -180,7 +180,7 @@ public class Book {
 		return flightId;
 	}
 
-	public void setDocumentP(String documentP) {
+	public void setDocumentP(long documentP) {
 		this.documentP = documentP;
 	}
 

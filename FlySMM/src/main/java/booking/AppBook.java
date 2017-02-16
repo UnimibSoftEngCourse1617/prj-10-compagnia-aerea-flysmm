@@ -45,17 +45,27 @@ public class AppBook extends HttpServlet {
 
 		Book b = new Book(c.getIdCustomer(), f, f1);
 
-		Passenger p = new Passenger("Chiara", "Ferragni", "SNUNTR777DPG");
-		Passenger p1 = new Passenger("Lara", "Cambiaghi", "LRCMB1234DPG");
-		Passenger p2 = new Passenger("Gianluca", "Guarnieri", "AJEJEBRZ987DPG");
-		Baggage v = new Baggage(b, p, 10);
-		Baggage v1 = new Baggage(b, p1, 10);
-
+		Passenger p = new Passenger("Chiara", "Ferragni");
+		Passenger p1 = new Passenger("Lara", "Cambiaghi");
+		Passenger p2 = new Passenger("Gianluca", "Guarnieri");
+		Baggage v = new Baggage(10, 8, 58, b.getCustomerId(), "abc1");
+		Baggage v1 = new Baggage(10, 9, 59, b.getCustomerId(), "abc1");
+		System.out.println(v.toString());
 		b.addPassenger(p);
+		writePassenger(p);
+
 		b.addPassenger(p1);
+		writePassenger(p1);
+
 		b.addPassenger(p2);
+		writePassenger(p2);
+
 		b.addBaggage(v);
+		writeBaggage(v);
+
 		b.addBaggage(v1);
+		writeBaggage(v1);
+
 		response.getWriter().append(b.toString());
 		Aircraft a11 = new Aircraft(new Flight(), 1, "Airbus", 387, 3, "A380");
 		writeBook(b);
@@ -71,6 +81,20 @@ public class AppBook extends HttpServlet {
 		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
 		session.getTransaction().begin();
 		session.save(a);
+		session.getTransaction().commit();
+	}
+
+	public static void writePassenger(Passenger p) {
+		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
+		session.getTransaction().begin();
+		session.save(p);
+		session.getTransaction().commit();
+	}
+
+	public static void writeBaggage(Baggage v) {
+		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
+		session.getTransaction().begin();
+		session.save(v);
 		session.getTransaction().commit();
 	}
 

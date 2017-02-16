@@ -13,8 +13,8 @@
 		<property name="totalPrice" column="Total_Price" type="float" />
 		<property name="payed" column="Payed" type="int" />
 		<property name="expired" column="Expired" type="int" />
-		<property name="documentP" column="Passenger_Fiscal_code"
-			type="string" />
+		<property name="documentP" column="passenger_Fiscal_code"
+			type="long" />
 		<property name="flightId" column="Flight_Flight_ID" type="string" />
 
 	</class>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="booking.Baggage" table="baggage">
+		<id name="baggageId" type="long" column="ID_Baggage">
+			<generator class="native" />
+		</id>
+		<property name="weight" column="Weight" type="int" />
+		<property name="passengerId" column="passenger_Fiscal_code" type="long" />
+		<property name="bookId" column="book_IdBook" type="long" />
+		<property name="customerId" column="book_User_ID" type="int" />
+		<property name="flightId" column="book_Flight_Flight_ID" type="string" />
+
+
+	</class>
+</hibernate-mapping>

@@ -1,24 +1,32 @@
 package booking;
 
-import booking.Passenger;
-
 public class Baggage {
-	private int baggageId;
+	private long baggageId = 1;
 	private int weight;
-	private Passenger passenger;
-	private Book book;
+	private long passengerId;
+	private long bookId;
+	private int customerId;
+	private String flightId;
 
 	public Baggage() {
 		super();
 	}
 
-	public Baggage(Book b, Passenger p, int weight) {
+	public Baggage(int weight, long passengerId, long bookId, int customerId, String flightId) {
 		super();
-		this.baggageId = 1;
-		this.book = b;
-		this.passenger = p;
 		this.weight = weight;
+		this.passengerId = passengerId;
+		this.bookId = bookId;
+		this.customerId = customerId;
+		this.flightId = flightId;
+	}
 
+	public long getBaggageId() {
+		return baggageId;
+	}
+
+	public void setBaggageId(long baggageId) {
+		this.baggageId = baggageId;
 	}
 
 	public int getWeight() {
@@ -29,22 +37,42 @@ public class Baggage {
 		this.weight = weight;
 	}
 
-	public int getBaggageId() {
-		return baggageId;
+	public long getPassengerId() {
+		return passengerId;
 	}
 
-	public Book getBook() {
-		return book;
+	public void setPassengerId(long passengerId) {
+		this.passengerId = passengerId;
 	}
 
-	public Passenger getPassenger() {
-		return passenger;
+	public long getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(long bookId) {
+		this.bookId = bookId;
+	}
+
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+
+	public String getFlightId() {
+		return flightId;
+	}
+
+	public void setFlightId(String flightId) {
+		this.flightId = flightId;
 	}
 
 	@Override
 	public String toString() {
-		return "baggageId=" + baggageId + ", weight=" + weight + ", passenger=" + passenger.getSurname() + ", book="
-				+ book.getBookId();
+		return "Baggage [baggageId=" + baggageId + ", weight=" + weight + ", passengerId=" + passengerId + ", bookId="
+				+ bookId + ", customerId=" + customerId + ", flightId=" + flightId + "]";
 	}
 
 }
