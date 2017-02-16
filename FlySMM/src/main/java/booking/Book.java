@@ -9,36 +9,82 @@ import java.util.concurrent.TimeUnit;
 
 public class Book {
 	private long bookId = 1;
-	private Customer customer;
+	private int customerId;
 	private Date bookingDate;
 	private ArrayList<Passenger> listPassenger = new ArrayList<Passenger>();
 	private ArrayList<Baggage> listBaggage = new ArrayList<Baggage>();
 	private ArrayList<Flight> listFlight = new ArrayList<Flight>();
 	private float totalPrice;
-	private boolean payed;
-	private boolean expired;
+	private int payed;
+	private int expired;
+
+	private String documentP;
+	private String flightId;
 
 	public Book() {
 		super();
 	}
 
-	public Book(Customer c, Flight f) {
+	public Book(int c, Flight f) {
 		super();
-		this.customer = c;
+		this.customerId = c;
 		listFlight.add(f);
 		this.bookingDate = this.getDate();
-		this.payed = false;
-		this.expired = false;
+		this.payed = 0;
+		this.expired = 0;
+		this.totalPrice = 100;
 	}
 
-	public Book(Customer c, Flight f1, Flight f2) {
+	public Book(int c, Flight f1, Flight f2) {
 		super();
-		this.customer = c;
+		this.customerId = c;
 		listFlight.add(f1);
 		listFlight.add(f2);
 		this.bookingDate = this.getDate();
-		this.payed = false;
-		this.expired = false;
+		this.payed = 0;
+		this.expired = 0;
+		this.totalPrice = 100;
+
+	}
+
+	public int getExpired() {
+		return expired;
+	}
+
+	public void setExpired(int expired) {
+		this.expired = expired;
+	}
+
+	public int getPayed() {
+		return payed;
+	}
+
+	public void setBookingDate(Date bookingDate) {
+		this.bookingDate = bookingDate;
+	}
+
+	public void setListPassenger(ArrayList<Passenger> listPassenger) {
+		this.listPassenger = listPassenger;
+	}
+
+	public void setListBaggage(ArrayList<Baggage> listBaggage) {
+		this.listBaggage = listBaggage;
+	}
+
+	public void setListFlight(ArrayList<Flight> listFlight) {
+		this.listFlight = listFlight;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public void setBookId(long bookId) {
+		this.bookId = bookId;
 	}
 
 	void addPassenger(Passenger passenger) {
@@ -69,24 +115,24 @@ public class Book {
 		return bookId;
 	}
 
-	public boolean isPayed() {
+	public int isPayed() {
 		return payed;
 	}
 
-	public void setPayed(boolean payed) {
+	public void setPayed(int payed) {
 		this.payed = payed;
 	}
 
-	public boolean isExpired() {
+	public int isExpired() {
 		return expired;
 	}
 
 	public boolean setExpired() {
 		if (Book.getDateDiff(this.getBookingDate(), this.getDate(), TimeUnit.MINUTES) > 1440) {
-			this.expired = true;
+			this.expired = 1;
 			return true;
 		} else {
-			this.expired = false;
+			this.expired = 0;
 
 			return false;
 		}
@@ -126,11 +172,29 @@ public class Book {
 		return date;
 	}
 
+	public String getDocumentP() {
+		return documentP;
+	}
+
+	public String getFlightId() {
+		return flightId;
+	}
+
+	public void setDocumentP(String documentP) {
+		this.documentP = documentP;
+	}
+
+	public void setFlightId(String flightId) {
+		this.flightId = flightId;
+	}
+
 	@Override
 	public String toString() {
-		return "Book\nbookId=" + bookId + ", bookingDate=" + bookingDate + "\nlistPassenger=" + listPassenger.toString()
-				+ ", \nlistBaggage=" + listBaggage.toString() + ", \nlistFlight=" + listFlight.toString() + ", \npayed=" + payed
-				+ ", \nexpired=" + expired;
+		return "Book [bookId=" + bookId + ", customerId=" + customerId + ", bookingDate=" + bookingDate
+				+ ", listPassenger=" + listPassenger + ", listBaggage=" + listBaggage + ", listFlight=" + listFlight
+				+ ", totalPrice=" + totalPrice + ", payed=" + payed + ", expired=" + expired + ", documentP="
+				+ documentP + ", flightId=" + flightId + "]";
 	}
+	
 
 }

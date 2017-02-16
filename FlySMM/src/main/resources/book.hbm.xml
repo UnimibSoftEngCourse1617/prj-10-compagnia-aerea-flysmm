@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="booking.Book" table="book">
+		<id name="bookId" type="long" column="IdBook">
+			<generator class="native" />
+		</id>
+		<property name="customerId" column="User_ID" type="int" />
+		<property name="bookingDate" column="Booking_date" type="date" />
+		<property name="totalPrice" column="Total_Price" type="float" />
+		<property name="payed" column="Payed" type="int" />
+		<property name="expired" column="Expired" type="int" />
+		<property name="documentP" column="Passenger_Fiscal_code"
+			type="string" />
+		<property name="flightId" column="Flight_Flight_ID" type="string" />
+
+	</class>
+</hibernate-mapping>
