@@ -12,13 +12,13 @@ public class Baggage {
 		super();
 	}
 
-	public Baggage(int weight, long passengerId, long bookId, int customerId, String flightId) {
+	public Baggage(Passenger p, Book b,int weight) {
 		super();
 		this.weight = weight;
-		this.passengerId = passengerId;
-		this.bookId = bookId;
-		this.customerId = customerId;
-		this.flightId = flightId;
+		this.passengerId = p.getDocument();
+		this.bookId = b.getBookId();
+		this.customerId = b.getCustomerId();
+		this.flightId = b.getFlightId();
 	}
 
 	public long getBaggageId() {

@@ -48,8 +48,8 @@ public class AppBook extends HttpServlet {
 		Passenger p = new Passenger("Chiara", "Ferragni");
 		Passenger p1 = new Passenger("Lara", "Cambiaghi");
 		Passenger p2 = new Passenger("Gianluca", "Guarnieri");
-		Baggage v = new Baggage(10, 8, 58, b.getCustomerId(), "abc1");
-		Baggage v1 = new Baggage(10, 9, 59, b.getCustomerId(), "abc1");
+		Baggage v = new Baggage(p,b,10);
+		Baggage v1 = new Baggage(p1,b,10);
 		System.out.println(v.toString());
 		b.addPassenger(p);
 		writePassenger(p);
