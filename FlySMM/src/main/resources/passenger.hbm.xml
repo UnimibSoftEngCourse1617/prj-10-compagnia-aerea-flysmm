@@ -5,7 +5,7 @@
 
 <hibernate-mapping>
 	<class name="booking.Passenger" table="passenger">
-		<id name="document" type="long" column="passenger_Fiscal_code">
+		<id name="passengerId" type="long" column="passenger_Fiscal_code">
 			<generator class="native" />
 		</id>
 		<property name="name" column="Name" type="string" />

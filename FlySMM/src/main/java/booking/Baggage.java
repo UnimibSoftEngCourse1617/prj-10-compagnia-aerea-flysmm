@@ -5,17 +5,17 @@ public class Baggage {
 	private int weight;
 	private long passengerId;
 	private long bookId;
-	private int customerId;
+	private long customerId;
 	private String flightId;
 
 	public Baggage() {
 		super();
 	}
 
-	public Baggage(Passenger p, Book b,int weight) {
+	public Baggage(Passenger p,Book b,int weight) {
 		super();
 		this.weight = weight;
-		this.passengerId = p.getDocument();
+		this.passengerId = p.getPassengerId();
 		this.bookId = b.getBookId();
 		this.customerId = b.getCustomerId();
 		this.flightId = b.getFlightId();
@@ -53,7 +53,7 @@ public class Baggage {
 		this.bookId = bookId;
 	}
 
-	public int getCustomerId() {
+	public long getCustomerId() {
 		return customerId;
 	}
 
