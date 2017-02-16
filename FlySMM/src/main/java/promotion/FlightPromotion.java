@@ -13,11 +13,12 @@ public class FlightPromotion extends Promotion{
 		this.setIdFlight(idFlight);
 	}
 	
-	public FlightPromotion(int discountRate, boolean fidelity, long idPromo, String name, long idFlight){
+	public FlightPromotion(int discountRate, boolean fidelity, long idPromo, String name, String description, long idFlight){
 		this.discountRate = discountRate;
 		this.fidelity = fidelity;
 		this.idPromo = idPromo;
 		this.name = name;
+		this.description = description;
 		this.setIdFlight(idFlight);
 	}
 	

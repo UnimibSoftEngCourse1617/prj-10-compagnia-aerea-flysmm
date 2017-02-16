@@ -12,6 +12,7 @@ public abstract class Promotion {
 	protected boolean fidelity;
 	protected long idPromo;
 	protected String name;
+	protected String description;
 	
 	public void sendMail(String mail) {
 		// Set up the SMTP server.
@@ -40,4 +41,44 @@ public abstract class Promotion {
 	public abstract void notify_();
 	
 	public Promotion(){}
+
+	public int getDiscountRate() {
+		return discountRate;
+	}
+
+	public void setDiscountRate(int discountRate) {
+		this.discountRate = discountRate;
+	}
+
+	public boolean isFidelity() {
+		return fidelity;
+	}
+
+	public void setFidelity(boolean fidelity) {
+		this.fidelity = fidelity;
+	}
+
+	public long getIdPromo() {
+		return idPromo;
+	}
+
+	public void setIdPromo(long idPromo) {
+		this.idPromo = idPromo;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 }
