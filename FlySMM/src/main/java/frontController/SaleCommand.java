@@ -51,7 +51,7 @@ public class SaleCommand extends FrontCommand {
 		b.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
 		Gson gson = b.create();
 		String json = gson.toJson((List<Flight>) result);
-		request.setAttribute("flights", json);
+		request.setAttribute("flights", (List<Flight>) result);
 		RequestDispatcher dispatcher = context.getRequestDispatcher("/flights.jsp");
 		try {
 			dispatcher.forward(request, response);
