@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Book {
 	private long bookId = 1;
-	private int customerId;
+	private long customerId;
 	private Date bookingDate;
 	private ArrayList<Passenger> listPassenger = new ArrayList<Passenger>();
 	private ArrayList<Baggage> listBaggage = new ArrayList<Baggage>();
@@ -25,9 +25,9 @@ public class Book {
 		super();
 	}
 
-	public Book(int c, Flight f) {
+	public Book(Customer c, Flight f) {
 		super();
-		this.customerId = c;
+		this.customerId = c.getIdCustomer();
 		listFlight.add(f);
 		this.bookingDate = this.getDate();
 		this.payed = 0;
@@ -35,18 +35,34 @@ public class Book {
 		this.totalPrice = 100;
 	}
 
-	public Book(int c, Flight f1, Flight f2) {
+	public Book(Customer c, Flight f1, Flight f2) {
 		super();
-		this.customerId = c;
+		this.customerId = c.getIdCustomer();
 		listFlight.add(f1);
 		listFlight.add(f2);
 		this.bookingDate = this.getDate();
 		this.payed = 0;
 		this.expired = 0;
 		this.totalPrice = 100;
-
 	}
 
+	public Book(Flight f1, Flight f2) {
+		super();
+		listFlight.add(f1);
+		listFlight.add(f2);
+		this.bookingDate = this.getDate();
+		this.payed = 0;
+		this.expired = 0;
+		this.totalPrice = 100;
+	}
+	public Book(Flight f2) {
+		super();
+		listFlight.add(f2);
+		this.bookingDate = this.getDate();
+		this.payed = 0;
+		this.expired = 0;
+		this.totalPrice = 100;
+	}
 	public int getExpired() {
 		return expired;
 	}
@@ -75,11 +91,11 @@ public class Book {
 		this.listFlight = listFlight;
 	}
 
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
+	public void setCustomerId(long l) {
+		this.customerId = l;
 	}
 
-	public int getCustomerId() {
+	public long getCustomerId() {
 		return customerId;
 	}
 
@@ -195,6 +211,5 @@ public class Book {
 				+ ", totalPrice=" + totalPrice + ", payed=" + payed + ", expired=" + expired + ", documentP="
 				+ documentP + ", flightId=" + flightId + "]";
 	}
-	
 
 }
