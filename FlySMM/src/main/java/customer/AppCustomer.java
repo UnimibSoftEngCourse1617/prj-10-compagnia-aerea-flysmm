@@ -38,50 +38,12 @@ public class AppCustomer extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		
-		// FidelityCustomer c2 = new FidelityCustomer(c);
-
-		// c2.setFidelity(c2.state);
-		// boolean temp = false;
-		//
-		// if (c2.getState() instanceof UnfidelityState){
-		// temp = true;
-		// } else {
-		// temp = false;
-		// }
-
-		// Session session =
-		// SessionFactorySingleton.getSessionFactory().openSession();
-		// session.beginTransaction();
-		// List result = session.createQuery("from Customer").list();
-		// for (Customer customer : (List<Customer>) result) {
-		// System.out.println(customer.toString());
-		// }
-		// session.getTransaction().commit();
-		// session.close();
-
-		// Session session =
-		// SessionFactorySingleton.getSessionFactory().openSession();
-		//
-		// session.beginTransaction();
-		//
-		// c.setIdCustomer(c.getIdCustomer());
-		// c.setName(c.getName());
-		// c.setSurname(c.getSurname());
-		//
-		// session.save(c);
-		// session.getTransaction().commit();
-		// Passenger p = new Passenger("Chiara", "Ferragni", "SNUNTR777DPG");
-		// Passenger p1 = new Passenger("Lara", "Cambiaghi", "LRCMB1234DPG");
-		// Passenger p2 = new Passenger("Gianluca", "Guarnieri",
-		// "AJEJEBRZ987DPG");
 		Customer c = new Customer(121, "luca", "lorusso", "dgs", "dgvs", "popo", data);
 		FidelityCustomer c2 = new FidelityCustomer(11, "paolo", "dfibvi", "drgvegs", "dgwrfwfvs", "poefrepo", data);
 		writeCustomer(c);
 		writeCustomer(c2);
 		response.getWriter().append(c.toString()).append(String.valueOf(c.getDateOfBirth()));
 
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

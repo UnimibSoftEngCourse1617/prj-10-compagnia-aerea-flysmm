@@ -16,8 +16,7 @@ public class UnfidelityState extends State {
 
 	@Override
 	public void changeFidelity() {
-		if ((getDateDiff(this.actualDateUnfidelity, c.startDate, TimeUnit.DAYS)) > (365
-				* 2)) {
+		if ((getDateDiff(this.actualDateUnfidelity, c.startDate, TimeUnit.DAYS)) > (365 * 2)) {
 			if (this.c instanceof FidelityCustomer) {
 				this.customer = new Customer(c);
 			}
