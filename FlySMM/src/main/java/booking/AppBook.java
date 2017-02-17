@@ -2,6 +2,7 @@
 package booking;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -39,35 +40,72 @@ public class AppBook extends HttpServlet {
 		Customer c = new Customer(121, "luca", "lorusso", "dgs", "dgvs", "popo", data);
 		Airport a1 = new Airport("MXP", "Malpensa");
 		Airport a2 = new Airport("LIN", "Linate");
-		Flight f = new Flight("abc1234", a1, a2);
-		Book b = new Book(c, f);
-		
-		Passenger p = new Passenger("Chiara", "Ferragni", "SNUNTR777DPG");
-		Passenger p1 = new Passenger("Lara", "Cambiaghi", "LRCMB1234DPG");
-		Passenger p2 = new Passenger("Gianluca", "Guarnieri", "AJEJEBRZ987DPG");
-		Baggage v = new Baggage(b,p,10);
-		Baggage v1 = new Baggage(b,p1, 10);
+		Flight f = new Flight("abc1", a1, a2);
+		Flight f1 = new Flight("abc2", a1, a2);
 
-		b.addPassenger(p);
+		Book b = new Book(c, f, f1);
+
+		Passenger p = new Passenger("Chiara", "Ferragni");
+		Passenger p1 = new Passenger("Lara", "Cambiaghi");
+		Passenger p2 = new Passenger("Gianluca", "Guarnieri");
+
+    b.addPassenger(p);
+		writePassenger(p);
+
 		b.addPassenger(p1);
+		writePassenger(p1);
+
 		b.addPassenger(p2);
-		b.addBaggage(v);
-		b.addBaggage(v1);
-		
-		response.getWriter().append(b.toString()).append(String.valueOf(b.getTotalWeight()));
-		Aircraft a11 = new Aircraft(new Flight(),1,"Airbus",387,3,"A380");
-			}
+		writePassenger(p2);
+
+		response.getWriter().append(b.toString());
+		writeBook(b);
+
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
 
-	public static void writeAircraft(Aircraft a) {
+
+	public static void writePassenger(Passenger p) {
 		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
 		session.getTransaction().begin();
-		session.save(a);
+		session.save(p);
 		session.getTransaction().commit();
+	}
+
+	public static void writeBaggage(Baggage v) {
+		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
+		session.getTransaction().begin();
+		session.save(v);
+		session.getTransaction().commit();
+	}
+
+	public static void writeBook(Book b) {
+		for (Book book : getListBook(b)) {
+			Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
+			session.getTransaction().begin();
+			session.save(book);
+			session.getTransaction().commit();
+		}
+	}
+
+	public static ArrayList<Book> getListBook(Book b) {
+		ArrayList<Book> listBook = new ArrayList<Book>();
+		for (Flight flight : b.getListFlight()) {
+			for (Passenger passenger : b.getListPassenger()) {
+				Book tmp = new Book(flight);
+				tmp.setCustomerId(b.getCustomerId());
+				tmp.setFlightId(flight.getIdFlight());
+				tmp.setDocumentP(passenger.getPassengerId());
+				listBook.add(tmp);
+
+			}
+		}
+		return listBook;
+
 	}
 
 }

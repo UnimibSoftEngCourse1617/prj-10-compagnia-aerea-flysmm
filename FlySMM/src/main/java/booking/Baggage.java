@@ -1,23 +1,32 @@
 package booking;
 
-import booking.Passenger;
-
 public class Baggage {
-	private int baggageId;
+	private long baggageId = 1;
 	private int weight;
-	private Passenger passenger;
-	private Book book;
+	private long passengerId;
+	private long bookId;
+	private long customerId;
+	private String flightId;
 
 	public Baggage() {
 		super();
 	}
 
-	public Baggage(Book b, Passenger p, int weight) {
+	public Baggage(Passenger p,Book b,int weight) {
 		super();
-		this.setBook(b);
-		this.passenger = p;
 		this.weight = weight;
-		this.baggageId = 1;
+		this.passengerId = p.getPassengerId();
+		this.bookId = b.getBookId();
+		this.customerId = b.getCustomerId();
+		this.flightId = b.getFlightId();
+	}
+
+	public long getBaggageId() {
+		return baggageId;
+	}
+
+	public void setBaggageId(long baggageId) {
+		this.baggageId = baggageId;
 	}
 
 	public int getWeight() {
@@ -28,21 +37,42 @@ public class Baggage {
 		this.weight = weight;
 	}
 
-	public int getBaggageId() {
-		return baggageId;
+	public long getPassengerId() {
+		return passengerId;
 	}
 
-	public Book getBook() {
-		return book;
+	public void setPassengerId(long passengerId) {
+		this.passengerId = passengerId;
 	}
 
-	public void setBook(Book book) {
-		this.book = book;
+	public long getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(long bookId) {
+		this.bookId = bookId;
+	}
+
+	public long getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+
+	public String getFlightId() {
+		return flightId;
+	}
+
+	public void setFlightId(String flightId) {
+		this.flightId = flightId;
 	}
 
 	@Override
 	public String toString() {
-		return "Baggage [baggageId=" + baggageId + ", weight=" + weight + ", passenger=" + passenger.toString() + "]";
+		return "Baggage [baggageId=" + baggageId + ", weight=" + weight + ", passengerId=" + passengerId + ", bookId="
+				+ bookId + ", customerId=" + customerId + ", flightId=" + flightId + "]";
 	}
 
 }
