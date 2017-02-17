@@ -9,10 +9,6 @@
 			<generator class="native" />
 		</id>
 		<property name="weight" column="Weight" type="int" />
-		<property name="passengerId" column="passenger_Fiscal_code" type="long" />
-		<property name="bookId" column="book_IdBook" type="long" />
-		<property name="customerId" column="book_User_ID" type="int" />
-		<property name="flightId" column="book_Flight_Flight_ID" type="string" />
 
 
 	</class>

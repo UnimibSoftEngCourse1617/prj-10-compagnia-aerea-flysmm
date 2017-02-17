@@ -43,23 +43,18 @@ public class AppBook extends HttpServlet {
 		Flight f = new Flight("abc1", a1, a2);
 		Flight f1 = new Flight("abc2", a1, a2);
 
-		Book b = new Book(c, f, f1);
+		Passenger p = new Passenger("ABC123", "Chiara", "Ferragni", data, "donna", 2);
+		Book b = new Book(c, f, p);
+		//writeBook(b);
 
-		Passenger p = new Passenger("Chiara", "Ferragni");
-		Passenger p1 = new Passenger("Lara", "Cambiaghi");
-		Passenger p2 = new Passenger("Gianluca", "Guarnieri");
+		Passenger p1 = new Passenger("DEF456", "Lara", "Cambiaghi", data, "donna", 3);
+		Book b1 = new Book(c, f1, p1);
+		//writeBook(b1);
 
-    b.addPassenger(p);
-		writePassenger(p);
-
-		b.addPassenger(p1);
-		writePassenger(p1);
-
-		b.addPassenger(p2);
-		writePassenger(p2);
-
+		Passenger p2 = new Passenger("GHI789", "Gianluca", "Guarnieri", data, "uomo", 4);
+		Book b2 = new Book(c, f, p2);
+		//writeBook(b2);
 		response.getWriter().append(b.toString());
-		writeBook(b);
 
 	}
 
@@ -67,7 +62,6 @@ public class AppBook extends HttpServlet {
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 
 	public static void writePassenger(Passenger p) {
 		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
@@ -84,27 +78,10 @@ public class AppBook extends HttpServlet {
 	}
 
 	public static void writeBook(Book b) {
-		for (Book book : getListBook(b)) {
-			Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
-			session.getTransaction().begin();
-			session.save(book);
-			session.getTransaction().commit();
-		}
-	}
-
-	public static ArrayList<Book> getListBook(Book b) {
-		ArrayList<Book> listBook = new ArrayList<Book>();
-		for (Flight flight : b.getListFlight()) {
-			for (Passenger passenger : b.getListPassenger()) {
-				Book tmp = new Book(flight);
-				tmp.setCustomerId(b.getCustomerId());
-				tmp.setFlightId(flight.getIdFlight());
-				tmp.setDocumentP(passenger.getPassengerId());
-				listBook.add(tmp);
-
-			}
-		}
-		return listBook;
+		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
+		session.getTransaction().begin();
+		session.save(b);
+		session.getTransaction().commit();
 
 	}
 

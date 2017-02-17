@@ -38,7 +38,8 @@
 	<div class="ui two column grid">
 		<div class="column">
 			<div class="ui raised segment">
-				<form class="ui form" name="fSearchFly" method="post" action="/GetDepartureFlight">
+				<form class="ui form" name="fSearchFly" method="post"
+					action="/GetDepartureFlight">
 					<div class="field">
 						<div class="ui buttons">
 							<button onclick="viewReturnDate()" class="ui mini button">Andata
@@ -86,6 +87,8 @@
 	</div>
 	<!-- FINE area dedicata alla ricerca di un volo -->
 	<a href="./AppCustomer">ProvaCustomer</a>
+	<a href="./AppBook">Book</a>
+
 
 
 </body>
