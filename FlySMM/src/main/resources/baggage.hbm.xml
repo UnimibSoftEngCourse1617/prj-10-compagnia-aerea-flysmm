@@ -5,10 +5,11 @@
 
 <hibernate-mapping>
 	<class name="booking.Baggage" table="baggage">
-		<id name="baggageId" type="long" column="ID_Baggage">
+		<id name="baggageId" type="string" column="ID_Baggage">
 			<generator class="native" />
 		</id>
 		<property name="weight" column="Weight" type="int" />
+		<property name="price" column="Price_baggage" type="int" />
 
 
 	</class>

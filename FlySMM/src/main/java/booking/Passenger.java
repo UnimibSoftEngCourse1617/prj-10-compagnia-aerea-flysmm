@@ -2,19 +2,22 @@ package booking;
 
 import java.util.Date;
 
+import javax.persistence.GeneratedValue;
+
 public class Passenger {
+	@GeneratedValue
 	private String Fiscal_code;
 	private String name;
 	private String surname;
 	private Date Birth_date;
 	private String type;
-	private long baggageId;
+	private String baggageId;
 
 	public Passenger() {
 		super();
 	}
 
-	public Passenger(String fiscal_code, String name, String surname, Date birth_date, String type, long baggageId) {
+	public Passenger(String fiscal_code, String name, String surname, Date birth_date, String type, String baggageId) {
 		super();
 		Fiscal_code = fiscal_code;
 		this.name = name;
@@ -64,11 +67,11 @@ public class Passenger {
 		this.type = type;
 	}
 
-	public long getBaggageId() {
+	public String getBaggageId() {
 		return baggageId;
 	}
 
-	public void setBaggageId(long baggageId) {
+	public void setBaggageId(String baggageId) {
 		this.baggageId = baggageId;
 	}
 

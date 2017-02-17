@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class Book {
-	private long bookId = 1;
+	private String bookId;
 	private long customerId;
 	private Date bookingDate;
 	private float totalPrice;
@@ -25,6 +25,7 @@ public class Book {
 
 	public Book(Customer c, Flight f, Passenger p) {
 		super();
+		this.bookId = this.createBookId(f, c, p);
 		this.customerId = c.getIdCustomer();
 		this.bookingDate = this.getDate();
 		this.totalPrice = 0;
@@ -37,40 +38,52 @@ public class Book {
 
 	}
 
-	public int getExpired() {
-		return expired;
+	public String getBookId() {
+		return bookId;
 	}
 
-	public void setExpired(int expired) {
-		this.expired = expired;
-	}
-
-	public int getPayed() {
-		return payed;
-	}
-
-	public void setBookingDate(Date bookingDate) {
-		this.bookingDate = bookingDate;
-	}
-
-	public void setCustomerId(long l) {
-		this.customerId = l;
+	public void setBookId(String bookId) {
+		this.bookId = bookId;
 	}
 
 	public long getCustomerId() {
 		return customerId;
 	}
 
-	public void setBookId(long bookId) {
-		this.bookId = bookId;
+	public void setCustomerId(long customerId) {
+		this.customerId = customerId;
 	}
 
-	public long getBookId() {
-		return bookId;
+	public Date getBookingDate() {
+		return bookingDate;
 	}
 
-	public int isPayed() {
+	public void setBookingDate(Date bookingDate) {
+		this.bookingDate = bookingDate;
+	}
+
+	public float getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(float totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public int getPayed() {
 		return payed;
+	}
+
+	public void setPayed(int payed) {
+		this.payed = payed;
+	}
+
+	public int getExpired() {
+		return expired;
+	}
+
+	public void setExpired(int expired) {
+		this.expired = expired;
 	}
 
 	public int getAirplaneId() {
@@ -89,39 +102,37 @@ public class Book {
 		this.departureDate = departureDate;
 	}
 
-	public void setPayed(int payed) {
-		this.payed = payed;
+	public String getDocumentP() {
+		return documentP;
 	}
 
-	public int isExpired() {
-		return expired;
+	public void setDocumentP(String documentP) {
+		this.documentP = documentP;
 	}
 
-	public boolean setExpired() {
+	public String getFlightId() {
+		return flightId;
+	}
+
+	public void setFlightId(String flightId) {
+		this.flightId = flightId;
+	}
+
+	public String createBookId(Flight f, Customer c, Passenger p) {
+		String s = f.getDepartureAirport().getIcao() + f.getArrivalAirport().getIcao() + f.getIdFlight()
+				+ c.getIdCustomer() + p.getFiscal_code().substring(0, 6);
+		return s;
+
+	}
+
+	public boolean verifyExpired() {
 		if (Book.getDateDiff(this.getBookingDate(), this.getDate(), TimeUnit.MINUTES) > 1440) {
 			this.expired = 1;
 			return true;
 		} else {
 			this.expired = 0;
-
 			return false;
 		}
-	}
-
-	public Date setBookingDate() {
-		return getDate();
-	}
-
-	public Date getBookingDate() {
-		return bookingDate;
-	}
-
-	public void setTotalPrice(float totalPrice) {
-		this.totalPrice = totalPrice;
-	}
-
-	public float getTotalPrice() {
-		return totalPrice;
 	}
 
 	public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
@@ -134,34 +145,12 @@ public class Book {
 		return date;
 	}
 
-	public String getDocumentP() {
-		return documentP;
-	}
-
-	public String getFlightId() {
-		return flightId;
-	}
-
-	public void setDocumentP(String documentP) {
-		this.documentP = documentP;
-	}
-
-	public void setFlightId(String flightId) {
-		this.flightId = flightId;
-	}
-
 	@Override
 	public String toString() {
 		return "Book [bookId=" + bookId + ", customerId=" + customerId + ", bookingDate=" + bookingDate
 				+ ", totalPrice=" + totalPrice + ", payed=" + payed + ", expired=" + expired + ", airplaneId="
 				+ airplaneId + ", departureDate=" + departureDate + ", documentP=" + documentP + ", flightId="
-				+ flightId + ", getExpired()=" + getExpired() + ", getPayed()=" + getPayed() + ", getCustomerId()="
-				+ getCustomerId() + ", getBookId()=" + getBookId() + ", isPayed()=" + isPayed() + ", getAirplaneId()="
-				+ getAirplaneId() + ", getDepartureDate()=" + getDepartureDate() + ", isExpired()=" + isExpired()
-				+ ", setExpired()=" + setExpired() + ", setBookingDate()=" + setBookingDate() + ", getBookingDate()="
-				+ getBookingDate() + ", getTotalPrice()=" + getTotalPrice() + ", getDate()=" + getDate()
-				+ ", getDocumentP()=" + getDocumentP() + ", getFlightId()=" + getFlightId() + ", getClass()="
-				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+				+ flightId + "]";
 	}
 
 }

@@ -3,21 +3,21 @@ package sale;
 import java.util.Date;
 import booking.Book;
 
-
 public class Flight {
-	
+
 	private Aircraft aircraft;
 	private String idFlight;
 	private Date departureDateTime;
 	private Airport departureAirport;
 	private Date arrivalDateTime;
 	private Airport arrivalAirport;
-	private Book book; // ho bisogno di avere tutte le prenotazioni di un volo ? //Secondo me no... (dbbd59)
-	
-	public Flight() {}
-	
+	// private Book book;
+
+	public Flight() {
+	}
+
 	public Flight(Aircraft aircraft, String idFlight, Date departureDateTime, Airport departureAirport,
-			Date arrivalDateTime, Airport arrivalAirport, Book book) {
+			Date arrivalDateTime, Airport arrivalAirport /* , Book book */) {
 		super();
 		this.aircraft = aircraft;
 		this.idFlight = idFlight;
@@ -25,14 +25,7 @@ public class Flight {
 		this.departureAirport = departureAirport;
 		this.arrivalDateTime = arrivalDateTime;
 		this.arrivalAirport = arrivalAirport;
-		this.book = book;
-	}
-
-	public Flight(String idFlight, Airport departureAirport, Airport arrivalAirport) {
-		super();
-		this.idFlight = idFlight;
-		this.departureAirport = departureAirport;
-		this.arrivalAirport = arrivalAirport;
+		// this.book = book;
 	}
 
 	public Aircraft getAircraft() {
@@ -59,14 +52,14 @@ public class Flight {
 		return arrivalAirport;
 	}
 
-	public Book getBook() {
-		return book;
-	}
+	// public Book getBook() {
+	// return book;
+	// }
 
 	@Override
 	public String toString() {
 		return "idFlight=" + idFlight + ", departureAirport=" + departureAirport.getName() + ", arrivalAirport="
 				+ arrivalAirport.getName();
 	}
-	
+
 }

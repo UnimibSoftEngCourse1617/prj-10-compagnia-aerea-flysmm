@@ -5,7 +5,7 @@
 
 <hibernate-mapping>
 	<class name="booking.Book" table="book">
-		<id name="bookId" type="long" column="IdBook">
+		<id name="bookId" type="string" column="IdBook">
 			<generator class="native" />
 		</id>
 		<property name="customerId" column="User_ID" type="int" />

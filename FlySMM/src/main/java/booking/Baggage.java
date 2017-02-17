@@ -1,23 +1,26 @@
 package booking;
 
 public class Baggage {
-	private long baggageId = 1;
+	private String baggageId;
 	private int weight;
+	private int price;
 
 	public Baggage() {
 		super();
 	}
 
-	public Baggage(int weight) {
+	public Baggage(String baggageId, int weight, int price) {
 		super();
+		this.baggageId = baggageId;
 		this.weight = weight;
+		this.price = price;
 	}
 
-	public long getBaggageId() {
+	public String getBaggageId() {
 		return baggageId;
 	}
 
-	public void setBaggageId(long baggageId) {
+	public void setBaggageId(String baggageId) {
 		this.baggageId = baggageId;
 	}
 
@@ -27,6 +30,14 @@ public class Baggage {
 
 	public void setWeight(int weight) {
 		this.weight = weight;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 }
