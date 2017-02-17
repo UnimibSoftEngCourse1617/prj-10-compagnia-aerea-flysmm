@@ -42,8 +42,8 @@ public class SaleCommand extends FrontCommand {
 				.list();
 		String arrival = (String) result.get(0);
 
-//		result = session.createQuery("from Flight " + "where departureAirport.icao = '" + departure + "' AND "
-//				+ "arrivalAirport.icao = '" + arrival + "'").list();
+		result = session.createQuery("from Flight " + "where departureAirport.icao = '" + departure + "' AND "
+				+ "arrivalAirport.icao = '" + arrival + "'").list();
 //		List result2 = session.createQuery("from Price p where p.flight.idFlight = 'mh51'").list();
 //		System.out.println(result2.size());
 		session.getTransaction().commit();
