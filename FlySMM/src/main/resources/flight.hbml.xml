@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="sale.Flight" table="flight">
+		<id name="idFlight" column="Flight_ID" type="string">
+			<generator class="uuid" />
+		</id>
+		<many-to-one name="departureAirport" class="sale.Airport"
+			column="Departure_ICAO" />
+		<many-to-one name="arrivalAirport" class="sale.Airport"
+			column="Arrival_ICAO" />
+		<property name="departureDate" column="Departure_Date" type="date" />
+		<property name="arrivalDate" column="Arrival_Date" type="date" />
+		<property name="departureTime" column="Departure_Time" type="time" />
+		<property name="arrivalTime" column="Arrival_Time" type="time" />
+	</class>
+</hibernate-mapping>

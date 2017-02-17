@@ -13,7 +13,7 @@ public abstract class Promotion {
 	protected long idPromo;
 	protected String name;
 	protected String description;
-	protected String PromoType;
+	protected String promoType;
 	
 	public void sendMail(String mail) {
 		// Set up the SMTP server.
@@ -81,5 +81,13 @@ public abstract class Promotion {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String getPromoType() {
+		return promoType;
+	}
+
+	public void setPromoType(String promoType) {
+		this.promoType = promoType;
 	}
 }

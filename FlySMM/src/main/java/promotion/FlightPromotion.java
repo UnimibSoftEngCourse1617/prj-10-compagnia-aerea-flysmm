@@ -1,7 +1,9 @@
 package promotion;
 
+import sale.Flight;
+
 public class FlightPromotion extends Promotion{
-	private long idFlight;
+	private Flight flight;
 	
 	public void notify_() {
 		this.sendMail("mail");
@@ -9,27 +11,27 @@ public class FlightPromotion extends Promotion{
 
 	public FlightPromotion(){}
 	
-	public FlightPromotion(long idFlight){
-		this.PromoType = "flight";
-		this.setIdFlight(idFlight);
+	public FlightPromotion(Flight flight){
+		this.promoType = "flight";
+		this.setFlight(flight);
 	}
 	
-	public FlightPromotion(long idPromo, int discountRate, boolean fidelity, String name, String description, long idFlight){
+	public FlightPromotion(long idPromo, int discountRate, boolean fidelity, String name, String description, Flight flight){
 		this.idPromo = idPromo;
 		this.discountRate = discountRate;
 		this.fidelity = fidelity;
 		this.name = name;
 		this.description = description;
-		this.PromoType = "flight";
-		this.setIdFlight(idFlight);
+		this.promoType = "flight";
+		this.setFlight(flight);
 	}
 	
-	public long getIdFlight() {
-		return idFlight;
+	public Flight getIdFlight() {
+		return this.flight;
 	}
 	
-	public void setIdFlight(long idFlight) {
-		this.idFlight = idFlight;
+	public void setFlight(Flight flight) {
+		this.flight = flight;
 	}
 	
 	@Override

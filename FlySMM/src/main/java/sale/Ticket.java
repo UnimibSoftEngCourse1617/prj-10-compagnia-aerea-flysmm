@@ -5,13 +5,20 @@ import booking.Passenger;
 public class Ticket {
 	private Passenger passenger;
 	private Book book;
-
-	public Ticket(Passenger passenger, Book book) {
-		super();
-		this.passenger = passenger;
-		this.book = book;
+	private Seat seat;
+	
+	public Ticket(){
 	}
 
+	public Ticket(Passenger passenger, Book book, Seat seat) {
+		this.passenger = passenger;
+		this.book = book;
+		this.seat = seat;
+	}
+
+	public void setPassenger(Passenger passenger){
+		this.passenger = passenger;
+	}
 	public Passenger getPassenger() {
 		return passenger;
 	}

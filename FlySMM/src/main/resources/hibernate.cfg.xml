@@ -22,6 +22,8 @@
 		<mapping resource="passenger.hbm.xml" />
 		<mapping resource="baggage.hbm.xml" />
 		<mapping resource="promotion.hbm.xml"/>
+		<mapping resource="flight.hbm.xml"/>
+		<mapping resource="aircraft.hbm.xml"/>
 
 	</session-factory>
 
