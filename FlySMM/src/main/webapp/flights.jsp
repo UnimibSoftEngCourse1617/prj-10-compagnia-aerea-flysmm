@@ -24,13 +24,18 @@
 <title>FlySMM</title>
 </head>
 <body>
+	<div class="ui stackable inverted menu">
+		<div class="item">FltSMM</div>
+		<a class="item"> About Us </a> <a class="item"> Jobs </a> <a
+			class="item"> Locations </a> <a class="right item"> Sign up </a>
+	</div>
 	<table class="ui celled table">
 		<thead>
 			<tr>
 				<th>Flight Code</th>
 				<th>Departure Date</th>
 				<th>Departure Time</th>
-				<th>Arrival Time</th>
+				<th>Arrival Date</th>
 				<th>Arrival Time</th>
 			</tr>
 		</thead>
