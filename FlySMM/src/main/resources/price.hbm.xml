@@ -6,8 +6,14 @@
 <hibernate-mapping>
 	<class name="sale.Price" table="Price">
 		<composite-id>
-			<key-property name="flight" column="flight_Flight_ID"></key-property>
-			<key-property name="seat" column="seat_Seat"></key-property>
+			<key-many-to-one name="seat" class="sale.Seat">
+				<column name="seat_Seat" />
+				<column name="seat_Row" />
+				<column name="seat_Aircfrat_ID_aircraft" />
+			</key-many-to-one>
+			<key-many-to-one name="flight" class="sale.Flight">
+				<column name="flight_Flight_ID" />
+			</key-many-to-one>
 		</composite-id>
 		<many-to-one name="promo" class="promotion.FlightPromotion"
 			column="promotion_IdPromo"></many-to-one>

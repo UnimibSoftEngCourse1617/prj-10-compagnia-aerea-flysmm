@@ -1,8 +1,10 @@
 package sale;
 
+import java.io.Serializable;
+
 import promotion.Promotion;
 
-public class Price {
+public class Price implements Serializable{
 	private Flight flight;
 	private Seat seat;
 	private Promotion promo;

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.hibernate.Session;
 
 import promotion.SeasonPromotion;
+import sale.Flight;
 import servlets.SessionFactorySingleton;
 import promotion.FlightPromotion;
 import java.util.Date;

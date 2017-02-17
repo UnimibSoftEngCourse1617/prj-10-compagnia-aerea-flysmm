@@ -12,7 +12,6 @@ public class Flight {
 	private Airport departureAirport;
 	private Date arrivalDateTime;
 	private Airport arrivalAirport;
-	private Book book; // ho bisogno di avere tutte le prenotazioni di un volo ? //Secondo me no... (dbbd59)
 	
 	public Flight() {}
 	
@@ -25,7 +24,6 @@ public class Flight {
 		this.departureAirport = departureAirport;
 		this.arrivalDateTime = arrivalDateTime;
 		this.arrivalAirport = arrivalAirport;
-		this.book = book;
 	}
 
 	public Flight(String idFlight, Airport departureAirport, Airport arrivalAirport) {
@@ -59,10 +57,30 @@ public class Flight {
 		return arrivalAirport;
 	}
 
-	public Book getBook() {
-		return book;
+	public void setAircraft(Aircraft aircraft) {
+		this.aircraft = aircraft;
 	}
 
+	public void setIdFlight(String idFlight) {
+		this.idFlight = idFlight;
+	}
+
+	public void setDepartureDateTime(Date departureDateTime) {
+		this.departureDateTime = departureDateTime;
+	}
+
+	public void setDepartureAirport(Airport departureAirport) {
+		this.departureAirport = departureAirport;
+	}
+
+	public void setArrivalDateTime(Date arrivalDateTime) {
+		this.arrivalDateTime = arrivalDateTime;
+	}
+
+	public void setArrivalAirport(Airport arrivalAirport) {
+		this.arrivalAirport = arrivalAirport;
+	}
+	
 	@Override
 	public String toString() {
 		return "idFlight=" + idFlight + ", departureAirport=" + departureAirport.getName() + ", arrivalAirport="

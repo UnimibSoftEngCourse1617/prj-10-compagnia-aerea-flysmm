@@ -26,7 +26,7 @@ public class FlightPromotion extends Promotion{
 		this.setFlight(flight);
 	}
 	
-	public Flight getIdFlight() {
+	public Flight getFlight() {
 		return this.flight;
 	}
 	
@@ -38,6 +38,6 @@ public class FlightPromotion extends Promotion{
 	public String toString() {
 		return "SeasonPromotion [getIdPromo()=" + getIdPromo() + ", getDiscountRate()=" + getDiscountRate() + ", getFidelity()="
 				+ isFidelity() + ", getName()=" + getName()
-				+ ", getDescription()=" + getDescription() + ", getIdFlight()=" + getIdFlight() + "]";
+				+ ", getDescription()=" + getDescription() + ", getIdFlight()=" + getFlight() + "]";
 	}
 }

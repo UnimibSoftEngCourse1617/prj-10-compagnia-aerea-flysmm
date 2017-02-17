@@ -13,7 +13,7 @@ public class SeasonPromotion extends Promotion{
 	public SeasonPromotion(){}
 	
 	public SeasonPromotion(Date startDate, Date expireDate){
-		this.PromoType = "season";
+		this.promoType = "season";
 		this.setStartDate(startDate);
 		this.setExpireDate(expireDate);
 	}
@@ -24,7 +24,7 @@ public class SeasonPromotion extends Promotion{
 		this.fidelity = fidelity;
 		this.name = name;
 		this.description = description;
-		this.PromoType = "season";
+		this.promoType = "season";
 		this.setStartDate(startDate);
 		this.setExpireDate(expireDate);
 	}

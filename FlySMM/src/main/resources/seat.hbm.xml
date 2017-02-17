@@ -1,0 +1,14 @@
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="sale.Seat" table="seat">
+		<composite-id>
+			<key-property name="row" column="Row" type="int"></key-property>
+			<key-property name="seat" column="Seat" type="string"></key-property>
+			<key-many-to-one name="aircraft" class="sale.Aircraft" column="Aircraft"></key-many-to-one>
+		</composite-id>
+		<property name="tariff" column="Tariff" type="string" />
+		</class>
+</hibernate-mapping>

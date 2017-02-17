@@ -1,6 +1,8 @@
 package sale;
 
-public class Seat {
+import java.io.Serializable;
+
+public class Seat implements Serializable{
 
 	private int row;
 	private char seat;
