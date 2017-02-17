@@ -16,5 +16,7 @@
 		<property name="arrivalDate" column="Arrival_Date" type="date" />
 		<property name="departureTime" column="Departure_Time" type="time" />
 		<property name="arrivalTime" column="Arrival_Time" type="time" />
+		<many-to-one name="aircraft" class="sale.Aircraft"
+			column="Aircraft_ID_aircraft" />
 	</class>
 </hibernate-mapping>

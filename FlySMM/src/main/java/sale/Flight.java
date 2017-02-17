@@ -14,21 +14,18 @@ public class Flight {
 	private Date arrivalDate;
 	private Time arrivalTime;
 	private Airport arrivalAirport;
-	private Book book; // ho bisogno di avere tutte le prenotazioni di un volo ?
-						// //Secondo me no... (dbbd59)
 
 	public Flight() {
 	}
 
 	public Flight(Aircraft aircraft, Time arrivalTime, Time departureTime, String idFlight, Date departureDate,
-			Airport departureAirport, Date arrivalDate, Airport arrivalAirport, Book book) {
+			Airport departureAirport, Date arrivalDate, Airport arrivalAirport) {
 		this.aircraft = aircraft;
 		this.idFlight = idFlight;
 		this.departureDate = departureDate;
 		this.departureAirport = departureAirport;
 		this.arrivalDate = arrivalDate;
 		this.arrivalAirport = arrivalAirport;
-		this.book = book;
 		this.departureTime = departureTime;
 		this.arrivalTime = arrivalTime;
 	}
@@ -80,10 +77,6 @@ public class Flight {
 		return arrivalAirport;
 	}
 
-	public Book getBook() {
-		return book;
-	}
-
 	public void setAircraft(Aircraft aircraft) {
 		this.aircraft = aircraft;
 	}
@@ -106,10 +99,6 @@ public class Flight {
 
 	public void setArrivalAirport(Airport arrivalAirport) {
 		this.arrivalAirport = arrivalAirport;
-	}
-
-	public void setBook(Book book) {
-		this.book = book;
 	}
 
 }

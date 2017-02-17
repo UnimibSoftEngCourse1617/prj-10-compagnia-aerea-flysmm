@@ -15,6 +15,7 @@ import com.google.gson.GsonBuilder;
 
 import sale.Airport;
 import sale.Flight;
+import sale.Price;
 import servlets.HibernateProxyTypeAdapter;
 import servlets.SessionFactorySingleton;
 
@@ -23,13 +24,11 @@ public class SaleCommand extends FrontCommand {
 	@Override
 	public void dispatch() throws ServletException, IOException {
 		if (caller.equals("GDF")) {
-			getFlightFromDb();
-			
-			
+			getDepartureFromDb();
 		}
 	}
 
-	public void getFlightFromDb() {
+	public void getDepartureFromDb() {
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
 
@@ -45,6 +44,8 @@ public class SaleCommand extends FrontCommand {
 
 		result = session.createQuery("from Flight " + "where departureAirport.icao = '" + departure + "' AND "
 				+ "arrivalAirport.icao = '" + arrival + "'").list();
+		List result2 = session.createQuery("from Price p where p.flight.idFlight = 'mh51'").list();
+		System.out.println(result2.size());
 		session.getTransaction().commit();
 		//session.close();
 		GsonBuilder b = new GsonBuilder();

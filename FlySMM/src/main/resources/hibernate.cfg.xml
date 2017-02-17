@@ -20,6 +20,9 @@
 		<mapping resource="aircraft.hbm.xml" />
 		<mapping resource="airport.hbm.xml" />
 		<mapping resource="flight.hbm.xml" />
+		<mapping resource="price.hbm.xml" />
+		<mapping resource="promotion.hbm.xml" />
+		<mapping resource="seat.hbm.xml" />
 
 	</session-factory>
 

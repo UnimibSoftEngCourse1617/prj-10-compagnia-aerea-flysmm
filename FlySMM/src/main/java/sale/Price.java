@@ -1,8 +1,10 @@
 package sale;
 
+import java.io.Serializable;
+
 import promotion.Promotion;
 
-public class Price {
+public class Price implements Serializable {
 	private Flight flight;
 	private Seat seat;
 	private Promotion promo;
@@ -12,7 +14,6 @@ public class Price {
 	}
 
 	public Price(Flight flight, Seat seat, Promotion promo, float amount) {
-		super();
 		this.flight = flight;
 		this.seat = seat;
 		this.promo = promo;

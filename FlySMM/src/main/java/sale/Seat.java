@@ -1,16 +1,18 @@
 package sale;
 
-public class Seat {
+import java.io.Serializable;
+
+public class Seat implements Serializable {
 
 	private int row;
-	private char seat;
+	private String seat;
 	private String tariff;
 	private Aircraft aircraft;
 
 	public Seat() {
 	}
 
-	public Seat(int row, char seat, String tariff, Aircraft aircraft) {
+	public Seat(int row, String seat, String tariff, Aircraft aircraft) {
 		super();
 		this.row = row;
 		this.seat = seat;
@@ -26,11 +28,11 @@ public class Seat {
 		this.row = row;
 	}
 
-	public char getSeat() {
+	public String getSeat() {
 		return seat;
 	}
 
-	public void setSeat(char seat) {
+	public void setSeat(String seat) {
 		this.seat = seat;
 	}
 
