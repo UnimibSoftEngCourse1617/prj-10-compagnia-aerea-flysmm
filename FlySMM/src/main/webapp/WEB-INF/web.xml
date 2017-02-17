@@ -11,10 +11,19 @@
   </servlet-mapping>
   
    <servlet>
-        <servlet-name>AppPromotion</servlet-name>
-        <servlet-class>promotion.AppPromotion</servlet-class>
+        <servlet-name>AppCustomer</servlet-name>
+        <servlet-class>customer.AppCustomer</servlet-class>
     </servlet>
  
+    <servlet-mapping>
+        <servlet-name>AppCustomer</servlet-name>
+        <url-pattern>/AppCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet>
+    <servlet-name>AppPromotion</servlet-name>
+        <servlet-class>promotion.AppPromotion</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>AppPromotion</servlet-name>
         <url-pattern>/AppPromotion</url-pattern>

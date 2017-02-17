@@ -4,12 +4,12 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="sale.Price" table="Price">
+	<class name="sale.Price" table="price">
 		<composite-id>
 			<key-many-to-one name="seat" class="sale.Seat">
 				<column name="seat_Seat" />
 				<column name="seat_Row" />
-				<column name="seat_Aircfrat_ID_aircraft" />
+				<column name="seat_Aircraft_ID_aircraft" />
 			</key-many-to-one>
 			<key-many-to-one name="flight" class="sale.Flight">
 				<column name="flight_Flight_ID" />
@@ -17,6 +17,7 @@
 		</composite-id>
 		<many-to-one name="promo" class="promotion.FlightPromotion"
 			column="promotion_IdPromo"></many-to-one>
-		<property name="amount" column="amout" type="float" />
+		<property name="amount" column="amount" type="float" />
 	</class>
+
 </hibernate-mapping>

@@ -40,4 +40,5 @@ public class FlightPromotion extends Promotion{
 				+ isFidelity() + ", getName()=" + getName()
 				+ ", getDescription()=" + getDescription() + ", getIdFlight()=" + getFlight() + "]";
 	}
+
 }

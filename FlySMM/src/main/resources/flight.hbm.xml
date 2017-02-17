@@ -6,7 +6,7 @@
 <hibernate-mapping>
 	<class name="sale.Flight" table="flight">
 		<id name="idFlight" column="Flight_ID" type="string">
-			<generator class="assigned" />
+			<generator class="uuid" />
 		</id>
 		<many-to-one name="departureAirport" class="sale.Airport"
 			column="Departure_ICAO" />
@@ -17,6 +17,7 @@
 		<property name="departureTime" column="Departure_Time" type="time" />
 		<property name="arrivalTime" column="Arrival_Time" type="time" />
 		<many-to-one name="aircraft" class="sale.Aircraft"
-            column="Aircraft_ID_aircraft" />
+			column="Aircraft_ID_aircraft" />
 	</class>
+
 </hibernate-mapping>
