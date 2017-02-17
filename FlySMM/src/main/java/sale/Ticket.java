@@ -9,6 +9,7 @@ public class Ticket {
 	private Seat seat;
 
 	public Ticket() {
+
 	}
 
 	public Ticket(Passenger passenger, Book book, Seat seat) {
@@ -17,6 +18,9 @@ public class Ticket {
 		this.seat = seat;
 	}
 
+	public void setPassenger(Passenger passenger){
+		this.passenger = passenger;
+	}
 	public Passenger getPassenger() {
 		return passenger;
 	}

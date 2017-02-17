@@ -19,4 +19,5 @@
 			column="promotion_IdPromo"></many-to-one>
 		<property name="amount" column="amount" type="float" />
 	</class>
+
 </hibernate-mapping>

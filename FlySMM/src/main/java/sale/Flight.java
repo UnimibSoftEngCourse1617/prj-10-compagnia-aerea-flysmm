@@ -14,7 +14,7 @@ public class Flight {
 	private Date arrivalDate;
 	private Time arrivalTime;
 	private Airport arrivalAirport;
-
+  
 	public Flight() {
 	}
 
@@ -79,7 +79,6 @@ public class Flight {
 
 	public void setAircraft(Aircraft aircraft) {
 		this.aircraft = aircraft;
-	}
 
 	public void setIdFlight(String idFlight) {
 		this.idFlight = idFlight;

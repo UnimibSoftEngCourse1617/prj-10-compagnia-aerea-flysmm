@@ -45,6 +45,18 @@ public class Airport {
 	public Address getAirportAndress() {
 		return airportAndress;
 	}
+	
+	public void setIcao(String icao) {
+		this.icao = icao;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setAirportAndress(Address airportAndress) {
+		this.airportAndress = airportAndress;
+	}
 
 	@Override
 	public String toString() {

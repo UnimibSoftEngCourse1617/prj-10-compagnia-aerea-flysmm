@@ -11,25 +11,37 @@ public abstract class Promotion {
 	protected int discountRate;
 	protected boolean fidelity;
 	protected long idPromo;
+	protected String name;
 	protected String description;
-	
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getPromoType() {
-		return promoType;
-	}
-
-	public void setPromoType(String promoType) {
-		this.promoType = promoType;
-	}
-
 	protected String promoType;
+	
+	public void sendMail(String mail) {
+		// Set up the SMTP server.
+		java.util.Properties props = new java.util.Properties();
+		props.put("mail.smtp.host", "smtp.myisp.com");
+		Session session = Session.getDefaultInstance(props, null);
+
+		// Construct the message
+		String to = mail;
+		String from = "flysmm@gmail.com";
+		String subject = "Promotions";
+		Message msg = new MimeMessage(session);
+		try {
+		    msg.setFrom(new InternetAddress(from));
+		    msg.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
+		    msg.setSubject(subject);
+		    msg.setText("There is a new Promotion:"+this.name+"! Checkout on our website");
+		    
+		    // Send the message.
+		    Transport.send(msg);
+		} catch (MessagingException e) {
+			// Error.
+			}
+		}
+	
+	public abstract void notify_();
+	
+	public Promotion(){}
 
 	public int getDiscountRate() {
 		return discountRate;
@@ -63,34 +75,19 @@ public abstract class Promotion {
 		this.name = name;
 	}
 
-	protected String name;
-
-	public void sendMail(String mail) {
-		// Set up the SMTP server.
-		java.util.Properties props = new java.util.Properties();
-		props.put("mail.smtp.host", "smtp.myisp.com");
-		Session session = Session.getDefaultInstance(props, null);
-
-		// Construct the message
-		String to = mail;
-		String from = "flysmm@gmail.com";
-		String subject = "Promotions";
-		Message msg = new MimeMessage(session);
-		try {
-			msg.setFrom(new InternetAddress(from));
-			msg.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
-			msg.setSubject(subject);
-			msg.setText("There is a new Promotion:" + this.name + "! Checkout on our website");
-
-			// Send the message.
-			Transport.send(msg);
-		} catch (MessagingException e) {
-			// Error.
-		}
+	public String getDescription() {
+		return description;
 	}
 
-	public abstract void notify_();
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public String getPromoType() {
+		return promoType;
+	}
 
-	public Promotion() {
+	public void setPromoType(String promoType) {
+		this.promoType = promoType;
 	}
 }
