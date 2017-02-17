@@ -9,19 +9,19 @@
 			<generator class="native" />
 		</id>
 		
-		<discriminator column="Fidelity" type="boolean" />
+		<discriminator column="promo_type" type="string" />
 		
 		<property name="name" column="Name" type="string" />
 		<property name="discountRate" column="Discount_rate" type="int" />
-		<!--<property name="fidelity" column="Fidelity" type="boolean" />-->
+		<property name="fidelity" column="Fidelity" type="boolean" />
 		<property name="description" column="Description" type="string" />
 		
-		<subclass name="promotion.SeasonPromotion" discriminator-value="true">
+		<subclass name="promotion.SeasonPromotion" discriminator-value="season">
         	<property name="startDate" column="Start_Date" type="date" />
 			<property name="expireDate" column="Expire_Date" type="date" />
 		</subclass>
         
-        <subclass name="promotion.FlightPromotion" discriminator-value="false">
+        <subclass name="promotion.FlightPromotion" discriminator-value="flight">
         	<property name="idFlight" column="Flight_Flight_ID" type="string" />
         </subclass>
         

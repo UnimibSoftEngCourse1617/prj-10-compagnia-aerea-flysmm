@@ -13,6 +13,7 @@ public abstract class Promotion {
 	protected long idPromo;
 	protected String name;
 	protected String description;
+	protected String PromoType;
 	
 	public void sendMail(String mail) {
 		// Set up the SMTP server.

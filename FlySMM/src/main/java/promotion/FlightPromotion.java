@@ -10,6 +10,7 @@ public class FlightPromotion extends Promotion{
 	public FlightPromotion(){}
 	
 	public FlightPromotion(long idFlight){
+		this.PromoType = "flight";
 		this.setIdFlight(idFlight);
 	}
 	
@@ -19,6 +20,7 @@ public class FlightPromotion extends Promotion{
 		this.fidelity = fidelity;
 		this.name = name;
 		this.description = description;
+		this.PromoType = "flight";
 		this.setIdFlight(idFlight);
 	}
 	
