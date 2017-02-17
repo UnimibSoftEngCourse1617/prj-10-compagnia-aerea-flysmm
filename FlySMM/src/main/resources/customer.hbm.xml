@@ -6,9 +6,9 @@
 <hibernate-mapping>
 	<class name="customer.Customer" table="Customer">
 		<id name="idCustomer" type="long" column="ID_Customer">
-			<generator class="native" />
+			<generator class="assigned" />
 		</id>
-		<discriminator column="Type_of_custumers" type="string" />
+		<discriminator column="Type_of_customers" type="string" />
 
 		<property name="name" column="Name" type="string" />
 		<property name="surname" column="Surname" type="string" />
@@ -22,9 +22,10 @@
 			discriminator-value="Fidelity State">
 
 			<property name="point" column="Fidelity_Points" type="int" />
+			<property name="startDate" column="Date_start_fidelity" type="date" />
+			<property name="lastestBook" column="Date_last_book" type="date" />
 
-			<property name="startDate" column="Date_Start_Fidelity"
-				type="date" />
+			
 		</subclass>
 
 	</class>
