@@ -42,7 +42,7 @@
 	<div class="ui two column grid">
 		<div class="column">
 			<div class="ui raised segment">
-				<form class="ui form" name="fSearchFly" method="post" action="/GetDepartureFlight">
+				<form class="ui form" name="fSearchFly" method="post" action="./GetDepartureFlight">
 					<div class="field">
 						<div class="ui buttons">
 							<button onclick="viewReturnDate()" class="ui mini button">Andata
@@ -83,7 +83,7 @@
 						</div>
 						<input type="hidden" name="command" value="Sale">
 					</div>
-					<div class="ui submit green button">Cerca</div>
+					<input type="submit" value="Cerca" class="ui submit green button"/>
 				</form>
 			</div>
 		</div>

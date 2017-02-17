@@ -9,7 +9,7 @@
          <generator class="native"/>
       </id>
       <property name="model" column="Model" type="string"/>
-      <property name="totalSize" column="Seat_Number" type="long"/>
+      <property name="totalSize" column="Seat_Number" type="int"/>
       <property name="weightBound" column="Weight_Bound" type="float"/>
       <property name="constructor" column="Constructor" type="string"/>
       
