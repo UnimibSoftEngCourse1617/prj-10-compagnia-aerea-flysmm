@@ -28,11 +28,9 @@
 
 
 	<div class="ui stackable inverted menu">
-		<a class="item">FlySMM</a>
-		<a class="item"> About Us </a> 
-		<a class="item"> Jobs </a> 
-		<a class="item"> Locations </a> 
-		<a href="register.html" class="right item"> Sign up </a>
+		<a class="item">FlySMM</a> <a class="item"> About Us </a> <a
+			class="item"> Jobs </a> <a class="item"> Locations </a> <a
+			href="loginPage.html" class="right item"> Sign up </a>
 	</div>
 
 
@@ -44,7 +42,8 @@
 			<div class="ui raised segment">
 
 
-				<form class="ui form" name="fSearchFly" method="post" action="./GetDepartureFlight">
+				<form class="ui form" name="fSearchFly" method="post"
+					action="./GetDepartureFlight">
 
 					<div class="field">
 						<div class="ui buttons">
@@ -86,7 +85,7 @@
 						</div>
 						<input type="hidden" name="command" value="Sale">
 					</div>
-					<input type="submit" value="Cerca" class="ui submit green button"/>
+					<input type="submit" value="Cerca" class="ui submit green button" />
 				</form>
 			</div>
 		</div>

@@ -12,6 +12,9 @@ import org.hibernate.Query;
 import org.hibernate.criterion.SizeExpression;
 import org.hibernate.mapping.List;
 
+import frontController.FrontCommand;
+import frontController.UnknownCommand;
+
 /**
  * Servlet implementation class GetUsernamePassword
  */
@@ -34,7 +37,7 @@ public class GetUsernamePassword extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter().append(request.getParameter("command"));
 
 	}
 
@@ -45,25 +48,35 @@ public class GetUsernamePassword extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String username = request.getParameter("email");
-		String password = request.getParameter("pws");
+		FrontCommand command = getCommand(request);
+		if (command != null) {
+			command.init(getServletContext(), "GDF", request, response);
+			command.dispatch();
 
-		System.out.println("username: " + username);
-		System.out.println("password: " + password);
-		
-	
-		PrintWriter writer = response.getWriter();
+		} else {
+			System.out.println("CommandNotFound");
+		}
+	}
 
-		// build HTML code
-		String htmlRespone = "<html>";
-		htmlRespone += "<h2>Your username is: " + username + "<br/>";
-		htmlRespone += "Your password is: " + password + "</h2>";
-		htmlRespone += "</html>";
+	private FrontCommand getCommand(HttpServletRequest request) {
+		FrontCommand result = null;
+		try {
+			return (FrontCommand) getCommandClass(request).newInstance();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 
-		// return response
-		writer.println(htmlRespone);
-		
-		
+	private Class getCommandClass(HttpServletRequest request) {
+		Class result;
+		final String commandClassName = "frontController." + (String) request.getParameter("command") + "Command";
+		try {
+			result = Class.forName(commandClassName);
+		} catch (ClassNotFoundException e) {
+			result = UnknownCommand.class;
+		}
+		return result;
 	}
 
 }
