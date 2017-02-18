@@ -33,20 +33,28 @@
 		<thead>
 			<tr>
 				<th>Flight Code</th>
+				<th>From</th>
 				<th>Departure Date</th>
 				<th>Departure Time</th>
+				<th>To</th>
 				<th>Arrival Date</th>
 				<th>Arrival Time</th>
+				<th>Tariff</th>
+				<th>Price</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${flights}" var="flight">
 				<tr>
 					<td>${flight.idFlight}</td>
+					<td>${flight.departureAirport.name}</td>
 					<td>${flight.departureDate}</td>
 					<td>${flight.departureTime}</td>
+					<td>${flight.arrivalAirport.name}</td>
 					<td>${flight.arrivalDate}</td>
 					<td>${flight.arrivalTime}</td>
+					<td>${flight.price.seats.tariff}</td>
+					<td>${flight.price.amount}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

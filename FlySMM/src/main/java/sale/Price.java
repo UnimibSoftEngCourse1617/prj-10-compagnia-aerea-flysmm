@@ -6,7 +6,7 @@ import promotion.Promotion;
 
 public class Price implements Serializable {
 	private Flight flight;
-	private Seat seat;
+	private Seat seats;
 	private Promotion promo;
 	private float amount;
 
@@ -15,7 +15,7 @@ public class Price implements Serializable {
 
 	public Price(Flight flight, Seat seat, Promotion promo, float amount) {
 		this.flight = flight;
-		this.seat = seat;
+		this.seats = seat;
 		this.promo = promo;
 		this.amount = amount;
 	}
@@ -28,12 +28,12 @@ public class Price implements Serializable {
 		this.flight = flight;
 	}
 
-	public Seat getSeat() {
-		return seat;
+	public Seat getSeats() {
+		return seats;
 	}
 
-	public void setSeat(Seat seat) {
-		this.seat = seat;
+	public void setSeats(Seat seat) {
+		this.seats = seat;
 	}
 
 	public Promotion getPromo() {
