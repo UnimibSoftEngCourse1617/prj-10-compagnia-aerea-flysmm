@@ -50,7 +50,8 @@ public class AppBook extends HttpServlet {
 		Passenger p = new Passenger("Chiara", "Ferragni");
 		Passenger p1 = new Passenger("Lara", "Cambiaghi");
 		Passenger p2 = new Passenger("Gianluca", "Guarnieri");
-		b.addPassenger(p);
+
+    b.addPassenger(p);
 		writePassenger(p);
 
 		b.addPassenger(p1);
