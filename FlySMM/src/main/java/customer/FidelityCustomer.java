@@ -7,7 +7,6 @@ public class FidelityCustomer extends Customer {
 	private int point;
 	protected State state;
 	protected Date startDate;
-	// settare la variabile lastBook con l'ultimo acquisto fatto
 	protected Date lastestBook;
 
 	public FidelityCustomer(long idCustomer, String name, String surname, String email, String password,
@@ -40,7 +39,7 @@ public class FidelityCustomer extends Customer {
 	}
 
 	public void setPoint(int point) {
-		this.point = point;
+		this.point = this.point + point;
 	}
 
 	public Date getStartDate() {
@@ -49,6 +48,14 @@ public class FidelityCustomer extends Customer {
 
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
+	}
+
+	public Date getLastestBook() {
+		return lastestBook;
+	}
+
+	public void setLastestBook(Date lastestBook) {
+		this.lastestBook = lastestBook;
 	}
 
 	@Override

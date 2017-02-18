@@ -2,6 +2,8 @@ package customer;
 
 import java.util.Date;
 
+
+
 public class Customer {
 
 	private long idCustomer;
@@ -11,6 +13,7 @@ public class Customer {
 	private String password;
 	private String phoneNumber;
 	private Date dateOfBirth;
+	
 
 	public Customer(long idCustomer, String name, String surname, String email, String password, String phoneNumber,
 			Date dateOfBirth) {

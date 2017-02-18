@@ -1,10 +1,11 @@
 package booking;
 
 public class Passenger {
+	
 	private String name;
 	private String surname;
 	private long passengerId;
-
+ 
 	public Passenger() {
 		super();
 	}
