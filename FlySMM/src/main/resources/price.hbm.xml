@@ -6,9 +6,9 @@
 <hibernate-mapping>
 	<class name="sale.Price" table="price">
 		<composite-id>
-			<key-many-to-one name="seat" class="sale.Seat">
-				<column name="seat_Seat" />
+			<key-many-to-one name="seats" class="sale.Seat">
 				<column name="seat_Row" />
+				<column name="seat_Seat" />
 				<column name="seat_Aircraft_ID_aircraft" />
 			</key-many-to-one>
 			<key-many-to-one name="flight" class="sale.Flight">
