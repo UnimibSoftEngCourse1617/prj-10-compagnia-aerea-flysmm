@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
 import booking.Book;
+
 public class Flight {
+
 	
 	private Aircraft aircraft;
 	private String idFlight;
@@ -14,18 +16,21 @@ public class Flight {
 	private Date arrivalDate;
 	private Time arrivalTime;
 	private Airport arrivalAirport;
+
   
 	public Flight() {
 	}
 
 	public Flight(Aircraft aircraft, Time arrivalTime, Time departureTime, String idFlight, Date departureDate,
 			Airport departureAirport, Date arrivalDate, Airport arrivalAirport) {
+
 		this.aircraft = aircraft;
 		this.idFlight = idFlight;
 		this.departureDate = departureDate;
 		this.departureAirport = departureAirport;
 		this.arrivalDate = arrivalDate;
 		this.arrivalAirport = arrivalAirport;
+
 		this.departureTime = departureTime;
 		this.arrivalTime = arrivalTime;
 	}
@@ -51,9 +56,8 @@ public class Flight {
 		this.idFlight = idFlight;
 		this.departureAirport = departureAirport;
 		this.arrivalAirport = arrivalAirport;
-	}
-
-	public Aircraft getAircraft() {
+  }
+  public Aircraft getAircraft() {
 		return aircraft;
 	}
 
@@ -77,6 +81,7 @@ public class Flight {
 		return arrivalAirport;
 	}
 
+
 	public void setAircraft(Aircraft aircraft) {
 		this.aircraft = aircraft;
 
@@ -84,9 +89,11 @@ public class Flight {
 		this.idFlight = idFlight;
 	}
 
+
 	public void setDepartureDate(Date departureDate) {
 		this.departureDate = departureDate;
 	}
+
 
 	public void setDepartureAirport(Airport departureAirport) {
 		this.departureAirport = departureAirport;
