@@ -3,17 +3,19 @@ package booking;
 import customer.Customer;
 import sale.Flight;
 import booking.Passenger;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-public class Book {
+public class Book implements Serializable{
 	private String bookId;
 	private long customerId;
 	private Date bookingDate;
 	private float totalPrice;
-	private int payed;
-	private int expired;
+	private int payedB;
+	private int expiredB;
 	private int airplaneId;
 	private Date departureDate;
 	private String documentP;
@@ -30,8 +32,8 @@ public class Book {
 		this.customerId = c.getIdCustomer();
 		this.bookingDate = this.getDate();
 		this.totalPrice = 0;
-		this.payed = 0;
-		this.expired = 0;
+		this.payedB = 0;
+		this.expiredB = 0;
 		this.airplaneId = f.getAircraft().getIdAircraft();
 		this.departureDate = f.getDepartureDateTime();
 		this.documentP = p.getFiscal_code();
@@ -72,19 +74,19 @@ public class Book {
 	}
 
 	public int getPayed() {
-		return payed;
+		return payedB;
 	}
 
 	public void setPayed(int payed) {
-		this.payed = payed;
+		this.payedB = payed;
 	}
 
 	public int getExpired() {
-		return expired;
+		return expiredB;
 	}
 
 	public void setExpired(int expired) {
-		this.expired = expired;
+		this.expiredB = expired;
 	}
 
 	public int getAirplaneId() {
@@ -128,10 +130,10 @@ public class Book {
 
 	public boolean verifyExpired() {
 		if (Book.getDateDiff(this.getBookingDate(), this.getDate(), TimeUnit.MINUTES) > 1440) {
-			this.expired = 1;
+			this.expiredB = 1;
 			return true;
 		} else {
-			this.expired = 0;
+			this.expiredB = 0;
 			return false;
 		}
 	}
@@ -149,7 +151,7 @@ public class Book {
 	@Override
 	public String toString() {
 		return "Book [bookId=" + bookId + ", customerId=" + customerId + ", bookingDate=" + bookingDate
-				+ ", totalPrice=" + totalPrice + ", payed=" + payed + ", expired=" + expired + ", airplaneId="
+				+ ", totalPrice=" + totalPrice + ", payed=" + payedB + ", expired=" + expiredB + ", airplaneId="
 				+ airplaneId + ", departureDate=" + departureDate + ", documentP=" + documentP + ", flightId="
 				+ flightId + "]";
 	}
