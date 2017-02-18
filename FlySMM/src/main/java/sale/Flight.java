@@ -7,7 +7,6 @@ import booking.Book;
 
 public class Flight {
 
-	
 	private Aircraft aircraft;
 	private String idFlight;
 	private Date departureDate;
@@ -17,7 +16,6 @@ public class Flight {
 	private Time arrivalTime;
 	private Airport arrivalAirport;
 
-  
 	public Flight() {
 	}
 
@@ -56,8 +54,9 @@ public class Flight {
 		this.idFlight = idFlight;
 		this.departureAirport = departureAirport;
 		this.arrivalAirport = arrivalAirport;
-  }
-  public Aircraft getAircraft() {
+	}
+
+	public Aircraft getAircraft() {
 		return aircraft;
 	}
 
@@ -81,19 +80,17 @@ public class Flight {
 		return arrivalAirport;
 	}
 
-
 	public void setAircraft(Aircraft aircraft) {
 		this.aircraft = aircraft;
+	}
 
 	public void setIdFlight(String idFlight) {
 		this.idFlight = idFlight;
 	}
 
-
 	public void setDepartureDate(Date departureDate) {
 		this.departureDate = departureDate;
 	}
-
 
 	public void setDepartureAirport(Airport departureAirport) {
 		this.departureAirport = departureAirport;
