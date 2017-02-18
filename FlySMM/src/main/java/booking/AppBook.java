@@ -44,6 +44,7 @@ public class AppBook extends HttpServlet {
 		Flight f = new Flight(acf, "abc1", data, a1, data, a2);
 		Flight f1 = new Flight(acf, "abc2", data, a1, data, a2);
 
+
 		// Flight f = new Flight("abc1", a1, a2);
 		// Flight f1 = new Flight("abc2", a1, a2);
 

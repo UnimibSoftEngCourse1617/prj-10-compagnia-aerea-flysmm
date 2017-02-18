@@ -8,6 +8,9 @@ public class Aircraft {
 	private long totalSize;
 	private float weightBound;
 	private String model;
+	
+	public Aircraft() {
+	}
 
 	
 	public Aircraft(/* Flight flight, */ int idAircraft, String constructor, long totalSize, float weightBound,

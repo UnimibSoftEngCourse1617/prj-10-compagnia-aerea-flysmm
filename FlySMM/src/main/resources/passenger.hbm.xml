@@ -1,10 +1,12 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC 
  "-//Hibernate/Hibernate Mapping DTD//EN"
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-
+ 
 <hibernate-mapping>
 	<class name="booking.Passenger" table="passenger">
+
 		<id name="Fiscal_code" type="string" column="Fiscal_code">
 			<generator class="uuid" />
 		</id>
@@ -16,4 +18,4 @@
 		<property name="baggageId" column="Baggage_ID_Baggage" type="string" />
 
 	</class>
-</hibernate-mapping>
+</hibernate-mapping> 

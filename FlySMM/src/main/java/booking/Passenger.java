@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.persistence.GeneratedValue;
 
 public class Passenger {
-	@GeneratedValue
+
 	private String Fiscal_code;
 	private String name;
 	private String surname;

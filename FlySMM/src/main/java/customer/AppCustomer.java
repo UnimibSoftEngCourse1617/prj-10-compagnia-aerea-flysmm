@@ -12,18 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
+
 
 import customer.Customer;
 import customer.FidelityCustomer;
 import customer.FidelityState;
-import sale.Aircraft;
-import sale.Airport;
-import sale.Flight;
-import booking.Passenger;
+
 import servlets.SessionFactorySingleton;
 
 public class AppCustomer extends HttpServlet {
