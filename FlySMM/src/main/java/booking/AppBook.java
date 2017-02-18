@@ -2,6 +2,7 @@
 package booking;
 
 import java.io.IOException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -23,6 +24,7 @@ import customer.FidelityState;
 import sale.Aircraft;
 import sale.Airport;
 import sale.Flight;
+import sale.Price;
 import booking.Passenger;
 import servlets.SessionFactorySingleton;
 
@@ -30,7 +32,9 @@ public class AppBook extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private Date data = new Date();
-
+	private Time time = new Time(8,0,0);
+	private Price price = new Price();
+	
 	public AppBook() {
 		super();
 	}
@@ -41,8 +45,8 @@ public class AppBook extends HttpServlet {
 		Airport a1 = new Airport("MXP", "Malpensa");
 		Airport a2 = new Airport("LIN", "Linate");
 		Aircraft acf = new Aircraft(77654, "Boeing", 1000, 2737, "737");
-		Flight f = new Flight(acf, "abc1", data, a1, data, a2);
-		Flight f1 = new Flight(acf, "abc2", data, a1, data, a2);
+		Flight f = new Flight(acf, time, time, "abc1", data, a1, data, a2, price);
+		Flight f1 = new Flight(acf, time, time, "abc2", data, a1, data, a2, price);
 
 
 		// Flight f = new Flight("abc1", a1, a2);

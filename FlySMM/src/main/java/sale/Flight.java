@@ -25,7 +25,6 @@ public class Flight {
 		this.price = price;
 	}
 
-  
 	public Flight() {
 	}
 
@@ -78,7 +77,7 @@ public class Flight {
 		this.price = p;
 	}
 
-  public Aircraft getAircraft() {
+	public Aircraft getAircraft() {
 		return aircraft;
 	}
 
@@ -102,19 +101,17 @@ public class Flight {
 		return arrivalAirport;
 	}
 
-
 	public void setAircraft(Aircraft aircraft) {
 		this.aircraft = aircraft;
+	}
 
 	public void setIdFlight(String idFlight) {
 		this.idFlight = idFlight;
 	}
 
-
 	public void setDepartureDate(Date departureDate) {
 		this.departureDate = departureDate;
 	}
-
 
 	public void setDepartureAirport(Airport departureAirport) {
 		this.departureAirport = departureAirport;
