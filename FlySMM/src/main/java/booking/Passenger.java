@@ -17,6 +17,7 @@ public class Passenger {
 		super();
 	}
 
+	
 	public Passenger(String fiscal_code, String name, String surname, Date birth_date, String type, String baggageId) {
 		super();
 		Fiscal_code = fiscal_code;

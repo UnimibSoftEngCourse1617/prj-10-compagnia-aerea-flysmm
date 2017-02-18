@@ -6,6 +6,7 @@ public class Airport {
 	private String name;
 	private Address airportAndress; 
 	
+	
 	public Airport(String icao, String name, Address airportAndress) {
 		super();
 		this.icao = icao;

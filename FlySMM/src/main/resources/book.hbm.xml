@@ -8,6 +8,7 @@
 		<id name="bookId" type="string" column="IdBook">
 			<generator class="native" />
 		</id>
+		
 		<property name="customerId" column="User_ID" type="int" />
 		<property name="bookingDate" column="Booking_date" type="date" />
 		<property name="totalPrice" column="Total_Price" type="float" />

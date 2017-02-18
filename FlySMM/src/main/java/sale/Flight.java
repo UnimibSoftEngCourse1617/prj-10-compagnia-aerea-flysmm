@@ -5,6 +5,7 @@ import booking.Book;
 
 public class Flight {
 
+	
 	private Aircraft aircraft;
 	private String idFlight;
 	private Date departureDateTime;

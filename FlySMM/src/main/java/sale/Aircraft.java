@@ -9,6 +9,7 @@ public class Aircraft {
 	private float weightBound;
 	private String model;
 
+	
 	public Aircraft(/* Flight flight, */ int idAircraft, String constructor, long totalSize, float weightBound,
 			String model) {
 		// this.flight = flight;

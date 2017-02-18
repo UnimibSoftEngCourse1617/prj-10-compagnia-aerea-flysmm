@@ -52,6 +52,7 @@ public class AppBook extends HttpServlet {
 		Book b = new Book(c, f, p);
 		// writeBook(b);
 
+		
 		Passenger p1 = new Passenger("DEF456GER", "Lara", "Cambiaghi", data, "donna", "Personal");
 		Book b1 = new Book(c, f1, p1);
 		// writeBook(b1);
