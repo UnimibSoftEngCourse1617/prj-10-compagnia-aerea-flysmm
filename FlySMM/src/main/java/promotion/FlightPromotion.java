@@ -12,22 +12,33 @@ public class FlightPromotion extends Promotion{
 	public FlightPromotion(){}
 	
 	public FlightPromotion(Flight flight){
+		this.promoType = "flight";
 		this.setFlight(flight);
 	}
 	
-	public FlightPromotion(int discountRate, boolean fidelity, long idPromo, String name, Flight flight){
+	public FlightPromotion(long idPromo, int discountRate, boolean fidelity, String name, String description, Flight flight){
+		this.idPromo = idPromo;
 		this.discountRate = discountRate;
 		this.fidelity = fidelity;
-		this.idPromo = idPromo;
 		this.name = name;
+		this.description = description;
+		this.promoType = "flight";
 		this.setFlight(flight);
 	}
 	
 	public Flight getFlight() {
-		return flight;
+		return this.flight;
 	}
 	
 	public void setFlight(Flight flight) {
 		this.flight = flight;
 	}
+	
+	@Override
+	public String toString() {
+		return "SeasonPromotion [getIdPromo()=" + getIdPromo() + ", getDiscountRate()=" + getDiscountRate() + ", getFidelity()="
+				+ isFidelity() + ", getName()=" + getName()
+				+ ", getDescription()=" + getDescription() + ", getIdFlight()=" + getFlight() + "]";
+	}
+
 }

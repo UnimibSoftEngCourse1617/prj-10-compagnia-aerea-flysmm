@@ -24,7 +24,7 @@
         <subclass name="promotion.FlightPromotion" discriminator-value="flight">
         	<component name="flight" class="sale.Flight">
         		<property name="idFlight"/>
-        		</component>
+        	</component>
         </subclass>
         
 	</class>

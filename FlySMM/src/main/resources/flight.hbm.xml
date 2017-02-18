@@ -19,4 +19,5 @@
 		<many-to-one name="aircraft" class="sale.Aircraft"
 			column="Aircraft_ID_aircraft" />
 	</class>
+
 </hibernate-mapping>

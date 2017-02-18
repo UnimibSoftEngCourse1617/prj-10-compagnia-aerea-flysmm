@@ -10,4 +10,5 @@
       </id>
       <property name="name" column="Name" type="string"/>
    </class>
+
 </hibernate-mapping>

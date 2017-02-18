@@ -40,26 +40,32 @@ public class AppBook extends HttpServlet {
 		Customer c = new Customer(121, "luca", "lorusso", "dgs", "dgvs", "popo", data);
 		Airport a1 = new Airport("MXP", "Malpensa");
 		Airport a2 = new Airport("LIN", "Linate");
-		Flight f = new Flight("abc1", a1, a2);
-		Flight f1 = new Flight("abc2", a1, a2);
+		Aircraft acf = new Aircraft(77654, "Boeing", 1000, 2737, "737");
+		Flight f = new Flight(acf, "abc1", data, a1, data, a2);
+		Flight f1 = new Flight(acf, "abc2", data, a1, data, a2);
 
-		Book b = new Book(c, f, f1);
 
-		Passenger p = new Passenger("Chiara", "Ferragni");
-		Passenger p1 = new Passenger("Lara", "Cambiaghi");
-		Passenger p2 = new Passenger("Gianluca", "Guarnieri");
+		// Flight f = new Flight("abc1", a1, a2);
+		// Flight f1 = new Flight("abc2", a1, a2);
 
-    b.addPassenger(p);
+		Passenger p = new Passenger("ABC123", "Chiara", "Ferragni", data, "donna", "Sport");
 		writePassenger(p);
+		Book b = new Book(c, f, p);
+		writeBook(b);
 
-		b.addPassenger(p1);
+		
+		Passenger p1 = new Passenger("DEF456", "Lara", "Cambiaghi", data, "donna", "Personal");
+		Book b1 = new Book(c, f1, p1);
 		writePassenger(p1);
 
-		b.addPassenger(p2);
+		// writeBook(b1);
+
+		Passenger p2 = new Passenger("GHI789", "Gianluca", "Guarnieri", data, "uomo", "Sport");
 		writePassenger(p2);
 
+		Book b2 = new Book(c, f, p2);
+		// writeBook(b2);
 		response.getWriter().append(b.toString());
-		writeBook(b);
 
 	}
 
@@ -67,7 +73,6 @@ public class AppBook extends HttpServlet {
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 
 	public static void writePassenger(Passenger p) {
 		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
@@ -84,27 +89,10 @@ public class AppBook extends HttpServlet {
 	}
 
 	public static void writeBook(Book b) {
-		for (Book book : getListBook(b)) {
-			Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
-			session.getTransaction().begin();
-			session.save(book);
-			session.getTransaction().commit();
-		}
-	}
-
-	public static ArrayList<Book> getListBook(Book b) {
-		ArrayList<Book> listBook = new ArrayList<Book>();
-		for (Flight flight : b.getListFlight()) {
-			for (Passenger passenger : b.getListPassenger()) {
-				Book tmp = new Book(flight);
-				tmp.setCustomerId(b.getCustomerId());
-				tmp.setFlightId(flight.getIdFlight());
-				tmp.setDocumentP(passenger.getPassengerId());
-				listBook.add(tmp);
-
-			}
-		}
-		return listBook;
+		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
+		session.getTransaction().begin();
+		session.save(b);
+		session.getTransaction().commit();
 
 	}
 
