@@ -2,6 +2,7 @@ package frontController;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -42,17 +43,20 @@ public class SaleCommand extends FrontCommand {
 				.list();
 		String arrival = (String) result.get(0);
 
-		result = session.createQuery("from Flight " + "where departureAirport.icao = '" + departure + "' AND "
-				+ "arrivalAirport.icao = '" + arrival + "'").list();
-		List result2 = session.createQuery("from Price").list();
-		System.out.println(result2.size());
+		result = session.createQuery("from Price p inner join p.flight f " + "where f.departureAirport.icao = '" + departure + "' AND "
+				+ "f.arrivalAirport.icao = '" + arrival + "'").list();
+		List<Flight> flights = new ArrayList<Flight>();
+		for (Object[] o: (List<Object[]>) result) {
+			flights.add(new Flight((Flight)o[1],(Price)o[0]));
+		}
+		
 		session.getTransaction().commit();
-//		session.close();
-//		GsonBuilder b = new GsonBuilder();
-//		b.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
-//		Gson gson = b.create();
-//		String json = gson.toJson((List<Flight>) result);
-		request.setAttribute("flights", (List<Flight>) result);
+		// session.close();
+		// GsonBuilder b = new GsonBuilder();
+		// b.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+		// Gson gson = b.create();
+		// String json = gson.toJson((List<Flight>) result);
+		request.setAttribute("flights", flights);
 		RequestDispatcher dispatcher = context.getRequestDispatcher("/flights.jsp");
 		try {
 			dispatcher.forward(request, response);
