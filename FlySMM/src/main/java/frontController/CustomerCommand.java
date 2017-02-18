@@ -28,16 +28,16 @@ public class CustomerCommand extends FrontCommand {
 	public void getCustomerFromDb() {
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
+		Customer customerRegistry = null;
 		try {
 			List result = session.createQuery("from Customer " + "where email = '" + request.getParameter("email") + "'"
 					+ " and password = '" + request.getParameter("psw") + "'").list();
-
-			Customer customerRegistry = (Customer) result.get(0);
-			if (customerRegistry != null) {
+			if (result.get(0) != null) {
+				customerRegistry = (Customer) result.get(0);
 				RequestDispatcher dispatcher = context.getRequestDispatcher("/homeCustomer.jsp");
 				dispatcher.forward(request, response);
 			} else {
-				RequestDispatcher dispatcher = context.getRequestDispatcher("/loginPage.html");
+				RequestDispatcher dispatcher = context.getRequestDispatcher("./loginPage.html");
 				dispatcher.forward(request, response);
 			}
 
@@ -46,15 +46,6 @@ public class CustomerCommand extends FrontCommand {
 			e.getMessage();
 		}
 
-		// RequestDispatcher dispatcher =
-		// context.getRequestDispatcher("/homeCustomer.jsp");
-		// try {
-		// dispatcher.forward(request, response);
-		// } catch (ServletException e) {
-		// e.printStackTrace();
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// }
 	}
 
 }
