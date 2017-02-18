@@ -79,7 +79,8 @@ public class Flight {
 
 	public void setAircraft(Aircraft aircraft) {
 		this.aircraft = aircraft;
-
+	}
+	
 	public void setIdFlight(String idFlight) {
 		this.idFlight = idFlight;
 	}

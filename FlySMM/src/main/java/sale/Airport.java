@@ -5,18 +5,6 @@ public class Airport {
 	private String icao;
 	private String name;
 	private Address airportAndress; 
-	
-	public void setIcao(String icao) {
-		this.icao = icao;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setAirportAndress(Address airportAndress) {
-		this.airportAndress = airportAndress;
-	}
 
 	public Airport() {
 	}
@@ -54,7 +42,7 @@ public class Airport {
 		this.name = name;
 	}
 
-	public void setAirportAndress(Address airportAndress) {
+	public void setAirportAddress(Address airportAndress) {
 		this.airportAndress = airportAndress;
 	}
 

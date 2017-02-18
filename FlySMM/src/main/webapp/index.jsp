@@ -90,5 +90,6 @@
 	</div>
 	<!-- FINE area dedicata alla ricerca di un volo -->
 	<a href="./AppCustomer">ProvaCustomer</a>
+	<a href="./GetPromotion">Show_Promotions</a>
 </body>
 </html>
