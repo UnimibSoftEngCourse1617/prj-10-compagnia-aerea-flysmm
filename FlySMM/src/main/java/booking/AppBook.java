@@ -47,17 +47,21 @@ public class AppBook extends HttpServlet {
 		// Flight f = new Flight("abc1", a1, a2);
 		// Flight f1 = new Flight("abc2", a1, a2);
 
-		Passenger p = new Passenger("ABC123GFE", "Chiara", "Ferragni", data, "donna", "Sport");
+		Passenger p = new Passenger("ABC123", "Chiara", "Ferragni", data, "donna", "Sport");
 		writePassenger(p);
 		Book b = new Book(c, f, p);
-		// writeBook(b);
+		writeBook(b);
 
 		
-		Passenger p1 = new Passenger("DEF456GER", "Lara", "Cambiaghi", data, "donna", "Personal");
+		Passenger p1 = new Passenger("DEF456", "Lara", "Cambiaghi", data, "donna", "Personal");
 		Book b1 = new Book(c, f1, p1);
+		writePassenger(p1);
+
 		// writeBook(b1);
 
-		Passenger p2 = new Passenger("GHI789JIBHUI", "Gianluca", "Guarnieri", data, "uomo", "Sport");
+		Passenger p2 = new Passenger("GHI789", "Gianluca", "Guarnieri", data, "uomo", "Sport");
+		writePassenger(p2);
+
 		Book b2 = new Book(c, f, p2);
 		// writeBook(b2);
 		response.getWriter().append(b.toString());

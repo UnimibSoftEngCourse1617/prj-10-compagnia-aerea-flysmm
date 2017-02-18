@@ -6,9 +6,9 @@
 <hibernate-mapping>
 	<class name="booking.Passenger" table="passenger">
 		<id name="Fiscal_code" type="string" column="Fiscal_code">
-			<generator class="native" />
+			<generator class="uuid" />
 		</id>
-		
+
 		<property name="name" column="Name" type="string" />
 		<property name="surname" column="Surname" type="string" />
 		<property name="Birth_date" column="Birth_date" type="date" />
