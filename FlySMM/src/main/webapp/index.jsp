@@ -46,64 +46,57 @@
 					action="./GetDepartureFlight">
 
 
-				<form class="ui form" name="fSearchFly" method="post"
-					action="/GetDepartureFlight">
-
-					<div class="field">
-						<div class="ui buttons">
-							<button onclick="viewReturnDate()" class="ui mini button">Andata
-								e Ritorno</button>
-							<button onclick="hideReturnDate()" class="ui mini button">Solo
-								Andata</button>
-						</div>
-					</div>
-
-					<div class="field">
-						<label>Volo da</label> <input name="aDeparture" type="text">
-					</div>
-
-					<div class="field">
-						<label>Volo per</label> <input name="aArrival" type="text"></input>
-					</div>
-
-					<div class="three fields">
+					<form class="ui form" name="fSearchFly" method="post"
+						action="/GetDepartureFlight">
 
 						<div class="field">
-							<label>Partenza</label> <input name="dDate" type="text">
-						</div>
-
-						<div id="returnDate" style='' class="field">
-							<label>Ritorno</label> <input id="btnreturnDate" name="rDate"
-								type="text">
+							<div class="ui buttons">
+								<button onclick="viewReturnDate()" class="ui mini button">Andata
+									e Ritorno</button>
+								<button onclick="hideReturnDate()" class="ui mini button">Solo
+									Andata</button>
+							</div>
 						</div>
 
 						<div class="field">
-							<label>Persone</label> <select
-								class="ui compact selection dropdown">
-								<option selected="" value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-							</select>
+							<label>Volo da</label> <input name="aDeparture" type="text">
 						</div>
-						<input type="hidden" name="command" value="Sale">
-					</div>
-					<input type="submit" value="Cerca" class="ui submit green button" />
-				</form>
+
+						<div class="field">
+							<label>Volo per</label> <input name="aArrival" type="text"></input>
+						</div>
+
+						<div class="three fields">
+
+							<div class="field">
+								<label>Partenza</label> <input name="dDate" type="text">
+							</div>
+
+							<div id="returnDate" style='' class="field">
+								<label>Ritorno</label> <input id="btnreturnDate" name="rDate"
+									type="text">
+							</div>
+
+							<div class="field">
+								<label>Persone</label> <select
+									class="ui compact selection dropdown">
+									<option selected="" value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+								</select>
+							</div>
+							<input type="hidden" name="command" value="Sale">
+						</div>
+						<input type="submit" value="Cerca" class="ui submit green button" />
+					</form>
 			</div>
 		</div>
 	</div>
 	<!-- FINE area dedicata alla ricerca di un volo -->
 
 	<a href="./AppCustomer">ProvaCustomer</a>
-	<a href="./AppBook">Book</a>
-
-
-
-
-	<a href="./AppBook">ProvaBook</a>
-	
-
+	<a href="addPassenger.jsp">ADDPASSENGER</a>
 </body>
 </html>

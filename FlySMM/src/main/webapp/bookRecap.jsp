@@ -1,0 +1,51 @@
+<%@page import="booking.Book"%>
+<%@page import="java.util.List"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+<!-- Inizio sezione per Semantic ui -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	crossorigin="anonymous"></script>
+<link
+	href="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.19.3/css/semantic.css"
+	rel="stylesheet" />
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.19.3/javascript/semantic.js"></script>
+<!-- Fine sezione per Semantic ui -->
+
+</head>
+<body>
+	<div class="ui stackable inverted menu">
+		<a class="item">FlySMM</a> <a class="item"> About Us </a> <a
+			class="item"> Jobs </a> <a class="item"> Locations </a>
+	</div>
+	<table class="ui celled table">
+		<thead>
+			<tr>
+				<th>Book Id</th>
+				<th>Flight I</th>
+				<th>Fiscal code passenger</th>
+				<th>Departure Date</th>
+				<th>Airplane Id</th>
+				<th>Total price</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${book}" var="book">
+				<tr>
+					<td>${book.bookId}</td>
+					<td>${book.flightId}</td>
+					<td>${book.documentP}</td>
+					<td>${book.departureDate}</td>
+					<td>${book.airplaneId}</td>
+					<td>${book.totalPrice}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+		<tfoot></tfoot>
+	</table>
+</body>
+</html>
