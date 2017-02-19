@@ -32,11 +32,11 @@ public class AppPromotion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		SeasonPromotion p1 = new SeasonPromotion(123, 50, true, "Winter Promo", "loremipsum", new Date(), new Date());
-		FlightPromotion p2 = new FlightPromotion(124, 30, false, "boeing 77 Promo", "lorem_ipsum", new Flight());
+		SeasonPromotion p1 = new SeasonPromotion(5, 50, true, "Autumn Promo", "loremipsum", new Date(), new Date());
+		//FlightPromotion p2 = new FlightPromotion(124, 30, false, "boeing 77 Promo", "lorem_ipsum", new Flight());
 		writeSeasonPromotion(p1);
-		writeFlightPromotion(p2);
-		response.getWriter().append(p1.toString()).append(p2.toString());
+		//writeFlightPromotion(p2);
+		response.getWriter().append(p1.toString());
 	}
 
 	/**

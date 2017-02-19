@@ -22,12 +22,12 @@
 		<mapping resource="seat.hbm.xml" />
 		<mapping resource="customer.hbm.xml"/>
 		<mapping resource="aircraft.hbm.xml" />
-		<mapping resource="airport.hbm.xml"/>
 		<mapping resource="baggage.hbm.xml" />
 		<mapping resource="book.hbm.xml"/>
 		<mapping resource="promotion.hbm.xml"/>
 		<mapping resource="flight.hbm.xml"/>
 		<mapping resource="passenger.hbm.xml" />
+    <mapping resource="airport.hbm.xml" />
 	</session-factory>
 
 </hibernate-configuration>
