@@ -49,4 +49,20 @@
     <servlet-name>GetNewCustomer</servlet-name>
     <url-pattern>/GetNewCustomer</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>GetReturnFlight</servlet-name>
+    <servlet-class>servlets.GetReturnFlight</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetReturnFlight</servlet-name>
+    <url-pattern>/GetReturnFlight</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Recap</servlet-name>
+    <servlet-class>servlets.Recap</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Recap</servlet-name>
+    <url-pattern>/Recap</url-pattern>
+  </servlet-mapping>
 </web-app>
