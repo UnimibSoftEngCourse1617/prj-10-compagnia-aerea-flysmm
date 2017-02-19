@@ -28,8 +28,6 @@
 		<mapping resource="promotion.hbm.xml"/>
 		<mapping resource="flight.hbm.xml"/>
 		<mapping resource="passenger.hbm.xml" />
-
-
 	</session-factory>
 
 </hibernate-configuration>

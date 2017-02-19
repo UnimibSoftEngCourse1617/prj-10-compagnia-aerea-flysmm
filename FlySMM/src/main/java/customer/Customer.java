@@ -2,8 +2,6 @@ package customer;
 
 import java.util.Date;
 
-
-
 public class Customer {
 
 	private long idCustomer;
@@ -13,7 +11,13 @@ public class Customer {
 	private String password;
 	private String phoneNumber;
 	private Date dateOfBirth;
-	
+
+	/**
+	 * 
+	 */
+	public Customer() {
+		super();
+	}
 
 	public Customer(long idCustomer, String name, String surname, String email, String password, String phoneNumber,
 			Date dateOfBirth) {
@@ -25,8 +29,8 @@ public class Customer {
 		this.phoneNumber = phoneNumber;
 		this.dateOfBirth = dateOfBirth;
 	}
-	
-	public Customer (FidelityCustomer fidelityCustomer){
+
+	public Customer(FidelityCustomer fidelityCustomer) {
 		this.idCustomer = fidelityCustomer.getIdCustomer();
 		this.name = fidelityCustomer.getName();
 		this.surname = fidelityCustomer.getSurname();
@@ -97,6 +101,5 @@ public class Customer {
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-	
 
 }
