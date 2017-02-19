@@ -15,7 +15,6 @@
 		<property name="owner" column="Owner" type="string"></property>
 		<property name="cvv" column="CVV" type="string"></property>
 		<property name="expiredDate" column="Expire" type="date"></property>
-		<property name="cardOwnerAddress" column="Address" type="string"></property>
 
 	</class>
 </hibernate-mapping>
