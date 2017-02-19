@@ -22,6 +22,22 @@ public class Book implements Serializable{
 	private String flightId;
 
 	
+	public int getPayedB() {
+		return payedB;
+	}
+
+	public void setPayedB(int payedB) {
+		this.payedB = payedB;
+	}
+
+	public int getExpiredB() {
+		return expiredB;
+	}
+
+	public void setExpiredB(int expiredB) {
+		this.expiredB = expiredB;
+	}
+
 	public Book() {
 		super();
 	}
