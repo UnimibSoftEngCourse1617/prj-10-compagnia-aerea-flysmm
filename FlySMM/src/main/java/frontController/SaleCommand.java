@@ -37,12 +37,12 @@ public class SaleCommand extends FrontCommand {
 				.createQuery("Select icao from Airport " + "where name = '" + request.getParameter("aDeparture") + "'")
 				.list();
 		String departure = (String) result.get(0);
-
+		request.getSession().setAttribute("dIcao", departure);
 		result = session
 				.createQuery("Select icao from Airport " + "where name = '" + request.getParameter("aArrival") + "'")
 				.list();
 		String arrival = (String) result.get(0);
-
+		request.getSession().setAttribute("aIcao", arrival);
 		result = session.createQuery("from Price p inner join p.flight f " + "where f.departureAirport.icao = '"
 				+ departure + "' AND " + "f.arrivalAirport.icao = '" + arrival + "' AND f.departureDate = '"
 				+ request.getParameter("dDate") + "' group by f.idFlight, p.seats.tariff").list();
