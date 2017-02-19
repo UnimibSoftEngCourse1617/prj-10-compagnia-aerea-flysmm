@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 import org.hibernate.Session;
 
@@ -32,16 +34,19 @@ public class CustomerCommand extends FrontCommand {
 		try {
 			List result = session.createQuery("from Customer " + "where email = '" + request.getParameter("email") + "'"
 					+ " and password = '" + request.getParameter("psw") + "'").list();
-			if (result.get(0) != null) {
+			if (result.size() == 1) {
 				customerRegistry = (Customer) result.get(0);
 				RequestDispatcher dispatcher = context.getRequestDispatcher("/homeCustomer.jsp");
 				dispatcher.forward(request, response);
+				System.out.println(customerRegistry.toString());
 			} else {
-				RequestDispatcher dispatcher = context.getRequestDispatcher("./loginPage.html");
+				RequestDispatcher dispatcher = context.getRequestDispatcher("/loginPage.html");
+				final JDialog dialog = new JDialog();
+				dialog.setAlwaysOnTop(true);
+				JOptionPane.showMessageDialog(dialog, "The email or password are wrong! Retry!");
 				dispatcher.forward(request, response);
 			}
 
-			System.out.println(customerRegistry.toString());
 		} catch (Exception e) {
 			e.getMessage();
 		}
