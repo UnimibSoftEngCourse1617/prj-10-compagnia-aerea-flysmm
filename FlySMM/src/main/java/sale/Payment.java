@@ -1,7 +1,7 @@
 package sale;
 
 import java.util.Date;
-import booking.Book;
+import customer.Customer;
 
 public class Payment {
 	private String cardNumber;
@@ -9,16 +9,21 @@ public class Payment {
 	private String owner;
 	private Address cardOwnerAddress;
 	private Date expiredDate;
-	private Book book;
-	
-	public Payment(String cardNumber, String cvv, String owner, Address cardOwnerAddress, Date expiredDate, Book book) {
+	private Customer custumer;
+
+	public Payment() {
+
+	}
+
+	public Payment(String cardNumber, String cvv, String owner, Address cardOwnerAddress, Date expiredDate,
+			Customer customer) {
 		super();
 		this.cardNumber = cardNumber;
 		this.cvv = cvv;
 		this.owner = owner;
 		this.cardOwnerAddress = cardOwnerAddress;
 		this.expiredDate = expiredDate;
-		this.book = book;
+		this.custumer = customer;
 	}
 
 	public String getCardNumber() {
@@ -33,15 +38,40 @@ public class Payment {
 		return owner;
 	}
 
-	public Address getCardOwerAddress() {
-		return cardOwnerAddress;
-	}
-
 	public Date getExpiredDate() {
 		return expiredDate;
 	}
-	
-	public Book getBook() {
-		return book;
+
+	public Address getCardOwnerAddress() {
+		return cardOwnerAddress;
 	}
+
+	public Customer getCustumer() {
+		return custumer;
+	}
+
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
+	}
+
+	public void setCvv(String cvv) {
+		this.cvv = cvv;
+	}
+
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
+
+	public void setCardOwnerAddress(Address cardOwnerAddress) {
+		this.cardOwnerAddress = cardOwnerAddress;
+	}
+
+	public void setExpiredDate(Date expiredDate) {
+		this.expiredDate = expiredDate;
+	}
+
+	public void setCustumer(Customer custumer) {
+		this.custumer = custumer;
+	}
+
 }
