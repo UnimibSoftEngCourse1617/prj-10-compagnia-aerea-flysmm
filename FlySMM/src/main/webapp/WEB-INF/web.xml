@@ -10,6 +10,14 @@
     <url-pattern>/AppBook</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>GetDepartureFlight</servlet-name>
+    <servlet-class>servlets.GetDepartureFlight</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetDepartureFlight</servlet-name>
+    <url-pattern>/GetDepartureFlight</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>AppCustomer</servlet-name>
     <servlet-class>customer.AppCustomer</servlet-class>
   </servlet>
