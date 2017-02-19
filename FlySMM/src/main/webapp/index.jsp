@@ -40,24 +40,16 @@
 	<div class="ui two column grid">
 		<div class="column">
 			<div class="ui raised segment">
-
-
+				<div class="field">
+					<div class="ui buttons">
+						<button onclick="viewReturnDate()" class="ui mini button">Andata
+							e Ritorno</button>
+						<button onclick="hideReturnDate()" class="ui mini button">Solo
+							Andata</button>
+					</div>
+				</div>
 				<form class="ui form" name="fSearchFly" method="post"
 					action="./GetDepartureFlight">
-
-
-				<form class="ui form" name="fSearchFly" method="post"
-					action="/GetDepartureFlight">
-
-					<div class="field">
-						<div class="ui buttons">
-							<button onclick="viewReturnDate()" class="ui mini button">Andata
-								e Ritorno</button>
-							<button onclick="hideReturnDate()" class="ui mini button">Solo
-								Andata</button>
-						</div>
-					</div>
-
 					<div class="field">
 						<label>Volo da</label> <input name="aDeparture" type="text">
 					</div>
@@ -103,7 +95,7 @@
 
 
 	<a href="./AppBook">ProvaBook</a>
-	
+
 
 </body>
 </html>
