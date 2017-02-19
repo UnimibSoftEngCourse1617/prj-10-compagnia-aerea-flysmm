@@ -38,6 +38,9 @@ public class NewCustomerCommand extends FrontCommand {
 				startDate = sdf.parse(dataN);
 				Customer c = new Customer(pollo, name, surname, email, psw, tel, startDate);
 				writeCustomer(c);
+				RequestDispatcher dispatcher = context.getRequestDispatcher("/loginPage.html");
+				dispatcher.forward(request, response);
+
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
