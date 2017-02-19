@@ -28,11 +28,9 @@
 
 
 	<div class="ui stackable inverted menu">
-		<a class="item">FlySMM</a>
-		<a class="item"> About Us </a> 
-		<a class="item"> Jobs </a> 
-		<a class="item"> Locations </a> 
-		<a href="register.html" class="right item"> Sign up </a>
+		<a class="item">FlySMM</a> <a class="item"> About Us </a> <a
+			class="item"> Jobs </a> <a class="item"> Locations </a> <a
+			href="loginPage.html" class="right item"> Sign up </a>
 	</div>
 
 
@@ -42,7 +40,15 @@
 	<div class="ui two column grid">
 		<div class="column">
 			<div class="ui raised segment">
-				<form class="ui form" name="fSearchFly" method="post" action="./GetDepartureFlight">
+
+
+				<form class="ui form" name="fSearchFly" method="post"
+					action="./GetDepartureFlight">
+
+
+				<form class="ui form" name="fSearchFly" method="post"
+					action="/GetDepartureFlight">
+
 					<div class="field">
 						<div class="ui buttons">
 							<button onclick="viewReturnDate()" class="ui mini button">Andata
@@ -83,13 +89,23 @@
 						</div>
 						<input type="hidden" name="command" value="Sale">
 					</div>
-					<input type="submit" value="Cerca" class="ui submit green button"/>
+					<input type="submit" value="Cerca" class="ui submit green button" />
 				</form>
 			</div>
 		</div>
 	</div>
 	<!-- FINE area dedicata alla ricerca di un volo -->
+
 	<a href="./AppCustomer">ProvaCustomer</a>
-	<a href="./GetPromotion">Show_Promotions</a>
+
+	<a href="./AppBook">ProvaBook</a>
+  
+  <form  method="post" action="./GetPromotion">
+    	<button class="ui red button" name="command" value="Promo">
+  			<i class="gift icon"></i>
+  			See Promotions
+		</button>
+	</form>
+  
 </body>
 </html>

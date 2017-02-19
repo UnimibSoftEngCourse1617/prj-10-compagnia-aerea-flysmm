@@ -22,6 +22,10 @@ public class Ticket {
 		this.passenger = passenger;
 	}
 
+	public Passenger getPassenger() {
+		return passenger;
+	}
+
 	public Book getBook() {
 		return book;
 	}
@@ -37,5 +41,5 @@ public class Ticket {
 	public void setSeat(Seat seat) {
 		this.seat = seat;
 	}
-
+  
 }

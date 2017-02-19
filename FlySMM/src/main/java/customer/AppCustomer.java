@@ -12,18 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
+
 
 import customer.Customer;
 import customer.FidelityCustomer;
 import customer.FidelityState;
-import sale.Aircraft;
-import sale.Airport;
-import sale.Flight;
-import booking.Passenger;
+
 import servlets.SessionFactorySingleton;
 
 public class AppCustomer extends HttpServlet {
@@ -38,8 +32,8 @@ public class AppCustomer extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		Customer c = new Customer(121, "luca", "lorusso", "dgs", "dgvs", "popo", data);
-		FidelityCustomer c2 = new FidelityCustomer(11, "paolo", "dfibvi", "drgvegs", "dgwrfwfvs", "poefrepo", data);
+		Customer c = new Customer(112121, "luca", "lorusso", "luca@lorusso", "pollo", "popo", data);
+		FidelityCustomer c2 = new FidelityCustomer(1641, "paolo", "dfibvi", "drgvegs", "dgwrfwfvs", "poefrepo", data);
 		writeCustomer(c);
 		writeCustomer(c2);
 		response.getWriter().append(c.toString()).append(String.valueOf(c.getDateOfBirth()));
