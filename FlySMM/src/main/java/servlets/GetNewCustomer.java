@@ -6,46 +6,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Session;
-
+import customer.Customer;
 import frontController.FrontCommand;
 import frontController.UnknownCommand;
 
-/**
- * Servlet implementation class GetDepartureFlight
- */
-public class GetDepartureFlight extends HttpServlet {
+public class GetNewCustomer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public GetDepartureFlight() {
+	public GetNewCustomer() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.getWriter().append(request.getParameter("command"));
+
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		FrontCommand command = getCommand(request);
 		if (command != null) {
 			command.init(getServletContext(), "GDF", request, response);
 			command.dispatch();
-		}
-		else {
+
+		} else {
 			System.out.println("CommandNotFound");
 		}
 	}
