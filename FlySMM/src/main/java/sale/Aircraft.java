@@ -2,7 +2,7 @@ package sale;
 
 public class Aircraft {
 
-	private Flight flight;
+	// private Flight flight;
 	private int idAircraft;
 	private String constructor;
 	private long totalSize;
@@ -12,27 +12,28 @@ public class Aircraft {
 	public Aircraft() {
 	}
 
-	public Aircraft(Flight flight, int idAircraft, String constructor, long totalSize, float weightBound,
+	
+	public Aircraft(/* Flight flight, */ int idAircraft, String constructor, long totalSize, float weightBound,
 			String model) {
-		this.flight = flight;
+		// this.flight = flight;
 		this.idAircraft = idAircraft;
 		this.constructor = constructor;
 		this.totalSize = totalSize;
 		this.weightBound = weightBound;
 		this.model = model;
 	}
-	
-	public Flight getFlight() {
-		return flight;
-	}
+
+	// public Flight getFlight() {
+	// return flight;
+	// }
 
 	public int getIdAircraft() {
 		return idAircraft;
 	}
 
-	public void setFlight(Flight flight) {
-		this.flight = flight;
-	}
+//	public void setFlight(Flight flight) {
+//		this.flight = flight;
+//	}
 
 	public void setIdAircraft(int idAircraft) {
 		this.idAircraft = idAircraft;

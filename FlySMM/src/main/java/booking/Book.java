@@ -3,179 +3,154 @@ package booking;
 import customer.Customer;
 import sale.Flight;
 import booking.Passenger;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-public class Book {
-	private long bookId = 1;
+public class Book implements Serializable {
+	private String bookId;
 	private long customerId;
 	private Date bookingDate;
-	private ArrayList<Passenger> listPassenger = new ArrayList<Passenger>();
-	private ArrayList<Baggage> listBaggage = new ArrayList<Baggage>();
-	private ArrayList<Flight> listFlight = new ArrayList<Flight>();
 	private float totalPrice;
-	private int payed;
-	private int expired;
-
-	private long documentP;
+	private int payedB;
+	private int expiredB;
+	private int airplaneId;
+	private Date departureDate;
+	private String documentP;
 	private String flightId;
+
+	public int getPayedB() {
+		return payedB;
+	}
+
+	public void setPayedB(int payedB) {
+		this.payedB = payedB;
+	}
+
+	public int getExpiredB() {
+		return expiredB;
+	}
+
+	public void setExpiredB(int expiredB) {
+		this.expiredB = expiredB;
+	}
 
 	public Book() {
 		super();
 	}
 
-	public Book(Customer c, Flight f) {
+	public Book(Customer c, Flight f, Passenger p) {
 		super();
+		this.bookId = this.createBookId(f, c, p);
 		this.customerId = c.getIdCustomer();
-		listFlight.add(f);
 		this.bookingDate = this.getDate();
-		this.payed = 0;
-		this.expired = 0;
-		this.totalPrice = 100;
+		this.totalPrice = 0;
+		this.payedB = 0;
+		this.expiredB = 0;
+		this.airplaneId = f.getAircraft().getIdAircraft();
+		this.departureDate = f.getDepartureDate();
+		this.documentP = p.getFiscal_code();
+		this.flightId = f.getIdFlight();
+
 	}
 
-	public Book(Customer c, Flight f1, Flight f2) {
-		super();
-		this.customerId = c.getIdCustomer();
-		listFlight.add(f1);
-		listFlight.add(f2);
-		this.bookingDate = this.getDate();
-		this.payed = 0;
-		this.expired = 0;
-		this.totalPrice = 100;
+	public String getBookId() {
+		return bookId;
 	}
 
-	public Book(Flight f1, Flight f2) {
-		super();
-		listFlight.add(f1);
-		listFlight.add(f2);
-		this.bookingDate = this.getDate();
-		this.payed = 0;
-		this.expired = 0;
-		this.totalPrice = 100;
-	}
-	public Book(Flight f2) {
-		super();
-		listFlight.add(f2);
-		this.bookingDate = this.getDate();
-		this.payed = 0;
-		this.expired = 0;
-		this.totalPrice = 100;
-	}
-	public int getExpired() {
-		return expired;
-	}
-
-	public void setExpired(int expired) {
-		this.expired = expired;
-	}
-
-	public int getPayed() {
-		return payed;
-	}
-
-	public void setBookingDate(Date bookingDate) {
-		this.bookingDate = bookingDate;
-	}
-
-	public void setListPassenger(ArrayList<Passenger> listPassenger) {
-		this.listPassenger = listPassenger;
-	}
-
-	public void setListBaggage(ArrayList<Baggage> listBaggage) {
-		this.listBaggage = listBaggage;
-	}
-
-	public void setListFlight(ArrayList<Flight> listFlight) {
-		this.listFlight = listFlight;
-	}
-
-	public void setCustomerId(long l) {
-		this.customerId = l;
+	public void setBookId(String bookId) {
+		this.bookId = bookId;
 	}
 
 	public long getCustomerId() {
 		return customerId;
 	}
 
-	public void setBookId(long bookId) {
-		this.bookId = bookId;
-	}
-
-	void addPassenger(Passenger passenger) {
-		this.listPassenger.add(passenger);
-	}
-
-	public ArrayList<Passenger> getListPassenger() {
-		return listPassenger;
-	}
-
-	void addFlight(Flight f) {
-		this.listFlight.add(f);
-	}
-
-	public ArrayList<Flight> getListFlight() {
-		return listFlight;
-	}
-
-	void addBaggage(Baggage b) {
-		this.listBaggage.add(b);
-	}
-
-	public ArrayList<Baggage> getListBaggage() {
-		return listBaggage;
-	}
-
-	public long getBookId() {
-		return bookId;
-	}
-
-	public int isPayed() {
-		return payed;
-	}
-
-	public void setPayed(int payed) {
-		this.payed = payed;
-	}
-
-	public int isExpired() {
-		return expired;
-	}
-
-	public boolean setExpired() {
-		if (Book.getDateDiff(this.getBookingDate(), this.getDate(), TimeUnit.MINUTES) > 1440) {
-			this.expired = 1;
-			return true;
-		} else {
-			this.expired = 0;
-
-			return false;
-		}
-	}
-
-	public Date setBookingDate() {
-		return getDate();
+	public void setCustomerId(long customerId) {
+		this.customerId = customerId;
 	}
 
 	public Date getBookingDate() {
 		return bookingDate;
 	}
 
-	public void setTotalPrice(float totalPrice) {
-		this.totalPrice = totalPrice;
+	public void setBookingDate(Date bookingDate) {
+		this.bookingDate = bookingDate;
 	}
 
 	public float getTotalPrice() {
 		return totalPrice;
 	}
 
-	public int getTotalWeight() {
-		int totalWeight = 0;
-		for (Baggage b : listBaggage) {
-			totalWeight += b.getWeight();
+	public void setTotalPrice(float totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public int getPayed() {
+		return payedB;
+	}
+
+	public void setPayed(int payed) {
+		this.payedB = payed;
+	}
+
+	public int getExpired() {
+		return expiredB;
+	}
+
+	public void setExpired(int expired) {
+		this.expiredB = expired;
+	}
+
+	public int getAirplaneId() {
+		return airplaneId;
+	}
+
+	public void setAirplaneId(int airplaneId) {
+		this.airplaneId = airplaneId;
+	}
+
+	public Date getDepartureDate() {
+		return departureDate;
+	}
+
+	public void setDepartureDate(Date departureDate) {
+		this.departureDate = departureDate;
+	}
+
+	public String getDocumentP() {
+		return documentP;
+	}
+
+	public void setDocumentP(String documentP) {
+		this.documentP = documentP;
+	}
+
+	public String getFlightId() {
+		return flightId;
+	}
+
+	public void setFlightId(String flightId) {
+		this.flightId = flightId;
+	}
+
+	public String createBookId(Flight f, Customer c, Passenger p) {
+		String s = f.getDepartureAirport().getIcao() + f.getArrivalAirport().getIcao() + f.getIdFlight()
+				+ c.getIdCustomer() + p.getFiscal_code().substring(0, 6);
+		return s;
+
+	}
+
+	public boolean verifyExpired() {
+		if (Book.getDateDiff(this.getBookingDate(), this.getDate(), TimeUnit.MINUTES) > 1440) {
+			this.expiredB = 1;
+			return true;
+		} else {
+			this.expiredB = 0;
+			return false;
 		}
-		return totalWeight;
 	}
 
 	public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
@@ -188,28 +163,12 @@ public class Book {
 		return date;
 	}
 
-	public long getDocumentP() {
-		return documentP;
-	}
-
-	public String getFlightId() {
-		return flightId;
-	}
-
-	public void setDocumentP(long documentP) {
-		this.documentP = documentP;
-	}
-
-	public void setFlightId(String flightId) {
-		this.flightId = flightId;
-	}
-
 	@Override
 	public String toString() {
 		return "Book [bookId=" + bookId + ", customerId=" + customerId + ", bookingDate=" + bookingDate
-				+ ", listPassenger=" + listPassenger + ", listBaggage=" + listBaggage + ", listFlight=" + listFlight
-				+ ", totalPrice=" + totalPrice + ", payed=" + payed + ", expired=" + expired + ", documentP="
-				+ documentP + ", flightId=" + flightId + "]";
+				+ ", totalPrice=" + totalPrice + ", payed=" + payedB + ", expired=" + expiredB + ", airplaneId="
+				+ airplaneId + ", departureDate=" + departureDate + ", documentP=" + documentP + ", flightId="
+				+ flightId + "]";
 	}
 
 }
