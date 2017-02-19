@@ -54,7 +54,7 @@
 					<td>${flight.arrivalDate}</td>
 					<td>${flight.arrivalTime}</td>
 					<td>${flight.price.seats.tariff}</td>
-					<td>${flight.price.amount}</td>
+					<td><input type="submit" class="ui green button" value="${flight.price.amount}"/></td>
 				</tr>
 			</c:forEach>
 		</tbody>

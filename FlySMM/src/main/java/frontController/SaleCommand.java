@@ -44,18 +44,15 @@ public class SaleCommand extends FrontCommand {
 		String arrival = (String) result.get(0);
 
 		result = session.createQuery("from Price p inner join p.flight f " + "where f.departureAirport.icao = '"
-				+ departure + "' AND " + "f.arrivalAirport.icao = '" + arrival + "' group by f.idFlight, p.seats.tariff").list();
+				+ departure + "' AND " + "f.arrivalAirport.icao = '" + arrival + "' AND f.departureDate = '"
+				+ request.getParameter("dDate") + "' group by f.idFlight, p.seats.tariff").list();
 		List<Flight> flights = new ArrayList<Flight>();
 		for (Object[] o : (List<Object[]>) result) {
 			Price p = (Price) o[0];
 			Flight f = (Flight) o[1];
-			flights.add(new Flight(f,p));
+			flights.add(new Flight(f, p));
 		}
 		session.getTransaction().commit();
-		// GsonBuilder b = new GsonBuilder();
-		// b.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
-		// Gson gson = b.create();
-		// String json = gson.toJson((List<Flight>) result);
 		request.setAttribute("flights", flights);
 		RequestDispatcher dispatcher = context.getRequestDispatcher("/flights.jsp");
 		try {
