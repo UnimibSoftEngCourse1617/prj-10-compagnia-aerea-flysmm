@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +26,7 @@ import sale.Aircraft;
 import sale.Airport;
 import sale.Flight;
 import sale.Price;
+
 import booking.Passenger;
 import servlets.SessionFactorySingleton;
 
@@ -35,6 +37,8 @@ public class AppBook extends HttpServlet {
 	private Time time = new Time(8,0,0);
 	private Price price = new Price();
 	
+
+
 	public AppBook() {
 		super();
 	}

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-public class Book implements Serializable{
+public class Book implements Serializable {
 	private String bookId;
 	private long customerId;
 	private Date bookingDate;
@@ -21,7 +21,6 @@ public class Book implements Serializable{
 	private String documentP;
 	private String flightId;
 
-	
 	public int getPayedB() {
 		return payedB;
 	}
