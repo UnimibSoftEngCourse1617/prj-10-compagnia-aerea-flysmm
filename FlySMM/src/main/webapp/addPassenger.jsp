@@ -23,7 +23,7 @@
 	<h1 class="ui header">Add passenger</h1>
 	<div class="column">
 		<div class="ui raised segment">
-			<form method="post" action="GetUsernamePassword" class="ui form">
+			<form method="post" action="GetPassenger" class="ui form">
 
 				<script type="text/javascript">
 	var length = '<%=session.getAttribute("passengers")%>';
