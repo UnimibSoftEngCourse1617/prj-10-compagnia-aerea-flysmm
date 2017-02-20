@@ -46,7 +46,7 @@ public class Book implements Serializable {
 		this.bookId = this.createBookId(f, c, p);
 		this.customerId = c.getIdCustomer();
 		this.bookingDate = this.getDate();
-		this.totalPrice = 0;
+		this.totalPrice = this.calculateTotalPrice(f, p);
 		this.payedB = 0;
 		this.expiredB = 0;
 		this.airplaneId = f.getAircraft().getIdAircraft();
@@ -86,6 +86,13 @@ public class Book implements Serializable {
 
 	public void setTotalPrice(float totalPrice) {
 		this.totalPrice = totalPrice;
+	}
+
+	public float calculateTotalPrice(Flight f, Passenger p) {
+		float total = 0;
+		total += f.getPrice().getAmount();
+		return total;
+
 	}
 
 	public int getPayed() {
@@ -138,7 +145,7 @@ public class Book implements Serializable {
 
 	public String createBookId(Flight f, Customer c, Passenger p) {
 		String s = f.getDepartureAirport().getIcao() + f.getArrivalAirport().getIcao() + f.getIdFlight()
-				+ c.getIdCustomer() + p.getFiscal_code().substring(0, 6);
+				+ c.getIdCustomer() + p.getFiscal_code().substring(0, 3);
 		return s;
 
 	}

@@ -41,6 +41,11 @@ public class GetDepartureFlight extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		FrontCommand command = getCommand(request);
+		System.out.println(request.getParameter("rDate"));
+		System.out.println(request.getParameter("passengers"));
+		request.getSession().setAttribute("passengers", request.getParameter("passengers"));
+
+		request.getSession().setAttribute("rDate", request.getParameter("rDate"));
 		if (command != null) {
 			command.init(getServletContext(), "GDF", request, response);
 			command.dispatch();

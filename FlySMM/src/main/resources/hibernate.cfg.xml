@@ -26,8 +26,11 @@
 		<mapping resource="book.hbm.xml"/>
 		<mapping resource="promotion.hbm.xml"/>
 		<mapping resource="flight.hbm.xml"/>
+		<mapping resource="payment.hbm.xml"/> 
+		<mapping resource="address.hbm.xml" />
 		<mapping resource="passenger.hbm.xml" />
-    	<mapping resource="airport.hbm.xml" />
+    <mapping resource="airport.hbm.xml" />
+
 	</session-factory>
 
 </hibernate-configuration>

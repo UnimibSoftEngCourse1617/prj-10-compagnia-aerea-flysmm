@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="com.google.gson.JsonObject"%>
 <%@page import="com.google.gson.JsonElement"%>
 <%@page import="com.google.gson.JsonArray"%>
@@ -45,6 +45,7 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${flights}" var="flight">
+
 				<tr>
 					<td>${flight.idFlight}</td>
 					<td>${flight.departureAirport.name}</td>
@@ -54,8 +55,21 @@
 					<td>${flight.arrivalDate}</td>
 					<td>${flight.arrivalTime}</td>
 					<td>${flight.price.seats.tariff}</td>
-					<td>${flight.price.amount}</td>
+					<td><form method="post" name="flightItems"
+							action="./GetReturnFlight">
+							<input type="submit" 
+								class="ui green button"
+								value="${flight.price.amount}" />
+							<input type="hidden"
+								name="chosen"
+								value="${flight.idFlight}-${flight.price.seats.tariff}" />
+							<input type="hidden"
+								name="command"
+								value="Sale" />
+						</form>
+					</td>
 				</tr>
+
 			</c:forEach>
 		</tbody>
 		<tfoot></tfoot>

@@ -25,21 +25,13 @@ public class PromoCommand extends FrontCommand {
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
 
-		/*List result = session
-				.createQuery("from SeasonPromotion")
-				.list();*/
-		//String season = (String) result.get(0);
-
 		List result = session
 				.createQuery("from Promotion")
 				.list();
-		//String flight = (String) result.get(0);
 
 		session.getTransaction().commit();
-		
-		//request.setAttribute("season_promotions", (List<SeasonPromotion>) result);
+
 		request.setAttribute("promotion", (List<Promotion>) result);
-		//request.setAttribute("fpromotion", (List<FlightPromotion>) result);
 		RequestDispatcher dispatcher = context.getRequestDispatcher("/promotion.jsp");
 		try {
 			dispatcher.forward(request, response);

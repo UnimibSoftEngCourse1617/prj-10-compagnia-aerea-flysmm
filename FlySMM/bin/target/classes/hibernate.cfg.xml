@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+
+		<!-- Database connection settings -->
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/flysmmdb</property>
+		<property name="hibernate.connection.username">flysmmDB</property>
+		<property name="hibernate.connection.password">Flysmm.db</property>
+
+		<!-- SQL dialect -->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<!-- Specify session context -->
+		<property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
+
+		<mapping resource="price.hbm.xml" />
+		<mapping resource="seat.hbm.xml" />
+		<mapping resource="customer.hbm.xml"/>
+		<mapping resource="aircraft.hbm.xml" />
+		<mapping resource="airport.hbm.xml"/>
+		<mapping resource="baggage.hbm.xml" />
+		<mapping resource="book.hbm.xml"/>
+		<mapping resource="promotion.hbm.xml"/>
+		<mapping resource="flight.hbm.xml"/>
+		<mapping resource="passenger.hbm.xml" />
+	</session-factory>
+
+</hibernate-configuration>

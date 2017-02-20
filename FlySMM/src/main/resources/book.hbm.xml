@@ -1,4 +1,4 @@
-<!-- <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC 
  "-//Hibernate/Hibernate Mapping DTD//EN"
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
@@ -6,7 +6,7 @@
 <hibernate-mapping>
 	<class name="booking.Book" table="book">
 		<id name="bookId" type="string" column="IdBook">
-			<generator class="uuid" />
+			<generator class="assigned" />
 		</id>
 
 		<property name="customerId" column="User_ID" type="long" />
@@ -23,35 +23,18 @@
 
 	</class>
 </hibernate-mapping>
- -->
-<!DOCTYPE hibernate-mapping PUBLIC 
- "-//Hibernate/Hibernate Mapping DTD//EN"
- "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping>
-	<class name="booking.Book" table="book">
-		<composite-id>
-			<key-property name="bookId" column="IdBook" type="string"></key-property>
-			<key-many-to-one name="customerId" class="customer.Customer">
-				<column name="User_ID"></column>
-			</key-many-to-one>
-			<key-many-to-one name="flightId" class="sale.Flight">
-				<column name="Flight_Flight_ID"></column>
-			</key-many-to-one>
-			<key-many-to-one name="departureDate" class="sale.Flight">
-				<column name="Flight_Departure_Date"></column>
-			</key-many-to-one>
-			<key-many-to-one name="airplaneId" class="sale.Flight">
-				<column name="Flight_Airplane_ID"></column>
-			</key-many-to-one>
-			<key-many-to-one name="documentP" class="booking.Passenger">
-				<column name="Passenger_Fiscal_code"></column>
-			</key-many-to-one>
-		</composite-id>
-		<property name="payedB" column="Payed" type="int" />
-		<property name="expiredB" column="Expired" type="int" />
-		<property name="totalPrice" column="Total_Price" type="float" />
-
-
-	</class>
-</hibernate-mapping>
+<!-- <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" 
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> <hibernate-mapping> 
+	<class name="booking.Book" table="book"> <composite-id> <key-property name="bookId" 
+	column="IdBook" type="string"></key-property> <key-many-to-one name="customerId" 
+	class="customer.Customer"> <column name="User_ID"></column> </key-many-to-one> 
+	<key-many-to-one name="flightId" class="sale.Flight"> <column name="Flight_Flight_ID"></column> 
+	</key-many-to-one> <key-many-to-one name="departureDate" class="sale.Flight"> 
+	<column name="Flight_Departure_Date"></column> </key-many-to-one> <key-many-to-one 
+	name="airplaneId" class="sale.Flight"> <column name="Flight_Airplane_ID"></column> 
+	</key-many-to-one> <key-many-to-one name="documentP" class="booking.Passenger"> 
+	<column name="Passenger_Fiscal_code"></column> </key-many-to-one> </composite-id> 
+	<property name="payedB" column="Payed" type="int" /> <property name="expiredB" 
+	column="Expired" type="int" /> <property name="totalPrice" column="Total_Price" 
+	type="float" /> </class> </hibernate-mapping> -->
