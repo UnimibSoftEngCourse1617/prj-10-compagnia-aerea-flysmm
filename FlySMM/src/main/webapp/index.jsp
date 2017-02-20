@@ -92,15 +92,12 @@
 	<!-- FINE area dedicata alla ricerca di un volo -->
 
 	<a href="./AppCustomer">ProvaCustomer</a>
-
 	<a href="./AppBook">ProvaBook</a>
-  
-  <form  method="post" action="./GetPromotion">
+    <form  method="post" action="./GetPromotion">
     	<button class="ui red button" name="command" value="Promo">
   			<i class="gift icon"></i>
   			See Promotions
 		</button>
 	</form>
-  
 </body>
 </html>
