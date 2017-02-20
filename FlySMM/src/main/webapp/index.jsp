@@ -61,12 +61,12 @@
 					<div class="three fields">
 
 						<div class="field">
-							<label>Partenza</label> <input name="dDate" type="text">
+							<label>Partenza</label> <input name="dDate" type="date">
 						</div>
 
 						<div id="returnDate" style='' class="field">
 							<label>Ritorno</label> <input id="btnreturnDate" name="rDate"
-								type="text">
+								type="date">
 						</div>
 
 						<div class="field">
