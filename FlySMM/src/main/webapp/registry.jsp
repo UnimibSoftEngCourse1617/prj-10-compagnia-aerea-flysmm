@@ -34,8 +34,28 @@
 							placeholder="surname" required>
 					</div>
 					<div class="field">
+						<label>Street</label> <input type="text" name="street"
+							placeholder="via Roma" required>
+					</div>
+					<div class="field">
+						<label>Street number</label> <input type="text" name="Street_number"
+							placeholder="50" required>
+					</div>
+					<div class="field">
+						<label>CAP</label> <input type="int" name="cap"
+							placeholder="20090" required>
+					</div>
+					<div class="field">
+						<label>City</label> <input type="text" name="city"
+							placeholder="Milan" required>
+					</div>
+					<div class="field">
+						<label>Country</label> <input type="text" name="country"
+							placeholder="Italy" required>
+					</div>
+					<div class="field">
 						<label>Email</label> <input type="email" name="email"
-							placeholder="example@gmail.com">
+							placeholder="example@gmail.com" required>
 					</div>
 					<div class="field">
 						<label>Password</label> <input type="password" name="password"

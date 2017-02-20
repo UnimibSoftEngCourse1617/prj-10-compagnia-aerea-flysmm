@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="sale.Address" table="">
+	
+		<id name="idAddress" type="long" column="idAddress">
+			<generator class="native" />
+		</id>
+	
+		<property name="street" column="Street" type="string"></property>
+		<property name="street_number" column="Street_number" type="string"></property>
+		<property name="cap" column="CAP" type="string"></property>
+		<property name="city" column="City" type="string"></property>
+		<property name="coutry" column="Country" type="string"></property>
+	
+	</class>
+	
+</hibernate-mapping>

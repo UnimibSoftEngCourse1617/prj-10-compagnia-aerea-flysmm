@@ -9,19 +9,24 @@
 			<generator class="native" />
 		</id>
 		<discriminator column="Type_of_customers" type="string" />
-		<many-to-one name="idAddress" class="sale.Address" column="Address_idAddress" />
+
 		<property name="name" column="Name" type="string" />
 		<property name="surname" column="Surname" type="string" />
+		<property name="address" column="Address" type="string" />
 		<property name="email" column="Email" type="string" />
 		<property name="password" column="Password" type="string" />
 		<property name="phoneNumber" column="Phone_NO" type="string" />
 		<property name="dateOfBirth" column="Date_of_birth" type="date" />
+
+
 		<subclass name="customer.FidelityCustomer"
 			discriminator-value="Fidelity State">
+
 			<property name="point" column="Fidelity_Points" type="int" />
-			<property name="startDate" column="Date_start_fidelity"
-				type="date" />
+			<property name="startDate" column="Date_start_fidelity" type="date" />
 			<property name="lastestBook" column="Date_last_book" type="date" />
+
+			
 		</subclass>
 
 	</class>
