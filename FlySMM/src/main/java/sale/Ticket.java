@@ -18,12 +18,12 @@ public class Ticket {
 		this.seat = seat;
 	}
 
-	public Passenger getPassenger() {
-		return passenger;
-	}
-
 	public void setPassenger(Passenger passenger) {
 		this.passenger = passenger;
+	}
+
+	public Passenger getPassenger() {
+		return passenger;
 	}
 
 	public Book getBook() {
@@ -41,5 +41,5 @@ public class Ticket {
 	public void setSeat(Seat seat) {
 		this.seat = seat;
 	}
-
+  
 }
