@@ -9,22 +9,24 @@ public class Passenger {
 	private String Fiscal_code;
 	private String name;
 	private String surname;
+	private String documentCode;
+	private String documentType;
 	private Date Birth_date;
-	private String type;
 	private String baggageId;
 
 	public Passenger() {
 		super();
 	}
 
-	
-	public Passenger(String fiscal_code, String name, String surname, Date birth_date, String type, String baggageId) {
+	public Passenger(String fiscal_code, String name, String surname, String documentCode, String documentType,
+			Date birth_date, String baggageId) {
 		super();
 		Fiscal_code = fiscal_code;
 		this.name = name;
 		this.surname = surname;
+		this.documentCode = documentCode;
+		this.documentType = documentType;
 		Birth_date = birth_date;
-		this.type = type;
 		this.baggageId = baggageId;
 	}
 
@@ -60,14 +62,6 @@ public class Passenger {
 		Birth_date = birth_date;
 	}
 
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
 	public String getBaggageId() {
 		return baggageId;
 	}
@@ -76,10 +70,27 @@ public class Passenger {
 		this.baggageId = baggageId;
 	}
 
+	public String getDocumentCode() {
+		return documentCode;
+	}
+
+	public void setDocumentCode(String documentCode) {
+		this.documentCode = documentCode;
+	}
+
+	public String getDocumentType() {
+		return documentType;
+	}
+
+	public void setDocumentType(String documentType) {
+		this.documentType = documentType;
+	}
+
 	@Override
 	public String toString() {
-		return "Passenger [Fiscal_code=" + Fiscal_code + ", name=" + name + ", surname=" + surname + ", Birth_date="
-				+ Birth_date + ", type=" + type + ", baggageId=" + baggageId + "]";
+		return "Passenger [Fiscal_code=" + Fiscal_code + ", name=" + name + ", surname=" + surname + ", documentCode="
+				+ documentCode + ", documentType=" + documentType + ", Birth_date=" + Birth_date + ", baggageId="
+				+ baggageId + "]";
 	}
 
 }
