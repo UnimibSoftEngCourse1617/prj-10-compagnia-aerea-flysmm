@@ -42,7 +42,7 @@
 			<div class="ui raised segment">
 
 				<form class="ui form" name="fSearchFly" method="post"
-					action="/GetDepartureFlight">
+					action="./GetDepartureFlight">
 
 					<div class="field">
 						<div class="ui buttons">
