@@ -93,7 +93,7 @@
 
 	<a href="./AppCustomer">ProvaCustomer</a>
 
-	<a href="./AppBook">ProvaBook</a>
+	<a href="addPassenger.jsp">pass</a>
   
   <form  method="post" action="./GetPromotion">
     	<button class="ui red button" name="command" value="Promo">
