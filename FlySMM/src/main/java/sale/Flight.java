@@ -3,6 +3,8 @@ package sale;
 import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
+import java.util.List;
+
 import booking.Book;
 
 public class Flight {
@@ -124,5 +126,7 @@ public class Flight {
 	public void setArrivalAirport(Airport arrivalAirport) {
 		this.arrivalAirport = arrivalAirport;
 	}
+	
+	
 
 }

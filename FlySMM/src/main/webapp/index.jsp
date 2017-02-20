@@ -1,4 +1,3 @@
-
 <html>
 <head>
 <!-- Inizio sezione per Semantic ui -->
@@ -21,6 +20,11 @@
 		document.getElementById('returnDate').style.display = 'none';
 	};
 </script>
+<script>
+	$.validate({
+		lang : 'it'
+	});
+</script>
 </head>
 
 
@@ -40,47 +44,44 @@
 	<div class="ui two column grid">
 		<div class="column">
 			<div class="ui raised segment">
-
-
+				<div class="field">
+					<div class="ui buttons">
+						<button onclick="viewReturnDate()" class="ui mini button">Andata
+							e Ritorno</button>
+						<button onclick="hideReturnDate()" class="ui mini button">Solo
+							Andata</button>
+					</div>
+				</div>
 				<form class="ui form" name="fSearchFly" method="post"
 					action="./GetDepartureFlight">
-
-
-				<form class="ui form" name="fSearchFly" method="post"
-					action="/GetDepartureFlight">
-
 					<div class="field">
-						<div class="ui buttons">
-							<button onclick="viewReturnDate()" class="ui mini button">Andata
-								e Ritorno</button>
-							<button onclick="hideReturnDate()" class="ui mini button">Solo
-								Andata</button>
-						</div>
+						<label>Volo da</label> <input name="aDeparture" type="text"
+							required="required" pattern="[a-zA-z]*">
 					</div>
 
 					<div class="field">
-						<label>Volo da</label> <input name="aDeparture" type="text">
-					</div>
-
-					<div class="field">
-						<label>Volo per</label> <input name="aArrival" type="text"></input>
+						<label>Volo per</label> <input name="aArrival" type="text"
+							required="required"></input>
 					</div>
 
 					<div class="three fields">
 
 						<div class="field">
-							<label>Partenza</label> <input name="dDate" type="text">
+							<label>Partenza</label> <input name="dDate" type="date"
+								data-validation="date" data-validation-format="yyyy-mm-dd"
+								required="required">
 						</div>
 
 						<div id="returnDate" style='' class="field">
 							<label>Ritorno</label> <input id="btnreturnDate" name="rDate"
-								type="text">
+								type="date" data-validation="date"
+								data-validation-format="yyyy-mm-dd">
 						</div>
 
 						<div class="field">
-							<label>Persone</label> <select
+							<label>Persone</label> <select name="passengers"
 								class="ui compact selection dropdown">
-								<option selected="" value="1">1</option>
+								<option value="1" selected>1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
 								<option value="4">4</option>
@@ -91,6 +92,12 @@
 					</div>
 					<input type="submit" value="Cerca" class="ui submit green button" />
 				</form>
+				<script
+					src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+				<script
+					src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js">
+					
+				</script>
 			</div>
 		</div>
 	</div>
@@ -106,6 +113,5 @@
   			See Promotions
 		</button>
 	</form>
-  
 </body>
 </html>
