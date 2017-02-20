@@ -123,6 +123,7 @@ CREATE TABLE IF NOT EXISTS `flysmmdb`.`Address` (
   `Street` VARCHAR(45) NULL,
   `Street_number` VARCHAR(45) NULL,
   `CAP` INT NULL,
+  `City` VARCHAR(45) NULL,
   `Country` VARCHAR(45) NULL,
   PRIMARY KEY (`idAddress`))
 ENGINE = InnoDB;
