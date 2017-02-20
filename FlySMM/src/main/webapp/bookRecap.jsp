@@ -47,5 +47,10 @@
 		</tbody>
 		<tfoot></tfoot>
 	</table>
+	<form class="ui form" name="fSearchFly" method="post"
+		action="./BookServlet">
+		<input class="ui blue submit button" type="submit" value="Book!">
+		<input type="hidden" name="command" value="Book" />
+	</form>
 </body>
 </html>

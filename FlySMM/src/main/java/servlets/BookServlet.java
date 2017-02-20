@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,10 +21,10 @@ import frontController.FrontCommand;
 import frontController.UnknownCommand;
 import sale.Flight;
 
-public class GetPassenger extends HttpServlet {
+public class BookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public GetPassenger() {
+	public BookServlet() {
 		super();
 	}
 
@@ -46,15 +45,6 @@ public class GetPassenger extends HttpServlet {
 		} else {
 			System.out.println("CommandNotFound");
 		}
-		Passenger p = (Passenger) request.getSession().getAttribute("Passenger");
-		Flight f = (Flight) request.getSession().getAttribute("Flight");
-		Customer c = (Customer) request.getSession().getAttribute("Customer");
-		Book b = new Book(c, f, p);
-		request.getSession().setAttribute("book", b);
-		System.out.println(request.getSession().getAttribute("book").toString());
-		// request.setAttribute("book", b);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/bookRecap.jsp");
-		requestDispatcher.forward(request, response);
 
 	}
 

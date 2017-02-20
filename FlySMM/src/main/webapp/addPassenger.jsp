@@ -30,57 +30,41 @@
 					</div>
 					<div class="field">
 						<label>Surname</label> <input type="text" name="surname"
-							placeholder="surname">
+							placeholder="surname" required>
 					</div>
 					<div class="field">
 						<label>Fiscal code</label> <input type="text" name="fiscalCode"
-							placeholder="fiscal code">
+							placeholder="fiscal code" required>
 					</div>
 					<div class="field">
 						<label>Date of birth</label> <input type="date" name="dateOfBirth"
-							placeholder="yyyy-mm-dd">
+							placeholder="yyyy-mm-dd" required>
 					</div>
-
-					<!-- 	<div class="field">
-						<label>Gender</label> <select
-							class="ui compact selection dropdown">
-							<option selected="type" value="1">Male</option>
-							<option value="2">Female</option>
-							<option value="3">Kid</option>
-						</select>
-					</div>
-					<div class="field">
-						<label>Baggage</label> <select
-							class="ui compact selection dropdown">
-							<option selected="" value="1">No</option>
-							<option value="2">Sport</option>
-							<option value="3">Normal</option>
-						</select>
-					</div> -->
 					<div class="field">
 						<label>Document</label> <input type="text" name="docCode"
-							placeholder="document code">
+							placeholder="document code" required>
 					</div>
-					<div>
-						<select name="docType">
+					<div class="field">
+						<label>Document type</label> <select name="docType"
+							class="ui compact selection dropdown">
 							<option value="None">Document type</option>
 							<option value="Identity card">Identity card</option>
 							<option value="Passport">Passport</option>
 						</select>
 					</div>
-					<div>
-						<select name="baggage">
+					<div class="field">
+						<label>Baggage</label> <select name="baggage"
+							class="ui compact selection dropdown">
 							<option value="None">Select your baggage</option>
 							<option value="Normal">Normal</option>
 							<option value="Sport">Sport</option>
 							<option value="Huge">Huge</option>
-
 						</select>
 					</div>
 
-
-					<input type=submit name="command" value="AddPassenger">
-
+					<input class="ui blue submit button" type="submit"
+						value="Add Passenger"> <input type="hidden" name="command"
+						value="AddPassenger" />
 				</form>
 			</div>
 		</div>
@@ -90,6 +74,6 @@
 		</div>
 
 	</div>
-	
+
 </body>
 </html>

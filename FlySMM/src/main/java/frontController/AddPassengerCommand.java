@@ -47,8 +47,8 @@ public class AddPassengerCommand extends FrontCommand {
 			String docCode = request.getParameter("docCode");
 			String docType = request.getParameter("docType");
 			String baggage = request.getParameter("baggage");
-
 			Date dataBirth;
+
 			try {
 				dataBirth = sdf.parse(date);
 				Passenger p = new Passenger(fiscalCode, name, surname, docCode, docType, dataBirth, baggage);
@@ -57,9 +57,8 @@ public class AddPassengerCommand extends FrontCommand {
 				session.setAttribute("Flight", f);
 				session.setAttribute("Customer", c);
 				writePassenger(p);
-				
+
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
