@@ -18,7 +18,16 @@ public class Flight {
 	private Time arrivalTime;
 	private Airport arrivalAirport;
 	private Price price;
+	private int distance;
 
+	public int getDistance() {
+		return distance;
+	}
+
+	public void setDistance(int distance) {
+		this.distance = distance;
+	}
+	
 	public Price getPrice() {
 		return price;
 	}
