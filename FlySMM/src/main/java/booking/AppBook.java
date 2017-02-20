@@ -45,6 +45,8 @@ public class AppBook extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+
 //		Customer c = new Customer(121, "luca", "lorusso", "dgs", "dgvs", "popo", data);
 //		Airport a1 = new Airport("MXP", "Malpensa");
 //		Airport a2 = new Airport("LIN", "Linate");
@@ -73,7 +75,7 @@ public class AppBook extends HttpServlet {
 //
 //		Book b2 = new Book(c, f, p2);
 //		// writeBook(b2);
-//		response.getWriter().append(b.toString());
+//		response.getWriter().append(b.toStrin
 
 	}
 
