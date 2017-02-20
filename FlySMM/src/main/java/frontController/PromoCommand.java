@@ -30,9 +30,9 @@ public class PromoCommand extends FrontCommand {
 		session.beginTransaction();
 
 		List result = session
-				.createQuery("from flysmmdb.promotion " + "where promo_type = 'season'")
+				.createQuery("from SeasonPromotion")
 				.list();
-		String season = (String) result.get(0);
+		//String season = (String) result.get(0);
 
 		/*result = session
 				.createQuery("from Promotion " + "where promo_type = 'flight'")

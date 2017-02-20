@@ -38,7 +38,6 @@
 				<th>Discount Rate</th>
 				<th>Fidelity</th>
 				<th>Description</th>
-				<th>Type</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -48,7 +47,6 @@
 					<td>${promotion.discountRate}</td>
 					<td>${promotion.fidelity}</td>
 					<td>${promotion.description}</td>
-					<td>${promotion.promo_type}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

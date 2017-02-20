@@ -68,4 +68,12 @@
 		<servlet-name>BookServlet</servlet-name>
 		<url-pattern>/BookServlet</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>GetPromotion</servlet-name>
+		<servlet-class>servlets.GetPromotion</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetPromotion</servlet-name>
+		<url-pattern>/GetPromotion</url-pattern>
+	</servlet-mapping>
 </web-app>
