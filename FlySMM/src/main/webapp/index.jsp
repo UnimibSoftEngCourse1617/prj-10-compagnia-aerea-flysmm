@@ -40,12 +40,7 @@
 	<div class="ui two column grid">
 		<div class="column">
 			<div class="ui raised segment">
-
-
-				<form class="ui form" name="fSearchFly" method="post"
-					action="./GetDepartureFlight">
-
-
+			
 				<form class="ui form" name="fSearchFly" method="post"
 					action="/GetDepartureFlight">
 
@@ -80,7 +75,7 @@
 						<div class="field">
 							<label>Persone</label> <select
 								class="ui compact selection dropdown">
-								<option selected="" value="1">1</option>
+								<option selected value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
 								<option value="4">4</option>
@@ -98,11 +93,13 @@
 
 	<a href="./AppCustomer">ProvaCustomer</a>
 	<a href="./AppBook">Book</a>
-
-
-
-
 	<a href="./AppBook">ProvaBook</a>
+	
+	<form name="daicazzo"  action="./Payment_options" method="POST" >
+		<input type="hidden" name="command" value="Payment">
+		<input type="hidden" name="idCustomer" value="121">
+		<input type="submit" value="Payment" name="Payment">  
+	</form>
 	
 
 </body>

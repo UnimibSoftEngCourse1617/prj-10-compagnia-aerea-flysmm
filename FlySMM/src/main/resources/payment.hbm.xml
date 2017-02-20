@@ -8,7 +8,7 @@
 		<composite-id>
 			<key-property name="cardNumber" column="No_card" type="int"></key-property>
 			<key-many-to-one name="customer" class="customer.Customer">
-				<column name="User_Fiscal_Code"></column>
+				<column name="Customer_id_customer"></column>
 			</key-many-to-one>
 		</composite-id>
 

@@ -1,10 +1,10 @@
 package sale;
 
 public class Address {
-	private long idAddress;
+	private int idAddress;
 	private String street;
 	private String street_number;
-	private int cap;
+	private String cap;
 	private String city;
 	private String country;
 	
@@ -12,7 +12,7 @@ public class Address {
 		
 	}
 
-	public Address(long idAddress, String street, String street_number, int cap, String city, String country) {
+	public Address(int idAddress, String street, String street_number, String cap, String city, String country) {
 		super();
 		this.idAddress = idAddress;
 		this.street = street;
@@ -22,11 +22,11 @@ public class Address {
 		this.country = country;
 	}
 
-	public long getIdAddress() {
+	public int getIdAddress() {
 		return idAddress;
 	}
 
-	public void setIdAddress(long idAddress) {
+	public void setIdAddress(int idAddress) {
 		this.idAddress = idAddress;
 	}
 
@@ -46,11 +46,11 @@ public class Address {
 		this.street_number = street_number;
 	}
 
-	public int getCap() {
+	public String getCap() {
 		return cap;
 	}
 
-	public void setCap(int cap) {
+	public void setCap(String cap) {
 		this.cap = cap;
 	}
 

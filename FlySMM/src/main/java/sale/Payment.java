@@ -1,77 +1,67 @@
 package sale;
 
+import java.io.Serializable;
 import java.util.Date;
 import customer.Customer;
 
-public class Payment {
-	private String cardNumber;
+public class Payment implements Serializable{
+	private int cardNumber;
+	private Customer customer;
 	private String cvv;
 	private String owner;
-	private Address cardOwnerAddress;
 	private Date expiredDate;
-	private Customer custumer;
 
 	public Payment() {
 
 	}
 
-	public Payment(String cardNumber, String cvv, String owner, Address cardOwnerAddress, Date expiredDate,
-			Customer customer) {
+	public Payment(int cardNumber, Customer customer, String cvv, String owner, Date expiredDate) {
 		super();
 		this.cardNumber = cardNumber;
+		this.customer = customer;
 		this.cvv = cvv;
 		this.owner = owner;
-		this.cardOwnerAddress = cardOwnerAddress;
 		this.expiredDate = expiredDate;
-		this.custumer = customer;
 	}
 
-	public String getCardNumber() {
+	public int getCardNumber() {
 		return cardNumber;
+	}
+
+	public void setCardNumber(int cardNumber) {
+		this.cardNumber = cardNumber;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	public String getCvv() {
 		return cvv;
 	}
 
-	public String getOwner() {
-		return owner;
-	}
-
-	public Date getExpiredDate() {
-		return expiredDate;
-	}
-
-	public Address getCardOwnerAddress() {
-		return cardOwnerAddress;
-	}
-
-	public Customer getCustumer() {
-		return custumer;
-	}
-
-	public void setCardNumber(String cardNumber) {
-		this.cardNumber = cardNumber;
-	}
-
 	public void setCvv(String cvv) {
 		this.cvv = cvv;
+	}
+
+	public String getOwner() {
+		return owner;
 	}
 
 	public void setOwner(String owner) {
 		this.owner = owner;
 	}
 
-	public void setCardOwnerAddress(Address cardOwnerAddress) {
-		this.cardOwnerAddress = cardOwnerAddress;
+	public Date getExpiredDate() {
+		return expiredDate;
 	}
 
 	public void setExpiredDate(Date expiredDate) {
 		this.expiredDate = expiredDate;
 	}
-
-	public void setCustumer(Customer custumer) {
-		this.custumer = custumer;
-	}
-
+	
 }
