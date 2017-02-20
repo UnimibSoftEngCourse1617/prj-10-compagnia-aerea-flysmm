@@ -7,7 +7,8 @@ public class SeasonPromotion extends Promotion{
 	private Date expireDate;
 	
 	public void notify_() {
-		this.sendMail("mail");
+		Mail m = new Mail();
+		m.sendMail("mail", "new S Promo");
 		}
 	
 	public SeasonPromotion(){}

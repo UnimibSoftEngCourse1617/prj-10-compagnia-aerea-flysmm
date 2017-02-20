@@ -6,7 +6,8 @@ public class FlightPromotion extends Promotion{
 	private Flight flight;
 	
 	public void notify_() {
-		this.sendMail("mail");
+		Mail m = new Mail();
+		m.sendMail("mail","new F Promo");
 		}
 
 	public FlightPromotion(){}
