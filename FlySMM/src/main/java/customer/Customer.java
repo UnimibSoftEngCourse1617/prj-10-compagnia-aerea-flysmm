@@ -95,6 +95,7 @@ public class Customer {
 	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
+	
 
 	public Address getAddress() {
 		return address;

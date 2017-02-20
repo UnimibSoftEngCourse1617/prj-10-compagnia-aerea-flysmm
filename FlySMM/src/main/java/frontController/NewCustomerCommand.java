@@ -32,8 +32,7 @@ public class NewCustomerCommand extends FrontCommand {
 			String email = request.getParameter("email");
 			String via = request.getParameter("street");
 			String ncivic = request.getParameter("Street_number");
-			String capTemp =request.getParameter("cap");
-			int cap = Integer.valueOf(capTemp).intValue();
+			String cap = request.getParameter("cap");
 			String city = request.getParameter("city");
 			String country = request.getParameter("country");
 			String psw = request.getParameter("password");
@@ -44,8 +43,8 @@ public class NewCustomerCommand extends FrontCommand {
 			try {
 				startDate = sdf.parse(dataN);
 				Address address = new Address(1,via,ncivic,cap,city,country);
-				writeAddress(address);
-				Customer c = new Customer(1, name, surname, address, email, psw, tel, startDate);				
+				Customer c = new Customer(1, name, surname, address, email, psw, tel, startDate);
+				writeAddress(address);					
 				writeCustomer(c);
 				RequestDispatcher dispatcher = context.getRequestDispatcher("/loginPage.html");
 				dispatcher.forward(request, response);

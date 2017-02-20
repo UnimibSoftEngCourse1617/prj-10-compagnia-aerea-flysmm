@@ -4,7 +4,7 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="sale.Address" table="">
+	<class name="sale.Address" table="address">
 	
 		<id name="idAddress" type="long" column="idAddress">
 			<generator class="native" />
@@ -14,7 +14,7 @@
 		<property name="street_number" column="Street_number" type="string"></property>
 		<property name="cap" column="CAP" type="string"></property>
 		<property name="city" column="City" type="string"></property>
-		<property name="coutry" column="Country" type="string"></property>
+		<property name="country" column="Country" type="string"></property>
 	
 	</class>
 	

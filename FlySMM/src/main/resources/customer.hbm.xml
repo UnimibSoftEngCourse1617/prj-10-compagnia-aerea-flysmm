@@ -9,7 +9,8 @@
 			<generator class="native" />
 		</id>
 		<discriminator column="Type_of_customers" type="string" />
-		<many-to-one name="idAddress" class="sale.Address" column="Address_idAddress" />
+		<many-to-one name="address" class="sale.Address" column="Address_idAddress" />
+
 		<property name="name" column="Name" type="string" />
 		<property name="surname" column="Surname" type="string" />
 		<property name="email" column="Email" type="string" />

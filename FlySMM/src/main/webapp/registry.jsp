@@ -42,7 +42,7 @@
 							placeholder="50" required>
 					</div>
 					<div class="field">
-						<label>CAP</label> <input type="int" name="cap"
+						<label>CAP</label> <input type="text" name="cap"
 							placeholder="20090" required>
 					</div>
 					<div class="field">

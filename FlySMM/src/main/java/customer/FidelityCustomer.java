@@ -11,8 +11,8 @@ public class FidelityCustomer extends Customer {
 	protected Date startDate;
 	protected Date lastestBook;
 
-	public FidelityCustomer(long idCustomer, String name, String surname, Address address, String email, String password,
-			String phoneNumber, Date dateOfBirth) {
+	public FidelityCustomer(long idCustomer, String name, String surname, Address address, String email,
+			String password, String phoneNumber, Date dateOfBirth) {
 		super(idCustomer, name, surname, address, email, password, phoneNumber, dateOfBirth);
 		this.point = 0;
 		this.startDate = new Date();
@@ -20,8 +20,8 @@ public class FidelityCustomer extends Customer {
 	}
 
 	public FidelityCustomer(Customer c) {
-		super(c.getIdCustomer(), c.getName(), c.getSurname(),c.getAddress(), c.getEmail(), c.getPassword(), c.getPhoneNumber(),
-				c.getDateOfBirth());
+		super(c.getIdCustomer(), c.getName(), c.getSurname(), c.getAddress(), c.getEmail(), c.getPassword(),
+				c.getPhoneNumber(), c.getDateOfBirth());
 		this.point = 0;
 		this.startDate = new Date();
 		this.state = new FidelityState(this);
@@ -29,6 +29,21 @@ public class FidelityCustomer extends Customer {
 
 	public void setState(State state) {
 		this.state = state;
+	}
+
+
+
+
+	@Override
+	public Address getAddress() {
+		// TODO Auto-generated method stub
+		return super.getAddress();
+	}
+
+	@Override
+	public void setAddress(Address address) {
+		// TODO Auto-generated method stub
+		super.setAddress(address);
 	}
 
 	public State getState() {
@@ -68,9 +83,5 @@ public class FidelityCustomer extends Customer {
 		return "FidelityCustomer [toString()=" + super.toString() + ", point=" + point + ", state=" + state
 				+ ", startDate=" + startDate + ", lastestBook=" + lastestBook + "]";
 	}
-
-	
-
-
 
 }
