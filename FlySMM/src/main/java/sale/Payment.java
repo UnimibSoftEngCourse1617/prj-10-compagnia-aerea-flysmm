@@ -1,47 +1,67 @@
 package sale;
 
+import java.io.Serializable;
 import java.util.Date;
-import booking.Book;
+import customer.Customer;
 
-public class Payment {
-	private String cardNumber;
+public class Payment implements Serializable{
+	private int cardNumber;
+	private Customer customer;
 	private String cvv;
 	private String owner;
-	private Address cardOwnerAddress;
 	private Date expiredDate;
-	private Book book;
-	
-	public Payment(String cardNumber, String cvv, String owner, Address cardOwnerAddress, Date expiredDate, Book book) {
-		super();
-		this.cardNumber = cardNumber;
-		this.cvv = cvv;
-		this.owner = owner;
-		this.cardOwnerAddress = cardOwnerAddress;
-		this.expiredDate = expiredDate;
-		this.book = book;
+
+	public Payment() {
+
 	}
 
-	public String getCardNumber() {
+	public Payment(int cardNumber, Customer customer, String cvv, String owner, Date expiredDate) {
+		super();
+		this.cardNumber = cardNumber;
+		this.customer = customer;
+		this.cvv = cvv;
+		this.owner = owner;
+		this.expiredDate = expiredDate;
+	}
+
+	public int getCardNumber() {
 		return cardNumber;
+	}
+
+	public void setCardNumber(int cardNumber) {
+		this.cardNumber = cardNumber;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	public String getCvv() {
 		return cvv;
 	}
 
+	public void setCvv(String cvv) {
+		this.cvv = cvv;
+	}
+
 	public String getOwner() {
 		return owner;
 	}
 
-	public Address getCardOwerAddress() {
-		return cardOwnerAddress;
+	public void setOwner(String owner) {
+		this.owner = owner;
 	}
 
 	public Date getExpiredDate() {
 		return expiredDate;
 	}
-	
-	public Book getBook() {
-		return book;
+
+	public void setExpiredDate(Date expiredDate) {
+		this.expiredDate = expiredDate;
 	}
+	
 }

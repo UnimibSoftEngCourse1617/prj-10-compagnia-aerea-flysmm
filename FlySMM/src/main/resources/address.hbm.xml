@@ -5,7 +5,6 @@
 
 <hibernate-mapping>
 	<class name="sale.Address" table="address">
-	
 		<id name="idAddress" type="long" column="idAddress">
 			<generator class="native" />
 		</id>

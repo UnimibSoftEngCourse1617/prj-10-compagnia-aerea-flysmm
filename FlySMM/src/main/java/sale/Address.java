@@ -1,6 +1,7 @@
 package sale;
 
 public class Address {
+
 	private long idAddress;
 	private String street;
 	private String street_number;
@@ -71,3 +72,4 @@ public class Address {
 	}
 
 }
+

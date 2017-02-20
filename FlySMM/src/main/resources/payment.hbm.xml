@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="sale.Payment" table="payment_methods">
+		<composite-id>
+			<key-property name="cardNumber" column="No_card" type="int"></key-property>
+			<key-many-to-one name="customer" class="customer.Customer">
+				<column name="Customer_id_customer"></column>
+			</key-many-to-one>
+		</composite-id>
+
+		<property name="owner" column="Owner" type="string"></property>
+		<property name="cvv" column="CVV" type="string"></property>
+		<property name="expiredDate" column="Expire" type="date"></property>
+
+	</class>
+</hibernate-mapping>
