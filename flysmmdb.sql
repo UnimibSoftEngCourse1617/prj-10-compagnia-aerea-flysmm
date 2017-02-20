@@ -65,11 +65,11 @@ CREATE TABLE IF NOT EXISTS `flysmmdb`.`flight` (
   `Arrival_ICAO` VARCHAR(4) NOT NULL,
   `Flight_ID` VARCHAR(5) NOT NULL,
   `Departure_Date` DATE NOT NULL,
-  `Departure_Time` TIME(2) NOT NULL,
+  `Departure_Time` TIME NOT NULL,
   `Arrival_Date` DATE NOT NULL,
-  `Arrival_Time` TIME(2) NOT NULL,
+  `Arrival_Time` TIME NOT NULL,
   `Aircraft_ID_aircraft` INT(11) NOT NULL,
-  `Distance` INT NULL,
+  `Distance` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`Flight_ID`, `Departure_Date`, `Aircraft_ID_aircraft`),
   INDEX `fk_Airport_has_Airport_Airport1_idx` (`Arrival_ICAO` ASC),
   INDEX `fk_Airport_has_Airport_Airport_idx` (`Departure_ICAO` ASC),
@@ -116,12 +116,26 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
+-- Table `flysmmdb`.`Address`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `flysmmdb`.`Address` (
+  `idAddress` INT NOT NULL AUTO_INCREMENT,
+  `Street` VARCHAR(45) NULL,
+  `Street_number` VARCHAR(45) NULL,
+  `CAP` INT NULL,
+  `Country` VARCHAR(45) NULL,
+  PRIMARY KEY (`idAddress`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `flysmmdb`.`customer`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `flysmmdb`.`customer` (
-  `ID_Customer` INT(11) NOT NULL,
+  `ID_Customer` INT(11) NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(45) NULL DEFAULT NULL,
   `Surname` VARCHAR(45) NULL DEFAULT NULL,
+  `Address_idAddress` INT NOT NULL,
   `Date_of_birth` DATE NULL DEFAULT NULL,
   `Fidelity_Points` INT(11) NULL DEFAULT NULL,
   `Type_of_customers` VARCHAR(45) NULL DEFAULT NULL,
@@ -130,7 +144,13 @@ CREATE TABLE IF NOT EXISTS `flysmmdb`.`customer` (
   `Phone_NO` VARCHAR(45) NULL DEFAULT NULL,
   `Date_start_fidelity` DATE NULL DEFAULT NULL,
   `Date_last_book` DATE NULL DEFAULT NULL,
-  PRIMARY KEY (`ID_Customer`))
+  PRIMARY KEY (`ID_Customer`),
+  INDEX `fk_customer_Address1_idx` (`Address_idAddress` ASC),
+  CONSTRAINT `fk_customer_Address1`
+    FOREIGN KEY (`Address_idAddress`)
+    REFERENCES `flysmmdb`.`Address` (`idAddress`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -139,7 +159,7 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `flysmmdb`.`book`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `flysmmdb`.`book` (
-  `User_ID` INT(11) NOT NULL,
+  `User_ID` INT(11) NOT NULL AUTO_INCREMENT,
   `IdBook` VARCHAR(45) NOT NULL,
   `Payed` INT(1) NOT NULL,
   `Expired` INT(1) NOT NULL,
@@ -176,16 +196,15 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `flysmmdb`.`payment_methods`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `flysmmdb`.`payment_methods` (
+  `Customer_id_customer` INT(11) NOT NULL AUTO_INCREMENT,
   `No_card` INT(11) NOT NULL,
   `Owner` VARCHAR(45) NOT NULL,
   `CVV` VARCHAR(45) NOT NULL,
   `Expire` DATE NOT NULL,
-  `Address` VARCHAR(45) NOT NULL,
-  `User_Fiscal_Code` INT(11) NOT NULL,
-  PRIMARY KEY (`No_card`, `User_Fiscal_Code`),
-  INDEX `fk_Payment_methods_User1_idx` (`User_Fiscal_Code` ASC),
+  PRIMARY KEY (`Customer_id_customer`, `No_card`),
+  INDEX `fk_Payment_methods_User1_idx` (`Customer_id_customer` ASC),
   CONSTRAINT `fk_Payment_methods_User1`
-    FOREIGN KEY (`User_Fiscal_Code`)
+    FOREIGN KEY (`Customer_id_customer`)
     REFERENCES `flysmmdb`.`customer` (`ID_Customer`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
