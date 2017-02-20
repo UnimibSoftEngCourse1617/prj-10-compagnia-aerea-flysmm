@@ -76,4 +76,12 @@
 		<servlet-name>GetPromotion</servlet-name>
 		<url-pattern>/GetPromotion</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>Gateway</servlet-name>
+		<servlet-class>servlets.Gateway</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Gateway</servlet-name>
+		<url-pattern>/Gateway</url-pattern>
+	</servlet-mapping>
 </web-app>

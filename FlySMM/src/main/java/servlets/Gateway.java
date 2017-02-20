@@ -15,14 +15,13 @@ import sale.Flight;
 /**
  * Servlet implementation class Recap
  */
-@WebServlet("/Recap")
-public class Recap extends HttpServlet {
+public class Gateway extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Recap() {
+	public Gateway() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -51,10 +50,12 @@ public class Recap extends HttpServlet {
 		if (chosen != null) {
 			request.getSession().setAttribute("chosenReturn", chosen);
 		}
-		Flight df = (Flight) request.getSession().getAttribute("chosenDeparture");
-		Flight rf = (Flight) request.getSession().getAttribute("chosenReturn");
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/addPassenger.jsp");
+		RequestDispatcher dispatcher;
+		if (request.getSession().getAttribute("idCustomer") == null)
+			dispatcher = request.getRequestDispatcher("/loginPage.html");
+		else
+			dispatcher = request.getRequestDispatcher("/addPassenger.jsp");
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException e) {
