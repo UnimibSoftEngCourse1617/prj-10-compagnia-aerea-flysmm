@@ -45,7 +45,7 @@ public class AppBook extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Customer c = new Customer(121, "luca", "lorusso", "dgs", "dgvs", "popo", data);
+		//Customer c = new Customer(121, "luca", "lorusso", "dgs", "dgvs", "popo", data);
 		Airport a1 = new Airport("MXP", "Malpensa");
 		Airport a2 = new Airport("LIN", "Linate");
 		Aircraft acf = new Aircraft(77654, "Boeing", 1000, 2737, "737");

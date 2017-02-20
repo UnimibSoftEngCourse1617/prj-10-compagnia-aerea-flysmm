@@ -6,12 +6,13 @@
 <hibernate-mapping>
 	<class name="customer.Customer" table="Customer">
 		<id name="idCustomer" type="long" column="ID_Customer">
-			<generator class="assigned" />
+			<generator class="native" />
 		</id>
 		<discriminator column="Type_of_customers" type="string" />
 
 		<property name="name" column="Name" type="string" />
 		<property name="surname" column="Surname" type="string" />
+		<property name="address" column="Address" type="string" />
 		<property name="email" column="Email" type="string" />
 		<property name="password" column="Password" type="string" />
 		<property name="phoneNumber" column="Phone_NO" type="string" />

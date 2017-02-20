@@ -24,11 +24,13 @@ public class NewCustomerCommand extends FrontCommand {
 	@Override
 	public void dispatch() throws ServletException, IOException {
 		if (caller.equals("GDF")) {
-			String id = request.getParameter("id");
-			long pollo = Long.valueOf(id).longValue();
+//			String id = request.getParameter("id");
+//			long pollo = Long.valueOf(id).longValue();
 			String name = request.getParameter("name");
 			String surname = request.getParameter("surname");
+			String address = request.getParameter("address");
 			String email = request.getParameter("email");
+			
 			String psw = request.getParameter("password");
 			String tel = request.getParameter("phoneNumber");
 			String dataN = request.getParameter("dateOfBirth");
@@ -36,7 +38,7 @@ public class NewCustomerCommand extends FrontCommand {
 			Date startDate;
 			try {
 				startDate = sdf.parse(dataN);
-				Customer c = new Customer(pollo, name, surname, email, psw, tel, startDate);
+				Customer c = new Customer(1, name, surname,address, email, psw, tel, startDate);
 				writeCustomer(c);
 				RequestDispatcher dispatcher = context.getRequestDispatcher("/loginPage.html");
 				dispatcher.forward(request, response);

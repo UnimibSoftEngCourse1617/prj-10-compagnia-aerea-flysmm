@@ -24,24 +24,22 @@
 				<form class="ui form" name="fSearchFly" method="post"
 					action="./GetNewCustomer">
 					<h1 class="ui header">Registry page</h1>
-					<div class="field">
-						<label>id</label> <input type="long" name="id">
-					</div>
+
 					<div class="field">
 						<label>Name</label> <input type="text" name="name"
-							placeholder="name">
+							placeholder="name" required>
 					</div>
 					<div class="field">
 						<label>Surname</label> <input type="text" name="surname"
-							placeholder="surname">
+							placeholder="surname" required>
 					</div>
 					<div class="field">
 						<label>Email</label> <input type="email" name="email"
-							placeholder="email">
+							placeholder="example@gmail.com">
 					</div>
 					<div class="field">
 						<label>Password</label> <input type="password" name="password"
-							placeholder="password">
+							placeholder="password" required>
 					</div>
 					<div class="field">
 						<label>Phone Number</label> <input type="text" name="phoneNumber"
@@ -51,15 +49,9 @@
 						<label>Date of birth</label> <input type="date" name="dateOfBirth"
 							placeholder="yyyy-mm-dd">
 					</div>
-					<div class="field">
-						<div class="ui checkbox">
-							<input type="checkbox" tabindex="0" class="hidden"> <label>I
-								agree to the Terms and Conditions</label>
-						</div>
-					</div>
 
-					<input type=submit name="command" value="NewCustomer">Submit
-
+					<input class="ui blue submit button" type="submit" value="Registry">
+					<input type="hidden" name="command" value="NewCustomer" />
 				</form>
 			</div>
 		</div>
