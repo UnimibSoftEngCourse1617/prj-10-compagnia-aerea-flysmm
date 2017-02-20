@@ -30,7 +30,9 @@
 					<div class="field">
 						Name :
 						${customer.name}<br>
-						Surname :${customer.surname}
+						Surname :${customer.surname}<br>
+						Email :${customer.email}<br>
+						Phone number :${customer.phoneNumber}<br>
 
 
 					</div>
