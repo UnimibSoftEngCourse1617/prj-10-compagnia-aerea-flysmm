@@ -32,7 +32,7 @@ public class Gateway extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
 	/**
@@ -52,6 +52,7 @@ public class Gateway extends HttpServlet {
 		}
 
 		RequestDispatcher dispatcher;
+		System.out.println(request.getSession().getAttribute("idCustomer"));
 		if (request.getSession().getAttribute("idCustomer") == null)
 			dispatcher = request.getRequestDispatcher("/loginPage.html");
 		else
