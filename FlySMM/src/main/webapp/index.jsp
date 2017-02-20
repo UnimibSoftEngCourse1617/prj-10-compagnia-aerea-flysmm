@@ -79,9 +79,9 @@
 						</div>
 
 						<div class="field">
-							<label>Persone</label> <select
+							<label>Persone</label> <select name="passengers"
 								class="ui compact selection dropdown">
-								<option selected="" value="1">1</option>
+								<option value="1" selected>1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
 								<option value="4">4</option>
