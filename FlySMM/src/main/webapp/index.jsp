@@ -1,4 +1,3 @@
-
 <html>
 <head>
 <!-- Inizio sezione per Semantic ui -->
@@ -20,6 +19,11 @@
 	function hideReturnDate() {
 		document.getElementById('returnDate').style.display = 'none';
 	};
+</script>
+<script>
+	$.validate({
+		lang : 'it'
+	});
 </script>
 </head>
 
@@ -51,22 +55,27 @@
 				<form class="ui form" name="fSearchFly" method="post"
 					action="./GetDepartureFlight">
 					<div class="field">
-						<label>Volo da</label> <input name="aDeparture" type="text">
+						<label>Volo da</label> <input name="aDeparture" type="text"
+							required="required" pattern="[a-zA-z]*">
 					</div>
 
 					<div class="field">
-						<label>Volo per</label> <input name="aArrival" type="text"></input>
+						<label>Volo per</label> <input name="aArrival" type="text"
+							required="required"></input>
 					</div>
 
 					<div class="three fields">
 
 						<div class="field">
-							<label>Partenza</label> <input name="dDate" type="date">
+							<label>Partenza</label> <input name="dDate" type="date"
+								data-validation="date" data-validation-format="yyyy-mm-dd"
+								required="required">
 						</div>
 
 						<div id="returnDate" style='' class="field">
 							<label>Ritorno</label> <input id="btnreturnDate" name="rDate"
-								type="date">
+								type="date" data-validation="date"
+								data-validation-format="yyyy-mm-dd">
 						</div>
 
 						<div class="field">
@@ -83,6 +92,12 @@
 					</div>
 					<input type="submit" value="Cerca" class="ui submit green button" />
 				</form>
+				<script
+					src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+				<script
+					src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js">
+					
+				</script>
 			</div>
 		</div>
 	</div>
