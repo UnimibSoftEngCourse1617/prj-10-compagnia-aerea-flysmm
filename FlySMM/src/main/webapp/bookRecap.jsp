@@ -1,5 +1,13 @@
 <%@page import="booking.Book"%>
 <%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import="com.google.gson.JsonObject"%>
+<%@page import="com.google.gson.JsonElement"%>
+<%@page import="com.google.gson.JsonArray"%>
+<%@page import="sale.Flight"%>
+<%@page import="java.util.List"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -35,7 +43,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${book}" var="book">
+			<c:forEach items="${listBook}" var="book">
 				<tr>
 					<td>${book.bookId}</td>
 					<td>${book.flightId}</td>

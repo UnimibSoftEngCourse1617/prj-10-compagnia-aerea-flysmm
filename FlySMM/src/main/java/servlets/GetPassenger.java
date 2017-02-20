@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -47,12 +48,15 @@ public class GetPassenger extends HttpServlet {
 			System.out.println("CommandNotFound");
 		}
 		Passenger p = (Passenger) request.getSession().getAttribute("Passenger");
-		Flight f = (Flight) request.getSession().getAttribute("Flight");
 		Customer c = (Customer) request.getSession().getAttribute("Customer");
-		Book b = new Book(c, f, p);
-		request.getSession().setAttribute("book", b);
-		System.out.println(request.getSession().getAttribute("book").toString());
-		// request.setAttribute("book", b);
+		ArrayList<Flight> listFlight = (ArrayList<Flight>) request.getSession().getAttribute("listFlight");
+		ArrayList<Book> listBook = new ArrayList<Book>();
+		for (Flight f : listFlight) {
+			Book tmp = new Book(c, f, p);
+			listBook.add(tmp);
+		}
+		request.getSession().setAttribute("listBook", listBook);
+
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/bookRecap.jsp");
 		requestDispatcher.forward(request, response);
 

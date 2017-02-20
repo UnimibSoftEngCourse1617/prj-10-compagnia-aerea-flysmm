@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,6 +39,8 @@ public class AddPassengerCommand extends FrontCommand {
 	@Override
 	public void dispatch() throws ServletException, IOException {
 		if (caller.equals("GDF")) {
+			HttpSession session = request.getSession();
+
 			String name = request.getParameter("name");
 			String surname = request.getParameter("surname");
 			String fiscalCode = request.getParameter("fiscalCode");
@@ -47,14 +50,16 @@ public class AddPassengerCommand extends FrontCommand {
 			String docType = request.getParameter("docType");
 			String baggage = request.getParameter("baggage");
 			Date dataBirth;
-			Flight f = (Flight) request.getSession().getAttribute("chosenDeparture");
+			ArrayList<Flight> listFlight = new ArrayList<Flight>();
+			listFlight.add((Flight) request.getSession().getAttribute("chosenDeparture"));
+			listFlight.add((Flight) request.getSession().getAttribute("chosenReturn"));
+			session.setAttribute("listFlight", listFlight);
+			session.setAttribute("Customer", c);
+
 			try {
 				dataBirth = sdf.parse(date);
 				Passenger p = new Passenger(fiscalCode, name, surname, docCode, docType, dataBirth, baggage);
-				HttpSession session = request.getSession();
 				session.setAttribute("Passenger", p);
-				session.setAttribute("Flight", f);
-				session.setAttribute("Customer", c);
 				writePassenger(p);
 
 			} catch (ParseException e) {
