@@ -42,7 +42,7 @@
 			<div class="ui raised segment">
 
 				<form class="ui form" name="fSearchFly" method="post"
-					action="/GetDepartureFlight">
+					action="./GetDepartureFlight">
 
 					<div class="field">
 						<div class="ui buttons">
@@ -74,7 +74,7 @@
 
 						<div class="field">
 							<label>Persone</label> <select name="passengers"
-								class="ui compact selection dropdown">  
+								class="ui compact selection dropdown">
 								<option selected="true" value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
@@ -91,13 +91,12 @@
 	</div>
 	<!-- FINE area dedicata alla ricerca di un volo -->
 
-	<a href="./AppCustomer">ProvaCustomer</a>
-	<a href="./AppBook">ProvaBook</a>
-    <form  method="post" action="./GetPromotion">
-    	<button class="ui red button" name="command" value="Promo">
-  			<i class="gift icon"></i>
-  			See Promotions
+
+	<form method="post" action="./GetPromotion">
+		<button class="ui red button" name="command" value="Promo">
+			<i class="gift icon"></i> See Promotions
 		</button>
 	</form>
+
 </body>
 </html>
