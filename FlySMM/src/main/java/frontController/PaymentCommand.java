@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import sale.Address;
+import sale.Payment;
 import servlets.HibernateProxyTypeAdapter;
 import servlets.SessionFactorySingleton;
 
@@ -28,20 +29,18 @@ public class PaymentCommand extends FrontCommand {
 	public void getPaymentMethodFromDB() {
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
-
 		
-		List result = session.createQuery("from Address where idAddress = 1").list();
+		String idCustomer = request.getParameter("idCustomer").toString();
 		
+		// --> funziona
+		List resultAddress = session.createQuery("select address from Customer c where c.idCustomer="+ idCustomer).list();
+		// <-- funziona
 		
+		List resultPayment = session.createQuery("from Payment p where p.customer.idCustomer="+ idCustomer).list();
 		session.getTransaction().commit();
 		
-		GsonBuilder b = new GsonBuilder();
-		b.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
-		Gson gson = b.create();
-		String json = gson.toJson((List<Address>) result);
-		
-		request.setAttribute("payment_method", (List<Address>) result);
-		
+		request.setAttribute("address", (List<Address>) resultAddress);
+		request.setAttribute("payment", (List<Payment>) resultPayment);
 		
 		RequestDispatcher dispatcher = context.getRequestDispatcher("/payment_methods.jsp");
 		try {
