@@ -1,26 +1,30 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Session;
-
 import frontController.FrontCommand;
 import frontController.UnknownCommand;
+import sale.Flight;
 
 /**
- * Servlet implementation class GetDepartureFlight
+ * Servlet implementation class GetReturnFlight
  */
-public class GetDepartureFlight extends HttpServlet {
+@WebServlet("/GetReturnFlight")
+public class GetReturnFlight extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public GetDepartureFlight() {
+	public GetReturnFlight() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -31,7 +35,8 @@ public class GetDepartureFlight extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.getWriter().append(request.getParameter("command"));
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -40,17 +45,20 @@ public class GetDepartureFlight extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		FrontCommand command = getCommand(request);
-		System.out.println(request.getParameter("rDate"));
-		System.out.println(request.getParameter("passengers"));
-		request.getSession().setAttribute("passengers", request.getParameter("passengers"));
-
-		request.getSession().setAttribute("rDate", request.getParameter("rDate"));
-		if (command != null) {
-			command.init(getServletContext(), "GDF", request, response);
-			command.dispatch();
+		String[] flight = request.getParameter("chosen").split("-");
+		String id = flight[0];
+		String tariff = flight[1];
+		flight = null;
+		List<Flight> flights = (List<Flight>) request.getSession().getAttribute("flights");
+		Flight chosen = findFlightFromIdAndTariff(flights, id, tariff);
+		if (chosen != null) {
+			request.getSession().setAttribute("chosenDeparture", chosen);
 		}
-		else {
+		FrontCommand command = getCommand(request);
+		if (command != null) {
+			command.init(getServletContext(), "GRF", request, response);
+			command.dispatch();
+		} else {
 			System.out.println("CommandNotFound");
 		}
 	}
@@ -76,4 +84,11 @@ public class GetDepartureFlight extends HttpServlet {
 		return result;
 	}
 
+	private Flight findFlightFromIdAndTariff(List<Flight> flights, String id, String tariff) {
+		for (Flight temp : flights) {
+			if (temp.getIdFlight().equals(id) && temp.getPrice().getSeats().getTariff().equals(tariff))
+				return temp;
+		}
+		return null;
+	}
 }

@@ -3,6 +3,8 @@ package sale;
 import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
+import java.util.List;
+
 import booking.Book;
 
 public class Flight {
@@ -16,7 +18,16 @@ public class Flight {
 	private Time arrivalTime;
 	private Airport arrivalAirport;
 	private Price price;
+	private int distance;
 
+	public int getDistance() {
+		return distance;
+	}
+
+	public void setDistance(int distance) {
+		this.distance = distance;
+	}
+	
 	public Price getPrice() {
 		return price;
 	}
@@ -104,7 +115,7 @@ public class Flight {
 	public void setAircraft(Aircraft aircraft) {
 		this.aircraft = aircraft;
 	}
-
+  
 	public void setIdFlight(String idFlight) {
 		this.idFlight = idFlight;
 	}
@@ -124,5 +135,7 @@ public class Flight {
 	public void setArrivalAirport(Airport arrivalAirport) {
 		this.arrivalAirport = arrivalAirport;
 	}
+	
+	
 
 }
