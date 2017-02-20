@@ -33,7 +33,6 @@ public class AddPassengerCommand extends FrontCommand {
 	Aircraft acf = new Aircraft(77654, "Boeing", 1000, 2737, "737");
 	Airport a1 = new Airport("MXP", "Malpensa");
 	Airport a2 = new Airport("LIN", "Linate");
-	Flight f = new Flight(acf, time, time, "abc1", data, a1, data, a2, price);
 	Customer c = new Customer(121, "luca", "lorusso", "dgs", "dgvs", "popo", data);
 
 	@Override
@@ -48,7 +47,7 @@ public class AddPassengerCommand extends FrontCommand {
 			String docType = request.getParameter("docType");
 			String baggage = request.getParameter("baggage");
 			Date dataBirth;
-
+			Flight f = (Flight) request.getSession().getAttribute("chosenDeparture");
 			try {
 				dataBirth = sdf.parse(date);
 				Passenger p = new Passenger(fiscalCode, name, surname, docCode, docType, dataBirth, baggage);

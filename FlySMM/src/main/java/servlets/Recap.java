@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,7 +54,14 @@ public class Recap extends HttpServlet {
 		Flight df = (Flight) request.getSession().getAttribute("chosenDeparture");
 		Flight rf = (Flight) request.getSession().getAttribute("chosenReturn");
 
-		response.getWriter().append("Partenza: " + df.toString() + " Ritorno: " + rf.toString());
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/addPassenger.jsp");
+		try {
+			dispatcher.forward(request, response);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private Flight findFlightFromIdAndTariff(List<Flight> flights, String id, String tariff) {
