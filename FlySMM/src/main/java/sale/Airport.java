@@ -42,7 +42,7 @@ public class Airport {
 		this.name = name;
 	}
 
-	public void setAirportAndress(Address airportAndress) {
+	public void setAirportAddress(Address airportAndress) {
 		this.airportAndress = airportAndress;
 	}
 
