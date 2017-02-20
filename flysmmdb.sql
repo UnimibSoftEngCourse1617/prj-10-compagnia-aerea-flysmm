@@ -18,6 +18,21 @@ CREATE SCHEMA IF NOT EXISTS `flysmmdb` DEFAULT CHARACTER SET utf8 ;
 USE `flysmmdb` ;
 
 -- -----------------------------------------------------
+-- Table `flysmmdb`.`address`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `flysmmdb`.`address` (
+  `idAddress` INT(11) NOT NULL AUTO_INCREMENT,
+  `Street` VARCHAR(45) NULL DEFAULT NULL,
+  `Street_number` VARCHAR(45) NULL DEFAULT NULL,
+  `CAP` VARCHAR(45) NULL DEFAULT NULL,
+  `City` VARCHAR(45) NULL DEFAULT NULL,
+  `Country` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`idAddress`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
 -- Table `flysmmdb`.`aircraft`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `flysmmdb`.`aircraft` (
@@ -116,26 +131,13 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `flysmmdb`.`Address`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `flysmmdb`.`Address` (
-  `idAddress` INT NOT NULL AUTO_INCREMENT,
-  `Street` VARCHAR(45) NULL,
-  `Street_number` VARCHAR(45) NULL,
-  `CAP` INT NULL,
-  `Country` VARCHAR(45) NULL,
-  PRIMARY KEY (`idAddress`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `flysmmdb`.`customer`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `flysmmdb`.`customer` (
   `ID_Customer` INT(11) NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(45) NULL DEFAULT NULL,
   `Surname` VARCHAR(45) NULL DEFAULT NULL,
-  `Address_idAddress` INT NOT NULL,
+  `Address_idAddress` INT(11) NOT NULL,
   `Date_of_birth` DATE NULL DEFAULT NULL,
   `Fidelity_Points` INT(11) NULL DEFAULT NULL,
   `Type_of_customers` VARCHAR(45) NULL DEFAULT NULL,
@@ -148,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `flysmmdb`.`customer` (
   INDEX `fk_customer_Address1_idx` (`Address_idAddress` ASC),
   CONSTRAINT `fk_customer_Address1`
     FOREIGN KEY (`Address_idAddress`)
-    REFERENCES `flysmmdb`.`Address` (`idAddress`)
+    REFERENCES `flysmmdb`.`address` (`idAddress`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
