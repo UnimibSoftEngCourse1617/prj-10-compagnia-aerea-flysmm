@@ -10,7 +10,7 @@ import javax.mail.internet.MimeMessage;
 public abstract class Promotion {
 	protected int discountRate;
 	protected boolean fidelity;
-	protected long idPromo;
+	protected String idPromo;
 	protected String name;
 	protected String description;
 	protected String promoType;
@@ -59,11 +59,11 @@ public abstract class Promotion {
 		this.fidelity = fidelity;
 	}
 
-	public long getIdPromo() {
+	public String getIdPromo() {
 		return idPromo;
 	}
 
-	public void setIdPromo(long idPromo) {
+	public void setIdPromo(String idPromo) {
 		this.idPromo = idPromo;
 	}
 

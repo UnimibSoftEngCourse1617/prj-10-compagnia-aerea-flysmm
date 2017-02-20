@@ -45,10 +45,6 @@
 				<form class="ui form" name="fSearchFly" method="post"
 					action="./GetDepartureFlight">
 
-
-				<form class="ui form" name="fSearchFly" method="post"
-					action="/GetDepartureFlight">
-
 					<div class="field">
 						<div class="ui buttons">
 							<button onclick="viewReturnDate()" class="ui mini button">Andata
@@ -99,6 +95,8 @@
 	<a href="./AppCustomer">ProvaCustomer</a>
 
 	<a href="./AppBook">ProvaBook</a>
+	
+	<a href="./AppPromotion">Set New Promo's</a>
   
   <form  method="post" action="./GetPromotion">
     	<button class="ui red button" name="command" value="Promo">

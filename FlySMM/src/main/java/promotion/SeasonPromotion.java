@@ -18,7 +18,7 @@ public class SeasonPromotion extends Promotion{
 		this.setExpireDate(expireDate);
 	}
 	
-	public SeasonPromotion(long idPromo, int discountRate, boolean fidelity, String name, String description, Date startDate, Date expireDate){
+	public SeasonPromotion(String idPromo, int discountRate, boolean fidelity, String name, String description, Date startDate, Date expireDate){
 		this.idPromo = idPromo;
 		this.discountRate = discountRate;
 		this.fidelity = fidelity;

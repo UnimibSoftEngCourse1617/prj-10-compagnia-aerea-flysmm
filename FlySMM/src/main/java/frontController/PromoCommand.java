@@ -8,11 +8,7 @@ import javax.servlet.ServletException;
 
 import org.hibernate.Session;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import promotion.SeasonPromotion;
-import servlets.HibernateProxyTypeAdapter;
+import promotion.*;
 import servlets.SessionFactorySingleton;
 
 public class PromoCommand extends FrontCommand {
@@ -29,23 +25,21 @@ public class PromoCommand extends FrontCommand {
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
 
-		List result = session
+		/*List result = session
 				.createQuery("from SeasonPromotion")
-				.list();
+				.list();*/
 		//String season = (String) result.get(0);
 
-		/*result = session
-				.createQuery("from Promotion " + "where promo_type = 'flight'")
+		List result = session
+				.createQuery("from Promotion")
 				.list();
-		String flight = (String) result.get(0);*/
+		//String flight = (String) result.get(0);
 
 		session.getTransaction().commit();
 		
-		GsonBuilder b = new GsonBuilder();
-		b.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
-		Gson gson = b.create();
-		String json = gson.toJson((List<SeasonPromotion>) result);
-		request.setAttribute("promotions", (List<SeasonPromotion>) result);
+		//request.setAttribute("season_promotions", (List<SeasonPromotion>) result);
+		request.setAttribute("promotion", (List<Promotion>) result);
+		//request.setAttribute("fpromotion", (List<FlightPromotion>) result);
 		RequestDispatcher dispatcher = context.getRequestDispatcher("/promotion.jsp");
 		try {
 			dispatcher.forward(request, response);
