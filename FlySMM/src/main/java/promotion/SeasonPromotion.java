@@ -3,10 +3,15 @@ package promotion;
 import java.util.Date;
 
 public class SeasonPromotion extends Promotion{
+	
+	private static final long serialVersionUID = 1L;
+	
 	private Date startDate;
 	private Date expireDate;
 	
-	public SeasonPromotion(){}
+	public SeasonPromotion(){
+		super();
+	}
 	
 	public SeasonPromotion(Date startDate, Date expireDate){
 		this.promoType = "season";

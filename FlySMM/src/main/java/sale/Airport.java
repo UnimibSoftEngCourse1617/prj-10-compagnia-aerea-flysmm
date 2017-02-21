@@ -1,12 +1,19 @@
 package sale;
 
-public class Airport {
+import java.io.Serializable;
+
+public class Airport implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String icao;
 	private String name;
 	private Address airportAndress; 
 
 	public Airport() {
+		super();
 	}
 
 	public Airport(String icao, String name, Address airportAndress) {

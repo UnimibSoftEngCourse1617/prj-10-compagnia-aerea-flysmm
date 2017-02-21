@@ -33,6 +33,6 @@ public class Mail {
 		}
 	
 	public Mail() {
-		
+		super();
 	}
 }
