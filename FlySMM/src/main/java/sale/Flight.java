@@ -27,14 +27,6 @@ public class Flight {
 	public void setDistance(int distance) {
 		this.distance = distance;
 	}
-	
-	public Price getPrice() {
-		return price;
-	}
-
-	public void setPrice(Price price) {
-		this.price = price;
-	}
 
 	public Flight() {
 	}
