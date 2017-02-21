@@ -30,10 +30,6 @@ import servlets.HibernateProxyTypeAdapter;
 import servlets.SessionFactorySingleton;
 
 public class AddPassengerCommand extends FrontCommand {
-	private Date data = new Date();
-
-	Address a = new Address(1200, "vivaldi", "15", "20841", "carate", "italy");
-	Customer c = new Customer(121, "luca", "lorusso", a, "dgs", "dgvs", "popo", data);
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
@@ -41,7 +37,7 @@ public class AddPassengerCommand extends FrontCommand {
 			HttpSession session = request.getSession();
 			ArrayList<Passenger> listPassenger = new ArrayList<Passenger>();
 			ArrayList<Integer> priceBaggage = new ArrayList<Integer>();
-
+			Customer c = (Customer) request.getSession().getAttribute("Customer");
 			String nPass = (String) request.getSession().getAttribute("passengers");
 			int length = Integer.parseInt(nPass);
 			for (int i = 0; i < length; i++) {
@@ -76,7 +72,7 @@ public class AddPassengerCommand extends FrontCommand {
 				listFlight.add((Flight) request.getSession().getAttribute("chosenDeparture"));
 			}
 			session.setAttribute("listFlight", listFlight);
-			//session.setAttribute("Customer", c);
+			session.setAttribute("Customer", c);
 
 		}
 	}
