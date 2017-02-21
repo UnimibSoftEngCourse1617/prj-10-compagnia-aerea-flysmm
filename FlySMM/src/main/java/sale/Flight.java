@@ -29,6 +29,7 @@ public class Flight {
 	}
 
 	public Flight() {
+		super();
 	}
 
 	public Flight(Aircraft aircraft, Time arrivalTime, Time departureTime, String idFlight, Date departureDate,

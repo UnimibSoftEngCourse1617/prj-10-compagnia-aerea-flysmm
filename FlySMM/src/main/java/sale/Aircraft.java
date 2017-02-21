@@ -10,6 +10,7 @@ public class Aircraft {
 	private String model;
 	
 	public Aircraft() {
+		super();
 	}
 
 	

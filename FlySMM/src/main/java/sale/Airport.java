@@ -7,6 +7,7 @@ public class Airport {
 	private Address airportAndress; 
 
 	public Airport() {
+		super();
 	}
 
 	public Airport(String icao, String name, Address airportAndress) {

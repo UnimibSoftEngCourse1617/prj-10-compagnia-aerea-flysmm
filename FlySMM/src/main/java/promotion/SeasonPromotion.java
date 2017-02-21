@@ -11,7 +11,9 @@ public class SeasonPromotion extends Promotion{
 		m.sendMail("mail", "new S Promo");
 		}
 	
-	public SeasonPromotion(){}
+	public SeasonPromotion(){
+		super();
+	}
 	
 	public SeasonPromotion(Date startDate, Date expireDate){
 		this.promoType = "season";

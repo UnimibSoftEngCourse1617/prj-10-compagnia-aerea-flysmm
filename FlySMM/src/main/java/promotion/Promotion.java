@@ -10,7 +10,9 @@ public abstract class Promotion {
 	
 	public abstract void notify_();
 	
-	public Promotion(){}
+	public Promotion(){
+		super();
+	}
 
 	public int getDiscountRate() {
 		return discountRate;

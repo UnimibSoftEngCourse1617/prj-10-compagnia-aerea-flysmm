@@ -10,7 +10,9 @@ public class FlightPromotion extends Promotion{
 		m.sendMail("mail","new F Promo");
 		}
 
-	public FlightPromotion(){}
+	public FlightPromotion(){
+		super();
+	}
 	
 	public FlightPromotion(Flight flight){
 		this.promoType = "flight";
