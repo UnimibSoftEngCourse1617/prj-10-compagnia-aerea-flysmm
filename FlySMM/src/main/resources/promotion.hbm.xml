@@ -5,12 +5,12 @@
 
 <hibernate-mapping>
 	<class name="promotion.Promotion" table="promotion">
-		<id name="idPromo" type="long" column="IdPromo">
+		<id name="idPromo" type="string" column="IdPromo">
 			<generator class="native" />
 		</id>
 		
 		<discriminator column="promo_type" type="string" />
-		
+
 		<property name="name" column="Name" type="string" />
 		<property name="discountRate" column="Discount_rate" type="int" />
 		<property name="fidelity" column="Fidelity" type="boolean" />
@@ -22,9 +22,7 @@
 		</subclass>
         
         <subclass name="promotion.FlightPromotion" discriminator-value="flight">
-        	<component name="flight" class="sale.Flight">
-        		<property name="idFlight"/>
-        	</component>
+        	<one-to-one name="flight" class="sale.Flight"/>
         </subclass>
         
 	</class>
