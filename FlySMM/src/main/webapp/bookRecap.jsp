@@ -61,5 +61,6 @@
 		<input class="ui blue submit button" type="submit" value="Book!">
 		<input type="hidden" name="command" value="Book" />
 	</form>
+	
 </body>
 </html>
