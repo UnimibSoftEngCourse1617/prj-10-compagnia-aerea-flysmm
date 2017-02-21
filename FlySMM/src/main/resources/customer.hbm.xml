@@ -4,13 +4,12 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="customer.Customer" table="Customer">
+	<class name="customer.Customer" table="Customer" discriminator-value="Customer State">
 		<id name="idCustomer" type="long" column="ID_Customer">
 			<generator class="native" />
 		</id>
 		<discriminator column="Type_of_customers" type="string" />
 		<many-to-one name="address" class="sale.Address" column="Address_idAddress" />
-
 		<property name="name" column="Name" type="string" />
 		<property name="surname" column="Surname" type="string" />
 		<property name="email" column="Email" type="string" />
@@ -23,6 +22,8 @@
 			<property name="startDate" column="Date_start_fidelity"
 				type="date" />
 			<property name="lastestBook" column="Date_last_book" type="date" />
+			<property name="actualDateUnfidelity" column="Date_start_Unfidelity" type="date" />
+			<property name="type" column="State_fidelity" type="string" />
 		</subclass>
 
 	</class>
