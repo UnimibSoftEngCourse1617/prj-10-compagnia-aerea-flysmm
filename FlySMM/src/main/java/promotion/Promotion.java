@@ -19,12 +19,14 @@ public abstract class Promotion {
 	protected String description;
 	protected String promoType;
 	
+	public Promotion(){}
+	
 	public void notify_(String text){
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
 
 		List result = session
-				.createQuery("from Costumer where Type_of_customers = 'Fidelity State'")
+				.createQuery("from Customer where State_fidelity = 'Fidelity Customer'")
 				.list();
 
 		Mail m = new Mail();
@@ -32,13 +34,10 @@ public abstract class Promotion {
 		for (Customer c : (List<Customer>) result) {
 			String email = c.getEmail();
 			m.sendMail(email, text);
-			System.out.println(email);
 		}
-
+		
 		session.getTransaction().commit();
 	}
-	
-	public Promotion(){}
 
 	public int getDiscountRate() {
 		return discountRate;
