@@ -38,9 +38,11 @@ public class CustomerCommand extends FrontCommand {
 			if (result.size() == 1) {
 				customerRegistry = (Customer) result.get(0);
 				String myObjectId = UUID.randomUUID().toString();
+				request.getSession().setAttribute("customer", customerRegistry);
 				request.getSession().setAttribute(myObjectId, customerRegistry);
 				request.setAttribute("myObjectId", myObjectId);
 				request.getSession().setAttribute("idCustomer", customerRegistry.getIdCustomer());
+				request.getSession().setAttribute("Customer", customerRegistry);
 				RequestDispatcher dispatcher;
 				if (request.getSession().getAttribute("chosenDeparture") == null)
 					dispatcher = context.getRequestDispatcher("/homeCustomer.jsp");

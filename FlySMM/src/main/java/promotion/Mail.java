@@ -16,7 +16,7 @@ public class Mail {
 
 		// Construct the message
 		String to = mail;
-		String from = "flysmm@gmail.com";
+		String from = "c.macias1294@gmail.com";
 		String subject = "FlySMM";
 		Message msg = new MimeMessage(session);
 		try {

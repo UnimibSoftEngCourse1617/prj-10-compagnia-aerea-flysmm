@@ -26,9 +26,9 @@
 <body>
 
 	<div class="ui stackable inverted menu">
-		<a class="item">FlySMM</a> <a class="item"> About Us </a> <a
-			class="item"> Jobs </a> <a class="item"> Locations </a> <a
-			href="loginPage.html" class="right item"> Sign up </a>
+		<a class="item">FlySMM</a> <a class="item"> About Us </a>
+		<a class="item"> Jobs </a> <a class="item"> Locations </a>
+		<a href="loginPage.html" class="right item"> Sign up </a>
 	</div>
 
 	<!-- INIZIO area dedicata alla ricerca di un volo -->
@@ -87,6 +87,7 @@
 	</div>
 	<!-- FINE area dedicata alla ricerca di un volo -->
   
+  <a href="./AppPromotion">add promos</a>
   <form  method="post" action="./GetPromotion">
     	<button class="ui red button" name="command" value="Promo">
   			<i class="gift icon"></i>

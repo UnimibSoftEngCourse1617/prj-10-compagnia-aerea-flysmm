@@ -16,8 +16,10 @@
 <body>
 
 	<div class="ui stackable inverted menu">
-		<a class="item">FlySMM</a> <a class="item"> About Us </a> <a
-			class="item"> Jobs </a> <a class="item"> Locations </a>
+		<a href="index.jsp" class="item">FlySMM</a>
+		<a class="item"> About Us </a>
+		<a class="item"> Jobs </a>
+		<a class="item"> Locations </a>
 	</div>
 
 	<div class="ui two column grid">
