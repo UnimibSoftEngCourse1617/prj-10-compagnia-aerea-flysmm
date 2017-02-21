@@ -31,6 +31,7 @@ import servlets.SessionFactorySingleton;
 
 public class AddPassengerCommand extends FrontCommand {
 	private Date data = new Date();
+
 	Address a = new Address(1200, "vivaldi", "15", "20841", "carate", "italy");
 	Customer c = new Customer(121, "luca", "lorusso", a, "dgs", "dgvs", "popo", data);
 
@@ -75,7 +76,7 @@ public class AddPassengerCommand extends FrontCommand {
 				listFlight.add((Flight) request.getSession().getAttribute("chosenDeparture"));
 			}
 			session.setAttribute("listFlight", listFlight);
-			session.setAttribute("Customer", c);
+			//session.setAttribute("Customer", c);
 
 		}
 	}
