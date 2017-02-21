@@ -1,7 +1,7 @@
 package customer;
 
 import java.util.Date;
-import promotio.Mail;
+import promotion.Mail;
 import sale.Address;
 
 public class FidelityCustomer extends Customer {
@@ -12,10 +12,6 @@ public class FidelityCustomer extends Customer {
 	protected Date lastestBook;
 	protected Date actualDateUnfidelity;
 	protected String type;
-
-	public FidelityCustomer(){
-		
-	}
 
 	public FidelityCustomer(long idCustomer, String name, String surname, Address address, String email,
 			String password, String phoneNumber, Date dateOfBirth) {
@@ -83,10 +79,7 @@ public class FidelityCustomer extends Customer {
 		if (this.point >= 1000) {
 			// inviare una email per regalo destinazione europea
 			 Mail m = new Mail();
-      m.sendMail(this.getEmail(),"Hai raggiunto i mille punti
-			 bonus, hai vinto un viaggio per una destinazione europea a tua
-			 scelta!! congratulazione");
-
+      m.sendMail(this.getEmail(),"Hai raggiunto i mille punti bonus, hai vinto un viaggio per una destinazione europea a tuascelta!! congratulazione");
 		}
 	}
 
