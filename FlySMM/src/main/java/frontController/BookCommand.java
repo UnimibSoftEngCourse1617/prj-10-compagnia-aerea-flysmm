@@ -2,6 +2,7 @@ package frontController;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,5 +36,16 @@ public class BookCommand extends FrontCommand {
 		session.save(b);
 		session.getTransaction().commit();
 
+	}
+
+	public void getBaggagePriceFromDb(String passengerId) {
+		Session session = SessionFactorySingleton.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		List result = session
+				.createQuery("Select Price_baggage from baggage b join passenger p on b.ID_Baggage=" + "where b.ID_Baggage = '" + request.getParameter("aDeparture") + "'")
+				.list();
+		String departure = (String) result.get(0);
+		
 	}
 }

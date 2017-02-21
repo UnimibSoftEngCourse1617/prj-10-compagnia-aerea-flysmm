@@ -50,11 +50,16 @@ public class GetPassenger extends HttpServlet {
 		Customer c = (Customer) request.getSession().getAttribute("Customer");
 		ArrayList<Passenger> listPassenger = (ArrayList<Passenger>) request.getSession().getAttribute("listPassenger");
 		ArrayList<Flight> listFlight = (ArrayList<Flight>) request.getSession().getAttribute("listFlight");
+		ArrayList<Integer> priceBaggage = (ArrayList<Integer>) request.getSession().getAttribute("priceBaggage");
 		ArrayList<Book> listBook = new ArrayList<Book>();
+
 		for (Flight f : listFlight) {
+			int i = 0;
 			for (Passenger p : listPassenger) {
 				Book tmp = new Book(c, f, p);
+				tmp.setTotalPrice(tmp.getTotalPrice() + priceBaggage.get(i));
 				listBook.add(tmp);
+				i++;
 			}
 		}
 		request.getSession().setAttribute("listBook", listBook);
