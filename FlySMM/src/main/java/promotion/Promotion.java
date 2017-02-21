@@ -2,8 +2,13 @@ package promotion;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.hibernate.Session;
 
+import customer.Customer;
+import sale.Flight;
+import sale.Price;
 import servlets.SessionFactorySingleton;
 
 public abstract class Promotion {
@@ -14,21 +19,23 @@ public abstract class Promotion {
 	protected String description;
 	protected String promoType;
 	
-	public void notify_(){
-		/*Session session = SessionFactorySingleton.getSessionFactory().openSession();
+	public void notify_(String text){
+		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
 
 		List result = session
 				.createQuery("from Costumer where Type_of_customers = 'Fidelity State'")
 				.list();
+
+		Mail m = new Mail();
 		
-		String email = (String) result.get(0);
+		for (Customer c : (List<Customer>) result) {
+			String email = c.getEmail();
+			m.sendMail(email, text);
+			System.out.println(email);
+		}
 
 		session.getTransaction().commit();
-
-		request.setAttribute("promotion", (List<Promotion>) result);*/
-		Mail m = new Mail();
-		m.sendMail("camv12@hotmail.it","email di prova");
 	}
 	
 	public Promotion(){}
