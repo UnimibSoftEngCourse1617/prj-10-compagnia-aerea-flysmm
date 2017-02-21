@@ -37,10 +37,10 @@ public class CustomerCommand extends FrontCommand {
 					+ " and password = '" + request.getParameter("psw") + "'").list();
 			if (result.size() == 1) {
 				customerRegistry = (Customer) result.get(0);
-				String myObjectId = UUID.randomUUID().toString();
-				request.getSession().setAttribute(myObjectId, customerRegistry);
-				request.setAttribute("myObjectId", myObjectId);
+				
+				request.getSession().setAttribute("customer", customerRegistry);
 				request.getSession().setAttribute("idCustomer", customerRegistry.getIdCustomer());
+				
 				RequestDispatcher dispatcher;
 				if (request.getSession().getAttribute("chosenDeparture") == null)
 					dispatcher = context.getRequestDispatcher("/homeCustomer.jsp");

@@ -35,7 +35,7 @@
 
 					Begin a fidelity Customer <br> <input
 						class="ui blue submit button" type="submit" value="fidelity">
-						<input type="hidden" name="myObjectId" value="${myObjectId}" />
+						<input type="hidden" name="customer" value="${customer}" />
 
 				</form>
 			</div>
