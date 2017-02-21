@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS `flysmmdb`.`address` (
   `Country` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idAddress`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 8
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -131,20 +132,6 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `flysmmdb`.`Address`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `flysmmdb`.`Address` (
-  `idAddress` INT NOT NULL AUTO_INCREMENT,
-  `Street` VARCHAR(45) NULL,
-  `Street_number` VARCHAR(45) NULL,
-  `CAP` INT NULL,
-  `City` VARCHAR(45) NULL,
-  `Country` VARCHAR(45) NULL,
-  PRIMARY KEY (`idAddress`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `flysmmdb`.`customer`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `flysmmdb`.`customer` (
@@ -160,6 +147,8 @@ CREATE TABLE IF NOT EXISTS `flysmmdb`.`customer` (
   `Phone_NO` VARCHAR(45) NULL DEFAULT NULL,
   `Date_start_fidelity` DATE NULL DEFAULT NULL,
   `Date_last_book` DATE NULL DEFAULT NULL,
+  `Date_start_Unfidelity` DATE NULL DEFAULT NULL,
+  `State_fidelity` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`ID_Customer`),
   INDEX `fk_customer_Address1_idx` (`Address_idAddress` ASC),
   CONSTRAINT `fk_customer_Address1`
@@ -168,6 +157,7 @@ CREATE TABLE IF NOT EXISTS `flysmmdb`.`customer` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 11
 DEFAULT CHARACTER SET = utf8;
 
 
