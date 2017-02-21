@@ -25,7 +25,7 @@ public class PaymentCommand extends FrontCommand {
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
 
-		String idCustomer = request.getParameter("idCustomer").toString();
+		Long idCustomer = Long.valueOf(request.getParameter("idCustomer"));
 
 		org.hibernate.Query addressQuery = session.createQuery(
 				"SELECT address " + 
@@ -38,7 +38,7 @@ public class PaymentCommand extends FrontCommand {
 		
 		org.hibernate.Query queryPayment = session.createQuery(
 				"FROM Payment p " +
-				"WHERE p.costumer.idCustomer=? "
+				"WHERE p.customer.idCustomer=? "
 				);
 		queryPayment = queryPayment.setParameter(0, idCustomer);
 		List resultPayment = queryPayment.list();
