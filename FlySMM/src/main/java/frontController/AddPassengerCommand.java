@@ -95,4 +95,5 @@ public class AddPassengerCommand extends FrontCommand {
 		bag = (Baggage) result.get(0);
 		return bag.getPrice();
 	}
+
 }
