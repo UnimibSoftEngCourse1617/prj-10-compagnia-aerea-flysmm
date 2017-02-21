@@ -40,6 +40,7 @@ public class AddPassengerCommand extends FrontCommand {
 		if (caller.equals("GDF")) {
 			HttpSession session = request.getSession();
 			ArrayList<Passenger> listPassenger = new ArrayList<Passenger>();
+			ArrayList<Integer> priceBaggage = new ArrayList<Integer>();
 
 			String nPass = (String) request.getSession().getAttribute("passengers");
 			int length = Integer.parseInt(nPass);
@@ -58,11 +59,12 @@ public class AddPassengerCommand extends FrontCommand {
 					Passenger p = new Passenger(fiscalCode, name, surname, docCode, docType, dataBirth, baggage);
 					writePassenger(p);
 					listPassenger.add(p);
+					priceBaggage.add(this.getBaggagePriceFromDb(p));
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
 			}
-			System.out.println(listPassenger);
+			System.out.println(priceBaggage);
 			session.setAttribute("listPassenger", listPassenger);
 			ArrayList<Flight> listFlight = new ArrayList<Flight>();
 			try {
@@ -83,5 +85,15 @@ public class AddPassengerCommand extends FrontCommand {
 		session.getTransaction().begin();
 		session.save(p);
 		session.getTransaction().commit();
+	}
+
+	public Integer getBaggagePriceFromDb(Passenger p) {
+		Session session = SessionFactorySingleton.getSessionFactory().openSession();
+		session.beginTransaction();
+		Integer price;
+		List result = session.createQuery("Select Price_baggage from baggage b join passenger p on b.ID_Baggage="
+				+ p.getBaggageId() + " where Fiscal_code=" + p.getFiscal_code()).list();
+		return price = (Integer) result.get(0);
+
 	}
 }
