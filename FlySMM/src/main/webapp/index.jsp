@@ -23,9 +23,7 @@
 </script>
 </head>
 
-
 <body>
-
 
 	<div class="ui stackable inverted menu">
 		<a class="item">FlySMM</a> <a class="item"> About Us </a> <a
@@ -33,16 +31,14 @@
 			href="loginPage.html" class="right item"> Sign up </a>
 	</div>
 
-
 	<!-- INIZIO area dedicata alla ricerca di un volo -->
-
 
 	<div class="ui two column grid">
 		<div class="column">
 			<div class="ui raised segment">
-			
+
 				<form class="ui form" name="fSearchFly" method="post"
-					action="/GetDepartureFlight">
+					action="./GetDepartureFlight">
 
 					<div class="field">
 						<div class="ui buttons">
@@ -73,9 +69,9 @@
 						</div>
 
 						<div class="field">
-							<label>Persone</label> <select
+							<label>Persone</label> <select name="passengers"
 								class="ui compact selection dropdown">
-								<option selected value="1">1</option>
+								<option selected="true" value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
 								<option value="4">4</option>
@@ -90,17 +86,13 @@
 		</div>
 	</div>
 	<!-- FINE area dedicata alla ricerca di un volo -->
-
-	<a href="./AppCustomer">ProvaCustomer</a>
-	<a href="./AppBook">Book</a>
-	<a href="./AppBook">ProvaBook</a>
-	
-	<form name="daicazzo"  action="./Payment_options" method="POST" >
-		<input type="hidden" name="command" value="Payment">
-		<input type="hidden" name="idCustomer" value="121">
-		<input type="submit" value="Payment" name="Payment">  
+  
+  <form  method="post" action="./GetPromotion">
+    	<button class="ui red button" name="command" value="Promo">
+  			<i class="gift icon"></i>
+  			See Promotions
+		</button>
 	</form>
-	
 
 </body>
 </html>
