@@ -10,6 +10,7 @@ public class FidelityState extends State {
 	public FidelityState(FidelityCustomer c) {
 		super(c);
 		this.actualDateFidelity = new Date();
+		c.type=this.type();
 	}
 
 	// serve per cambiare lo stato da fidelity ad unfidelity

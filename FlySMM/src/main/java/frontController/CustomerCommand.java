@@ -2,6 +2,7 @@ package frontController;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,7 +37,15 @@ public class CustomerCommand extends FrontCommand {
 					+ " and password = '" + request.getParameter("psw") + "'").list();
 			if (result.size() == 1) {
 				customerRegistry = (Customer) result.get(0);
-				RequestDispatcher dispatcher = context.getRequestDispatcher("/homeCustomer.jsp");
+				String myObjectId = UUID.randomUUID().toString();
+				request.getSession().setAttribute(myObjectId, customerRegistry);
+				request.setAttribute("myObjectId", myObjectId);
+				request.getSession().setAttribute("idCustomer", customerRegistry.getIdCustomer());
+				RequestDispatcher dispatcher;
+				if (request.getSession().getAttribute("chosenDeparture") == null)
+					dispatcher = context.getRequestDispatcher("/homeCustomer.jsp");
+				else
+					dispatcher = context.getRequestDispatcher("/addPassenger.jsp");
 				dispatcher.forward(request, response);
 				System.out.println(customerRegistry.toString());
 			} else {

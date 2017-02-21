@@ -22,5 +22,28 @@ public abstract class FrontCommand {
 	}
 
 	abstract public void dispatch() throws ServletException, IOException;
+	
+	public static FrontCommand getCommand(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		FrontCommand result = null;
+		try {
+			return (FrontCommand) getCommandClass(request, response).newInstance();
+		} catch (Exception e) {
+			request.getRequestDispatcher("./error.jsp").forward(request, response);
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	private static Class getCommandClass(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Class result;
+		final String commandClassName = "frontController." + (String) request.getParameter("command") + "Command";
+		try {
+			result = Class.forName(commandClassName);
+		} catch (ClassNotFoundException e) {
+			result = UnknownCommand.class;
+			request.getRequestDispatcher("./error.jsp").forward(request, response);
+		}
+		return result;
+	}
 
 }

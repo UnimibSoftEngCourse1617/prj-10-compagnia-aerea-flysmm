@@ -1,45 +1,35 @@
 package promotion;
 
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import java.util.List;
+
+import org.hibernate.Session;
+
+import servlets.SessionFactorySingleton;
 
 public abstract class Promotion {
 	protected int discountRate;
 	protected boolean fidelity;
-	protected long idPromo;
+	protected String idPromo;
 	protected String name;
 	protected String description;
 	protected String promoType;
 	
-	public void sendMail(String mail) {
-		// Set up the SMTP server.
-		java.util.Properties props = new java.util.Properties();
-		props.put("mail.smtp.host", "smtp.myisp.com");
-		Session session = Session.getDefaultInstance(props, null);
+	public void notify_(){
+		/*Session session = SessionFactorySingleton.getSessionFactory().openSession();
+		session.beginTransaction();
 
-		// Construct the message
-		String to = mail;
-		String from = "flysmm@gmail.com";
-		String subject = "Promotions";
-		Message msg = new MimeMessage(session);
-		try {
-		    msg.setFrom(new InternetAddress(from));
-		    msg.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
-		    msg.setSubject(subject);
-		    msg.setText("There is a new Promotion:"+this.name+"! Checkout on our website");
-		    
-		    // Send the message.
-		    Transport.send(msg);
-		} catch (MessagingException e) {
-			// Error.
-			}
-		}
-	
-	public abstract void notify_();
+		List result = session
+				.createQuery("from Costumer where Type_of_customers = 'Fidelity State'")
+				.list();
+		
+		String email = (String) result.get(0);
+
+		session.getTransaction().commit();
+
+		request.setAttribute("promotion", (List<Promotion>) result);*/
+		Mail m = new Mail();
+		m.sendMail("camv12@hotmail.it","email di prova");
+	}
 	
 	public Promotion(){}
 
@@ -59,11 +49,11 @@ public abstract class Promotion {
 		this.fidelity = fidelity;
 	}
 
-	public long getIdPromo() {
+	public String getIdPromo() {
 		return idPromo;
 	}
 
-	public void setIdPromo(long idPromo) {
+	public void setIdPromo(String idPromo) {
 		this.idPromo = idPromo;
 	}
 

@@ -18,13 +18,14 @@ public class Flight {
 	private Time arrivalTime;
 	private Airport arrivalAirport;
 	private Price price;
+	private int distance;
 
-	public Price getPrice() {
-		return price;
+	public int getDistance() {
+		return distance;
 	}
 
-	public void setPrice(Price price) {
-		this.price = price;
+	public void setDistance(int distance) {
+		this.distance = distance;
 	}
 
 	public Flight() {
@@ -43,6 +44,25 @@ public class Flight {
 		this.arrivalTime = arrivalTime;
 		this.price = price;
 	}
+	
+	public Flight(Flight f, Price p) {
+		this.aircraft = f.getAircraft();
+		this.idFlight = f.getIdFlight();
+		this.departureDate = f.getDepartureDate();
+		this.departureAirport = f.getDepartureAirport();
+		this.arrivalDate = f.getArrivalDate();
+		this.arrivalAirport = f.getArrivalAirport();
+		this.departureTime = f.getDepartureTime();
+		this.arrivalTime = f.getArrivalTime();
+		this.price = p;
+	}
+	
+	public Flight(String idFlight, Airport departureAirport, Airport arrivalAirport) {
+		super();
+		this.idFlight = idFlight;
+		this.departureAirport = departureAirport;
+		this.arrivalAirport = arrivalAirport;
+	}
 
 	public Time getDepartureTime() {
 		return departureTime;
@@ -60,23 +80,12 @@ public class Flight {
 		this.arrivalTime = arrivalTime;
 	}
 
-	public Flight(String idFlight, Airport departureAirport, Airport arrivalAirport) {
-		super();
-		this.idFlight = idFlight;
-		this.departureAirport = departureAirport;
-		this.arrivalAirport = arrivalAirport;
+	public Price getPrice() {
+		return price;
 	}
 
-	public Flight(Flight f, Price p) {
-		this.aircraft = f.getAircraft();
-		this.idFlight = f.getIdFlight();
-		this.departureDate = f.getDepartureDate();
-		this.departureAirport = f.getDepartureAirport();
-		this.arrivalDate = f.getArrivalDate();
-		this.arrivalAirport = f.getArrivalAirport();
-		this.departureTime = f.getDepartureTime();
-		this.arrivalTime = f.getArrivalTime();
-		this.price = p;
+	public void setPrice(Price price) {
+		this.price = price;
 	}
 
 	public Aircraft getAircraft() {

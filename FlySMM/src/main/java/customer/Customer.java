@@ -2,11 +2,14 @@ package customer;
 
 import java.util.Date;
 
+import sale.Address;
+
 public class Customer {
 
 	private long idCustomer;
 	private String name;
 	private String surname;
+	private Address address;
 	private String email;
 	private String password;
 	private String phoneNumber;
@@ -19,11 +22,12 @@ public class Customer {
 		super();
 	}
 
-	public Customer(long idCustomer, String name, String surname, String email, String password, String phoneNumber,
-			Date dateOfBirth) {
+	public Customer(long idCustomer, String name, String surname, Address address, String email, String password,
+			String phoneNumber, Date dateOfBirth) {
 		this.idCustomer = idCustomer;
 		this.name = name;
 		this.surname = surname;
+		this.address = address;
 		this.email = email;
 		this.password = password;
 		this.phoneNumber = phoneNumber;
@@ -91,15 +95,27 @@ public class Customer {
 	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
+	
 
-	@Override
-	public String toString() {
-		return "Customer [idCustomer=" + idCustomer + ", name=" + name + ", surname=" + surname + ", email=" + email
-				+ ", password=" + password + ", phoneNumber=" + phoneNumber + ", dateOfBirth=" + dateOfBirth + "]";
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
+
+	@Override
+	public String toString() {
+		return "Customer [idCustomer=" + idCustomer + ", name=" + name + ", surname=" + surname + ", address=" + address
+				+ ", email=" + email + ", password=" + password + ", phoneNumber=" + phoneNumber + ", dateOfBirth="
+				+ dateOfBirth + "]";
+	}
+	
+	
 
 }
