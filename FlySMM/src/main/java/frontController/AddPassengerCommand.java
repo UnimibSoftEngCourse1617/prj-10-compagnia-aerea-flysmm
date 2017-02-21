@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,9 +16,9 @@ import org.hibernate.Session;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import booking.Book;
 import booking.Passenger;
 import customer.Customer;
+import sale.Address;
 import sale.Aircraft;
 import sale.Airport;
 import sale.Flight;
@@ -30,42 +29,37 @@ import servlets.SessionFactorySingleton;
 public class AddPassengerCommand extends FrontCommand {
 
 	private Date data = new Date();
-	Customer c = new Customer(121, "luca", "lorusso", "dgs", "dgvs", "popo", data);
-
+	private Time time = new Time(8, 0, 0);
+	private Price price = new Price();
+	Aircraft acf = new Aircraft(77654, "Boeing", 1000, 2737, "737");
+	Airport a1 = new Airport("MXP", "Malpensa");
+	Airport a2 = new Airport("LIN", "Linate");
+	Customer c = new Customer(121, "luca", "lorusso", new Address(), "dgs", "dgvs", "popo", data);
 	@Override
 	public void dispatch() throws ServletException, IOException {
 		if (caller.equals("GDF")) {
-			HttpSession session = request.getSession();
-			ArrayList<Passenger> listPassenger = new ArrayList<Passenger>();
+			String name = request.getParameter("name");
+			String surname = request.getParameter("surname");
+			String fiscalCode = request.getParameter("fiscalCode");
+			String date = request.getParameter("dateOfBirth");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String docCode = request.getParameter("docCode");
+			String docType = request.getParameter("docType");
+			String baggage = request.getParameter("baggage");
+			Date dataBirth;
+			Flight f = (Flight) request.getSession().getAttribute("chosenDeparture");
+			try {
+				dataBirth = sdf.parse(date);
+				Passenger p = new Passenger(fiscalCode, name, surname, docCode, docType, dataBirth, baggage);
+				HttpSession session = request.getSession();
+				session.setAttribute("Passenger", p);
+				session.setAttribute("Flight", f);
+				session.setAttribute("Customer", c);
+				writePassenger(p);
 
-			String nPass = (String) request.getSession().getAttribute("passengers");
-			int length = Integer.parseInt(nPass);
-			for (int i = 0; i < length; i++) {
-				String name = request.getParameter("name" + i);
-				String surname = request.getParameter("surname" + i);
-				String fiscalCode = request.getParameter("fiscalCode" + i);
-				String date = request.getParameter("dateOfBirth" + i);
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-				String docCode = request.getParameter("docCode" + i);
-				String docType = request.getParameter("docType" + i);
-				String baggage = request.getParameter("baggage" + i);
-				Date dataBirth;
-				try {
-					dataBirth = sdf.parse(date);
-					Passenger p = new Passenger(fiscalCode, name, surname, docCode, docType, dataBirth, baggage);
-					writePassenger(p);
-					listPassenger.add(p);
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
+			} catch (ParseException e) {
+				e.printStackTrace();
 			}
-			System.out.println(listPassenger);
-			session.setAttribute("listPassenger", listPassenger);
-			ArrayList<Flight> listFlight = new ArrayList<Flight>();
-			listFlight.add((Flight) request.getSession().getAttribute("chosenDeparture"));
-			listFlight.add((Flight) request.getSession().getAttribute("chosenReturn"));
-			session.setAttribute("listFlight", listFlight);
-			session.setAttribute("Customer", c);
 
 		}
 	}

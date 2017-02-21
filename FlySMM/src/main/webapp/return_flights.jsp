@@ -56,7 +56,7 @@
 					<td>${flight.arrivalTime}</td>
 					<td>${flight.price.seats.tariff}</td>
 					<td><form method="post" name="flightItems"
-							action="./Recap">
+							action="./Gateway">
 							<input type="submit" 
 								class="ui green button"
 								value="${flight.price.amount}" />
