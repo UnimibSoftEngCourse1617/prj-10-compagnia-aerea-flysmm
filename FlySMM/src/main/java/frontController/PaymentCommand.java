@@ -8,17 +8,12 @@ import javax.servlet.ServletException;
 
 import org.hibernate.Session;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import sale.Address;
 import sale.Payment;
-import servlets.HibernateProxyTypeAdapter;
 import servlets.SessionFactorySingleton;
 
 public class PaymentCommand extends FrontCommand {
-	
-	
+
 	@Override
 	public void dispatch() throws ServletException, IOException {
 		if (caller.equals("GDF")) {
@@ -29,19 +24,30 @@ public class PaymentCommand extends FrontCommand {
 	public void getPaymentMethodFromDB() {
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
-		
+
 		String idCustomer = request.getParameter("idCustomer").toString();
+
+		org.hibernate.Query addressQuery = session.createQuery(
+				"SELECT address " + 
+				"FROM Customer c " + 
+				"WHERE c.idCustomer =?"
+				);
+		addressQuery = addressQuery.setParameter(0, idCustomer);
+		List resultAddress = addressQuery.list();
+
 		
-		// --> funziona
-		List resultAddress = session.createQuery("select address from Customer c where c.idCustomer="+ idCustomer).list();
-		// <-- funziona
-		
-		List resultPayment = session.createQuery("from Payment p where p.customer.idCustomer="+ idCustomer).list();
+		org.hibernate.Query queryPayment = session.createQuery(
+				"FROM Payment p " +
+				"WHERE p.costumer.idCustomer=? "
+				);
+		queryPayment = queryPayment.setParameter(0, idCustomer);
+		List resultPayment = queryPayment.list();
+
 		session.getTransaction().commit();
-		
+
 		request.setAttribute("address", (List<Address>) resultAddress);
 		request.setAttribute("payment", (List<Payment>) resultPayment);
-		
+
 		RequestDispatcher dispatcher = context.getRequestDispatcher("/payment_methods.jsp");
 		try {
 			dispatcher.forward(request, response);
