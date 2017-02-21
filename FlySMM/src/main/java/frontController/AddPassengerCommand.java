@@ -17,6 +17,7 @@ import org.hibernate.Session;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import booking.Baggage;
 import booking.Book;
 import booking.Passenger;
 import customer.Customer;
@@ -29,8 +30,6 @@ import servlets.HibernateProxyTypeAdapter;
 import servlets.SessionFactorySingleton;
 
 public class AddPassengerCommand extends FrontCommand {
-	// public Address(long idAddress, String street, String street_number,
-	// String cap, String city, String country) {
 	private Date data = new Date();
 	Address a = new Address(1200, "vivaldi", "15", "20841", "carate", "italy");
 	Customer c = new Customer(121, "luca", "lorusso", a, "dgs", "dgvs", "popo", data);
@@ -54,18 +53,19 @@ public class AddPassengerCommand extends FrontCommand {
 				String docType = request.getParameter("docType" + i);
 				String baggage = request.getParameter("baggage" + i);
 				Date dataBirth;
+				Passenger p = null;
 				try {
 					dataBirth = sdf.parse(date);
-					Passenger p = new Passenger(fiscalCode, name, surname, docCode, docType, dataBirth, baggage);
+					p = new Passenger(fiscalCode, name, surname, docCode, docType, dataBirth, baggage);
 					writePassenger(p);
 					listPassenger.add(p);
-					priceBaggage.add(this.getBaggagePriceFromDb(p));
-				} catch (ParseException e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				priceBaggage.add(this.getBaggagePriceFromDb(p));
 			}
-			System.out.println(priceBaggage);
 			session.setAttribute("listPassenger", listPassenger);
+			session.setAttribute("priceBaggage", priceBaggage);
 			ArrayList<Flight> listFlight = new ArrayList<Flight>();
 			try {
 				listFlight.add((Flight) request.getSession().getAttribute("chosenDeparture"));
@@ -90,10 +90,9 @@ public class AddPassengerCommand extends FrontCommand {
 	public Integer getBaggagePriceFromDb(Passenger p) {
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
-		Integer price;
-		List result = session.createQuery("Select Price_baggage from baggage b join passenger p on b.ID_Baggage="
-				+ p.getBaggageId() + " where Fiscal_code=" + p.getFiscal_code()).list();
-		return price = (Integer) result.get(0);
-
+		Baggage bag;
+		List result = session.createQuery("from Baggage where ID_Baggage = '" + p.getBaggageId() + "'").list();
+		bag = (Baggage) result.get(0);
+		return bag.getPrice();
 	}
 }
