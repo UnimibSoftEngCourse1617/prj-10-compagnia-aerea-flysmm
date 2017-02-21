@@ -59,7 +59,7 @@ public class FidelityCustomer extends Customer {
 		this.point = this.point + point;
 		if (this.point >= 1000) {
 			// inviare una email per regalo destinazione europea
-			Mail m = new Mail(this.getEmail(),"Hai raggiunto i mille punti bonus, hai vinto un viaggio per una destinazione europea a tua scelta!! congratulazione");
+			//Mail m = new Mail(this.getEmail(),"Hai raggiunto i mille punti bonus, hai vinto un viaggio per una destinazione europea a tua scelta!! congratulazione");
 		}
 	}
 

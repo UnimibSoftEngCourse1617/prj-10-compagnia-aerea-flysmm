@@ -18,6 +18,7 @@ import com.google.gson.GsonBuilder;
 
 import booking.Passenger;
 import customer.Customer;
+import sale.Address;
 import sale.Aircraft;
 import sale.Airport;
 import sale.Flight;
@@ -33,8 +34,7 @@ public class AddPassengerCommand extends FrontCommand {
 	Aircraft acf = new Aircraft(77654, "Boeing", 1000, 2737, "737");
 	Airport a1 = new Airport("MXP", "Malpensa");
 	Airport a2 = new Airport("LIN", "Linate");
-	Customer c = new Customer(121, "luca", "lorusso", "dgs", "dgvs", "popo", data);
-
+	Customer c = new Customer(121, "luca", "lorusso", new Address(), "dgs", "dgvs", "popo", data);
 	@Override
 	public void dispatch() throws ServletException, IOException {
 		if (caller.equals("GDF")) {
