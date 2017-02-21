@@ -6,17 +6,13 @@ public class SeasonPromotion extends Promotion{
 	private Date startDate;
 	private Date expireDate;
 	
-	/*public void notify_() {
-		/*Mail m = new Mail();
-		m.sendMail("mail", "new S Promo");
-		}*/
-	
 	public SeasonPromotion(){}
 	
 	public SeasonPromotion(Date startDate, Date expireDate){
 		this.promoType = "season";
 		this.setStartDate(startDate);
 		this.setExpireDate(expireDate);
+		this.notify_("There is a new Promotion in this period, check it out in our website");
 	}
 	
 	public SeasonPromotion(String idPromo, int discountRate, boolean fidelity, String name, String description, Date startDate, Date expireDate){
@@ -28,7 +24,7 @@ public class SeasonPromotion extends Promotion{
 		this.promoType = "season";
 		this.setStartDate(startDate);
 		this.setExpireDate(expireDate);
-		this.notify_();
+		this.notify_("There is a new Promotion in this period, check it out in our website");
 	}
 	
 	public Date getStartDate() {

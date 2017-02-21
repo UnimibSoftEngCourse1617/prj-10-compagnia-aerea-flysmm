@@ -38,6 +38,7 @@ public class CustomerCommand extends FrontCommand {
 			if (result.size() == 1) {
 				customerRegistry = (Customer) result.get(0);
 				String myObjectId = UUID.randomUUID().toString();
+				request.getSession().setAttribute("customer", customerRegistry);
 				request.getSession().setAttribute(myObjectId, customerRegistry);
 				request.setAttribute("myObjectId", myObjectId);
 				request.getSession().setAttribute("idCustomer", customerRegistry.getIdCustomer());
