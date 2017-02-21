@@ -57,7 +57,7 @@
 						<td></td>
 						<td></td>
 						<!-- I use New Flight() so promotion.flight = null -->
-						<td>${promotion.flight}</td>
+						<td>${promotion.flight.idFlight}</td>
 					</c:if>
 				</tr>
 			</c:forEach>

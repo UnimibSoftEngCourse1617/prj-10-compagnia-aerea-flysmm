@@ -30,7 +30,7 @@ import servlets.SessionFactorySingleton;
 public class AddPassengerCommand extends FrontCommand {
 
 	private Date data = new Date();
-	Customer c = new Customer(121, "luca", "lorusso", "dgs", "dgvs", "popo", data);
+	//Customer c = new Customer(121, "luca", "lorusso", "dgs", "dgvs", "popo", data);
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
@@ -65,7 +65,7 @@ public class AddPassengerCommand extends FrontCommand {
 			listFlight.add((Flight) request.getSession().getAttribute("chosenDeparture"));
 			listFlight.add((Flight) request.getSession().getAttribute("chosenReturn"));
 			session.setAttribute("listFlight", listFlight);
-			session.setAttribute("Customer", c);
+			//session.setAttribute("Customer", c);
 
 		}
 	}

@@ -1,5 +1,11 @@
 package promotion;
 
+import java.util.List;
+
+import org.hibernate.Session;
+
+import servlets.SessionFactorySingleton;
+
 public abstract class Promotion {
 	protected int discountRate;
 	protected boolean fidelity;
@@ -8,7 +14,22 @@ public abstract class Promotion {
 	protected String description;
 	protected String promoType;
 	
-	public abstract void notify_();
+	public void notify_(){
+		/*Session session = SessionFactorySingleton.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		List result = session
+				.createQuery("from Costumer where Type_of_customers = 'Fidelity State'")
+				.list();
+		
+		String email = (String) result.get(0);
+
+		session.getTransaction().commit();
+
+		request.setAttribute("promotion", (List<Promotion>) result);*/
+		Mail m = new Mail();
+		m.sendMail("camv12@hotmail.it","email di prova");
+	}
 	
 	public Promotion(){}
 

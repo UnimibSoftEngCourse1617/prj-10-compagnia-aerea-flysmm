@@ -1,6 +1,8 @@
 package promotion;
 
 import java.io.IOException;
+import java.sql.Time;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.hibernate.Session;
 
 import promotion.SeasonPromotion;
-import sale.Flight;
+import sale.*;
 import servlets.SessionFactorySingleton;
 import promotion.FlightPromotion;
 import java.util.Date;
@@ -32,11 +34,12 @@ public class AppPromotion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//SeasonPromotion p1 = new SeasonPromotion("14", 40, false, "Autumn Promo", "There are not more middle season?", new Date(), new Date());
-		//FlightPromotion p2 = new FlightPromotion("13", 30, true, "Air Force 2 Promo", "Obama > Trump", new Flight());
-		//writeSeasonPromotion(p1);
+		SeasonPromotion p1 = new SeasonPromotion("1", 40, false, "Winter Promo", "Brrr", new Date(), new Date());
+		//FlightPromotion p2 = new FlightPromotion("2", 30, true, "Air Force 2 Promo", "Obama > Trump",
+		//					 new Flight(new Aircraft(), new Time(0), new Time(1), "idf", new Date(), new Airport(), new Date(), new Airport(), new Price()));
+		writeSeasonPromotion(p1);
 		//writeFlightPromotion(p2);
-		//response.getWriter().append(p1.toString());
+		response.getWriter().append(p1.toString());
 	}
 
 	/**
