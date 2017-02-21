@@ -27,14 +27,6 @@ public class Flight {
 	public void setDistance(int distance) {
 		this.distance = distance;
 	}
-	
-	public Price getPrice() {
-		return price;
-	}
-
-	public void setPrice(Price price) {
-		this.price = price;
-	}
 
 	public Flight() {
 	}
@@ -51,6 +43,25 @@ public class Flight {
 		this.departureTime = departureTime;
 		this.arrivalTime = arrivalTime;
 		this.price = price;
+	}
+	
+	public Flight(Flight f, Price p) {
+		this.aircraft = f.getAircraft();
+		this.idFlight = f.getIdFlight();
+		this.departureDate = f.getDepartureDate();
+		this.departureAirport = f.getDepartureAirport();
+		this.arrivalDate = f.getArrivalDate();
+		this.arrivalAirport = f.getArrivalAirport();
+		this.departureTime = f.getDepartureTime();
+		this.arrivalTime = f.getArrivalTime();
+		this.price = p;
+	}
+	
+	public Flight(String idFlight, Airport departureAirport, Airport arrivalAirport) {
+		super();
+		this.idFlight = idFlight;
+		this.departureAirport = departureAirport;
+		this.arrivalAirport = arrivalAirport;
 	}
 
 	public Time getDepartureTime() {
@@ -69,23 +80,12 @@ public class Flight {
 		this.arrivalTime = arrivalTime;
 	}
 
-	public Flight(String idFlight, Airport departureAirport, Airport arrivalAirport) {
-		super();
-		this.idFlight = idFlight;
-		this.departureAirport = departureAirport;
-		this.arrivalAirport = arrivalAirport;
+	public Price getPrice() {
+		return price;
 	}
 
-	public Flight(Flight f, Price p) {
-		this.aircraft = f.getAircraft();
-		this.idFlight = f.getIdFlight();
-		this.departureDate = f.getDepartureDate();
-		this.departureAirport = f.getDepartureAirport();
-		this.arrivalDate = f.getArrivalDate();
-		this.arrivalAirport = f.getArrivalAirport();
-		this.departureTime = f.getDepartureTime();
-		this.arrivalTime = f.getArrivalTime();
-		this.price = p;
+	public void setPrice(Price price) {
+		this.price = price;
 	}
 
 	public Aircraft getAircraft() {

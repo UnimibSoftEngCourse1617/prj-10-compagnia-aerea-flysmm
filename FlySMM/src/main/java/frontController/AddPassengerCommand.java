@@ -17,9 +17,11 @@ import org.hibernate.Session;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import booking.Baggage;
 import booking.Book;
 import booking.Passenger;
 import customer.Customer;
+import sale.Address;
 import sale.Aircraft;
 import sale.Airport;
 import sale.Flight;
@@ -28,15 +30,17 @@ import servlets.HibernateProxyTypeAdapter;
 import servlets.SessionFactorySingleton;
 
 public class AddPassengerCommand extends FrontCommand {
-
 	private Date data = new Date();
-	//Customer c = new Customer(121, "luca", "lorusso", "dgs", "dgvs", "popo", data);
+
+	Address a = new Address(1200, "vivaldi", "15", "20841", "carate", "italy");
+	Customer c = new Customer(121, "luca", "lorusso", a, "dgs", "dgvs", "popo", data);
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
 		if (caller.equals("GDF")) {
 			HttpSession session = request.getSession();
 			ArrayList<Passenger> listPassenger = new ArrayList<Passenger>();
+			ArrayList<Integer> priceBaggage = new ArrayList<Integer>();
 
 			String nPass = (String) request.getSession().getAttribute("passengers");
 			int length = Integer.parseInt(nPass);
@@ -50,20 +54,27 @@ public class AddPassengerCommand extends FrontCommand {
 				String docType = request.getParameter("docType" + i);
 				String baggage = request.getParameter("baggage" + i);
 				Date dataBirth;
+				Passenger p = null;
 				try {
 					dataBirth = sdf.parse(date);
-					Passenger p = new Passenger(fiscalCode, name, surname, docCode, docType, dataBirth, baggage);
+					p = new Passenger(fiscalCode, name, surname, docCode, docType, dataBirth, baggage);
 					writePassenger(p);
 					listPassenger.add(p);
-				} catch (ParseException e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				priceBaggage.add(this.getBaggagePriceFromDb(p));
 			}
-			System.out.println(listPassenger);
 			session.setAttribute("listPassenger", listPassenger);
+			session.setAttribute("priceBaggage", priceBaggage);
 			ArrayList<Flight> listFlight = new ArrayList<Flight>();
-			listFlight.add((Flight) request.getSession().getAttribute("chosenDeparture"));
-			listFlight.add((Flight) request.getSession().getAttribute("chosenReturn"));
+			try {
+				listFlight.add((Flight) request.getSession().getAttribute("chosenDeparture"));
+				listFlight.add((Flight) request.getSession().getAttribute("chosenReturn"));
+			} catch (Exception e) {
+				listFlight.clear();
+				listFlight.add((Flight) request.getSession().getAttribute("chosenDeparture"));
+			}
 			session.setAttribute("listFlight", listFlight);
 			//session.setAttribute("Customer", c);
 
@@ -76,4 +87,14 @@ public class AddPassengerCommand extends FrontCommand {
 		session.save(p);
 		session.getTransaction().commit();
 	}
+
+	public Integer getBaggagePriceFromDb(Passenger p) {
+		Session session = SessionFactorySingleton.getSessionFactory().openSession();
+		session.beginTransaction();
+		Baggage bag;
+		List result = session.createQuery("from Baggage where ID_Baggage = '" + p.getBaggageId() + "'").list();
+		bag = (Baggage) result.get(0);
+		return bag.getPrice();
+	}
+
 }
