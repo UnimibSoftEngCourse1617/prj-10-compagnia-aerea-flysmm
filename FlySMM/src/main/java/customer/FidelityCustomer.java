@@ -10,6 +10,10 @@ public class FidelityCustomer extends Customer {
 	protected State state;
 	protected Date startDate;
 	protected Date lastestBook;
+	
+	public FidelityCustomer(){
+		
+	}
 
 	public FidelityCustomer(long idCustomer, String name, String surname, Address address, String email,
 			String password, String phoneNumber, Date dateOfBirth) {

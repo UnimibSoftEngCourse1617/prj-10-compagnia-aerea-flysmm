@@ -8,7 +8,11 @@ public class Address {
 	private String cap;
 	private String city;
 	private String country;
-
+	
+	public Address() {
+		super();
+	}
+	
 	public Address(long idAddress, String street, String street_number, String cap, String city, String country) {
 		super();
 		this.idAddress = idAddress;
@@ -17,10 +21,6 @@ public class Address {
 		this.cap = cap;
 		this.city = city;
 		this.country = country;
-	}
-
-	public Address() {
-		super();
 	}
 
 	public long getIdAddress() {
