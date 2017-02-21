@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -46,13 +47,23 @@ public class GetPassenger extends HttpServlet {
 		} else {
 			System.out.println("CommandNotFound");
 		}
-		Passenger p = (Passenger) request.getSession().getAttribute("Passenger");
-		Flight f = (Flight) request.getSession().getAttribute("Flight");
 		Customer c = (Customer) request.getSession().getAttribute("Customer");
-		Book b = new Book(c, f, p);
-		request.getSession().setAttribute("book", b);
-		System.out.println(request.getSession().getAttribute("book").toString());
-		// request.setAttribute("book", b);
+		ArrayList<Passenger> listPassenger = (ArrayList<Passenger>) request.getSession().getAttribute("listPassenger");
+		ArrayList<Flight> listFlight = (ArrayList<Flight>) request.getSession().getAttribute("listFlight");
+		ArrayList<Integer> priceBaggage = (ArrayList<Integer>) request.getSession().getAttribute("priceBaggage");
+		ArrayList<Book> listBook = new ArrayList<Book>();
+
+		for (Flight f : listFlight) {
+			int i = 0;
+			for (Passenger p : listPassenger) {
+				Book tmp = new Book(c, f, p);
+				tmp.setTotalPrice(tmp.getTotalPrice() + priceBaggage.get(i));
+				listBook.add(tmp);
+				i++;
+			}
+		}
+		request.getSession().setAttribute("listBook", listBook);
+		System.out.println("quaaaa");
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/bookRecap.jsp");
 		requestDispatcher.forward(request, response);
 
