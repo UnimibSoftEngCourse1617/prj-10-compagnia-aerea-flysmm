@@ -1,6 +1,12 @@
 package promotion;
 
-public abstract class Promotion {
+import java.io.Serializable;
+
+public abstract class Promotion implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected int discountRate;
 	protected boolean fidelity;
 	protected String idPromo;

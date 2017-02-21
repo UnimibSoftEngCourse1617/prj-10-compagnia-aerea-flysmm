@@ -1,9 +1,10 @@
 package sale;
 
+import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
 
-public class Flight {
+public class Flight implements Serializable {
 
 	private Aircraft aircraft;
 	private String idFlight;

@@ -1,6 +1,8 @@
 package sale;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
 
 	private long idAddress;
 	private String street;

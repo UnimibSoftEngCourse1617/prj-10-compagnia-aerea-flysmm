@@ -1,11 +1,16 @@
 package customer;
 
+import java.io.Serializable;
 import java.util.Date;
 import promotion.Mail;
 import sale.Address;
 
-public class FidelityCustomer extends Customer {
+public class FidelityCustomer extends Customer implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int point;
 	protected State state;
 	protected Date startDate;

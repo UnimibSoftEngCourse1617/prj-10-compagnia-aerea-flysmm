@@ -1,11 +1,16 @@
 package booking;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.GeneratedValue;
 
-public class Passenger {
+public class Passenger implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String Fiscal_code;
 	private String name;
 	private String surname;
