@@ -5,8 +5,6 @@
 <%@page import="com.google.gson.JsonElement"%>
 <%@page import="com.google.gson.JsonArray"%>
 <%@page import="promotion.Promotion"%>
-<%@page import="promotion.SeasonPromotion"%>
-<%@page import="promotion.FlightPromotion"%>
 <%@page import="java.util.List"%>
 
 
@@ -38,15 +36,29 @@
 				<th>Discount Rate</th>
 				<th>Fidelity</th>
 				<th>Description</th>
+				<th>Start Date</th>
+				<th>Expire Date</th>
+				<th>Flight</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${promotions}" var="promotion">
+			<c:forEach items="${promotion}" var="promotion">
 				<tr>
 					<td>${promotion.name}</td>
 					<td>${promotion.discountRate}</td>
 					<td>${promotion.fidelity}</td>
 					<td>${promotion.description}</td>
+					<c:if test="${promotion.getClass() eq 'class promotion.SeasonPromotion'}">
+						<td>${promotion.startDate}</td>
+						<td>${promotion.expireDate}</td>
+						<td></td>
+					</c:if>
+					<c:if test="${promotion.getClass() eq 'class promotion.FlightPromotion'}">
+						<td></td>
+						<td></td>
+						<!-- I use New Flight() so promotion.flight = null -->
+						<td>${promotion.flight}</td>
+					</c:if>
 				</tr>
 			</c:forEach>
 		</tbody>
