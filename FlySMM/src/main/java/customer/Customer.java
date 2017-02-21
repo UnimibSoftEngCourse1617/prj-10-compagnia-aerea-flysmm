@@ -115,7 +115,4 @@ public class Customer {
 				+ ", email=" + email + ", password=" + password + ", phoneNumber=" + phoneNumber + ", dateOfBirth="
 				+ dateOfBirth + "]";
 	}
-	
-	
-
 }

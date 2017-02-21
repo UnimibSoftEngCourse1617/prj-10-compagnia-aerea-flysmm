@@ -13,6 +13,9 @@ import sale.Price;
 import servlets.SessionFactorySingleton;
 
 public class SaleCommand extends FrontCommand {
+	
+	private static final String FLIGHTS  = "flights";
+	private static final String RDATE = "rDate";
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
@@ -90,7 +93,7 @@ public class SaleCommand extends FrontCommand {
 		session.beginTransaction();
 		String departure = (String) request.getSession().getAttribute("aIcao");
 		String arrival = (String) request.getSession().getAttribute("dIcao");
-		System.out.println(request.getSession().getAttribute("rDate"));
+		System.out.println(request.getSession().getAttribute(RDATE));
 		
 		org.hibernate.Query queryFlyPrice =  session.createQuery(
 				"from Price p inner join p.flight f " + 
@@ -101,7 +104,7 @@ public class SaleCommand extends FrontCommand {
 		
 		queryFlyPrice = queryFlyPrice.setParameter(0, departure);
 		queryFlyPrice = queryFlyPrice.setParameter(1, arrival);
-		queryFlyPrice = queryFlyPrice.setParameter(2, request.getSession().getAttribute("rDate"));
+		queryFlyPrice = queryFlyPrice.setParameter(2, request.getSession().getAttribute(RDATE));
 		
 		List result = queryFlyPrice.list();
 		
@@ -112,8 +115,8 @@ public class SaleCommand extends FrontCommand {
 			flights.add(new Flight(f, p));
 		}
 		session.getTransaction().commit();
-		request.getSession().removeAttribute("flights");
-		request.getSession().setAttribute("flights", flights);
+		request.getSession().removeAttribute(FLIGHTS);
+		request.getSession().setAttribute(FLIGHTS, flights);
 		RequestDispatcher dispatcher = context.getRequestDispatcher("/return_flights.jsp");
 		try {
 			dispatcher.forward(request, response);

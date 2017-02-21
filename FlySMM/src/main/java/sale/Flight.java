@@ -1,11 +1,7 @@
 package sale;
 
-import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
-import java.util.List;
-
-import booking.Book;
 
 public class Flight {
 
