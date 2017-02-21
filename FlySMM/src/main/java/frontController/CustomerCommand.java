@@ -59,7 +59,7 @@ public class CustomerCommand extends FrontCommand {
 			}
 
 		} catch (Exception e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 
 	}

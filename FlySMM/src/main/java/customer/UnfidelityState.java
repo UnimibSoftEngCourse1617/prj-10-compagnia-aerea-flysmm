@@ -1,11 +1,16 @@
 package customer;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-public class UnfidelityState extends State {
+public class UnfidelityState extends State implements Serializable {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Customer customer;
 
 	public UnfidelityState(FidelityCustomer c) {

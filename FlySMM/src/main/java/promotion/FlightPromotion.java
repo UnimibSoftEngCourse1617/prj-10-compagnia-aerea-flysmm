@@ -5,7 +5,9 @@ import sale.Flight;
 public class FlightPromotion extends Promotion{
 	private Flight flight;
 
-	public FlightPromotion(){}
+	public FlightPromotion(){
+		super();
+	}
 	
 	public FlightPromotion(Flight flight){
 		this.promoType = "flight";

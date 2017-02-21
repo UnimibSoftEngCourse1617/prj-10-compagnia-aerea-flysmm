@@ -16,7 +16,10 @@ import frontController.UnknownCommand;
  */
 public class GetDepartureFlight extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private static final String RDATE = "rDate";
+	private static final String DDATE = "dDate";
+	private static final String PASSENGERS = "passengers";
+	
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -41,11 +44,12 @@ public class GetDepartureFlight extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		FrontCommand command = getCommand(request);
-		System.out.println(request.getParameter("rDate"));
-		System.out.println(request.getParameter("passengers"));
-		request.getSession().setAttribute("passengers", request.getParameter("passengers"));
+		System.out.println(request.getParameter(RDATE));
+		System.out.println(request.getParameter(PASSENGERS));
+		request.getSession().setAttribute(PASSENGERS, request.getParameter(PASSENGERS));
 
-		request.getSession().setAttribute("rDate", request.getParameter("rDate"));
+		request.getSession().setAttribute(DDATE, request.getParameter(DDATE));
+		request.getSession().setAttribute(RDATE, request.getParameter(RDATE));
 		if (command != null) {
 			command.init(getServletContext(), "GDF", request, response);
 			command.dispatch();

@@ -1,11 +1,16 @@
 package customer;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import sale.Address;
 
-public class Customer {
+public class Customer implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private long idCustomer;
 	private String name;
 	private String surname;
@@ -115,7 +120,4 @@ public class Customer {
 				+ ", email=" + email + ", password=" + password + ", phoneNumber=" + phoneNumber + ", dateOfBirth="
 				+ dateOfBirth + "]";
 	}
-	
-	
-
 }

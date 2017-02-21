@@ -6,7 +6,14 @@ public class SeasonPromotion extends Promotion{
 	private Date startDate;
 	private Date expireDate;
 	
-	public SeasonPromotion(){}
+	public void notify_() {
+		Mail m = new Mail();
+		m.sendMail("mail", "new S Promo");
+		}
+	
+	public SeasonPromotion(){
+		super();
+	}
 	
 	public SeasonPromotion(Date startDate, Date expireDate){
 		this.promoType = "season";

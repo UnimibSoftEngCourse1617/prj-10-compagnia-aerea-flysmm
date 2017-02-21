@@ -1,17 +1,15 @@
 package promotion;
 
-import java.util.List;
+import java.io.Serializable;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.hibernate.Session;
-
-import customer.Customer;
-import sale.Flight;
-import sale.Price;
-import servlets.SessionFactorySingleton;
+public abstract class Promotion implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 public abstract class Promotion {
+
 	protected int discountRate;
 	protected boolean fidelity;
 	protected String idPromo;
@@ -19,7 +17,10 @@ public abstract class Promotion {
 	protected String description;
 	protected String promoType;
 	
-	public Promotion(){}
+	public abstract void notify_();
+	
+	public Promotion(){
+		super();
 	
 	public void notify_(String text){
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();

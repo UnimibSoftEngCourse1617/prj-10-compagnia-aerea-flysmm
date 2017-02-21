@@ -10,6 +10,7 @@ public class Seat implements Serializable {
 	private Aircraft aircraft;
 
 	public Seat() {
+		super();
 	}
 
 	public Seat(int row, String seat, String tariff, Aircraft aircraft) {
