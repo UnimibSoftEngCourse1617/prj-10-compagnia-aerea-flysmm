@@ -1,23 +1,15 @@
 package frontController;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-
-import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import sale.Airport;
 import sale.Flight;
 import sale.Price;
-import servlets.HibernateProxyTypeAdapter;
 import servlets.SessionFactorySingleton;
 
 public class SaleCommand extends FrontCommand {
@@ -33,24 +25,50 @@ public class SaleCommand extends FrontCommand {
 	}
 
 	public void getDepartureFromDb() {
+		
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
+		
+		org.hibernate.Query query =  session.createQuery("Select icao from Airport where name=?");
+		query = query.setParameter(0, request.getParameter("aDeparture"));
+		List result = query.list();
 
-		List result = session
-				.createQuery("Select icao from Airport " + "where name = '" + request.getParameter("aDeparture") + "'")
-				.list();
 		String departure = (String) result.get(0);
-		request.getSession().setAttribute("dIcao", departure);
-		result = session
-				.createQuery("Select icao from Airport " + "where name = '" + request.getParameter("aArrival") + "'")
-				.list();
+		
+		////////////////////////////////////////////////////////////////////////
+		org.hibernate.Query queryArrivalAirport =  session.createQuery(
+				"Select icao from Airport " +
+				"where name = ?");
+		
+		queryArrivalAirport = queryArrivalAirport.setParameter(0, request.getParameter("aArrival"));
+		result = queryArrivalAirport.list();
+		
+		/////////////////////////////////////////////////////////////////////////
+		//request.getSession().setAttribute("dIcao", departure);
+		//String queryArrivalAirport = "Select icao from Airport " + "where name = '" + request.getParameter("aArrival")
+		//		+ "'";
+		//result = session.createQuery(queryArrivalAirport).list();
+
 		String arrival = (String) result.get(0);
 		request.getSession().setAttribute("aIcao", arrival);
-		result = session.createQuery("from Price p inner join p.flight f " + "where f.departureAirport.icao = '"
-				+ departure + "' AND " + "f.arrivalAirport.icao = '" + arrival + "' AND f.departureDate = '"
-				+ request.getParameter("dDate") + "' group by f.idFlight, p.seats.tariff").list();
+		
+		/////////////////////////////////////////////////////////////////////////////////////////////////
+		org.hibernate.Query queryInnerJoin =  session.createQuery(
+				"from Price p inner join p.flight f " +
+				"where f.departureAirport.icao = ? " +
+				"and f.arrivalAirport.icao = ? " +
+				"and f.departureDate = ? " +
+				"group by f.idFlight, p.seats.tariff");
+		
+		queryInnerJoin = queryInnerJoin.setParameter(0, departure);
+		queryInnerJoin = queryInnerJoin.setParameter(1, arrival);
+		queryInnerJoin = queryInnerJoin.setParameter(2, request.getParameter("dDate"));
+		
+		List result1 = queryInnerJoin.list();
+		/////////////////////////////////////////////////////////////////////////////////////////////////
+
 		List<Flight> flights = new ArrayList<Flight>();
-		for (Object[] o : (List<Object[]>) result) {
+		for (Object[] o : (List<Object[]>) result1) {
 			Price p = (Price) o[0];
 			Flight f = (Flight) o[1];
 			flights.add(new Flight(f, p));
@@ -73,11 +91,20 @@ public class SaleCommand extends FrontCommand {
 		String departure = (String) request.getSession().getAttribute("aIcao");
 		String arrival = (String) request.getSession().getAttribute("dIcao");
 		System.out.println(request.getSession().getAttribute("rDate"));
-		List result = session
-				.createQuery("from Price p inner join p.flight f " + "where f.departureAirport.icao = '" + departure
-						+ "' AND " + "f.arrivalAirport.icao = '" + arrival + "' AND f.departureDate = '"
-						+ request.getSession().getAttribute("rDate") + "' group by f.idFlight, p.seats.tariff")
-				.list();
+		
+		org.hibernate.Query queryFlyPrice =  session.createQuery(
+				"from Price p inner join p.flight f " + 
+				"where f.departureAirport.icao =? " + 
+				"AND f.arrivalAirport.icao =? " +
+				"AND f.departureDate =? "+ 
+				"group by f.idFlight, p.seats.tariff");
+		
+		queryFlyPrice = queryFlyPrice.setParameter(0, departure);
+		queryFlyPrice = queryFlyPrice.setParameter(1, arrival);
+		queryFlyPrice = queryFlyPrice.setParameter(2, request.getSession().getAttribute("rDate"));
+		
+		List result = queryFlyPrice.list();
+		
 		List<Flight> flights = new ArrayList<Flight>();
 		for (Object[] o : (List<Object[]>) result) {
 			Price p = (Price) o[0];
