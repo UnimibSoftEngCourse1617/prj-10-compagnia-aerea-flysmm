@@ -3,13 +3,11 @@ package promotion;
 import java.util.Date;
 
 public class SeasonPromotion extends Promotion{
+	
+	private static final long serialVersionUID = 1L;
+	
 	private Date startDate;
 	private Date expireDate;
-	
-	public void notify_() {
-		Mail m = new Mail();
-		m.sendMail("mail", "new S Promo");
-		}
 	
 	public SeasonPromotion(){
 		super();

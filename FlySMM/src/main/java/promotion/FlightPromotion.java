@@ -3,6 +3,9 @@ package promotion;
 import sale.Flight;
 
 public class FlightPromotion extends Promotion{
+	
+	private static final long serialVersionUID = 1L;
+	
 	private Flight flight;
 
 	public FlightPromotion(){
