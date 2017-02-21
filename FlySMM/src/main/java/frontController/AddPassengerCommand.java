@@ -20,6 +20,7 @@ import com.google.gson.GsonBuilder;
 import booking.Book;
 import booking.Passenger;
 import customer.Customer;
+import sale.Address;
 import sale.Aircraft;
 import sale.Airport;
 import sale.Flight;
@@ -28,9 +29,11 @@ import servlets.HibernateProxyTypeAdapter;
 import servlets.SessionFactorySingleton;
 
 public class AddPassengerCommand extends FrontCommand {
-
+	// public Address(long idAddress, String street, String street_number,
+	// String cap, String city, String country) {
 	private Date data = new Date();
-	Customer c = new Customer(121, "luca", "lorusso", "dgs", "dgvs", "popo", data);
+	Address a = new Address(1200, "vivaldi", "15", "20841", "carate", "italy");
+	Customer c = new Customer(121, "luca", "lorusso", a, "dgs", "dgvs", "popo", data);
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
@@ -62,8 +65,13 @@ public class AddPassengerCommand extends FrontCommand {
 			System.out.println(listPassenger);
 			session.setAttribute("listPassenger", listPassenger);
 			ArrayList<Flight> listFlight = new ArrayList<Flight>();
-			listFlight.add((Flight) request.getSession().getAttribute("chosenDeparture"));
-			listFlight.add((Flight) request.getSession().getAttribute("chosenReturn"));
+			try {
+				listFlight.add((Flight) request.getSession().getAttribute("chosenDeparture"));
+				listFlight.add((Flight) request.getSession().getAttribute("chosenReturn"));
+			} catch (Exception e) {
+				listFlight.clear();
+				listFlight.add((Flight) request.getSession().getAttribute("chosenDeparture"));
+			}
 			session.setAttribute("listFlight", listFlight);
 			session.setAttribute("Customer", c);
 
