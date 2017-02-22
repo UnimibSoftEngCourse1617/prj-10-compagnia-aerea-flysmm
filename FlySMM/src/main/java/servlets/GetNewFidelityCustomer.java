@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -54,10 +56,13 @@ public class GetNewFidelityCustomer extends HttpServlet {
 		response.getWriter().append(cFidelity.toString());
 
 		System.out.println(cFidelity.getClass().toString());
+		request.getSession().setAttribute("customer", cFidelity);
 		// scrivo e poi cancello perchè hibernate non permette l'update del
 		// discriminatore
 		writeFidelityCustomer((FidelityCustomer) cFidelity);
 		deleteCustomer((Customer) myObject);
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/homeFidelityCustomer.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	private void deleteCustomer(Customer c) {
@@ -66,6 +71,7 @@ public class GetNewFidelityCustomer extends HttpServlet {
 		session.getTransaction().begin();
 		session.delete(c);
 		session.getTransaction().commit();
+		
 	}
 
 	public static void writeFidelityCustomer(FidelityCustomer c) {

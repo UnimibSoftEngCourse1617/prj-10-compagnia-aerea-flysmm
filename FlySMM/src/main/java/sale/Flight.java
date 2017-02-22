@@ -17,14 +17,6 @@ public class Flight implements Serializable {
 	private Price price;
 	private int distance;
 
-	public int getDistance() {
-		return distance;
-	}
-
-	public void setDistance(int distance) {
-		this.distance = distance;
-	}
-
 	public Flight() {
 		super();
 	}
@@ -134,6 +126,12 @@ public class Flight implements Serializable {
 		this.arrivalAirport = arrivalAirport;
 	}
 	
-	
+	public int getDistance() {
+		return distance;
+	}
+
+	public void setDistance(int distance) {
+		this.distance = distance;
+	}
 
 }

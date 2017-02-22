@@ -119,5 +119,12 @@
 		</tbody>
 		<tfoot></tfoot>
 	</table>
+	
+	<form action="/addNewPaymentMethod.jsp" name="addPaymentMethod">
+		<input type="hidden" name="command" value="NewPayment">
+		<input type="submit" name="bntNewPayment" value="Aggiungi">
+	</form>
+	
+	
 </body>
 </html>

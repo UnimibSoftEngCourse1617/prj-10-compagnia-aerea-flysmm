@@ -42,7 +42,7 @@ public class Payment_options extends HttpServlet {
 
 		if (command != null) {
 			
-			command.init(getServletContext(), "GDF", request, response);
+			command.init(getServletContext(), "PaymentOptions", request, response);
 			command.dispatch();
 		} else {
 			System.out.println("CommandNotFound");
