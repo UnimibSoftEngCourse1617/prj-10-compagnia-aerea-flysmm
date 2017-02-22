@@ -50,7 +50,7 @@ public class AddPassengerCommand extends FrontCommand {
 					writePassenger(p);
 					listPassenger.add(p);
 				} else {
-					listPassenger.add(tmp);
+					listPassenger.add(p);
 				}
 				priceBaggage.add(this.getBaggagePriceFromDb(p));
 			}
