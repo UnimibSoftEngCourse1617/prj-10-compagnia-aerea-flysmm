@@ -50,17 +50,17 @@
 					</div>
 
 					<div class="field">
-						<label>Volo da</label> <input name="aDeparture" type="text">
+						<label>Volo da</label> <input name="aDeparture" type="text" placeholder="malpensa" required>
 					</div>
 
 					<div class="field">
-						<label>Volo per</label> <input name="aArrival" type="text"></input>
+						<label>Volo per</label> <input name="aArrival" type="text" placeholder="fiumicino" required></input>
 					</div>
 
 					<div class="three fields">
 
 						<div class="field">
-							<label>Partenza</label> <input name="dDate" type="text">
+							<label>Partenza</label> <input name="dDate" type="text" placeholder="YYYY-MM-DD" required>
 						</div>
 
 						<div id="returnDate" style='' class="field">
