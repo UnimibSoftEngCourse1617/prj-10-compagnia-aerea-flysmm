@@ -16,6 +16,15 @@ public class Flight implements Serializable {
 	private Airport arrivalAirport;
 	private Price price;
 	private int distance;
+	private int remainingSeats;
+
+	public int getRemainingSeats() {
+		return remainingSeats;
+	}
+
+	public void setRemainingSeats(int remainingSeats) {
+		this.remainingSeats = remainingSeats;
+	}
 
 	public int getDistance() {
 		return distance;
@@ -30,7 +39,7 @@ public class Flight implements Serializable {
 	}
 
 	public Flight(Aircraft aircraft, Time arrivalTime, Time departureTime, String idFlight, Date departureDate,
-			Airport departureAirport, Date arrivalDate, Airport arrivalAirport, Price price) {
+			Airport departureAirport, Date arrivalDate, Airport arrivalAirport, Price price, int remainingSeats) {
 
 		this.aircraft = aircraft;
 		this.idFlight = idFlight;
@@ -41,6 +50,7 @@ public class Flight implements Serializable {
 		this.departureTime = departureTime;
 		this.arrivalTime = arrivalTime;
 		this.price = price;
+		this.remainingSeats = remainingSeats;
 	}
 	
 	public Flight(Flight f, Price p) {
@@ -53,6 +63,7 @@ public class Flight implements Serializable {
 		this.departureTime = f.getDepartureTime();
 		this.arrivalTime = f.getArrivalTime();
 		this.price = p;
+		this.remainingSeats = f.remainingSeats;
 	}
 	
 	public Flight(String idFlight, Airport departureAirport, Airport arrivalAirport) {
