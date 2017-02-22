@@ -41,6 +41,7 @@
 				<th>Arrival Time</th>
 				<th>Tariff</th>
 				<th>Price</th>
+				<th>Fidelity Price</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -55,21 +56,16 @@
 					<td>${flight.arrivalDate}</td>
 					<td>${flight.arrivalTime}</td>
 					<td>${flight.price.seats.tariff}</td>
+					<td>${flight.price.amount}<br></td>
+					<td>${flight.price.discountedAmount}</td>
 					<td><form method="post" name="flightItems"
 							action="./GetReturnFlight">
-							<input type="submit" 
-								class="ui green button"
-								value="${flight.price.amount}" />
-							<input type="hidden"
-								name="chosen"
-								value="${flight.idFlight}-${flight.price.seats.tariff}" />
-							<input type="hidden"
-								name="command"
-								value="Sale" />
-						</form>
-					</td>
+							<input type="submit" class="ui green button" value="Acquista" />
+							<input type="hidden" name="chosen"
+								value="${flight.idFlight}-${flight.price.seats.tariff}" /> <input
+								type="hidden" name="command" value="Sale" />
+						</form></td>
 				</tr>
-
 			</c:forEach>
 		</tbody>
 		<tfoot></tfoot>
