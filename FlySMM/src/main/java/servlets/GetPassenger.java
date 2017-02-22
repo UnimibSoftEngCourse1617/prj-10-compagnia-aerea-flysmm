@@ -39,7 +39,7 @@ public class GetPassenger extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		FrontCommand command = getCommand(request);
+		FrontCommand command = FrontCommand.getCommand(request, response);
 		if (command != null) {
 			command.init(getServletContext(), "GDF", request, response);
 			command.dispatch();
@@ -62,32 +62,14 @@ public class GetPassenger extends HttpServlet {
 				i++;
 			}
 		}
+		float totalPrice = 0;
+		for (Book b : listBook) {
+			totalPrice += b.getTotalPrice();
+		}
+		request.setAttribute("totalPrice", totalPrice);
+		
 		request.getSession().setAttribute("listBook", listBook);
-		System.out.println("quaaaa");
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/bookRecap.jsp");
 		requestDispatcher.forward(request, response);
-
 	}
-
-	private FrontCommand getCommand(HttpServletRequest request) {
-		FrontCommand result = null;
-		try {
-			return (FrontCommand) getCommandClass(request).newInstance();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-
-	private Class getCommandClass(HttpServletRequest request) {
-		Class result;
-		final String commandClassName = "frontController." + (String) request.getParameter("command") + "Command";
-		try {
-			result = Class.forName(commandClassName);
-		} catch (ClassNotFoundException e) {
-			result = UnknownCommand.class;
-		}
-		return result;
-	}
-
 }
