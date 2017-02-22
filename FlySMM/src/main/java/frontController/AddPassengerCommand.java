@@ -92,9 +92,13 @@ public class AddPassengerCommand extends FrontCommand {
 	public Passenger getPassengerFromDb(Passenger p) {
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
-		Passenger tmp;
+		Passenger tmp = null;
 		List result = session.createQuery("from Passenger where Fiscal_code = '" + p.getFiscal_code() + "'").list();
-		tmp = (Passenger) result.get(0);
+		try {
+			tmp = (Passenger) result.get(0);
+		} catch (Exception e) {
+
+		}
 		return tmp;
 	}
 
