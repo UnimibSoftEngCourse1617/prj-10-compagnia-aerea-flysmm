@@ -63,7 +63,6 @@ public class GetPassenger extends HttpServlet {
 			}
 		}
 		request.getSession().setAttribute("listBook", listBook);
-		System.out.println("quaaaa");
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/bookRecap.jsp");
 		requestDispatcher.forward(request, response);
 	}
