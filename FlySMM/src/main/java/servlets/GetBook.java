@@ -1,61 +1,52 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import org.hibernate.Session;
+import org.hibernate.Query;
+import org.hibernate.criterion.SizeExpression;
+import org.hibernate.mapping.List;
 
+import booking.Book;
+import booking.Passenger;
+import customer.Customer;
 import frontController.FrontCommand;
 import frontController.UnknownCommand;
+import sale.Flight;
 
-/**
- * Servlet implementation class GetDepartureFlight
- */
-public class GetDepartureFlight extends HttpServlet {
+public class GetBook extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String RDATE = "rDate";
-	private static final String DDATE = "dDate";
-	private static final String PASSENGERS = "passengers";
-	
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public GetDepartureFlight() {
+
+	public GetBook() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.getWriter().append(request.getParameter("command"));
+
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.getSession().setAttribute(PASSENGERS, request.getParameter(PASSENGERS));
 
-		request.getSession().setAttribute(DDATE, request.getParameter(DDATE));
-		request.getSession().setAttribute(RDATE, request.getParameter(RDATE));
-		
 		FrontCommand command = FrontCommand.getCommand(request, response);
 		if (command != null) {
 			command.init(getServletContext(), "GDF", request, response);
 			command.dispatch();
-		}
-		else {
+
+
+		} else {
 			System.out.println("CommandNotFound");
 		}
+
 	}
 }

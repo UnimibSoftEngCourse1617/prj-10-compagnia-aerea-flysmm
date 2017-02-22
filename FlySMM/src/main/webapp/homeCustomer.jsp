@@ -16,10 +16,10 @@
 <body>
 
 	<div class="ui stackable inverted menu">
-		<a href="index.jsp" class="item">FlySMM</a>
-		<a class="item"> About Us </a>
-		<a class="item"> Jobs </a>
-		<a class="item"> Locations </a>
+
+		<a href="index.jsp" class="item">FlySMM</a> <a class="item"> About
+			Us </a> <a class="item"> Jobs </a> <a class="item"> Locations </a>
+
 	</div>
 
 	<div class="ui two column grid">
@@ -32,13 +32,17 @@
 					<div class="field">
 						Name : ${customer.name}<br> Surname :${customer.surname}<br>
 						Email :${customer.email}<br> Phone number
-						:${customer.phoneNumber}<br> 
+						:${customer.phoneNumber}<br>
 					</div>
 
 					Begin a fidelity Customer <br> <input
 						class="ui blue submit button" type="submit" value="fidelity">
-						<input type="hidden" name="myObjectId" value="${myObjectId}" />
 
+				</form>
+				<form class="ui form" name="listBook" method="post" action="./GetBook">
+					<input class="ui blue submit button" type="submit"
+						value="View your flight">
+						<input type="hidden" name="command" value="GetBook">
 				</form>
 			</div>
 		</div>
