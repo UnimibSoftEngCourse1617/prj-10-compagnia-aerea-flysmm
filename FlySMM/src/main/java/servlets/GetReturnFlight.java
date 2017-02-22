@@ -55,10 +55,18 @@ public class GetReturnFlight extends HttpServlet {
 			request.getSession().setAttribute("chosenDeparture", chosen);
 		}
 		FrontCommand command = getCommand(request);
-		if (command != null) {
+		String op = request.getSession().getAttribute("rDate").toString();
+		
+		System.out.println(op.toString());
+		if (command != null &&  !op.equals("")) {
+			System.out.println("sono qui bastardo!!!");
 			command.init(getServletContext(), "GRF", request, response);
 			command.dispatch();
-		} else {
+		} 
+		else if(op.equals("")) {
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/Gateway");
+			dispatcher.forward(request, response);
+		}else{
 			System.out.println("CommandNotFound");
 		}
 	}
