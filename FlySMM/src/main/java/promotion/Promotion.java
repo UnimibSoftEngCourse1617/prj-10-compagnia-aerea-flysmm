@@ -32,7 +32,7 @@ public abstract class Promotion implements Serializable{
 
 		Mail m = new Mail();
 		
-		for (Customer c : (List<Customer>) result) {
+		for (Customer c : result) {
 			String email = c.getEmail();
 			m.sendMail(email, text);
 		}

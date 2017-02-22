@@ -31,6 +31,7 @@
 		<a class="item">FlySMM</a> <a class="item"> About Us </a> <a
 			class="item"> Jobs </a> <a class="item"> Locations </a>
 	</div>
+	<h1 align="center">Book Unpayed</h1>
 	<table class="ui celled table">
 		<thead>
 			<tr>
@@ -43,30 +44,61 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${listBook}" var="book">
+			<c:forEach items="${listBookUnpayed}" var="bookU">
 				<tr>
-					<td>${book.bookId}</td>
-					<td>${book.flightId}</td>
-					<td>${book.documentP}</td>
-					<td>${book.departureDate}</td>
-					<td>${book.airplaneId}</td>
-					<td>${book.totalPrice}</td>
+					<td>${bookU.bookId}</td>
+					<td>${bookU.flightId}</td>
+					<td>${bookU.documentP}</td>
+					<td>${bookU.departureDate}</td>
+					<td>${bookU.airplaneId}</td>
+					<td>${bookU.totalPrice}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
-		 <tr><th></th>
+		<tfoot>
+    <tr><th></th>
     <th></th>
     <th></th>
     <th></th>
     <th>Total Price</th>
-    <th>${totalPrice}</th>
+    <th>${totalPriceHomeCustomer}</th>
   </tr></tfoot>
 	</table>
-	<form class="ui form" name="fSearchFly" method="post"
-		action="./BookServlet">
-		<input class="ui blue submit button" type="submit" value="Book!">
-		<input type="hidden" name="command" value="Book" />
-	</form>
-	
+
+	<input class="ui red submit button" type="submit" value="Pay">
+	<input type="hidden" name="command" value="nnnnnnnnnnn" />
+	<h1 align="center">Book Payed</h1>
+	<table class="ui celled table">
+		<thead>
+			<tr>
+				<th>Book Id</th>
+				<th>Flight Id</th>
+				<th>Fiscal code passenger</th>
+				<th>Departure Date</th>
+				<th>Airplane Id</th>
+				<th>Price</th>
+				<th>Edit</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${listBookPayed}" var="bookP">
+				<tr>
+					<td>${bookP.bookId}</td>
+					<td>${bookP.flightId}</td>
+					<td>${bookP.documentP}</td>
+					<td>${bookP.departureDate}</td>
+					<td>${bookP.airplaneId}</td>
+					<td>${bookP.totalPrice}</td>
+					<td><form method="post" name="flightItems" action="./#">
+							<input type="submit" class="ui blue button" value="Edit" /> <input
+								type="hidden" name="chosen" value="${bookP.bookId}" /> <input
+								type="hidden" name="command" value="nnnnnnnnnnn" />
+						</form></td>
+				</tr>
+			</c:forEach>
+		</tbody>
+		<tfoot></tfoot>
+	</table>
+
 </body>
 </html>
