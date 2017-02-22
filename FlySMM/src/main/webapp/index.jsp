@@ -26,13 +26,12 @@
 <body>
 
 	<div class="ui stackable inverted menu">
-		<a class="item">FlySMM</a> <a class="item"> About Us </a>
-		<a class="item"> Jobs </a> <a class="item"> Locations </a>
-		<a href="loginPage.html" class="right item"> Login </a>
+		<a class="item">FlySMM</a> <a class="item"> About Us </a> <a
+			class="item"> Jobs </a> <a class="item"> Locations </a> <a
+			href="loginPage.html" class="right item"> Login </a>
 	</div>
-
 	<!-- INIZIO area dedicata alla ricerca di un volo -->
-	
+
 	<div class="ui two column grid">
 		<div class="column">
 			<div class="ui raised segment">
@@ -50,17 +49,20 @@
 					</div>
 
 					<div class="field">
-						<label>Volo da</label> <input name="aDeparture" type="text" placeholder="malpensa" required>
+						<label>Volo da</label> <input name="aDeparture" type="text"
+							placeholder="malpensa" required>
 					</div>
 
 					<div class="field">
-						<label>Volo per</label> <input name="aArrival" type="text" placeholder="fiumicino" required></input>
+						<label>Volo per</label> <input name="aArrival" type="text"
+							placeholder="fiumicino" required></input>
 					</div>
 
 					<div class="three fields">
 
 						<div class="field">
-							<label>Partenza</label> <input name="dDate" type="date" placeholder="yyyy-mm-dd" required>
+							<label>Partenza</label> <input name="dDate" type="date"
+								placeholder="yyyy-mm-dd" required>
 						</div>
 
 						<div id="returnDate" style='' class="field">
@@ -86,6 +88,12 @@
 		</div>
 	</div>
 	<!-- FINE area dedicata alla ricerca di un volo -->
+
+
+
+
+
+
 
 	<form method="post" action="./GetPromotion">
 		<button class="ui red button" name="command" value="Promo">
