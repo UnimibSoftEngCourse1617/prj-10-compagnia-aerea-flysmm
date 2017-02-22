@@ -42,9 +42,9 @@
 
 					<div class="field">
 						<div class="ui buttons">
-							<div onclick="viewReturnDate()" class="ui mini button">Andata
+							<div onclick="viewReturnDate()" class="ui green basic button">Andata
 								e Ritorno</div>
-							<div onclick="hideReturnDate()" class="ui mini button">Solo
+							<div onclick="hideReturnDate()" class="ui red basic button">Solo
 								Andata</div>
 						</div>
 					</div>
