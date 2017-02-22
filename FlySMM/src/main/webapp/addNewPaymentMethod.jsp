@@ -8,7 +8,6 @@
 </head>
 <body>
 	<form name="newPaymentMethod" action="#" method="post">
-		
 		<div class="field">
 			<label></label>
 			<input name="" type="text">

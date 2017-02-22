@@ -38,8 +38,7 @@ public class AddNewPaymentMethod extends HttpServlet {
 		FrontCommand command = FrontCommand.getCommand(request, response);
 
 		if (command != null) {
-			
-			command.init(getServletContext(), "GDF", request, response);
+			command.init(getServletContext(), "NewPayment", request, response);
 			command.dispatch();
 		} else {
 			System.out.println("CommandNotFound");
