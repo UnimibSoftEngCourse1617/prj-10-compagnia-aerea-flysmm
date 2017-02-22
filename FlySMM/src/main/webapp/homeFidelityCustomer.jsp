@@ -56,8 +56,9 @@
 	</div>	
 	<div class="ui three column very relaxed grid">
 		<div class="column">
-		 <form  method="post" action="./GetPromotion">
-    		<button class="ui green button" name="command" value="Promo">
+		 <form  name="listBook" method="post" action="./GetBook">
+    		<button class="ui green button">
+    		<input type="hidden" name="command" value="GetBook">
   				<i class="tags icon"></i>
   				See Your Books
 			</button>
