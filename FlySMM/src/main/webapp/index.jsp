@@ -30,7 +30,6 @@
 			class="item"> Jobs </a> <a class="item"> Locations </a> <a
 			href="loginPage.html" class="right item"> Login </a>
 	</div>
-
 	<!-- INIZIO area dedicata alla ricerca di un volo -->
 
 	<div class="ui two column grid">

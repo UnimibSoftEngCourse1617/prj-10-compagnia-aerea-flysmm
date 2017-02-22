@@ -19,7 +19,12 @@
 
 		<a href="index.jsp" class="item">FlySMM</a> <a class="item"> About
 			Us </a> <a class="item"> Jobs </a> <a class="item"> Locations </a>
-
+		<a href="index.jsp" class="item"> <form >
+			Logout<input type="hidden" name="${customer}" value="logout"/>
+			<%
+				request.getSession().removeAttribute("customer");
+			%>
+		</form></a>
 	</div>
 
 	<div class="ui two column grid">
@@ -39,10 +44,11 @@
 						class="ui blue submit button" type="submit" value="fidelity">
 
 				</form>
-				<form class="ui form" name="listBook" method="post" action="./GetBook">
+				<form class="ui form" name="listBook" method="post"
+					action="./GetBook">
 					<input class="ui blue submit button" type="submit"
-						value="View your flight">
-						<input type="hidden" name="command" value="GetBook">
+						value="View your flight"> <input type="hidden"
+						name="command" value="GetBook">
 				</form>
 			</div>
 		</div>
