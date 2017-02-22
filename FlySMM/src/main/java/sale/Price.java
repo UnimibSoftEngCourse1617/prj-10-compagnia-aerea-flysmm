@@ -9,6 +9,15 @@ public class Price implements Serializable {
 	private Seat seats;
 	private Promotion promo;
 	private float amount;
+	private float discountedAmount;
+
+	public float getDiscountedAmount() {
+		return discountedAmount;
+	}
+
+	public void setDiscountedAmount(float discountedAmount) {
+		this.discountedAmount = discountedAmount;
+	}
 
 	public Price() {
 		super();
