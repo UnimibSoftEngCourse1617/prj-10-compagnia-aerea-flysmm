@@ -26,13 +26,11 @@ public class GetNewCustomer extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
 		FrontCommand command = FrontCommand.getCommand(request, response);
 
 		if (command != null) {
 			command.init(getServletContext(), "GDF", request, response);
 			command.dispatch();
-
 		} else {
 			System.out.println("CommandNotFound");
 		}
