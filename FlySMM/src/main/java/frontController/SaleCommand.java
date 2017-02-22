@@ -73,11 +73,11 @@ public class SaleCommand extends FrontCommand {
 			Price p = (Price) o[0];
 			Flight f = (Flight) o[1];
 			Flight fp = new Flight(f, p);
-//			if (fp.getPrice().getPromo() != null) {
-//				float price = fp.getPrice().getAmount();
-//				int discount = fp.getPrice().getPromo().getDiscountRate();
-//				fp.getPrice().setAmount(price * discount / 100);  
-//			}
+			if (fp.getPrice().getPromo() != null) {
+				float price = fp.getPrice().getAmount();
+				int discount = fp.getPrice().getPromo().getDiscountRate();
+				fp.getPrice().setAmount(price * discount / 100);
+			}
 			flights.add(fp);
 		}
 		//session.getTransaction().commit();
