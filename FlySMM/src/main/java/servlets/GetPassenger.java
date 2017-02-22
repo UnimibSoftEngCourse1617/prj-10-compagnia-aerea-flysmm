@@ -38,7 +38,7 @@ public class GetPassenger extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		FrontCommand command = FrontCommand.getCommand(request, response);
 		if (command != null) {
 			command.init(getServletContext(), "GDF", request, response);
@@ -62,6 +62,12 @@ public class GetPassenger extends HttpServlet {
 				i++;
 			}
 		}
+		float totalPrice = 0;
+		for (Book b : listBook) {
+			totalPrice += b.getTotalPrice();
+		}
+		request.setAttribute("totalPrice", totalPrice);
+		
 		request.getSession().setAttribute("listBook", listBook);
 		System.out.println("quaaaa");
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/bookRecap.jsp");

@@ -42,6 +42,7 @@
 				<form class="ui form" name="listBook" method="post" action="./GetBook">
 					<input class="ui blue submit button" type="submit"
 						value="View your flight">
+						<input type="hidden" name="command" value="GetBook">
 				</form>
 			</div>
 		</div>
