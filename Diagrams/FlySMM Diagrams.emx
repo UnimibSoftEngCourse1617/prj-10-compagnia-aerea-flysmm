@@ -3149,8 +3149,8 @@
     <packagedElement xmi:type="uml:Actor" xmi:id="_UbWlwOVCEea6qfG_R_djhQ" name="Fidelity User"/>
     <packagedElement xmi:type="uml:Actor" xmi:id="_WCoFkOVCEea6qfG_R_djhQ" name="Generic User"/>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_ZnnPQOVCEea6qfG_R_djhQ" name="Buy_Promotion"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_aMO_QOVCEea6qfG_R_djhQ" name="Notify_Promotion"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_vf_QwOVCEea6qfG_R_djhQ" name="Consult_Promotion"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_aMO_QOVCEea6qfG_R_djhQ" name="Notify Promotion"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_vf_QwOVCEea6qfG_R_djhQ" name="Consult Promotion"/>
     <packagedElement xmi:type="uml:Association" xmi:id="_44Ir4OVCEea6qfG_R_djhQ" memberEnd="_44J6AOVCEea6qfG_R_djhQ _44MWQOVCEea6qfG_R_djhQ" navigableOwnedEnd="_44J6AOVCEea6qfG_R_djhQ">
       <ownedEnd xmi:id="_44J6AOVCEea6qfG_R_djhQ" name="consult_Promotion" visibility="private" type="_vf_QwOVCEea6qfG_R_djhQ" association="_44Ir4OVCEea6qfG_R_djhQ">
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_44LIIeVCEea6qfG_R_djhQ" value="1"/>
@@ -3191,7 +3191,7 @@
     </packagedElement>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_vCU9AOVFEeaeFY_vskE_yg" name="Sign-up">
       <ownedComment xmi:id="_wi2jIOxtEeaM8_OB5P863g" annotatedElement="_vCU9AOVFEeaeFY_vskE_yg">
-        <body>&lt;p class=&quot;MsoNormal&quot;>Sing up l’utente può procedere alla registrazione in qualsiasi momento purché avvenga prima della prenotazione del volo. l’utente inserisce i dati necessari per la registrazione ( nome cognome CF e-mail password&lt;span>...&lt;/span>) il sistema elabora i dati e controlla che tutti i campi obbligatori siano stati rispettati, se l’esito è positivo l’utente viene registrato nel DB e può procedere con la prenotazione/acquisto biglietto.&lt;/p></body>
+        <body>&lt;p class=&quot;MsoNormal&quot;>Sign up l’utente può procedere alla registrazione in qualsiasi momento purché avvenga prima della prenotazione del volo. l’utente inserisce i dati necessari per la registrazione ( nome cognome CF e-mail password&lt;span>...&lt;/span>) il sistema elabora i dati e controlla che tutti i campi obbligatori siano stati rispettati, se l’esito è positivo l’utente viene registrato nel DB e può procedere con la prenotazione/acquisto biglietto.&lt;/p></body>
       </ownedComment>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_x6PlUOVFEeaeFY_vskE_yg" memberEnd="_x6ZWUOVFEeaeFY_vskE_yg _x6ZWU-VFEeaeFY_vskE_yg" navigableOwnedEnd="_x6ZWUOVFEeaeFY_vskE_yg">
