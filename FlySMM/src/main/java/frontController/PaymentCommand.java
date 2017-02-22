@@ -16,8 +16,11 @@ public class PaymentCommand extends FrontCommand {
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
-		if (caller.equals("GDF")) {
+		if (caller.equals("PaymentOptions")) {
 			getPaymentMethodFromDB();
+		}
+		if (caller.equals("NewPayment")){
+			addNewPaymentMethod();
 		}
 	}
 
@@ -56,5 +59,12 @@ public class PaymentCommand extends FrontCommand {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void addNewPaymentMethod(){
+		Session session = SessionFactorySingleton.getSessionFactory().openSession();
+		session.beginTransaction();
+		
+
 	}
 }

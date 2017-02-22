@@ -49,7 +49,6 @@
     <servlet-name>GetNewCustomer</servlet-name>
     <url-pattern>/GetNewCustomer</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>Payment_options</servlet-name>
     <servlet-class>servlets.Payment_options</servlet-class>
@@ -58,6 +57,12 @@
     <servlet-name>Payment_options</servlet-name>
     <url-pattern>/Payment_options</url-pattern>
   </servlet-mapping>
-  
-  
+  <servlet>
+  	<servlet-name>AddNewPaymentMethod</servlet-name>
+  	<servlet-class>servlets.AddNewPaymentMethod</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddNewPaymentMethod</servlet-name>
+  	<url-pattern>/AddNewPaymentMethod</url-pattern>  
+  </servlet-mapping>
 </web-app>

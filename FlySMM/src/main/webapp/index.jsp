@@ -95,7 +95,7 @@
 	<a href="./AppBook">Book</a>
 	<a href="./AppBook">ProvaBook</a>
 	
-	<form name="daicazzo"  action="./Payment_options" method="POST" >
+	<form name="payment"  action="./Payment_options" method="POST" >
 		<input type="hidden" name="command" value="Payment">
 		<input type="hidden" name="idCustomer" value="121">
 		<input type="submit" value="Payment" name="Payment">  
