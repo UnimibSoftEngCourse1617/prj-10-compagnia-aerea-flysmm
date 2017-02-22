@@ -27,6 +27,9 @@ public class SaleCommand extends FrontCommand {
 		if (caller.equals("GDF")) {
 			getDepartureFromDb();
 		}
+		if (caller.equals("GRF")) {
+			getReturnFromDb();
+		}
 	}
 
 	public void getDepartureFromDb() {
@@ -37,27 +40,54 @@ public class SaleCommand extends FrontCommand {
 				.createQuery("Select icao from Airport " + "where name = '" + request.getParameter("aDeparture") + "'")
 				.list();
 		String departure = (String) result.get(0);
-
+		request.getSession().setAttribute("dIcao", departure);
 		result = session
 				.createQuery("Select icao from Airport " + "where name = '" + request.getParameter("aArrival") + "'")
 				.list();
 		String arrival = (String) result.get(0);
-
+		request.getSession().setAttribute("aIcao", arrival);
 		result = session.createQuery("from Price p inner join p.flight f " + "where f.departureAirport.icao = '"
-				+ departure + "' AND " + "f.arrivalAirport.icao = '" + arrival + "' group by f.idFlight, p.seats.tariff").list();
+				+ departure + "' AND " + "f.arrivalAirport.icao = '" + arrival + "' AND f.departureDate = '"
+				+ request.getParameter("dDate") + "' group by f.idFlight, p.seats.tariff").list();
 		List<Flight> flights = new ArrayList<Flight>();
 		for (Object[] o : (List<Object[]>) result) {
 			Price p = (Price) o[0];
 			Flight f = (Flight) o[1];
-			flights.add(new Flight(f,p));
+			flights.add(new Flight(f, p));
 		}
 		session.getTransaction().commit();
-		// GsonBuilder b = new GsonBuilder();
-		// b.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
-		// Gson gson = b.create();
-		// String json = gson.toJson((List<Flight>) result);
-		request.setAttribute("flights", flights);
-		RequestDispatcher dispatcher = context.getRequestDispatcher("/flights.jsp");
+		request.getSession().setAttribute("flights", flights);
+		RequestDispatcher dispatcher = context.getRequestDispatcher("/departure_flights.jsp");
+		try {
+			dispatcher.forward(request, response);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void getReturnFromDb() {
+		Session session = SessionFactorySingleton.getSessionFactory().openSession();
+		session.beginTransaction();
+		String departure = (String) request.getSession().getAttribute("aIcao");
+		String arrival = (String) request.getSession().getAttribute("dIcao");
+		System.out.println(request.getSession().getAttribute("rDate"));
+		List result = session
+				.createQuery("from Price p inner join p.flight f " + "where f.departureAirport.icao = '" + departure
+						+ "' AND " + "f.arrivalAirport.icao = '" + arrival + "' AND f.departureDate = '"
+						+ request.getSession().getAttribute("rDate") + "' group by f.idFlight, p.seats.tariff")
+				.list();
+		List<Flight> flights = new ArrayList<Flight>();
+		for (Object[] o : (List<Object[]>) result) {
+			Price p = (Price) o[0];
+			Flight f = (Flight) o[1];
+			flights.add(new Flight(f, p));
+		}
+		session.getTransaction().commit();
+		request.getSession().removeAttribute("flights");
+		request.getSession().setAttribute("flights", flights);
+		RequestDispatcher dispatcher = context.getRequestDispatcher("/return_flights.jsp");
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException e) {

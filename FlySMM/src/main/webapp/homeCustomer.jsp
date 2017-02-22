@@ -1,3 +1,4 @@
+<%@page import="customer.Customer"%>
 <html>
 <head>
 <!-- Inizio sezione per Semantic ui -->
@@ -13,6 +14,7 @@
 <title>Home Customer</title>
 </head>
 <body>
+
 	<div class="ui stackable inverted menu">
 		<a class="item">FlySMM</a> <a class="item"> About Us </a> <a
 			class="item"> Jobs </a> <a class="item"> Locations </a>
@@ -26,10 +28,15 @@
 					<h1 class="ui header">Home</h1>
 
 					<div class="field">
-						<label>Name</label> <input type="text" name="name"
-							placeholder="name" required>
+						Name :
+						${customer.name}<br>
+						Surname :${customer.surname}<br>
+						Email :${customer.email}<br>
+						Phone number :${customer.phoneNumber}<br>
+
+
 					</div>
-				
+
 
 					<input class="ui blue submit button" type="submit" value="Registry">
 					<input type="hidden" name="command" value="NewCustomer" />
