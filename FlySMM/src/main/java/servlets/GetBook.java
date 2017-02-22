@@ -31,7 +31,6 @@ public class GetBook extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
 		long idCustomer = (Long) request.getSession().getAttribute("idCustomer");
 		System.out.println(idCustomer);
 		getBookUnpayed(idCustomer);
@@ -41,8 +40,15 @@ public class GetBook extends HttpServlet {
 	public List getBookUnpayed(long id) {
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
-		List result = session.createQuery("from Book where User_ID = '" + id + "' and Payed = '0'").list();
-		System.out.println(result);
+		
+		org.hibernate.Query query =  session.createQuery(
+				"FROM Book " +
+				"WHERE User_ID = ? " +
+				"AND Payed = '0'"
+				);
+		query = query.setParameter(0, id);
+		List result = query.list();
+		
 		return result;
 	}
 
