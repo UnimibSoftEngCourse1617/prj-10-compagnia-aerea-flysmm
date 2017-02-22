@@ -19,11 +19,9 @@ public class BookCommand extends FrontCommand {
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
-
 		ArrayList<Book> listBook = (ArrayList<Book>) request.getSession().getAttribute("listBook");
 		for (Book b : listBook) {
 			writeBook(b);
-
 		}
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/success.html");
 		requestDispatcher.forward(request, response);
