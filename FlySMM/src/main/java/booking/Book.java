@@ -10,6 +10,10 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class Book implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String bookId;
 	private long customerId;
 	private Date bookingDate;

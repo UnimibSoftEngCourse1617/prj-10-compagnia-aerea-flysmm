@@ -33,10 +33,13 @@ public class CustomerCommand extends FrontCommand {
 
 			if (result.size() == 1) {
 				customerRegistry = (Customer) result.get(0);
+
 				System.out.println(customerRegistry.getClass().toString());
 
 				request.getSession().setAttribute("customer", customerRegistry);
+
 				request.getSession().setAttribute("idCustomer", customerRegistry.getIdCustomer());
+				request.getSession().setAttribute("Customer", customerRegistry);
 				RequestDispatcher dispatcher;
 				if (request.getSession().getAttribute("chosenDeparture") == null) {
 					if (customerRegistry.getClass().toString().matches("class customer.FidelityCustomer")) {
@@ -56,7 +59,7 @@ public class CustomerCommand extends FrontCommand {
 			}
 
 		} catch (Exception e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 
 	}

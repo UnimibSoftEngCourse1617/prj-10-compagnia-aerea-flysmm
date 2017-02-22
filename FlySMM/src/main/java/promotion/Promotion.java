@@ -1,6 +1,15 @@
 package promotion;
 
-public abstract class Promotion {
+import java.util.List;
+import java.io.Serializable;
+import org.hibernate.Session;
+import customer.Customer;
+import servlets.SessionFactorySingleton;
+
+public abstract class Promotion implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
 	protected int discountRate;
 	protected boolean fidelity;
 	protected String idPromo;
@@ -8,9 +17,28 @@ public abstract class Promotion {
 	protected String description;
 	protected String promoType;
 	
-	public abstract void notify_();
+	public Promotion(){
+		super();
+	}
 	
-	public Promotion(){}
+	public void notify_(String text){
+		Session session = SessionFactorySingleton.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		@SuppressWarnings("unchecked")
+		List<Customer> result = session
+				.createQuery("from Customer where State_fidelity = 'Fidelity Customer'")
+				.list();
+
+		Mail m = new Mail();
+		
+		for (Customer c : (List<Customer>) result) {
+			String email = c.getEmail();
+			m.sendMail(email, text);
+		}
+		
+		session.getTransaction().commit();
+	}
 
 	public int getDiscountRate() {
 		return discountRate;

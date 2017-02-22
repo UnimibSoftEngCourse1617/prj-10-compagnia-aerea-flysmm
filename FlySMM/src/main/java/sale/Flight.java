@@ -3,11 +3,8 @@ package sale;
 import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
-import java.util.List;
 
-import booking.Book;
-
-public class Flight {
+public class Flight implements Serializable {
 
 	private Aircraft aircraft;
 	private String idFlight;
@@ -29,6 +26,7 @@ public class Flight {
 	}
 
 	public Flight() {
+		super();
 	}
 
 	public Flight(Aircraft aircraft, Time arrivalTime, Time departureTime, String idFlight, Date departureDate,

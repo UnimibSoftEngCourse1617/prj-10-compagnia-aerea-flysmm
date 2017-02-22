@@ -1,46 +1,31 @@
 package frontController;
 
 import java.io.IOException;
-import java.sql.Time;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 
 import org.hibernate.Session;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import booking.Baggage;
-import booking.Book;
 import booking.Passenger;
 import customer.Customer;
 import sale.Address;
-import sale.Aircraft;
-import sale.Airport;
 import sale.Flight;
-import sale.Price;
-import servlets.HibernateProxyTypeAdapter;
 import servlets.SessionFactorySingleton;
 
 public class AddPassengerCommand extends FrontCommand {
-	private Date data = new Date();
-	Address a = new Address(1200, "vivaldi", "15", "20841", "carate", "italy");
-	Customer c = new Customer(121, "luca", "lorusso", a, "dgs", "dgvs", "popo", data);
 
-	@Override
 	public void dispatch() throws ServletException, IOException {
 		if (caller.equals("GDF")) {
 			HttpSession session = request.getSession();
 			ArrayList<Passenger> listPassenger = new ArrayList<Passenger>();
 			ArrayList<Integer> priceBaggage = new ArrayList<Integer>();
-
+			Customer c = (Customer) request.getSession().getAttribute("Customer");
 			String nPass = (String) request.getSession().getAttribute("passengers");
 			int length = Integer.parseInt(nPass);
 			for (int i = 0; i < length; i++) {
@@ -52,15 +37,20 @@ public class AddPassengerCommand extends FrontCommand {
 				String docCode = request.getParameter("docCode" + i);
 				String docType = request.getParameter("docType" + i);
 				String baggage = request.getParameter("baggage" + i);
-				Date dataBirth;
-				Passenger p = null;
+				Date dataBirth = null;
+
 				try {
 					dataBirth = sdf.parse(date);
-					p = new Passenger(fiscalCode, name, surname, docCode, docType, dataBirth, baggage);
-					writePassenger(p);
-					listPassenger.add(p);
 				} catch (Exception e) {
 					e.printStackTrace();
+				}
+				Passenger p = new Passenger(fiscalCode, name, surname, docCode, docType, dataBirth, baggage);
+				Passenger tmp = this.getPassengerFromDb(p);
+				if (tmp == null) {
+					writePassenger(p);
+					listPassenger.add(p);
+				} else {
+					listPassenger.add(p);
 				}
 				priceBaggage.add(this.getBaggagePriceFromDb(p));
 			}
@@ -94,6 +84,19 @@ public class AddPassengerCommand extends FrontCommand {
 		List result = session.createQuery("from Baggage where ID_Baggage = '" + p.getBaggageId() + "'").list();
 		bag = (Baggage) result.get(0);
 		return bag.getPrice();
+	}
+
+	public Passenger getPassengerFromDb(Passenger p) {
+		Session session = SessionFactorySingleton.getSessionFactory().openSession();
+		session.beginTransaction();
+		Passenger tmp = null;
+		List result = session.createQuery("from Passenger where Fiscal_code = '" + p.getFiscal_code() + "'").list();
+		try {
+			tmp = (Passenger) result.get(0);
+		} catch (Exception e) {
+
+		}
+		return tmp;
 	}
 
 }

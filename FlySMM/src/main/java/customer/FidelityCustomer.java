@@ -1,11 +1,16 @@
 package customer;
 
+import java.io.Serializable;
 import java.util.Date;
 import promotion.Mail;
 import sale.Address;
 
-public class FidelityCustomer extends Customer {
+public class FidelityCustomer extends Customer implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int point;
 	protected State state;
 	protected Date startDate;
@@ -79,7 +84,8 @@ public class FidelityCustomer extends Customer {
 		if (this.point >= 1000) {
 			// inviare una email per regalo destinazione europea
 			 Mail m = new Mail();
-      m.sendMail(this.getEmail(),"Hai raggiunto i mille punti bonus, hai vinto un viaggio per una destinazione europea a tuascelta!! congratulazione");
+       m.sendMail(this.getEmail(),"Hai raggiunto i mille punti bonus, hai vinto un viaggio per una destinazione europea a tuascelta!! congratulazione");
+
 		}
 	}
 

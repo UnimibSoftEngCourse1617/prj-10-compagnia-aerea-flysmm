@@ -9,7 +9,7 @@ public class Ticket {
 	private Seat seat;
 
 	public Ticket() {
-
+		super();
 	}
 
 	public Ticket(Passenger passenger, Book book, Seat seat) {

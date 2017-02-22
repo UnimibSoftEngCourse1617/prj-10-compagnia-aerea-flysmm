@@ -1,6 +1,12 @@
 package booking;
 
-public class Baggage {
+import java.io.Serializable;
+
+public class Baggage implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String baggageId;
 	private int weight;
 	private int price;
