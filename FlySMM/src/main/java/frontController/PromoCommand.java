@@ -32,7 +32,7 @@ public class PromoCommand extends FrontCommand {
 		session.getTransaction().commit();
 
 		request.setAttribute("promotion", (List<Promotion>) result);
-		request.setAttribute("type", request.getAttribute("customertype"));
+		request.setAttribute("type", request.getParameter("customertype"));
 		RequestDispatcher dispatcher = context.getRequestDispatcher("/promotion.jsp");
 		try {
 			dispatcher.forward(request, response);

@@ -17,15 +17,16 @@
 </head>
 <body>
 	<div class="ui stackable inverted menu">
-		<a href="index.jsp" class="item">FlySMM</a> <a class="item"> About
-			Us </a> <a class="item"> Jobs </a> <a class="item"> Locations </a>
+		<a href="index.jsp" class="item">FlySMM</a>
+		<a class="item"> About Us </a>
+		<a class="item"> Jobs </a>
+		<a class="item"> Locations </a>
 	</div>
 
 	<h1 class="ui center aligned header">
 		<img class="ui image " style="margin: 0 auto;"
 			src="images/fidelity.png"> HOME
-		<div class="sub header">Welcome to our home page for fidelity
-			users, enjoy it.</div>
+		<div class="sub header">Welcome to our home page for fidelity users, enjoy it.</div>
 	</h1>
 
 	<div class="ui two column very relaxed grid">
@@ -56,9 +57,9 @@
 		<div class="column">
 			<form name="listBook" method="post" action="./GetBook">
 				<button class="ui green button">
-					<input type="hidden" name="command" value="GetBook"> <i
-						class="tags icon"></i> See Your Books
+					<i class="tags icon"></i> See Your Books
 				</button>
+				<input type="hidden" name="command" value="GetBook">
 			</form>
 		</div>
 		<div class="column">
@@ -73,8 +74,8 @@
 				<button class="ui red button">
 					<i class="gift icon"></i> See Promotions
 				</button>
-				<input type="hidden" name="command" value="Promo"> <input
-					type="hidden" name="customertype" value="nope">
+				<input type="hidden" name="command" value="Promo">
+				<input type="hidden" name="customertype" value="fidelity">
 			</form>
 		</div>
 	</div>

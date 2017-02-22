@@ -34,7 +34,7 @@
 	<table class="ui celled table">
 		<thead>
 			<tr>
-				<th>Name : ${type}</th>
+				<th>Name</th>
 				<th>Discount Rate</th>
 				<th>Description</th>
 				<th>Start Date</th>
@@ -44,7 +44,7 @@
 		</thead>
 		<tbody>
 			
-			<c:if test="${type eq 'Fidelity Customer'}">			
+			<c:if test="${type eq 'fidelity'}">			
 			<c:forEach items="${promotion}" var="promotion">
 				<tr>
 					<td>${promotion.name}</td>
@@ -65,8 +65,8 @@
 			</c:forEach>
 			</c:if>
 			<c:if test="${type eq 'nope'}">
-			<c:if test="${promotion.fidelity eq 'false'}">
 			<c:forEach items="${promotion}" var="promotion">
+			<c:if test="${promotion.fidelity eq 'false'}">
 				<tr>
 					<td>${promotion.name}</td>
 					<td>${promotion.discountRate}</td>
@@ -82,9 +82,9 @@
 						<!-- I use New Flight() so promotion.flight = null -->
 						<td>${promotion.flight.idFlight}</td>
 					</c:if>
-				</tr>
-			</c:forEach>
+				</tr>	
 			</c:if>
+			</c:forEach>
 			</c:if>
 		</tbody>
 		<tfoot></tfoot>
