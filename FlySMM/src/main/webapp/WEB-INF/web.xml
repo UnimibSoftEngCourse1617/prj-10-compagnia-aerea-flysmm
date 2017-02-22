@@ -81,7 +81,7 @@
     <servlet-name>Gateway</servlet-name>
     <url-pattern>/Gateway</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <servlet-name>GetBook</servlet-name>
     <servlet-class>servlets.GetBook</servlet-class>
   </servlet>

@@ -9,7 +9,13 @@
 	href="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.19.3/css/semantic.css"
 	rel="stylesheet" />
 <script
-	src="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.19.3/javascript/semantic.js"></script>
+	src="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.19.3/javascript/semantic.js">
+	$(document).ready(function() {
+		$("button").click(function() {
+			request.getSession().removeAttribute("customer");
+		});
+	});
+</script>
 <!-- Fine sezione per Semantic ui -->
 <title>Home Customer</title>
 </head>
@@ -20,11 +26,12 @@
 		<a href="index.jsp" class="item">FlySMM</a> <a class="item"> About
 			Us </a> <a class="item"> Jobs </a> <a class="item"> Locations </a>
 		<%-- <a href="index.jsp" class="item"> <form >
-			Logout<input type="hidden" name="${customer}" value="logout"/>
+			
 			<%
 				request.getSession().removeAttribute("customer");
 			%>
 		</form></a> --%>
+		<a href="./logoutServlet " class="item"> Log out </a>
 	</div>
 
 	<div class="ui two column grid">
