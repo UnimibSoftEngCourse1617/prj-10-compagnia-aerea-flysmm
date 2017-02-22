@@ -2,7 +2,6 @@ package frontController;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,12 +10,8 @@ import javax.swing.JOptionPane;
 
 import org.hibernate.Session;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import customer.Customer;
-import sale.Flight;
-import servlets.HibernateProxyTypeAdapter;
+
 import servlets.SessionFactorySingleton;
 
 public class CustomerCommand extends FrontCommand {
@@ -35,19 +30,23 @@ public class CustomerCommand extends FrontCommand {
 		try {
 			List result = session.createQuery("from Customer " + "where email = '" + request.getParameter("email") + "'"
 					+ " and password = '" + request.getParameter("psw") + "'").list();
+
 			if (result.size() == 1) {
 				customerRegistry = (Customer) result.get(0);
-				
+				System.out.println(customerRegistry.getClass().toString());
+
 				request.getSession().setAttribute("customer", customerRegistry);
 				request.getSession().setAttribute("idCustomer", customerRegistry.getIdCustomer());
-				
 				RequestDispatcher dispatcher;
-				if (request.getSession().getAttribute("chosenDeparture") == null)
-					dispatcher = context.getRequestDispatcher("/homeCustomer.jsp");
-				else
+				if (request.getSession().getAttribute("chosenDeparture") == null) {
+					if (customerRegistry.getClass().toString().matches("class customer.FidelityCustomer")) {
+						dispatcher = context.getRequestDispatcher("/homeFidelityCustomer.jsp");
+					} else {
+						dispatcher = context.getRequestDispatcher("/homeCustomer.jsp");
+					}
+				} else
 					dispatcher = context.getRequestDispatcher("/addPassenger.jsp");
 				dispatcher.forward(request, response);
-				System.out.println(customerRegistry.toString());
 			} else {
 				RequestDispatcher dispatcher = context.getRequestDispatcher("/loginPage.html");
 				final JDialog dialog = new JDialog();

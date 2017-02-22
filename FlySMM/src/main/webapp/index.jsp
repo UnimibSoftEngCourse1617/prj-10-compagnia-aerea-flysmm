@@ -32,7 +32,7 @@
 	</div>
 
 	<!-- INIZIO area dedicata alla ricerca di un volo -->
-
+	
 	<div class="ui two column grid">
 		<div class="column">
 			<div class="ui raised segment">
@@ -86,11 +86,10 @@
 		</div>
 	</div>
 	<!-- FINE area dedicata alla ricerca di un volo -->
-  
-  <form  method="post" action="./GetPromotion">
-    	<button class="ui red button" name="command" value="Promo">
-  			<i class="gift icon"></i>
-  			See Promotions
+
+	<form method="post" action="./GetPromotion">
+		<button class="ui red button" name="command" value="Promo">
+			<i class="gift icon"></i> See Promotions
 		</button>
 	</form>
 
