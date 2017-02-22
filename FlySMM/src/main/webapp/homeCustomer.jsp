@@ -19,12 +19,12 @@
 
 		<a href="index.jsp" class="item">FlySMM</a> <a class="item"> About
 			Us </a> <a class="item"> Jobs </a> <a class="item"> Locations </a>
-		<a href="index.jsp" class="item"> <form >
+		<%-- <a href="index.jsp" class="item"> <form >
 			Logout<input type="hidden" name="${customer}" value="logout"/>
 			<%
 				request.getSession().removeAttribute("customer");
 			%>
-		</form></a>
+		</form></a> --%>
 	</div>
 
 	<div class="ui two column grid">
