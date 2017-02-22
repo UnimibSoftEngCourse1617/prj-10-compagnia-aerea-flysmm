@@ -1,10 +1,15 @@
 package customer;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-public abstract class State {
+public abstract class State implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected FidelityCustomer c;
 
 	public State(FidelityCustomer c) {

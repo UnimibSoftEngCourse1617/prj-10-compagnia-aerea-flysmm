@@ -1,22 +1,27 @@
 package customer;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-public class UnfidelityState extends State {
+public class UnfidelityState extends State implements Serializable {
 
-	private Date actualDateUnfidelity;
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Customer customer;
 
 	public UnfidelityState(FidelityCustomer c) {
 		super(c);
-		this.actualDateUnfidelity = new Date();
-
+		c.actualDateUnfidelity = new Date();
+		c.type = this.type();
 	}
 
 	@Override
 	public void changeFidelity() {
-		if ((getDateDiff(this.actualDateUnfidelity, c.startDate, TimeUnit.DAYS)) > (365 * 2)) {
+		if ((getDateDiff(c.actualDateUnfidelity, c.startDate, TimeUnit.DAYS)) > (365 * 2)) {
 			if (this.c instanceof FidelityCustomer) {
 				this.customer = new Customer(c);
 			}

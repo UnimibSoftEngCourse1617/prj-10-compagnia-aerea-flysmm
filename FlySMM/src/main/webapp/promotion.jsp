@@ -25,16 +25,17 @@
 </head>
 <body>
 	<div class="ui stackable inverted menu">
-		<div class="item">FlySMM</div>
-		<a class="item"> About Us </a> <a class="item"> Jobs </a>
-		<a class="item"> Locations </a> <a class="right item"> Sign up </a>
+		<a href="index.jsp" class="item">FlySMM</a>
+		<a class="item">About Us </a>
+		<a class="item"> Jobs </a>
+		<a class="item"> Locations </a>
+		<a href="loginPage.html" class="right item"> Login </a>
 	</div>
 	<table class="ui celled table">
 		<thead>
 			<tr>
-				<th>Name</th>
+				<th>Name : ${type}</th>
 				<th>Discount Rate</th>
-				<th>Fidelity</th>
 				<th>Description</th>
 				<th>Start Date</th>
 				<th>Expire Date</th>
@@ -42,11 +43,12 @@
 			</tr>
 		</thead>
 		<tbody>
+			
+			<c:if test="${type eq 'Fidelity Customer'}">			
 			<c:forEach items="${promotion}" var="promotion">
 				<tr>
 					<td>${promotion.name}</td>
 					<td>${promotion.discountRate}</td>
-					<td>${promotion.fidelity}</td>
 					<td>${promotion.description}</td>
 					<c:if test="${promotion.getClass() eq 'class promotion.SeasonPromotion'}">
 						<td>${promotion.startDate}</td>
@@ -57,10 +59,33 @@
 						<td></td>
 						<td></td>
 						<!-- I use New Flight() so promotion.flight = null -->
-						<td>${promotion.flight}</td>
+						<td>${promotion.flight.idFlight}</td>
 					</c:if>
 				</tr>
 			</c:forEach>
+			</c:if>
+			<c:if test="${type eq 'nope'}">
+			<c:if test="${promotion.fidelity eq 'false'}">
+			<c:forEach items="${promotion}" var="promotion">
+				<tr>
+					<td>${promotion.name}</td>
+					<td>${promotion.discountRate}</td>
+					<td>${promotion.description}</td>
+					<c:if test="${promotion.getClass() eq 'class promotion.SeasonPromotion'}">
+						<td>${promotion.startDate}</td>
+						<td>${promotion.expireDate}</td>
+						<td></td>
+					</c:if>
+					<c:if test="${promotion.getClass() eq 'class promotion.FlightPromotion'}">
+						<td></td>
+						<td></td>
+						<!-- I use New Flight() so promotion.flight = null -->
+						<td>${promotion.flight.idFlight}</td>
+					</c:if>
+				</tr>
+			</c:forEach>
+			</c:if>
+			</c:if>
 		</tbody>
 		<tfoot></tfoot>
 	</table>

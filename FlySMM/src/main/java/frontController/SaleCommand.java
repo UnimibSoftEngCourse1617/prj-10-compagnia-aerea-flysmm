@@ -1,26 +1,24 @@
 package frontController;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-
-import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import sale.Airport;
 import sale.Flight;
 import sale.Price;
-import servlets.HibernateProxyTypeAdapter;
 import servlets.SessionFactorySingleton;
 
 public class SaleCommand extends FrontCommand {
+	
+	private static final String FLIGHTS  = "flights";
+	private static final String RDATE = "rDate";
+	private static final String DDATE = "dDate";
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
@@ -33,24 +31,45 @@ public class SaleCommand extends FrontCommand {
 	}
 
 	public void getDepartureFromDb() {
+		
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
-
-		List result = session
-				.createQuery("Select icao from Airport " + "where name = '" + request.getParameter("aDeparture") + "'")
-				.list();
+		
+		org.hibernate.Query query =  session.createQuery(
+				"Select icao from Airport "+
+				"where name=?");
+		
+		query = query.setParameter(0, request.getParameter("aDeparture"));
+		List result = query.list();
 		String departure = (String) result.get(0);
-		request.getSession().setAttribute("dIcao", departure);
-		result = session
-				.createQuery("Select icao from Airport " + "where name = '" + request.getParameter("aArrival") + "'")
-				.list();
+		
+		org.hibernate.Query queryArrivalAirport =  session.createQuery(
+				"Select icao from Airport " +
+				"where name = ?");
+		
+		queryArrivalAirport = queryArrivalAirport.setParameter(0, request.getParameter("aArrival"));
+		result = queryArrivalAirport.list();
 		String arrival = (String) result.get(0);
+		
 		request.getSession().setAttribute("aIcao", arrival);
-		result = session.createQuery("from Price p inner join p.flight f " + "where f.departureAirport.icao = '"
-				+ departure + "' AND " + "f.arrivalAirport.icao = '" + arrival + "' AND f.departureDate = '"
-				+ request.getParameter("dDate") + "' group by f.idFlight, p.seats.tariff").list();
+		request.getSession().setAttribute("dIcao", departure);
+
+		org.hibernate.Query queryInnerJoin =  session.createQuery(
+				"from Price p inner join p.flight f " +
+				"where f.departureAirport.icao = ? " +
+				"and f.arrivalAirport.icao = ? " +
+				"and f.departureDate = ? " +
+				"group by f.idFlight, p.seats.tariff");
+		
+		queryInnerJoin = queryInnerJoin.setParameter(0, departure);
+		queryInnerJoin = queryInnerJoin.setParameter(1, arrival);
+		queryInnerJoin = queryInnerJoin.setDate(2, parseStringToDate(DDATE));
+
+		List result1 = queryInnerJoin.list();
+
+		
 		List<Flight> flights = new ArrayList<Flight>();
-		for (Object[] o : (List<Object[]>) result) {
+		for (Object[] o : (List<Object[]>) result1) {
 			Price p = (Price) o[0];
 			Flight f = (Flight) o[1];
 			flights.add(new Flight(f, p));
@@ -72,12 +91,19 @@ public class SaleCommand extends FrontCommand {
 		session.beginTransaction();
 		String departure = (String) request.getSession().getAttribute("aIcao");
 		String arrival = (String) request.getSession().getAttribute("dIcao");
-		System.out.println(request.getSession().getAttribute("rDate"));
-		List result = session
-				.createQuery("from Price p inner join p.flight f " + "where f.departureAirport.icao = '" + departure
-						+ "' AND " + "f.arrivalAirport.icao = '" + arrival + "' AND f.departureDate = '"
-						+ request.getSession().getAttribute("rDate") + "' group by f.idFlight, p.seats.tariff")
-				.list();
+		
+		org.hibernate.Query queryFlyPrice =  session.createQuery(
+				"from Price p inner join p.flight f " + 
+				"where f.departureAirport.icao =? " + 
+				"AND f.arrivalAirport.icao =? " +
+				"AND f.departureDate =? "+ 
+				"group by f.idFlight, p.seats.tariff");
+		
+		queryFlyPrice = queryFlyPrice.setParameter(0, departure);
+		queryFlyPrice = queryFlyPrice.setParameter(1, arrival);
+		queryFlyPrice = queryFlyPrice.setParameter(2, parseStringToDate(RDATE));
+		
+		List result = queryFlyPrice.list();
 		List<Flight> flights = new ArrayList<Flight>();
 		for (Object[] o : (List<Object[]>) result) {
 			Price p = (Price) o[0];
@@ -85,8 +111,8 @@ public class SaleCommand extends FrontCommand {
 			flights.add(new Flight(f, p));
 		}
 		session.getTransaction().commit();
-		request.getSession().removeAttribute("flights");
-		request.getSession().setAttribute("flights", flights);
+		request.getSession().removeAttribute(FLIGHTS);
+		request.getSession().setAttribute(FLIGHTS, flights);
 		RequestDispatcher dispatcher = context.getRequestDispatcher("/return_flights.jsp");
 		try {
 			dispatcher.forward(request, response);
@@ -95,5 +121,19 @@ public class SaleCommand extends FrontCommand {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public Date parseStringToDate(String option){
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String dateInString = (String) request.getSession().getAttribute(option);
+		Date date = null;
+		try {
+			date = formatter.parse(dateInString);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return date;
 	}
 }

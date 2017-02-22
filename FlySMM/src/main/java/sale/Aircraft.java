@@ -1,7 +1,13 @@
 package sale;
 
-public class Aircraft {
+import java.io.Serializable;
 
+public class Aircraft implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// private Flight flight;
 	private int idAircraft;
 	private String constructor;
@@ -10,6 +16,7 @@ public class Aircraft {
 	private String model;
 	
 	public Aircraft() {
+		super();
 	}
 
 	

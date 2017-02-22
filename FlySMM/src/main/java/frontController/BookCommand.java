@@ -19,11 +19,9 @@ public class BookCommand extends FrontCommand {
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
-
 		ArrayList<Book> listBook = (ArrayList<Book>) request.getSession().getAttribute("listBook");
 		for (Book b : listBook) {
 			writeBook(b);
-
 		}
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/success.html");
 		requestDispatcher.forward(request, response);
@@ -38,14 +36,4 @@ public class BookCommand extends FrontCommand {
 
 	}
 
-	public void getBaggagePriceFromDb(String passengerId) {
-		Session session = SessionFactorySingleton.getSessionFactory().openSession();
-		session.beginTransaction();
-
-		List result = session
-				.createQuery("Select Price_baggage from baggage b join passenger p on b.ID_Baggage=" + "where b.ID_Baggage = '" + request.getParameter("aDeparture") + "'")
-				.list();
-		String departure = (String) result.get(0);
-		
-	}
 }

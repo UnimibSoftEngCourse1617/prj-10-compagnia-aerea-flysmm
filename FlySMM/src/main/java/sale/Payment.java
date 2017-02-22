@@ -12,7 +12,7 @@ public class Payment implements Serializable{
 	private Date expiredDate;
 
 	public Payment() {
-
+		super();
 	}
 
 	public Payment(int cardNumber, Customer customer, String cvv, String owner, Date expiredDate) {
