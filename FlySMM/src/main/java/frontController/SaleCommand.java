@@ -66,13 +66,19 @@ public class SaleCommand extends FrontCommand {
 		queryInnerJoin = queryInnerJoin.setDate(2, parseStringToDate(DDATE));
 
 		List result1 = queryInnerJoin.list();
-
+		System.out.println(result1.size());
 		
 		List<Flight> flights = new ArrayList<Flight>();
 		for (Object[] o : (List<Object[]>) result1) {
 			Price p = (Price) o[0];
 			Flight f = (Flight) o[1];
-			flights.add(new Flight(f, p));
+			Flight fp = new Flight(f, p);
+			if (fp.getPrice().getPromo() != null) {
+				float price = fp.getPrice().getAmount();
+				int discount = fp.getPrice().getPromo().getDiscountRate();
+				fp.getPrice().setAmount(price * discount / 100);  
+			}
+			flights.add(fp);
 		}
 		session.getTransaction().commit();
 		request.getSession().setAttribute("flights", flights);
