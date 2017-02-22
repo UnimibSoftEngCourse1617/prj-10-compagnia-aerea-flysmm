@@ -43,13 +43,15 @@ public class GetDepartureFlight extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		FrontCommand command = getCommand(request);
+		
 		System.out.println(request.getParameter(RDATE));
 		System.out.println(request.getParameter(PASSENGERS));
 		request.getSession().setAttribute(PASSENGERS, request.getParameter(PASSENGERS));
 
 		request.getSession().setAttribute(DDATE, request.getParameter(DDATE));
 		request.getSession().setAttribute(RDATE, request.getParameter(RDATE));
+		
+		FrontCommand command = FrontCommand.getCommand(request, response);
 		if (command != null) {
 			command.init(getServletContext(), "GDF", request, response);
 			command.dispatch();
@@ -58,26 +60,4 @@ public class GetDepartureFlight extends HttpServlet {
 			System.out.println("CommandNotFound");
 		}
 	}
-
-	private FrontCommand getCommand(HttpServletRequest request) {
-		FrontCommand result = null;
-		try {
-			return (FrontCommand) getCommandClass(request).newInstance();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-
-	private Class getCommandClass(HttpServletRequest request) {
-		Class result;
-		final String commandClassName = "frontController." + (String) request.getParameter("command") + "Command";
-		try {
-			result = Class.forName(commandClassName);
-		} catch (ClassNotFoundException e) {
-			result = UnknownCommand.class;
-		}
-		return result;
-	}
-
 }

@@ -37,7 +37,7 @@ public class BookServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		FrontCommand command = getCommand(request);
+		FrontCommand command = FrontCommand.getCommand(request, response);
 		if (command != null) {
 			command.init(getServletContext(), "GDF", request, response);
 			command.dispatch();
@@ -47,26 +47,4 @@ public class BookServlet extends HttpServlet {
 		}
 
 	}
-
-	private FrontCommand getCommand(HttpServletRequest request) {
-		FrontCommand result = null;
-		try {
-			return (FrontCommand) getCommandClass(request).newInstance();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-
-	private Class getCommandClass(HttpServletRequest request) {
-		Class result;
-		final String commandClassName = "frontController." + (String) request.getParameter("command") + "Command";
-		try {
-			result = Class.forName(commandClassName);
-		} catch (ClassNotFoundException e) {
-			result = UnknownCommand.class;
-		}
-		return result;
-	}
-
 }
