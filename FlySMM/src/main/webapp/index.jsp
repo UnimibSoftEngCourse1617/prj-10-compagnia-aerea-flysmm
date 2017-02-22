@@ -42,10 +42,10 @@
 
 					<div class="field">
 						<div class="ui buttons">
-							<button onclick="viewReturnDate()" class="ui mini button">Andata
-								e Ritorno</button>
-							<button onclick="hideReturnDate()" class="ui mini button">Solo
-								Andata</button>
+							<div onclick="viewReturnDate()" class="ui mini button">Andata
+								e Ritorno</div>
+							<div onclick="hideReturnDate()" class="ui mini button">Solo
+								Andata</div>
 						</div>
 					</div>
 
@@ -60,12 +60,12 @@
 					<div class="three fields">
 
 						<div class="field">
-							<label>Partenza</label> <input name="dDate" type="text" placeholder="YYYY-MM-DD" required>
+							<label>Partenza</label> <input name="dDate" type="date" placeholder="yyyy-mm-dd" required>
 						</div>
 
 						<div id="returnDate" style='' class="field">
 							<label>Ritorno</label> <input id="btnreturnDate" name="rDate"
-								type="text">
+								type="date" placeholder="yyyy-mm-dd">
 						</div>
 
 						<div class="field">
@@ -87,7 +87,6 @@
 	</div>
 	<!-- FINE area dedicata alla ricerca di un volo -->
   
-  <a href="./AppPromotion">add promos</a>
   <form  method="post" action="./GetPromotion">
     	<button class="ui red button" name="command" value="Promo">
   			<i class="gift icon"></i>
