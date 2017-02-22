@@ -46,21 +46,32 @@ public class GetNewFidelityCustomer extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		String myObjectId = request.getParameter("myObjectId");
-		Object myObject = request.getSession().getAttribute(myObjectId);
-		request.getSession().removeAttribute(myObjectId);
-		Customer cFidelity = new FidelityCustomer((Customer)myObject);
-		
-		//FidelityCustomer cFidelity = (FidelityCustomer) myObject;
-		response.getWriter().append(myObject.toString());
-		writeFidelityCustomer((FidelityCustomer) cFidelity);
 
+		Object myObject = request.getSession().getAttribute("customer");
+
+		FidelityCustomer cFidelity = new FidelityCustomer((Customer) myObject);
+
+		response.getWriter().append(cFidelity.toString());
+
+		System.out.println(cFidelity.getClass().toString());
+		// scrivo e poi cancello perchè hibernate non permette l'update del
+		// discriminatore
+		writeFidelityCustomer((FidelityCustomer) cFidelity);
+		deleteCustomer((Customer) myObject);
+	}
+
+	private void deleteCustomer(Customer c) {
+		// TODO Auto-generated method stub
+		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
+		session.getTransaction().begin();
+		session.delete(c);
+		session.getTransaction().commit();
 	}
 
 	public static void writeFidelityCustomer(FidelityCustomer c) {
 		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
 		session.getTransaction().begin();
-		session.update(c);
+		session.save(c);
 		session.getTransaction().commit();
 	}
 

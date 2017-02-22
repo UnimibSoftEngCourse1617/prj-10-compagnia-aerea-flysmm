@@ -54,12 +54,12 @@ public class GetReturnFlight extends HttpServlet {
 		if (chosen != null) {
 			request.getSession().setAttribute("chosenDeparture", chosen);
 		}
+    
 		FrontCommand command = getCommand(request);
 		String op = request.getSession().getAttribute("rDate").toString();
 		
 		System.out.println(op.toString());
 		if (command != null &&  !op.equals("")) {
-			System.out.println("sono qui bastardo!!!");
 			command.init(getServletContext(), "GRF", request, response);
 			command.dispatch();
 		} 
@@ -69,27 +69,6 @@ public class GetReturnFlight extends HttpServlet {
 		}else{
 			System.out.println("CommandNotFound");
 		}
-	}
-
-	private FrontCommand getCommand(HttpServletRequest request) {
-		FrontCommand result = null;
-		try {
-			return (FrontCommand) getCommandClass(request).newInstance();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-
-	private Class getCommandClass(HttpServletRequest request) {
-		Class result;
-		final String commandClassName = "frontController." + (String) request.getParameter("command") + "Command";
-		try {
-			result = Class.forName(commandClassName);
-		} catch (ClassNotFoundException e) {
-			result = UnknownCommand.class;
-		}
-		return result;
 	}
 
 	private Flight findFlightFromIdAndTariff(List<Flight> flights, String id, String tariff) {
