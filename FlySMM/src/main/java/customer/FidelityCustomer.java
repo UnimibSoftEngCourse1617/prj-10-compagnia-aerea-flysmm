@@ -1,15 +1,22 @@
 package customer;
 
+import java.io.Serializable;
 import java.util.Date;
-
+import promotion.Mail;
 import sale.Address;
 
-public class FidelityCustomer extends Customer {
+public class FidelityCustomer extends Customer implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int point;
 	protected State state;
 	protected Date startDate;
 	protected Date lastestBook;
+	protected Date actualDateUnfidelity;
+	protected String type;
 
 	public FidelityCustomer(long idCustomer, String name, String surname, Address address, String email,
 			String password, String phoneNumber, Date dateOfBirth) {
@@ -27,12 +34,29 @@ public class FidelityCustomer extends Customer {
 		this.state = new FidelityState(this);
 	}
 
+	public Date getActualDateUnfidelity() {
+		return actualDateUnfidelity;
+	}
+
+	public void setActualDateUnfidelity(Date actualDateUnfidelity) {
+		this.actualDateUnfidelity = actualDateUnfidelity;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public FidelityCustomer() {
+		super();
+	}
+
 	public void setState(State state) {
 		this.state = state;
 	}
-
-
-
 
 	@Override
 	public Address getAddress() {
@@ -59,7 +83,9 @@ public class FidelityCustomer extends Customer {
 		this.point = this.point + point;
 		if (this.point >= 1000) {
 			// inviare una email per regalo destinazione europea
-			//Mail m = new Mail(this.getEmail(),"Hai raggiunto i mille punti bonus, hai vinto un viaggio per una destinazione europea a tua scelta!! congratulazione");
+			 Mail m = new Mail();
+       m.sendMail(this.getEmail(),"Hai raggiunto i mille punti bonus, hai vinto un viaggio per una destinazione europea a tuascelta!! congratulazione");
+
 		}
 	}
 

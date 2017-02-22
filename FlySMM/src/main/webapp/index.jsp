@@ -26,9 +26,9 @@
 <body>
 
 	<div class="ui stackable inverted menu">
-		<a class="item">FlySMM</a> <a class="item"> About Us </a> <a
-			class="item"> Jobs </a> <a class="item"> Locations </a> <a
-			href="loginPage.html" class="right item"> Sign up </a>
+		<a class="item">FlySMM</a> <a class="item"> About Us </a>
+		<a class="item"> Jobs </a> <a class="item"> Locations </a>
+		<a href="loginPage.html" class="right item"> Sign up </a>
 	</div>
 
 	<!-- INIZIO area dedicata alla ricerca di un volo -->
@@ -42,30 +42,30 @@
 
 					<div class="field">
 						<div class="ui buttons">
-							<button onclick="viewReturnDate()" class="ui mini button">Andata
-								e Ritorno</button>
-							<button onclick="hideReturnDate()" class="ui mini button">Solo
-								Andata</button>
+							<div onclick="viewReturnDate()" class="ui mini button">Andata
+								e Ritorno</div>
+							<div onclick="hideReturnDate()" class="ui mini button">Solo
+								Andata</div>
 						</div>
 					</div>
 
 					<div class="field">
-						<label>Volo da</label> <input name="aDeparture" type="text">
+						<label>Volo da</label> <input name="aDeparture" type="text" placeholder="malpensa" required>
 					</div>
 
 					<div class="field">
-						<label>Volo per</label> <input name="aArrival" type="text"></input>
+						<label>Volo per</label> <input name="aArrival" type="text" placeholder="fiumicino" required></input>
 					</div>
 
 					<div class="three fields">
 
 						<div class="field">
-							<label>Partenza</label> <input name="dDate" type="text">
+							<label>Partenza</label> <input name="dDate" type="date" placeholder="yyyy-mm-dd" required>
 						</div>
 
 						<div id="returnDate" style='' class="field">
 							<label>Ritorno</label> <input id="btnreturnDate" name="rDate"
-								type="text">
+								type="date" placeholder="yyyy-mm-dd">
 						</div>
 
 						<div class="field">

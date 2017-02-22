@@ -19,9 +19,6 @@ import sale.Flight;
 import servlets.SessionFactorySingleton;
 
 public class AddPassengerCommand extends FrontCommand {
-	private Date data = new Date();
-	Address a = new Address(1200, "vivaldi", "15", "20841", "carate", "italy");
-	Customer c = new Customer(121, "luca", "lorusso", a, "dgs", "dgvs", "popo", data);
 
 	public void dispatch() throws ServletException, IOException {
 		if (caller.equals("GDF")) {

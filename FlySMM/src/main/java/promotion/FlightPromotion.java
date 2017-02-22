@@ -3,18 +3,19 @@ package promotion;
 import sale.Flight;
 
 public class FlightPromotion extends Promotion{
-	private Flight flight;
 	
-	public void notify_() {
-		Mail m = new Mail();
-		m.sendMail("mail","new F Promo");
-		}
+	private static final long serialVersionUID = 1L;
+	
+	private Flight flight;
 
-	public FlightPromotion(){}
+	public FlightPromotion(){
+		super();
+	}
 	
 	public FlightPromotion(Flight flight){
 		this.promoType = "flight";
 		this.setFlight(flight);
+		this.notify_("There is a new Promotion, check it out in our website");
 	}
 	
 	public FlightPromotion(String idPromo, int discountRate, boolean fidelity, String name, String description, Flight flight){
@@ -25,6 +26,7 @@ public class FlightPromotion extends Promotion{
 		this.description = description;
 		this.promoType = "flight";
 		this.setFlight(flight);
+		this.notify_("There is a new Promotion, check it out in our website");
 	}
 	
 	public Flight getFlight() {

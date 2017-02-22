@@ -11,6 +11,7 @@ public class Price implements Serializable {
 	private float amount;
 
 	public Price() {
+		super();
 	}
 
 	public Price(Flight flight, Seat seat, Promotion promo, float amount) {
