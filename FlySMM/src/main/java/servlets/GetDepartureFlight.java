@@ -43,9 +43,7 @@ public class GetDepartureFlight extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		System.out.println(request.getParameter(RDATE));
-		System.out.println(request.getParameter(PASSENGERS));
+
 		request.getSession().setAttribute(PASSENGERS, request.getParameter(PASSENGERS));
 
 		request.getSession().setAttribute(DDATE, request.getParameter(DDATE));

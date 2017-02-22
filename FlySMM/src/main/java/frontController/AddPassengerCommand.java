@@ -58,12 +58,19 @@ public class AddPassengerCommand extends FrontCommand {
 			session.setAttribute("priceBaggage", priceBaggage);
 			ArrayList<Flight> listFlight = new ArrayList<Flight>();
 			try {
-				listFlight.add((Flight) request.getSession().getAttribute("chosenDeparture"));
-				listFlight.add((Flight) request.getSession().getAttribute("chosenReturn"));
+				Flight departure = (Flight) request.getSession().getAttribute("chosenDeparture");
+				Flight arrival = (Flight) request.getSession().getAttribute("chosenReturn");
+				
+				listFlight.add(departure);
+				if (!departure.equals(arrival)){
+					listFlight.add(arrival);
+				}
+
 			} catch (Exception e) {
 				listFlight.clear();
 				listFlight.add((Flight) request.getSession().getAttribute("chosenDeparture"));
 			}
+						
 			session.setAttribute("listFlight", listFlight);
 			session.setAttribute("Customer", c);
 
