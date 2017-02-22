@@ -55,7 +55,7 @@ public class GetReturnFlight extends HttpServlet {
 			request.getSession().setAttribute("chosenDeparture", chosen);
 		}
     
-		FrontCommand command = getCommand(request);
+		FrontCommand command = FrontCommand.getCommand(request, response);
 		String op = request.getSession().getAttribute("rDate").toString();
 		
 		System.out.println(op.toString());
