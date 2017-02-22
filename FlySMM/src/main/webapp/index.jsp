@@ -87,9 +87,23 @@
 	</div>
 	<!-- FINE area dedicata alla ricerca di un volo -->
 
+
 	<form method="post" action="./GetPromotion">
 		<button class="ui red button" name="command" value="Promo">
 			<i class="gift icon"></i> See Promotions
+	<a href="./AppCustomer">ProvaCustomer</a>
+	<a href="./AppBook">Book</a>
+	<a href="./AppBook">ProvaBook</a>
+	
+	<form name="payment"  action="./Payment_options" method="POST" >
+		<input type="hidden" name="command" value="Payment">
+		<input type="hidden" name="idCustomer" value="121">
+		<input type="submit" value="Payment" name="Payment">  
+  
+  <form  method="post" action="./GetPromotion">
+    	<button class="ui red button" name="command" value="Promo">
+  			<i class="gift icon"></i>
+  			See Promotions
 		</button>
 	</form>
 
