@@ -27,7 +27,7 @@ public class GetPromotion extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.getWriter().append(request.getParameter("command")).append(request.getParameter("costumertype"));
+		response.getWriter().append(request.getParameter("command")).append(request.getParameter("customertype"));
 	}
 
 	/**
