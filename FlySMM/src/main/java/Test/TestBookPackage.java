@@ -28,8 +28,13 @@ public class TestBookPackage extends TestCase {
 
 	@Test
 	public void testCreateBookId() {
-		price.setFlight(flight);
 		Book book = new Book(customer, flight, passenger);
 		assertEquals("MXPMXPMAL1231LRCMB123ABC", book.createBookId(flight, customer, passenger));
+	}
+	
+	@Test
+	public void testCalculatePrice() {
+		Book book = new Book(customer, flight, passenger);
+		assertEquals(77.0, book.calculateTotalPrice(flight, passenger), 0.0002);
 	}
 }
