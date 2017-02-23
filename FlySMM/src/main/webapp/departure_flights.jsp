@@ -27,8 +27,10 @@
 <body>
 	<div class="ui stackable inverted menu">
 		<a href="index.jsp" class="item">FlySMM</a>
-		<a class="item"> About Us </a> <a class="item"> Jobs </a> <a
-			class="item"> Locations </a> <a class="right item"> Sign up </a>
+		<a class="item"> About Us </a>
+		<a class="item"> Jobs </a> 
+		<a class="item"> Locations </a> 
+		<a href="loginPage.html" class="right item"> Login </a>
 	</div>
 	<table class="ui celled table">
 		<thead>

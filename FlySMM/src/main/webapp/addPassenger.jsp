@@ -17,9 +17,11 @@
 </head>
 <body>
 	<div class="ui stackable inverted menu">
-		<div class="item">FlySMM</div>
-		<a class="item"> About Us </a> <a class="item"> Jobs </a> <a
-			class="item"> Locations </a> <a class="right item"> Sign up </a>
+		<a href="index.jsp" class="item">FlySMM</a>
+		<a class="item"> About Us </a>
+		<a class="item"> Jobs </a> 
+		<a class="item"> Locations </a> 
+		<a href="loginPage.html" class="right item"> Login </a>
 	</div>
 	<h1 class="ui header">Add passenger</h1>
 		<div class="ui two column grid">
