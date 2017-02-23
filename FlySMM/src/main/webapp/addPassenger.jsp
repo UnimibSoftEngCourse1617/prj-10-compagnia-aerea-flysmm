@@ -42,8 +42,7 @@
 		<div class="column">
 			<form method="post" action="GetPassenger" class="ui form">
 				<script type="text/javascript">
-	var length = '<%=session.getAttribute("passengers")%>
-					';
+	var length = '<%=session.getAttribute("passengers")%>';
 					for (i = 0; i < length; i++) {
 						this.writeForm();
 					}
