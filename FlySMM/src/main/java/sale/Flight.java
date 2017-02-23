@@ -55,7 +55,7 @@ public class Flight implements Serializable {
 		this.departureTime = f.getDepartureTime();
 		this.arrivalTime = f.getArrivalTime();
 		this.price = p;
-		this.remainingSeats = f.remainingSeats;
+		this.remainingSeats = f.getRemainingSeats();
 	}
 	
 	public Flight(String idFlight, Airport departureAirport, Airport arrivalAirport) {

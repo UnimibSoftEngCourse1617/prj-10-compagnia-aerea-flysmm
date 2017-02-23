@@ -57,7 +57,8 @@ public class SaleCommand extends FrontCommand {
 		queryInnerJoin = queryInnerJoin.setParameter(0, departure);
 		queryInnerJoin = queryInnerJoin.setParameter(1, arrival);
 		queryInnerJoin = queryInnerJoin.setDate(2, parseStringToDate(DDATE));
-		queryInnerJoin = queryInnerJoin.setParameter(3, Integer.parseInt((String)request.getSession().getAttribute("passengers")));
+		queryInnerJoin = queryInnerJoin.setParameter(3,
+				Integer.parseInt((String) request.getSession().getAttribute("passengers")));
 
 		List result1 = queryInnerJoin.list();
 		System.out.println(result1.size());
@@ -67,6 +68,7 @@ public class SaleCommand extends FrontCommand {
 			Price p = (Price) o[0];
 			p.setDiscountedAmount(p.getAmount());
 			Flight f = (Flight) o[1];
+			System.out.println(f.getRemainingSeats());
 			Flight fp = new Flight(f, p);
 			checkforPromos(fp);
 			flights.add(fp);
@@ -88,16 +90,16 @@ public class SaleCommand extends FrontCommand {
 		session.beginTransaction();
 		String departure = (String) request.getSession().getAttribute("aIcao");
 		String arrival = (String) request.getSession().getAttribute("dIcao");
-		
+
 		org.hibernate.Query queryFlyPrice = session.createQuery("from Price p inner join p.flight f "
 				+ "where f.departureAirport.icao = ? " + "and f.arrivalAirport.icao = ? " + "and f.departureDate = ? "
 				+ "and f.remainingSeats >= ? " + "group by f.idFlight, p.seats.tariff");
 
-
 		queryFlyPrice = queryFlyPrice.setParameter(0, departure);
 		queryFlyPrice = queryFlyPrice.setParameter(1, arrival);
 		queryFlyPrice = queryFlyPrice.setParameter(2, parseStringToDate(RDATE));
-		queryFlyPrice = queryFlyPrice.setParameter(3, Integer.parseInt((String)request.getSession().getAttribute("passengers")));
+		queryFlyPrice = queryFlyPrice.setParameter(3,
+				Integer.parseInt((String) request.getSession().getAttribute("passengers")));
 
 		List result = queryFlyPrice.list();
 		List<Flight> flights = new ArrayList<Flight>();
@@ -143,7 +145,7 @@ public class SaleCommand extends FrontCommand {
 			if (flight.getPrice().getPromo().isFidelity()) {
 				flight.getPrice().setDiscountedAmount(amount - (amount * discount / 100));
 			} else {
-				flight.getPrice().setAmount(amount - (amount * discount / 100)); 
+				flight.getPrice().setAmount(amount - (amount * discount / 100));
 				flight.getPrice().setDiscountedAmount(amount - (amount * discount / 100));
 			}
 		}
