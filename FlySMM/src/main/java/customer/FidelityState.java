@@ -11,13 +11,13 @@ public class FidelityState extends State implements Serializable {
 	public FidelityState(FidelityCustomer c) {
 		super(c);
 		this.actualDateFidelity = new Date();
-		c.type=this.type();
+		c.type = this.type();
 	}
 
 	// serve per cambiare lo stato da fidelity ad unfidelity
 	public void changeFidelity() {
-
-		if ((getDateDiff(this.actualDateFidelity, c.startDate, TimeUnit.DAYS)) > 365) {
+		long days = getDateDiff(this.actualDateFidelity, c.lastestBook, TimeUnit.DAYS);
+		if (days > (365 * 2)) {
 			c.setState(new UnfidelityState(c));
 		}
 
