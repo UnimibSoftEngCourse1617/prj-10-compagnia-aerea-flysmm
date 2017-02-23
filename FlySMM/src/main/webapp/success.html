@@ -2,7 +2,7 @@
 <html>
 <head>
 
-<font face="Arial"/>
+<font face="Arial" />
 
 <meta charset="UTF-8">
 <!-- Inizio sezione per Semantic ui -->
@@ -31,7 +31,9 @@
 
 	</div>
 	<h1>Success!!</h1>
-	<input class="ui red submit button" type="submit" value="Pay!">
-	<input type="hidden" name="command" value="nnnnnnnnnnn" />
+	<form method="post" action="./Payment_options">
+		<input class="ui red submit button" type="submit" value="Pay!">
+		<input type="hidden" name="command" value="Payment" />
+	</form>
 </body>
 </html>

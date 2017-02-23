@@ -109,10 +109,10 @@
 					<td>${bookP.departureDate}</td>
 					<td>${bookP.airplaneId}</td>
 					<td>${bookP.totalPrice}</td>
-					<td><form method="post" name="flightItems" action="./#">
+					<td><form method="post" name="flightItems" action="./EditSale">
 							<input type="submit" class="ui blue button" value="Edit" /> <input
 								type="hidden" name="chosen" value="${bookP.bookId}" /> <input
-								type="hidden" name="command" value="nnnnnnnnnnn" />
+								type="hidden" name="command" value="Edit" />
 						</form></td>
 				</tr>
 			</c:forEach>

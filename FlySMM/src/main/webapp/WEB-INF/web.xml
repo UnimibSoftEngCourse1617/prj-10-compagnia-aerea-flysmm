@@ -105,8 +105,7 @@
     <servlet-name>AddNewPaymentMethod</servlet-name>
     <url-pattern>/AddNewPaymentMethod</url-pattern>
   </servlet-mapping>
-  
-   <servlet>
+  <servlet>
     <servlet-name>MakePayment</servlet-name>
     <servlet-class>servlets.MakePayment</servlet-class>
   </servlet>
@@ -114,5 +113,12 @@
     <servlet-name>MakePayment</servlet-name>
     <url-pattern>/MakePayment</url-pattern>
   </servlet-mapping>
-  
+    <servlet>
+    <servlet-name>EditSale</servlet-name>
+    <servlet-class>servlets.EditSale</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditSale</servlet-name>
+    <url-pattern>/EditSale</url-pattern>
+  </servlet-mapping>
 </web-app>
