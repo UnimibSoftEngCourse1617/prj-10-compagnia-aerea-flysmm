@@ -1,6 +1,6 @@
-
 <html>
 <head>
+<font face="Arial"/>
 <!-- Inizio sezione per Semantic ui -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -24,15 +24,31 @@
 </head>
 
 <body>
-
 	<div class="ui stackable inverted menu">
-		<a class="item">FlySMM</a> <a class="item"> About Us </a>
-		<a class="item"> Jobs </a> <a class="item"> Locations </a>
-		<a href="loginPage.html" class="right item"> Login </a>
-	</div>
 
-	<!-- INIZIO area dedicata alla ricerca di un volo -->
+		<a href="index.jsp" class="item">FlySMM</a> <a class="item"> About Us </a> <a
+			class="item"> Jobs </a> <a class="item"> Locations </a>
+
+		<%
+			if (request.getSession().getAttribute("customer") == null) {
+		%>
+
+		<a href="loginPage.html" class="right item"> Login </a>
+
+		<%
+			} else {
+		%>
+
+		<a href="./logoutServlet " class="right item"> Log out </a>
+
+		<%
+			}
+		%>
+
+
+	</div>
 	
+	<!-- INIZIO area dedicata alla ricerca di un volo -->
 	<div class="ui two column grid">
 		<div class="column">
 			<div class="ui raised segment">
@@ -50,17 +66,20 @@
 					</div>
 
 					<div class="field">
-						<label>Volo da</label> <input name="aDeparture" type="text" placeholder="malpensa" required>
+						<label>Volo da</label> <input name="aDeparture" type="text"
+							placeholder="malpensa" required>
 					</div>
 
 					<div class="field">
-						<label>Volo per</label> <input name="aArrival" type="text" placeholder="fiumicino" required></input>
+						<label>Volo per</label> <input name="aArrival" type="text"
+							placeholder="fiumicino" required></input>
 					</div>
 
 					<div class="three fields">
 
 						<div class="field">
-							<label>Partenza</label> <input name="dDate" type="date" placeholder="yyyy-mm-dd" required>
+							<label>Partenza</label> <input name="dDate" type="date"
+								placeholder="yyyy-mm-dd" required>
 						</div>
 
 						<div id="returnDate" style='' class="field">
@@ -86,13 +105,6 @@
 		</div>
 	</div>
 	<!-- FINE area dedicata alla ricerca di un volo -->
-  
-  <form  method="post" action="./GetPromotion">
-    	<button class="ui red button" name="command" value="Promo">
-  			<i class="gift icon"></i>
-  			See Promotions
-		</button>
-	</form>
 
 </body>
 </html>

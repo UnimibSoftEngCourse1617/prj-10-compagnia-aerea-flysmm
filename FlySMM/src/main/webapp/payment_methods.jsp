@@ -10,6 +10,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<font face="Arial"/>
 <!-- Inizio sezione per Semantic ui -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -25,11 +26,26 @@
 </head>
 <body>
 	<div class="ui stackable inverted menu">
-		<a class="item">FlySMM</a> <a class="item"> About Us </a> <a
-			class="item"> Jobs </a> <a class="item"> Locations </a> <a
-			href="loginPage.html" class="right item"> Sign up </a>
-	</div>
 
+		<a href="index.jsp" class="item">FlySMM</a> <a class="item"> About Us </a> <a
+			class="item"> Jobs </a> <a class="item"> Locations </a>
+		<%
+			if (request.getSession().getAttribute("customer") == null) {
+		%>
+
+		<a href="loginPage.html" class="right item"> Login </a>
+
+		<%
+			} else {
+		%>
+
+		<a href="./logoutServlet " class="right item"> Log out </a>
+
+		<%
+			}
+		%>
+
+	</div>
 	<table class="ui celled table">
 		<thead>
 			<tr>
@@ -55,7 +71,6 @@
 		</tbody>
 		<tfoot></tfoot>
 	</table>
-
 	<form action="./MakePayment" method="post">
 		<table class="ui celled table">
 			<thead>

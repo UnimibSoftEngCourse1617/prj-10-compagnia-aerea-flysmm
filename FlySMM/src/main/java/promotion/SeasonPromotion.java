@@ -2,6 +2,8 @@ package promotion;
 
 import java.util.Date;
 
+import javax.mail.MessagingException;
+
 public class SeasonPromotion extends Promotion{
 	
 	private static final long serialVersionUID = 1L;
@@ -13,14 +15,14 @@ public class SeasonPromotion extends Promotion{
 		super();
 	}
 	
-	public SeasonPromotion(Date startDate, Date expireDate){
+	public SeasonPromotion(Date startDate, Date expireDate) throws MessagingException{
 		this.promoType = "season";
 		this.setStartDate(startDate);
 		this.setExpireDate(expireDate);
 		this.notify_("There is a new Promotion in this period, check it out in our website");
 	}
 	
-	public SeasonPromotion(String idPromo, int discountRate, boolean fidelity, String name, String description, Date startDate, Date expireDate){
+	public SeasonPromotion(String idPromo, int discountRate, boolean fidelity, String name, String description, Date startDate, Date expireDate) throws MessagingException{
 		this.idPromo = idPromo;
 		this.discountRate = discountRate;
 		this.fidelity = fidelity;

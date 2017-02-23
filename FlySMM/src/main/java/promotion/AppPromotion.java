@@ -3,6 +3,7 @@ package promotion;
 import java.io.IOException;
 import java.sql.Time;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,12 +35,22 @@ public class AppPromotion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		SeasonPromotion p1 = new SeasonPromotion("1", 40, false, "Winter Promo", "come d'autunno sugli alberi le foglie", new Date(), new Date());
-		FlightPromotion p2 = new FlightPromotion("2", 30, true, "Alitalia 777 Promo", "Obama > Trump",
-							 new Flight(new Aircraft(), new Time(0), new Time(1), "idfs", new Date(), new Airport(), new Date(), new Airport(), new Price()));
+		/*SeasonPromotion p1 = null;
+		try {
+			p1 = new SeasonPromotion("1", 40, true, "winter Promo", "brrr", new Date(), new Date());
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		FlightPromotion p2 = null;
+		try {
+			p2 = new FlightPromotion("2", 30, true, "Alitalia 777 Promo", "Obama > Trump",
+								 new Flight());
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
 		writeSeasonPromotion(p1);
 		writeFlightPromotion(p2);
-		response.getWriter().append(p1.toString()).append(p2.toString());
+		response.getWriter().append(p1.toString());*/
 	}
 
 	/**

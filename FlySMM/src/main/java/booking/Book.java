@@ -149,7 +149,7 @@ public class Book implements Serializable {
 
 	public String createBookId(Flight f, Customer c, Passenger p) {
 		String s = f.getDepartureAirport().getIcao() + f.getArrivalAirport().getIcao() + f.getIdFlight()
-				+ c.getIdCustomer() + p.getFiscal_code().substring(0, 3);
+				+ c.getIdCustomer() + p.getFiscal_code();
 		return s;
 
 	}
