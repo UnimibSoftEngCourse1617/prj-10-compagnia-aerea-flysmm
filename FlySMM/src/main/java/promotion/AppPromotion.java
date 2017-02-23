@@ -11,11 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.Session;
 
+import customer.Customer;
 import promotion.SeasonPromotion;
 import sale.*;
 import servlets.SessionFactorySingleton;
 import promotion.FlightPromotion;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Servlet implementation class App
@@ -41,16 +43,28 @@ public class AppPromotion extends HttpServlet {
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
+		
+		Session session = SessionFactorySingleton.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		@SuppressWarnings("unchecked")
+		List<Flight> result = session
+				.createQuery("from Flight where Flight_ID = 'mh51'")
+				.list();
+		
+		Flight f = result.get(0);
+				
 		FlightPromotion p2 = null;
 		try {
-			p2 = new FlightPromotion("2", 30, true, "Alitalia 777 Promo", "Obama > Trump",
-								 new Flight());
+			p2 = new FlightPromotion("2", 35, false, "Boieng 777 Promo", "w le yeezy",
+								 f);
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
 		writeSeasonPromotion(p1);
 		writeFlightPromotion(p2);
-		response.getWriter().append(p1.toString());*/
+		
+		response.getWriter().append(p1.toString()).append(p2.toString());*/
 	}
 
 	/**
@@ -73,5 +87,6 @@ public class AppPromotion extends HttpServlet {
 		session.beginTransaction();
 		session.save(p);
 		session.getTransaction().commit();
+		System.out.println(p);
 	}
 }
