@@ -1,7 +1,6 @@
 package promotion;
 
 import java.io.IOException;
-import java.sql.Time;
 
 import javax.mail.MessagingException;
 import javax.servlet.ServletException;
@@ -11,9 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.Session;
 
-import customer.Customer;
 import promotion.SeasonPromotion;
-import sale.*;
+import sale.Flight;
 import servlets.SessionFactorySingleton;
 import promotion.FlightPromotion;
 import java.util.Date;
@@ -37,7 +35,7 @@ public class AppPromotion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*SeasonPromotion p1 = null;
+		SeasonPromotion p1 = null;
 		try {
 			p1 = new SeasonPromotion("1", 40, true, "winter Promo", "brrr", new Date(), new Date());
 		} catch (MessagingException e) {
@@ -64,7 +62,7 @@ public class AppPromotion extends HttpServlet {
 		writeSeasonPromotion(p1);
 		writeFlightPromotion(p2);
 		
-		response.getWriter().append(p1.toString()).append(p2.toString());*/
+		response.getWriter().append(p1.toString()).append(p2.toString());
 	}
 
 	/**
