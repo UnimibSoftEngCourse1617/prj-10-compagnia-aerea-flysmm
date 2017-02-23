@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
 import sale.Flight;
@@ -19,6 +21,12 @@ public class SaleCommand extends FrontCommand {
 	private static final String FLIGHTS = "flights";
 	private static final String RDATE = "rDate";
 	private static final String DDATE = "dDate";
+	private static final String ERROR = "/error.jsp";
+	private static final String MESSAGE = "Details: There are no flights matching search criteria. "
+			+ "Go back to homepage and try to change date or airports.";
+	private static final String MSG = "message";
+	private static final String SERVEXC = "An error occured";
+	private static final Logger LOG = Logger.getLogger(SaleCommand.class);
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
@@ -34,19 +42,16 @@ public class SaleCommand extends FrontCommand {
 
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
-
 		org.hibernate.Query query = session.createQuery("Select icao from Airport " + "where name=?");
 
 		query = query.setParameter(0, request.getParameter("aDeparture"));
 		List result = query.list();
 		if (result.size() == 0) {
-			String message = "Details: There are no flights matching search criteria. " + 
-					"Go back to homepage and try to change date or airports.";
-			request.setAttribute("message", message);
+			request.setAttribute(MSG, MESSAGE);
 			try {
-				context.getRequestDispatcher("/error.jsp").forward(request, response);
+				context.getRequestDispatcher(ERROR).forward(request, response);
 			} catch (Exception e) {
-				
+				LOG.info(SERVEXC, e);
 			}
 		}
 		String departure = (String) result.get(0);
@@ -56,13 +61,11 @@ public class SaleCommand extends FrontCommand {
 		queryArrivalAirport = queryArrivalAirport.setParameter(0, request.getParameter("aArrival"));
 		result = queryArrivalAirport.list();
 		if (result.size() == 0) {
-			String message = "Details: There are no flights matching search criteria. " + 
-					"Go back to homepage and try to change date or airports.";
-			request.setAttribute("message", message);
+			request.setAttribute(MSG, MESSAGE);
 			try {
-				context.getRequestDispatcher("/error.jsp").forward(request, response);
+				context.getRequestDispatcher(ERROR).forward(request, response);
 			} catch (Exception e) {
-				
+				LOG.info(SERVEXC, e);
 			}
 		}
 		String arrival = (String) result.get(0);
@@ -82,13 +85,11 @@ public class SaleCommand extends FrontCommand {
 
 		List result1 = queryInnerJoin.list();
 		if (result1.size() == 0) {
-			String message = "Details: There are no flights matching search criteria. " + 
-					"Go back to homepage and try to change date or airports.";
-			request.setAttribute("message", message);
+			request.setAttribute(MSG, MESSAGE);
 			try {
-				context.getRequestDispatcher("/error.jsp").forward(request, response);
+				context.getRequestDispatcher(ERROR).forward(request, response);
 			} catch (Exception e) {
-				
+				LOG.info(SERVEXC, e);
 			}
 		}
 
@@ -108,9 +109,9 @@ public class SaleCommand extends FrontCommand {
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException e) {
-			e.printStackTrace();
+			LOG.info(SERVEXC, e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOG.info(SERVEXC, e);
 		}
 	}
 
@@ -132,13 +133,11 @@ public class SaleCommand extends FrontCommand {
 
 		List result = queryFlyPrice.list();
 		if (result.size() == 0) {
-			String message = "Details: There are no flights matching search criteria. " + 
-					"Go back to homepage and try to change date or airports.";
-			request.setAttribute("message", message);
+			request.setAttribute(MSG, MESSAGE);
 			try {
-				context.getRequestDispatcher("/error.jsp").forward(request, response);
+				context.getRequestDispatcher(ERROR).forward(request, response);
 			} catch (Exception e) {
-				
+				LOG.info(SERVEXC, e);
 			}
 		}
 		List<Flight> flights = new ArrayList<Flight>();
@@ -157,9 +156,9 @@ public class SaleCommand extends FrontCommand {
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException e) {
-			e.printStackTrace();
+			LOG.info(SERVEXC, e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOG.info(SERVEXC, e);
 		}
 	}
 
@@ -171,7 +170,7 @@ public class SaleCommand extends FrontCommand {
 		try {
 			date = formatter.parse(dateInString);
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.info("parse exception", e);
 		}
 
 		return date;
