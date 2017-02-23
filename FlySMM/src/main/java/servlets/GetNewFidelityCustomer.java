@@ -74,7 +74,7 @@ public class GetNewFidelityCustomer extends HttpServlet {
 		
 	}
 
-	public static void writeFidelityCustomer(FidelityCustomer c) {
+	public void writeFidelityCustomer(FidelityCustomer c) {
 		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
 		session.getTransaction().begin();
 		session.save(c);
