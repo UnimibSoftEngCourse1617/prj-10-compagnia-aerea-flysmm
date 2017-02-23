@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
 import frontController.FrontCommand;
@@ -19,6 +20,7 @@ public class GetDepartureFlight extends HttpServlet {
 	private static final String RDATE = "rDate";
 	private static final String DDATE = "dDate";
 	private static final String PASSENGERS = "passengers";
+	private static final Logger LOG = Logger.getLogger(GetDepartureFlight.class);
 	
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -34,7 +36,7 @@ public class GetDepartureFlight extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.getWriter().append(request.getParameter("command"));
+		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -48,11 +50,19 @@ public class GetDepartureFlight extends HttpServlet {
 
 		request.getSession().setAttribute(DDATE, request.getParameter(DDATE));
 		request.getSession().setAttribute(RDATE, request.getParameter(RDATE));
-		
-		FrontCommand command = FrontCommand.getCommand(request, response);
+		FrontCommand command = null;
+		try {
+			command = FrontCommand.getCommand(request, response);
+		} catch (Exception e) {
+			LOG.error("An error occured", e);
+		}
 		if (command != null) {
 			command.init(getServletContext(), "GDF", request, response);
-			command.dispatch();
+			try {
+				command.dispatch();
+			} catch (Exception e) {
+				LOG.error("An error occured", e);
+			}
 		}
 		else {
 			System.out.println("CommandNotFound");

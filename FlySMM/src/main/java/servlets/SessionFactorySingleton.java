@@ -7,7 +7,7 @@ import org.hibernate.service.ServiceRegistry;
 
 public class SessionFactorySingleton {
 
-	public static SessionFactory factory;
+	private static SessionFactory factory;
 
 	private SessionFactorySingleton() {
 	}

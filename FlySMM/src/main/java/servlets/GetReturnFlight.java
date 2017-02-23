@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import frontController.FrontCommand;
-import frontController.UnknownCommand;
 import sale.Flight;
 
 /**
@@ -20,6 +21,7 @@ import sale.Flight;
 @WebServlet("/GetReturnFlight")
 public class GetReturnFlight extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger LOG = Logger.getLogger(GetReturnFlight.class);
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -36,7 +38,6 @@ public class GetReturnFlight extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -48,25 +49,35 @@ public class GetReturnFlight extends HttpServlet {
 		String[] flight = request.getParameter("chosen").split("-");
 		String id = flight[0];
 		String tariff = flight[1];
-		flight = null;
 		List<Flight> flights = (List<Flight>) request.getSession().getAttribute("flights");
 		Flight chosen = findFlightFromIdAndTariff(flights, id, tariff);
 		if (chosen != null) {
 			request.getSession().setAttribute("chosenDeparture", chosen);
 		}
-    
-		FrontCommand command = FrontCommand.getCommand(request, response);
+
+		FrontCommand command = null;
+		try {
+			command = FrontCommand.getCommand(request, response);
+		} catch (Exception e) {
+			LOG.error("An error occured", e);
+		}
 		String op = (String) request.getSession().getAttribute("rDate");
-		
 		System.out.println(op);
-		if (command != null &&  !"".equals(op)) {
+		if (command != null && !"".equals(op)) {
 			command.init(getServletContext(), "GRF", request, response);
-			command.dispatch();
-		} 
-		else if("".equals(op)) {
+			try {
+				command.dispatch();
+			} catch (Exception e) {
+				LOG.error("An error occured", e);
+			}
+		} else if ("".equals(op)) {
 			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/Gateway");
-			dispatcher.forward(request, response);
-		}else{
+			try {
+				dispatcher.forward(request, response);
+			} catch (Exception e) {
+				LOG.error("An error occured", e);
+			}
+		} else {
 			System.out.println("CommandNotFound");
 		}
 	}
