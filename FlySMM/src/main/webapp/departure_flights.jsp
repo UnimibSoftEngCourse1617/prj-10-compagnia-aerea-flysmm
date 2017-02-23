@@ -26,7 +26,7 @@
 </head>
 <body>
 	<div class="ui stackable inverted menu">
-		<div class="item">FltSMM</div>
+		<a href="index.jsp" class="item">FlySMM</a>
 		<a class="item"> About Us </a> <a class="item"> Jobs </a> <a
 			class="item"> Locations </a> <a class="right item"> Sign up </a>
 	</div>
