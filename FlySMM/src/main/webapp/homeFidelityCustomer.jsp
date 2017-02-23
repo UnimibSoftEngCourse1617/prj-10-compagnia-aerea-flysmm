@@ -53,20 +53,13 @@
 				src="images/flysmmLogo.jpg" style="float: right">
 		</div>
 	</div>
-	<div class="ui three column very relaxed grid">
+	<div class="ui two column very relaxed grid">
 		<div class="column">
 			<form name="listBook" method="post" action="./GetBook">
 				<button class="ui green button">
 					<i class="tags icon"></i> See Your Books
 				</button>
 				<input type="hidden" name="command" value="GetBook">
-			</form>
-		</div>
-		<div class="column">
-			<form method="post" action="./GetPromotion">
-				<button class="ui grey button" name="command" value="Promo">
-					<i class="plane icon"></i> See Your Flights
-				</button>
 			</form>
 		</div>
 		<div class="column">

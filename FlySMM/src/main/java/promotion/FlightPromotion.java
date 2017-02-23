@@ -1,5 +1,7 @@
 package promotion;
 
+import javax.mail.MessagingException;
+
 import sale.Flight;
 
 public class FlightPromotion extends Promotion{
@@ -12,13 +14,13 @@ public class FlightPromotion extends Promotion{
 		super();
 	}
 	
-	public FlightPromotion(Flight flight){
+	public FlightPromotion(Flight flight) throws MessagingException{
 		this.promoType = "flight";
 		this.setFlight(flight);
 		this.notify_("There is a new Promotion, check it out in our website");
 	}
 	
-	public FlightPromotion(String idPromo, int discountRate, boolean fidelity, String name, String description, Flight flight){
+	public FlightPromotion(String idPromo, int discountRate, boolean fidelity, String name, String description, Flight flight) throws MessagingException{
 		this.idPromo = idPromo;
 		this.discountRate = discountRate;
 		this.fidelity = fidelity;
