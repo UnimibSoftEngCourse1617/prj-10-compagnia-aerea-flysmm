@@ -1,7 +1,10 @@
 package frontController;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -103,20 +106,18 @@ public class PaymentCommand extends FrontCommand {
 		dispatcher.forward(request, response);
 	}
 
-	public void makePayment() {
+	public void makePayment() throws ServletException, IOException {
 
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
 
 		Customer customer = (Customer) request.getSession().getAttribute("customer");
 		Long id = customer.getIdCustomer();
-		System.out.println("questo è il mio customer --> " + customer.toString());
 
 		org.hibernate.Query queryGetBook = session.createQuery("FROM Book b " + "WHERE b.customerId = ? ");
 		queryGetBook.setParameter(0, customer.getIdCustomer());
 		List<Book> resultGetBook = queryGetBook.list();
 
-		System.out.println("resultGetBook --> " + resultGetBook.get(0).toString());
 		org.hibernate.Query updateBook;
 
 		for (int i = 0; i < resultGetBook.size(); i++) {
@@ -124,13 +125,10 @@ public class PaymentCommand extends FrontCommand {
 					"UPDATE Book " + "set Payed = 1 " + "where IdBook = '" + resultGetBook.get(i).getBookId() + "'");
 			updateBook.executeUpdate();
 
-			
-			System.out.println("La query di book -->  " + resultGetBook.get(i).getBookId());
 		}
-		
 
 		if (customer instanceof FidelityCustomer) {
-			
+
 			// devo beccare i punti che ha gia
 			int sum = ((FidelityCustomer) customer).getPoint();
 			org.hibernate.Query queryFlight;
@@ -144,18 +142,24 @@ public class PaymentCommand extends FrontCommand {
 
 				int point = resultFlight.get(0).getDistance();
 				sum = sum + point;
-				System.out.println("il punteggio parziale è: --> " + sum);
 			}
-			
-			GregorianCalendar date = new GregorianCalendar();
-			
-			Query updatePoint = session.createQuery("UPDATE Customer " + "set point = " + sum + ", Date_last_book = "+ date.getTime() +" where idCustomer =" + id);
+
+			SimpleDateFormat sdf = new SimpleDateFormat();
+			sdf.applyPattern("yyyy-MM-dd");
+			String dataStr = sdf.format(new Date());
+
+
+			Query updatePoint = session.createQuery("UPDATE Customer " + "set point = " + sum + ", Date_last_book = '"
+					+ dataStr + "' where idCustomer =" + id);
 			updatePoint.executeUpdate();
-	
-			session.save(customer);
+
 		}
-		
+
 		session.getTransaction().commit();
+		
+		RequestDispatcher dispatcher = context.getRequestDispatcher("/GetBook?command=GetBook");
+		dispatcher.forward(request, response);
+	
 
 	}
 
