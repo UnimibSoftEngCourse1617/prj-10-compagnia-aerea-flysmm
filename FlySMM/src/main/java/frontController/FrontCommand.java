@@ -7,7 +7,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 public abstract class FrontCommand {
+	private static final Logger LOG =Logger.getLogger(FrontCommand.class);
 	protected ServletContext context;
 	protected String caller;
 	protected HttpServletRequest request;
@@ -29,7 +32,7 @@ public abstract class FrontCommand {
 			return (FrontCommand) getCommandClass(request, response).newInstance();
 		} catch (Exception e) {
 			request.getRequestDispatcher("./error.jsp").forward(request, response);
-			e.printStackTrace();
+			LOG.error("An error occured", e);
 		}
 		return result;
 	}
@@ -42,6 +45,7 @@ public abstract class FrontCommand {
 		} catch (ClassNotFoundException e) {
 			result = UnknownCommand.class;
 			request.getRequestDispatcher("./error.jsp").forward(request, response);
+			LOG.error("An error occured", e);
 		}
 		return result;
 	}

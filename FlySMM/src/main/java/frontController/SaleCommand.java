@@ -30,10 +30,10 @@ public class SaleCommand extends FrontCommand {
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
-		if (caller.equals("GDF")) {
+		if ("GDF".equals(caller)) {
 			getDepartureFromDb();
 		}
-		if (caller.equals("GRF")) {
+		if ("GRF".equals(caller)) {
 			getReturnFromDb();
 		}
 	}
@@ -46,7 +46,7 @@ public class SaleCommand extends FrontCommand {
 
 		query = query.setParameter(0, request.getParameter("aDeparture"));
 		List result = query.list();
-		if (result.size() == 0) {
+		if (result.isEmpty()) {
 			request.setAttribute(MSG, MESSAGE);
 			try {
 				context.getRequestDispatcher(ERROR).forward(request, response);
@@ -60,7 +60,7 @@ public class SaleCommand extends FrontCommand {
 
 		queryArrivalAirport = queryArrivalAirport.setParameter(0, request.getParameter("aArrival"));
 		result = queryArrivalAirport.list();
-		if (result.size() == 0) {
+		if (result.isEmpty()) {
 			request.setAttribute(MSG, MESSAGE);
 			try {
 				context.getRequestDispatcher(ERROR).forward(request, response);
@@ -84,7 +84,7 @@ public class SaleCommand extends FrontCommand {
 				Integer.parseInt((String) request.getSession().getAttribute("passengers")));
 
 		List result1 = queryInnerJoin.list();
-		if (result1.size() == 0) {
+		if (result1.isEmpty()) {
 			request.setAttribute(MSG, MESSAGE);
 			try {
 				context.getRequestDispatcher(ERROR).forward(request, response);
@@ -132,7 +132,7 @@ public class SaleCommand extends FrontCommand {
 				Integer.parseInt((String) request.getSession().getAttribute("passengers")));
 
 		List result = queryFlyPrice.list();
-		if (result.size() == 0) {
+		if (result.isEmpty()) {
 			request.setAttribute(MSG, MESSAGE);
 			try {
 				context.getRequestDispatcher(ERROR).forward(request, response);
