@@ -7,10 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Session;
 
 import frontController.FrontCommand;
-import frontController.UnknownCommand;
 
 /**
  * Servlet implementation class GetDepartureFlight
@@ -47,7 +45,6 @@ public class GetDepartureFlight extends HttpServlet {
 			throws ServletException, IOException {
 
 		request.getSession().setAttribute(PASSENGERS, request.getParameter(PASSENGERS));
-
 		request.getSession().setAttribute(DDATE, request.getParameter(DDATE));
 		request.getSession().setAttribute(RDATE, request.getParameter(RDATE));
 		FrontCommand command = null;
