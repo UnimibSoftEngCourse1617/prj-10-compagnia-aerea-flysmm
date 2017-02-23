@@ -1,8 +1,14 @@
 package promotion;
 
+import java.util.List;
+
 import javax.mail.MessagingException;
 
+import org.hibernate.Session;
+
 import sale.Flight;
+import sale.Price;
+import servlets.SessionFactorySingleton;
 
 public class FlightPromotion extends Promotion{
 	
@@ -31,8 +37,22 @@ public class FlightPromotion extends Promotion{
 		this.notify_("There is a new Promotion, check it out in our website");
 	}
 	
+	@SuppressWarnings("unchecked")
 	public Flight getFlight() {
-		return this.flight;
+		Session session = SessionFactorySingleton.getSessionFactory().openSession();
+		session.beginTransaction();
+		
+		List<Price> result = session
+				.createQuery("from Price where promotion_IdPromo = '"+this.idPromo+"'")
+				.list();
+		
+		String id = result.get(0).getFlight().getIdFlight();
+		
+		List<Flight> result1 = session.
+				createQuery("from Flight where Flight_ID = '"+id+"'")
+				.list();
+		
+		return result1.get(0);
 	}
 	
 	public void setFlight(Flight flight) {
