@@ -18,7 +18,8 @@
 	<div class="ui stackable inverted menu">
 		<div class="item">FlySMM</div>
 		<a class="item"> About Us </a> <a class="item"> Jobs </a> <a
-			class="item"> Locations </a> <a class="right item"> Sign up </a>
+			class="item"> Locations </a> <a
+			href="./logoutServlet " class="right item"> Log out </a>
 	</div>
 	<h1 class="ui header">Add passenger</h1>
 		<div class="ui two column grid">

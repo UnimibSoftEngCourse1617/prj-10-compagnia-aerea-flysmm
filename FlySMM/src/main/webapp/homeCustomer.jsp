@@ -24,14 +24,8 @@
 	<div class="ui stackable inverted menu">
 
 		<a href="index.jsp" class="item">FlySMM</a> <a class="item"> About
-			Us </a> <a class="item"> Jobs </a> <a class="item"> Locations </a>
-		<%-- <a href="index.jsp" class="item"> <form >
-			
-			<%
-				request.getSession().removeAttribute("customer");
-			%>
-		</form></a> --%>
-		<a href="./logoutServlet " class="item"> Log out </a>
+			Us </a> <a class="item"> Jobs </a> <a class="item"> Locations </a> <a
+			href="./logoutServlet " class="right item"> Log out </a>
 	</div>
 
 	<div class="ui two column grid">
