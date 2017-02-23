@@ -63,7 +63,7 @@
 					<td>${flight.price.discountedAmount}</td>
 					<td><form method="post" name="flightItems"
 							action="./GetReturnFlight">
-							<input type="submit" class="ui green button" value="Acquista" />
+							<input type="submit" class="ui green button" value="Choose" />
 							<input type="hidden" name="chosen"
 								value="${flight.idFlight}-${flight.price.seats.tariff}" /> <input
 								type="hidden" name="command" value="Sale" />
