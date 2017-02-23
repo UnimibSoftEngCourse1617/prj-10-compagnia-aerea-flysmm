@@ -93,7 +93,7 @@ public class EditCommand extends FrontCommand{
 			Flight f = (Flight) o[1];
 			System.out.println(f.getRemainingSeats());
 			Flight fp = new Flight(f, p);
-			//checkforPromos(fp);
+			checkforPromos(fp);
 			flights.add(fp);
 		}
 		// session.getTransaction().commit();
@@ -106,6 +106,20 @@ public class EditCommand extends FrontCommand{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private Flight checkforPromos(Flight flight) {
+		if (flight.getPrice().getPromo() != null) {
+			float amount = flight.getPrice().getAmount();
+			int discount = flight.getPrice().getPromo().getDiscountRate();
+			if (flight.getPrice().getPromo().isFidelity()) {
+				flight.getPrice().setDiscountedAmount(amount - (amount * discount / 100));
+			} else {
+				flight.getPrice().setAmount(amount - (amount * discount / 100));
+				flight.getPrice().setDiscountedAmount(amount - (amount * discount / 100));
+			}
+		}
+		return flight;
 	}
 
 }
