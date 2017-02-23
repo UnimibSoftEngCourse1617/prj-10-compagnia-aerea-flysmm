@@ -21,7 +21,8 @@ public abstract class State implements Serializable{
 	public abstract String type();
 
 	public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
-		long diffInMillies = date2.getTime() - date1.getTime();
-		return timeUnit.convert(diffInMillies, TimeUnit.DAYS);
+		long diffInMillies = date1.getTime() - date2.getTime();
+		long diff = timeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+		return diff;
 	}
 }
