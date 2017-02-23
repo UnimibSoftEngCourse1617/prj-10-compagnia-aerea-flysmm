@@ -149,7 +149,7 @@ public class Book implements Serializable {
 
 	public String createBookId(Flight f, Customer c, Passenger p) {
 		String s = f.getDepartureAirport().getIcao() + f.getArrivalAirport().getIcao() + f.getIdFlight()
-				+ c.getIdCustomer() + p.getFiscal_code().substring(0, 3);
+				+ c.getIdCustomer() + p.getFiscal_code();
 		return s;
 
 	}
@@ -172,14 +172,6 @@ public class Book implements Serializable {
 	public Date getDate() {
 		Date date = new Date();
 		return date;
-	}
-
-	@Override
-	public String toString() {
-		return "Book [bookId=" + bookId + ", customerId=" + customerId + ", bookingDate=" + bookingDate
-				+ ", totalPrice=" + totalPrice + ", payed=" + payedB + ", expired=" + expiredB + ", airplaneId="
-				+ airplaneId + ", departureDate=" + departureDate + ", documentP=" + documentP + ", flightId="
-				+ flightId + "]";
 	}
 
 }

@@ -5,7 +5,8 @@ import java.sql.Time;
 import java.util.Date;
 
 public class Flight implements Serializable {
-
+	private static final long serialVersionUID = 1L;
+	
 	private Aircraft aircraft;
 	private String idFlight;
 	private Date departureDate;
@@ -55,7 +56,7 @@ public class Flight implements Serializable {
 		this.departureTime = f.getDepartureTime();
 		this.arrivalTime = f.getArrivalTime();
 		this.price = p;
-		this.remainingSeats = f.remainingSeats;
+		this.remainingSeats = f.getRemainingSeats();
 	}
 	
 	public Flight(String idFlight, Airport departureAirport, Airport arrivalAirport) {

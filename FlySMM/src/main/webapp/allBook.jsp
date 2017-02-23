@@ -14,6 +14,7 @@
 <html>
 
 <head>
+<font face="Arial"/>
 <!-- Inizio sezione per Semantic ui -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -28,8 +29,24 @@
 </head>
 <body>
 	<div class="ui stackable inverted menu">
-		<a class="item">FlySMM</a> <a class="item"> About Us </a> <a
+		<a href="index.jsp" class="item">FlySMM</a> <a class="item"> About Us </a> <a
 			class="item"> Jobs </a> <a class="item"> Locations </a>
+		<%
+			if (request.getSession().getAttribute("customer") == null) {
+		%>
+
+		<a href="loginPage.html" class="right item"> Login </a>
+
+		<%
+			} else {
+		%>
+
+		<a href="./logoutServlet " class="right item"> Log out </a>
+
+		<%
+			}
+		%>
+
 	</div>
 	<h1 align="center">Book Unpayed</h1>
 	<table class="ui celled table">
@@ -56,17 +73,20 @@
 			</c:forEach>
 		</tbody>
 		<tfoot>
-    <tr><th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th>Total Price</th>
-    <th>${totalPriceHomeCustomer}</th>
-  </tr></tfoot>
+			<tr>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th>Total Price</th>
+				<th>${totalPriceHomeCustomer}</th>
+			</tr>
+		</tfoot>
 	</table>
-
-	<input class="ui red submit button" type="submit" value="Pay">
-	<input type="hidden" name="command" value="nnnnnnnnnnn" />
+	<form class="ui form" name="payment" method="post" action="./Payment_options">
+		<input class="ui red submit button" type="submit" value="Pay!">
+		<input type="hidden" name="command" value="Payment">
+	</form>
 	<h1 align="center">Book Payed</h1>
 	<table class="ui celled table">
 		<thead>

@@ -10,6 +10,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<font face="Arial" />
 <!-- Inizio sezione per Semantic ui -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -25,106 +26,61 @@
 </head>
 <body>
 	<div class="ui stackable inverted menu">
-		<a class="item">FlySMM</a> <a class="item"> About Us </a> <a
-			class="item"> Jobs </a> <a class="item"> Locations </a> <a
-			href="loginPage.html" class="right item"> Sign up </a>
+
+		<a href="index.jsp" class="item">FlySMM</a> <a class="item"> About
+			Us </a> <a class="item"> Jobs </a> <a class="item"> Locations </a>
+		<%
+			if (request.getSession().getAttribute("customer") == null) {
+		%>
+
+		<a href="loginPage.html" class="right item"> Login </a>
+
+		<%
+			} else {
+		%>
+
+		<a href="./logoutServlet " class="right item"> Log out </a>
+
+		<%
+			}
+		%>
+
 	</div>
-
-
-	<div class="ui middle aligned divided list">
-		<div class="item">
-			<div class="right floated content">
-				<div class="ui button">Use</div>
-			</div>
-			<div class="content">Lena</div>
-		</div>
-		
-		
-		
-		<div class="item">
-			<div class="right floated content">
-				<div class="ui button">Add</div>
-			</div>
-			<img class="ui avatar image" src="/images/avatar2/small/lindsay.png">
-			<div class="content">Lindsay</div>
-		</div>
-		<div class="item">
-			<div class="right floated content">
-				<div class="ui button">Add</div>
-			</div>
-			<img class="ui avatar image" src="/images/avatar2/small/mark.png">
-			<div class="content">Mark</div>
-		</div>
-		<div class="item">
-			<div class="right floated content">
-				<div class="ui button">Add</div>
-			</div>
-			<img class="ui avatar image" src="/images/avatar2/small/molly.png">
-			<div class="content">Molly</div>
-		</div>
-	</div>
-
-
-
-
-
-
-	<table class="ui celled table">
-		<thead>
-			<tr>
-				<th>idAddress</th>
-				<th>street</th>
-				<th>street_number</th>
-				<th>cap</th>
-				<th>city</th>
-				<th>country</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${address}" var="address">
+	<form action="./MakePayment" method="post">
+		<table class="ui celled table">
+			<thead>
 				<tr>
-					<td>${address.idAddress}</td>
-					<td>${address.street}</td>
-					<td>${address.street_number}</td>
-					<td>${address.cap}</td>
-					<td>${address.city}</td>
-					<td>${address.country}</td>
+					<th>cardNumber</th>
+					<th>Nome</th>
+					<th>Cognome</th>
+					<th>cvv</th>
+					<th>owner</th>
+					<th>expiredDate</th>
+					<th>Usa</th>
 				</tr>
-			</c:forEach>
-		</tbody>
-		<tfoot></tfoot>
-	</table>
-	
-	
-	<table class="ui celled table">
-		<thead>
-			<tr>
-				<th>cardNumber</th>
-				<th>customer</th>
-				<th>cvv</th>
-				<th>owner</th>
-				<th>expiredDate</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${payment}" var="payment">
-				<tr>
-					<td>${payment.cardNumber}</td>
-					<td>${payment.customer}</td>
-					<td>${payment.cvv}</td>
-					<td>${payment.owner}</td>
-					<td>${payment.expiredDate}</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-		<tfoot></tfoot>
-	</table>
-	
-	<form action="/addNewPaymentMethod.jsp" name="addPaymentMethod">
-		<input type="hidden" name="command" value="NewPayment">
-		<input type="submit" name="bntNewPayment" value="Aggiungi">
+			</thead>
+			<tbody>
+				<c:forEach items="${payment}" var="payment">
+					<tr>
+						<td>${payment.cardNumber}</td>
+						<td>${payment.customer.name}</td>
+						<td>${payment.customer.surname}</td>
+						<td>${payment.cvv}</td>
+						<td>${payment.owner}</td>
+						<td>${payment.expiredDate}</td>
+						<td><input type="submit" value="Usa" name="invio"> <input
+							type="hidden" value="${payment.cardNumber}"></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+			<tfoot></tfoot>
+			<input type="hidden" name="command" value="Payment">
+		</table>
 	</form>
-	
-	
+
+	<form action="./addNewPaymentMethod.jsp" method="post">
+		<!-- <input type="hidden" name="command" value="NewPayment">  -->
+		<input type="submit" class="ui primary button" name="bntNewPayment" value="Aggiungi Metodo">
+	</form>
 </body>
 </html>

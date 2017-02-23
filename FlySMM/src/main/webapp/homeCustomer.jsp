@@ -1,6 +1,7 @@
 <%@page import="customer.Customer"%>
 <html>
 <head>
+<font face="Arial"/>
 <!-- Inizio sezione per Semantic ui -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -9,7 +10,9 @@
 	href="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.19.3/css/semantic.css"
 	rel="stylesheet" />
 <script
-	src="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.19.3/javascript/semantic.js"></script>
+	src="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.19.3/javascript/semantic.js">
+	
+</script>
 <!-- Fine sezione per Semantic ui -->
 <title>Home Customer</title>
 </head>
@@ -17,16 +20,25 @@
 
 	<div class="ui stackable inverted menu">
 
-		<a href="index.jsp" class="item">FlySMM</a>
-		<a class="item"> About Us </a>
-		<a class="item"> Jobs </a>
-		<a class="item"> Locations </a>
-		<%-- <a href="index.jsp" class="item"> <form >
-			Logout<input type="hidden" name="${customer}" value="logout"/>
-			<%
-				request.getSession().removeAttribute("customer");
-			%>
-		</form></a> --%>
+
+		<a href="index.jsp" class="item">FlySMM</a> <a class="item"> About
+			Us </a> <a class="item"> Jobs </a> <a class="item"> Locations </a>
+		<%
+			if (request.getSession().getAttribute("customer") == null) {
+		%>
+
+		<a href="loginPage.html" class="right item"> Login </a>
+
+		<%
+			} else {
+		%>
+
+		<a href="./logoutServlet " class="right item"> Log out </a>
+
+		<%
+			}
+		%>
+
 	</div>
 
 	<h1 class="ui center aligned header">

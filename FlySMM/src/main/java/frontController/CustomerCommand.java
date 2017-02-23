@@ -34,8 +34,6 @@ public class CustomerCommand extends FrontCommand {
 			if (result.size() == 1) {
 				customerRegistry = (Customer) result.get(0);
 
-				System.out.println(customerRegistry.getClass().toString());
-
 				request.getSession().setAttribute("customer", customerRegistry);
 
 				request.getSession().setAttribute("idCustomer", customerRegistry.getIdCustomer());
