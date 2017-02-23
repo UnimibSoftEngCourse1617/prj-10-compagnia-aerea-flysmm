@@ -57,7 +57,12 @@ public class GetPassenger extends HttpServlet {
 			int i = 0;
 			for (Passenger p : listPassenger) {
 				Book tmp = new Book(c, f, p);
+				if (c.getClass().toString().matches("class customer.FidelityCustomer")) {
+					System.out.println("QUI");
+					tmp.setTotalPrice(f.getPrice().getDiscountedAmount());
+				}
 				tmp.setTotalPrice(tmp.getTotalPrice() + priceBaggage.get(i));
+				System.out.println(tmp.getTotalPrice());
 				listBook.add(tmp);
 				i++;
 			}
@@ -67,7 +72,7 @@ public class GetPassenger extends HttpServlet {
 			totalPrice += b.getTotalPrice();
 		}
 		request.setAttribute("totalPrice", totalPrice);
-		
+
 		request.getSession().setAttribute("listBook", listBook);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/bookRecap.jsp");
 		requestDispatcher.forward(request, response);

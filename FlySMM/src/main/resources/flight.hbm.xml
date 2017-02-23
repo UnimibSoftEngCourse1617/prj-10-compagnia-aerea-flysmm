@@ -17,6 +17,7 @@
 		<property name="departureTime" column="Departure_Time" type="time" />
 		<property name="arrivalTime" column="Arrival_Time" type="time" />
 		<property name="distance" column="Distance" type="int" />
+		<property name="remainingSeats" column="Seat_Remaining" type="int" />
 
 		<many-to-one name="aircraft" class="sale.Aircraft" column="Aircraft_ID_aircraft" />
 	</class>

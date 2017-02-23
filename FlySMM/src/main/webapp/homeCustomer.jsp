@@ -1,6 +1,7 @@
 <%@page import="customer.Customer"%>
 <html>
 <head>
+<font face="Arial"/>
 <!-- Inizio sezione per Semantic ui -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -17,10 +18,22 @@
 
 	<div class="ui stackable inverted menu">
 
-		<a href="index.jsp" class="item">FlySMM</a> <a class="item"> About
-			Us </a> <a class="item"> Jobs </a> <a class="item"> Locations </a>
-
+		<a href="index.jsp" class="item">FlySMM</a>
+		<a class="item"> About Us </a>
+		<a class="item"> Jobs </a>
+		<a class="item"> Locations </a>
+		<%-- <a href="index.jsp" class="item"> <form >
+			Logout<input type="hidden" name="${customer}" value="logout"/>
+			<%
+				request.getSession().removeAttribute("customer");
+			%>
+		</form></a> --%>
 	</div>
+
+	<h1 class="ui center aligned header">
+		HOME
+		<div class="sub header">Welcome to our home page for users, enjoy it.</div>
+	</h1>
 
 	<div class="ui two column grid">
 		<div class="column">
@@ -36,13 +49,21 @@
 					</div>
 
 					Begin a fidelity Customer <br> <input
-						class="ui blue submit button" type="submit" value="fidelity">
+						class="ui green submit button" type="submit" value="fidelity">
 
 				</form>
-				<form class="ui form" name="listBook" method="post" action="./GetBook">
-					<input class="ui blue submit button" type="submit"
-						value="View your flight">
-						<input type="hidden" name="command" value="GetBook">
+				<form name="listBook" method="post" action="./GetBook">
+					<button class="ui grey button">
+						<i class="plane icon"></i> See Your Flights
+					</button>
+					<input type="hidden" name="command" value="GetBook">
+				</form>
+				<form method="post" action="./GetPromotion">
+					<button class="ui red button">
+						<i class="gift icon"></i> See Promotions
+					</button>
+					<input type="hidden" name="command" value="Promo">
+					<input type="hidden" name="customertype" value="nope">
 				</form>
 			</div>
 		</div>

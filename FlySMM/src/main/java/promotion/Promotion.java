@@ -1,6 +1,9 @@
 package promotion;
 
 import java.util.List;
+
+import javax.mail.MessagingException;
+
 import java.io.Serializable;
 import org.hibernate.Session;
 import customer.Customer;
@@ -21,7 +24,7 @@ public abstract class Promotion implements Serializable{
 		super();
 	}
 	
-	public void notify_(String text){
+	public void notify_(String text) throws MessagingException{
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
 
@@ -32,9 +35,13 @@ public abstract class Promotion implements Serializable{
 
 		Mail m = new Mail();
 		
-		for (Customer c : (List<Customer>) result) {
+		for (Customer c : result) {
 			String email = c.getEmail();
-			m.sendMail(email, text);
+			try{m.sendMail(email, text);
+				}
+			catch (MessagingException e) {
+					e.printStackTrace();
+					}
 		}
 		
 		session.getTransaction().commit();

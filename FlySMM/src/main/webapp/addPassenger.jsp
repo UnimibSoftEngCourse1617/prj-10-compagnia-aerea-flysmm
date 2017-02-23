@@ -2,6 +2,7 @@
 
 <html>
 <head>
+<font face="Arial"/>
 <!-- Inizio sezione per Semantic ui -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -16,9 +17,11 @@
 </head>
 <body>
 	<div class="ui stackable inverted menu">
-		<div class="item">FlySMM</div>
-		<a class="item"> About Us </a> <a class="item"> Jobs </a> <a
-			class="item"> Locations </a> <a class="right item"> Sign up </a>
+		<a href="index.jsp" class="item">FlySMM</a>
+		<a class="item"> About Us </a>
+		<a class="item"> Jobs </a> 
+		<a class="item"> Locations </a> 
+		<a href="loginPage.html" class="right item"> Login </a>
 	</div>
 	<h1 class="ui header">Add passenger</h1>
 		<div class="ui two column grid">
@@ -32,7 +35,7 @@
 					
 					function writeForm(){
 						
-						document.write("<br><br><h1>Passenger#"+(i+1)+"</h1>");
+						document.write("<h1>Passenger#"+(i+1)+"</h1>");
 						document.write("  					<div class=\"field\">");
 						document.write("                      		<label>Name<label> <input type=\"text\" name=\"name"+i+"\"");
 						document.write("							placeholder=\"name\"required><\/div>");

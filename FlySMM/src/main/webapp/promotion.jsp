@@ -11,6 +11,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<font face="Arial"/>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -26,17 +27,16 @@
 <body>
 	<div class="ui stackable inverted menu">
 		<a href="index.jsp" class="item">FlySMM</a>
-		<a class="item">About Us </a>
-		<a class="item"> Jobs </a>
-		<a class="item"> Locations </a>
-		<a href="registry.jsp" class="right item"> Sign up </a>
+		<a class="item"> About Us </a>
+		<a class="item"> Jobs </a> 
+		<a class="item"> Locations </a> 
+		<a href="loginPage.html" class="right item"> Login </a>
 	</div>
 	<table class="ui celled table">
 		<thead>
 			<tr>
 				<th>Name</th>
 				<th>Discount Rate</th>
-				<th>Fidelity</th>
 				<th>Description</th>
 				<th>Start Date</th>
 				<th>Expire Date</th>
@@ -44,11 +44,12 @@
 			</tr>
 		</thead>
 		<tbody>
+			
+			<c:if test="${type eq 'fidelity'}">			
 			<c:forEach items="${promotion}" var="promotion">
 				<tr>
 					<td>${promotion.name}</td>
 					<td>${promotion.discountRate}</td>
-					<td>${promotion.fidelity}</td>
 					<td>${promotion.description}</td>
 					<c:if test="${promotion.getClass() eq 'class promotion.SeasonPromotion'}">
 						<td>${promotion.startDate}</td>
@@ -63,6 +64,29 @@
 					</c:if>
 				</tr>
 			</c:forEach>
+			</c:if>
+			<c:if test="${type eq 'nope'}">
+			<c:forEach items="${promotion}" var="promotion">
+			<c:if test="${promotion.fidelity eq 'false'}">
+				<tr>
+					<td>${promotion.name}</td>
+					<td>${promotion.discountRate}</td>
+					<td>${promotion.description}</td>
+					<c:if test="${promotion.getClass() eq 'class promotion.SeasonPromotion'}">
+						<td>${promotion.startDate}</td>
+						<td>${promotion.expireDate}</td>
+						<td></td>
+					</c:if>
+					<c:if test="${promotion.getClass() eq 'class promotion.FlightPromotion'}">
+						<td></td>
+						<td></td>
+						<!-- I use New Flight() so promotion.flight = null -->
+						<td>${promotion.flight.idFlight}</td>
+					</c:if>
+				</tr>	
+			</c:if>
+			</c:forEach>
+			</c:if>
 		</tbody>
 		<tfoot></tfoot>
 	</table>
