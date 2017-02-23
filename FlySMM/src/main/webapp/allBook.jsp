@@ -14,6 +14,7 @@
 <html>
 
 <head>
+<font face="Arial"/>
 <!-- Inizio sezione per Semantic ui -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -28,7 +29,7 @@
 </head>
 <body>
 	<div class="ui stackable inverted menu">
-		<a class="item">FlySMM</a> <a class="item"> About Us </a> <a
+		<a href="index.jsp" class="item">FlySMM</a> <a class="item"> About Us </a> <a
 			class="item"> Jobs </a> <a class="item"> Locations </a>
 		<%
 			if (request.getSession().getAttribute("customer") == null) {
@@ -45,6 +46,7 @@
 		<%
 			}
 		%>
+
 	</div>
 	<h1 align="center">Book Unpayed</h1>
 	<table class="ui celled table">

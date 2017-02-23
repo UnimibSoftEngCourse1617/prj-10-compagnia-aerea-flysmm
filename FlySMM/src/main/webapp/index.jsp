@@ -1,6 +1,6 @@
-
 <html>
 <head>
+<font face="Arial"/>
 <!-- Inizio sezione per Semantic ui -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -25,7 +25,8 @@
 
 <body>
 	<div class="ui stackable inverted menu">
-		<a class="item">FlySMM</a> <a class="item"> About Us </a> <a
+
+		<a href="index.jsp" class="item">FlySMM</a> <a class="item"> About Us </a> <a
 			class="item"> Jobs </a> <a class="item"> Locations </a>
 
 		<%
@@ -44,9 +45,10 @@
 			}
 		%>
 
-	</div>
-	<!-- INIZIO area dedicata alla ricerca di un volo -->
 
+	</div>
+	
+	<!-- INIZIO area dedicata alla ricerca di un volo -->
 	<div class="ui two column grid">
 		<div class="column">
 			<div class="ui raised segment">
@@ -103,18 +105,6 @@
 		</div>
 	</div>
 	<!-- FINE area dedicata alla ricerca di un volo -->
-
-
-
-
-
-
-
-	<form method="post" action="./GetPromotion">
-		<button class="ui red button" name="command" value="Promo">
-			<i class="gift icon"></i> See Promotions
-		</button>
-	</form>
 
 </body>
 </html>

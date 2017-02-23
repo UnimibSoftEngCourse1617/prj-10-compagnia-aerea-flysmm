@@ -8,11 +8,19 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class Mail {
-	public void sendMail(String mail, String text) {
+	private static String host = "smtp.gmail.com";
+	private static String user = "c.macias1294@gmail.com";
+	private static String pass = "kouga1294";
+
+	public void sendMail(String mail, String text) throws MessagingException {
 		// Set up the SMTP server.
 		java.util.Properties props = new java.util.Properties();
-		props.put("mail.smtp.host", "smtp.myisp.com");
-		Session session = Session.getDefaultInstance(props, null);
+		props.put("mail.smtp.auth", "true");
+	    props.put("mail.smtp.starttls.enable", "true");
+	    props.put("mail.smtp.ssl.trust", host);
+		props.put("mail.smtp.host", host);
+		props.put("mail.smtp.port", "587");
+		Session session = Session.getInstance(props, null);
 
 		// Construct the message
 		String to = mail;
@@ -26,9 +34,10 @@ public class Mail {
 		    msg.setText(text);
 		    
 		    // Send the message.
-		    Transport.send(msg);
+		    Transport.send(msg, user, pass);
 		} catch (MessagingException e) {
 			// Error.
+			e.printStackTrace();
 			}
 		}
 	
