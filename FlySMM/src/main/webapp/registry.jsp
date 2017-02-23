@@ -17,6 +17,21 @@
 	<div class="ui stackable inverted menu">
 		<a class="item">FlySMM</a> <a class="item"> About Us </a> <a
 			class="item"> Jobs </a> <a class="item"> Locations </a>
+		<%
+			if (request.getSession().getAttribute("customer") == null) {
+		%>
+
+		<a href="loginPage.html" class="right item"> Login </a>
+
+		<%
+			} else {
+		%>
+
+		<a href="./logoutServlet " class="right item"> Log out </a>
+
+		<%
+			}
+		%>
 	</div>
 
 	<div class="ui two column grid">
@@ -39,8 +54,8 @@
 							placeholder="via Roma" required>
 					</div>
 					<div class="field">
-						<label>Street number</label> <input type="text" name="Street_number"
-							placeholder="50" required>
+						<label>Street number</label> <input type="text"
+							name="Street_number" placeholder="50" required>
 					</div>
 					<div class="field">
 						<label>CAP</label> <input type="text" name="cap"

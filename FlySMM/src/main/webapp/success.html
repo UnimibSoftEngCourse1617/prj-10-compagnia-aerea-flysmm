@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <font face="Arial"/>
+
 <meta charset="UTF-8">
 <!-- Inizio sezione per Semantic ui -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -20,11 +22,13 @@
 <body>
 	<!-- Inizio Menu -->
 	<div class="ui stackable inverted menu">
-		<a href="index.jsp" class="item">FlySMM</a>
-		<a class="item"> About Us </a>
-		<a class="item"> Jobs </a> 
-		<a class="item"> Locations </a> 
-		<a href="loginPage.html" class="right item"> Login </a>
+
+		<a href="index.jsp" class="item">FlySMM</a> <a class="item">About
+			Us </a> <a class="item"> Jobs </a> <a class="item"> Locations </a> <% if
+		(request.getSession().getAttribute("customer") == null) { %> <a
+			href="loginPage.html" class="right item"> Login </a> <% } else { %> <a
+			href="./logoutServlet " class="right item"> Log out </a> <% } %>
+
 	</div>
 	<h1>Success!!</h1>
 	<input class="ui red submit button" type="submit" value="Pay!">
