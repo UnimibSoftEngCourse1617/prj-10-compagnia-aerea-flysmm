@@ -39,12 +39,32 @@ public class SaleCommand extends FrontCommand {
 
 		query = query.setParameter(0, request.getParameter("aDeparture"));
 		List result = query.list();
+		if (result.size() == 0) {
+			String message = "Details: There are no flights matching search criteria. " + 
+					"Go back to homepage and try to change date or airports.";
+			request.setAttribute("message", message);
+			try {
+				context.getRequestDispatcher("/error.jsp").forward(request, response);
+			} catch (Exception e) {
+				
+			}
+		}
 		String departure = (String) result.get(0);
 
 		org.hibernate.Query queryArrivalAirport = session.createQuery("Select icao from Airport " + "where name = ?");
 
 		queryArrivalAirport = queryArrivalAirport.setParameter(0, request.getParameter("aArrival"));
 		result = queryArrivalAirport.list();
+		if (result.size() == 0) {
+			String message = "Details: There are no flights matching search criteria. " + 
+					"Go back to homepage and try to change date or airports.";
+			request.setAttribute("message", message);
+			try {
+				context.getRequestDispatcher("/error.jsp").forward(request, response);
+			} catch (Exception e) {
+				
+			}
+		}
 		String arrival = (String) result.get(0);
 
 		request.getSession().setAttribute("aIcao", arrival);
@@ -61,7 +81,16 @@ public class SaleCommand extends FrontCommand {
 				Integer.parseInt((String) request.getSession().getAttribute("passengers")));
 
 		List result1 = queryInnerJoin.list();
-		System.out.println(result1.size());
+		if (result1.size() == 0) {
+			String message = "Details: There are no flights matching search criteria. " + 
+					"Go back to homepage and try to change date or airports.";
+			request.setAttribute("message", message);
+			try {
+				context.getRequestDispatcher("/error.jsp").forward(request, response);
+			} catch (Exception e) {
+				
+			}
+		}
 
 		List<Flight> flights = new ArrayList<Flight>();
 		for (Object[] o : (List<Object[]>) result1) {
@@ -102,6 +131,16 @@ public class SaleCommand extends FrontCommand {
 				Integer.parseInt((String) request.getSession().getAttribute("passengers")));
 
 		List result = queryFlyPrice.list();
+		if (result.size() == 0) {
+			String message = "Details: There are no flights matching search criteria. " + 
+					"Go back to homepage and try to change date or airports.";
+			request.setAttribute("message", message);
+			try {
+				context.getRequestDispatcher("/error.jsp").forward(request, response);
+			} catch (Exception e) {
+				
+			}
+		}
 		List<Flight> flights = new ArrayList<Flight>();
 		for (Object[] o : (List<Object[]>) result) {
 			Price p = (Price) o[0];

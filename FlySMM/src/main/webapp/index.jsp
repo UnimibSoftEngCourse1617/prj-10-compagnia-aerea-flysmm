@@ -21,6 +21,8 @@
 		document.getElementById('returnDate').style.display = 'none';
 	};
 </script>
+<title>FlySMM</title>
+
 </head>
 
 <body>
