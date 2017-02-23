@@ -4,20 +4,14 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 
 import org.hibernate.Session;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import customer.Customer;
 import sale.Address;
-import sale.Flight;
-import servlets.HibernateProxyTypeAdapter;
 import servlets.SessionFactorySingleton;
 
 public class NewCustomerCommand extends FrontCommand {

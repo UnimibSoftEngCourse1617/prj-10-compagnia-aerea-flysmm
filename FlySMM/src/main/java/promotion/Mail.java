@@ -9,8 +9,8 @@ import javax.mail.internet.MimeMessage;
 
 public class Mail {
 	private static String host = "smtp.gmail.com";
-	private static String user = "c.macias1294@gmail.com";
-	private static String pass = "kouga1294";
+	private static String user = "flysmm17@gmail.com";
+	private static String pass = "flysmm2017";
 
 	public void sendMail(String mail, String text) throws MessagingException {
 		// Set up the SMTP server.
@@ -24,7 +24,7 @@ public class Mail {
 
 		// Construct the message
 		String to = mail;
-		String from = "c.macias1294@gmail.com";
+		String from = "flysmm17@gmail.com";
 		String subject = "FlySMM";
 		Message msg = new MimeMessage(session);
 		try {
