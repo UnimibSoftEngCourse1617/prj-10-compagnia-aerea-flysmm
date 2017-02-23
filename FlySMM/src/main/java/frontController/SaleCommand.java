@@ -52,11 +52,12 @@ public class SaleCommand extends FrontCommand {
 
 		org.hibernate.Query queryInnerJoin = session.createQuery("from Price p inner join p.flight f "
 				+ "where f.departureAirport.icao = ? " + "and f.arrivalAirport.icao = ? " + "and f.departureDate = ? "
-				+ "group by f.idFlight, p.seats.tariff");
+				+ "and f.remainingSeats >= ? " + "group by f.idFlight, p.seats.tariff");
 
 		queryInnerJoin = queryInnerJoin.setParameter(0, departure);
 		queryInnerJoin = queryInnerJoin.setParameter(1, arrival);
 		queryInnerJoin = queryInnerJoin.setDate(2, parseStringToDate(DDATE));
+		queryInnerJoin = queryInnerJoin.setParameter(3, Integer.parseInt((String)request.getSession().getAttribute("passengers")));
 
 		List result1 = queryInnerJoin.list();
 		System.out.println(result1.size());
@@ -87,14 +88,16 @@ public class SaleCommand extends FrontCommand {
 		session.beginTransaction();
 		String departure = (String) request.getSession().getAttribute("aIcao");
 		String arrival = (String) request.getSession().getAttribute("dIcao");
-
+		
 		org.hibernate.Query queryFlyPrice = session.createQuery("from Price p inner join p.flight f "
-				+ "where f.departureAirport.icao =? " + "AND f.arrivalAirport.icao =? " + "AND f.departureDate =? "
-				+ "group by f.idFlight, p.seats.tariff");
+				+ "where f.departureAirport.icao = ? " + "and f.arrivalAirport.icao = ? " + "and f.departureDate = ? "
+				+ "and f.remainingSeats >= ? " + "group by f.idFlight, p.seats.tariff");
+
 
 		queryFlyPrice = queryFlyPrice.setParameter(0, departure);
 		queryFlyPrice = queryFlyPrice.setParameter(1, arrival);
 		queryFlyPrice = queryFlyPrice.setParameter(2, parseStringToDate(RDATE));
+		queryFlyPrice = queryFlyPrice.setParameter(3, Integer.parseInt((String)request.getSession().getAttribute("passengers")));
 
 		List result = queryFlyPrice.list();
 		List<Flight> flights = new ArrayList<Flight>();
