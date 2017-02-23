@@ -5,7 +5,8 @@ import java.sql.Time;
 import java.util.Date;
 
 public class Flight implements Serializable {
-
+	private static final long serialVersionUID = 1L;
+	
 	private Aircraft aircraft;
 	private String idFlight;
 	private Date departureDate;

@@ -30,6 +30,11 @@ public class Price implements Serializable {
 		this.amount = amount;
 	}
 
+	public Price(float amount) {
+		super();
+		this.amount = amount;
+	}
+
 	public Flight getFlight() {
 		return flight;
 	}

@@ -2,7 +2,7 @@
 <html>
 <head>
 
-<font face="Arial"/>
+<font face="Arial" />
 
 <meta charset="UTF-8">
 <!-- Inizio sezione per Semantic ui -->
@@ -23,11 +23,10 @@
 	<!-- Inizio Menu -->
 	<div class="ui stackable inverted menu">
 
-		<a href="index.jsp" class="item">FlySMM</a> <a class="item">About
-			Us </a> <a class="item"> Jobs </a> <a class="item"> Locations </a> <% if
-		(request.getSession().getAttribute("customer") == null) { %> <a
-			href="loginPage.html" class="right item"> Login </a> <% } else { %> <a
-			href="./logoutServlet " class="right item"> Log out </a> <% } %>
+		<a href="index.jsp" class="item">FlySMM</a> 
+		<a class="item">About Us </a> 
+		<a class="item"> Jobs </a> <a class="item"> Locations </a> 
+		<a href="./logoutServlet" class="right item"> Logout </a>
 
 	</div>
 	<h1>Success!!</h1>

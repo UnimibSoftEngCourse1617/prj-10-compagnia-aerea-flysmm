@@ -174,12 +174,4 @@ public class Book implements Serializable {
 		return date;
 	}
 
-	@Override
-	public String toString() {
-		return "Book [bookId=" + bookId + ", customerId=" + customerId + ", bookingDate=" + bookingDate
-				+ ", totalPrice=" + totalPrice + ", payed=" + payedB + ", expired=" + expiredB + ", airplaneId="
-				+ airplaneId + ", departureDate=" + departureDate + ", documentP=" + documentP + ", flightId="
-				+ flightId + "]";
-	}
-
 }
