@@ -24,7 +24,9 @@
 			href="registry.jsp" class="right item"> Sign up </a>
 	</div>
 	<h1>Success!!</h1>
-	<input class="ui red submit button" type="submit" value="Pay!">
-	<input type="hidden" name="command" value="nnnnnnnnnnn" />
+	<form class="ui form" name="payment" method="post" action="./Payment_options">
+		<input class="ui red submit button" type="submit" value="Pay!">
+		<input type="hidden" name="command" value="Payment">
+	</form>
 </body>
 </html>

@@ -81,7 +81,7 @@
     <servlet-name>Gateway</servlet-name>
     <url-pattern>/Gateway</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <servlet-name>GetBook</servlet-name>
     <servlet-class>servlets.GetBook</servlet-class>
   </servlet>
@@ -89,4 +89,30 @@
     <servlet-name>GetBook</servlet-name>
     <url-pattern>/GetBook</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>Payment_options</servlet-name>
+    <servlet-class>servlets.Payment_options</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Payment_options</servlet-name>
+    <url-pattern>/Payment_options</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AddNewPaymentMethod</servlet-name>
+    <servlet-class>servlets.AddNewPaymentMethod</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddNewPaymentMethod</servlet-name>
+    <url-pattern>/AddNewPaymentMethod</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>MakePayment</servlet-name>
+    <servlet-class>servlets.MakePayment</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MakePayment</servlet-name>
+    <url-pattern>/MakePayment</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

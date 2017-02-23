@@ -64,9 +64,10 @@
     <th>${totalPriceHomeCustomer}</th>
   </tr></tfoot>
 	</table>
-
-	<input class="ui red submit button" type="submit" value="Pay">
-	<input type="hidden" name="command" value="nnnnnnnnnnn" />
+	<form class="ui form" name="payment" method="post" action="./Payment_options">
+		<input class="ui red submit button" type="submit" value="Pay!">
+		<input type="hidden" name="command" value="Payment">
+	</form>
 	<h1 align="center">Book Payed</h1>
 	<table class="ui celled table">
 		<thead>

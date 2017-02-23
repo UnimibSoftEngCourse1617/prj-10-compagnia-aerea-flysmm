@@ -30,45 +30,6 @@
 			href="loginPage.html" class="right item"> Sign up </a>
 	</div>
 
-
-	<div class="ui middle aligned divided list">
-		<div class="item">
-			<div class="right floated content">
-				<div class="ui button">Use</div>
-			</div>
-			<div class="content">Lena</div>
-		</div>
-		
-		
-		
-		<div class="item">
-			<div class="right floated content">
-				<div class="ui button">Add</div>
-			</div>
-			<img class="ui avatar image" src="/images/avatar2/small/lindsay.png">
-			<div class="content">Lindsay</div>
-		</div>
-		<div class="item">
-			<div class="right floated content">
-				<div class="ui button">Add</div>
-			</div>
-			<img class="ui avatar image" src="/images/avatar2/small/mark.png">
-			<div class="content">Mark</div>
-		</div>
-		<div class="item">
-			<div class="right floated content">
-				<div class="ui button">Add</div>
-			</div>
-			<img class="ui avatar image" src="/images/avatar2/small/molly.png">
-			<div class="content">Molly</div>
-		</div>
-	</div>
-
-
-
-
-
-
 	<table class="ui celled table">
 		<thead>
 			<tr>
@@ -94,37 +55,43 @@
 		</tbody>
 		<tfoot></tfoot>
 	</table>
-	
-	
-	<table class="ui celled table">
-		<thead>
-			<tr>
-				<th>cardNumber</th>
-				<th>customer</th>
-				<th>cvv</th>
-				<th>owner</th>
-				<th>expiredDate</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${payment}" var="payment">
+
+	<form action="./MakePayment" method="post">
+		<table class="ui celled table">
+			<thead>
 				<tr>
-					<td>${payment.cardNumber}</td>
-					<td>${payment.customer}</td>
-					<td>${payment.cvv}</td>
-					<td>${payment.owner}</td>
-					<td>${payment.expiredDate}</td>
+					<th>cardNumber</th>
+					<th>customer</th>
+					<th>cvv</th>
+					<th>owner</th>
+					<th>expiredDate</th>
+					<th>Usa</th>
+					<th>Elimina</th>
 				</tr>
-			</c:forEach>
-		</tbody>
-		<tfoot></tfoot>
-	</table>
-	
-	<form action="/addNewPaymentMethod.jsp" name="addPaymentMethod">
-		<input type="hidden" name="command" value="NewPayment">
-		<input type="submit" name="bntNewPayment" value="Aggiungi">
-	</form>
-	
-	
+			</thead>
+			<tbody>
+				<c:forEach items="${payment}" var="payment">
+					<tr>
+						<td>${payment.cardNumber}</td>
+						<td>${payment.customer}</td>
+						<td>${payment.cvv}</td>
+						<td>${payment.owner}</td>
+						<td>${payment.expiredDate}</td>
+						<td>
+							<input type="submit" value="Usa" name="invio"> 
+							<input type="hidden" value="${payment.cardNumber}">
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+			<tfoot></tfoot>
+				<input type="hidden" name="command" value="Payment"> 
+			</table>
+		</form>
+
+		<form action="./addNewPaymentMethod.jsp" method="post">
+			<!-- <input type="hidden" name="command" value="NewPayment">  -->
+			<input type="submit" name="bntNewPayment" value="Aggiungi">
+		</form>
 </body>
 </html>
