@@ -2,6 +2,7 @@
 
 <html>
 <head>
+<font face="Arial"/>
 <!-- Inizio sezione per Semantic ui -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -32,7 +33,7 @@
 					
 					function writeForm(){
 						
-						document.write("<br><br><h1>Passenger#"+(i+1)+"</h1>");
+						document.write("<h1>Passenger#"+(i+1)+"</h1>");
 						document.write("  					<div class=\"field\">");
 						document.write("                      		<label>Name<label> <input type=\"text\" name=\"name"+i+"\"");
 						document.write("							placeholder=\"name\"required><\/div>");

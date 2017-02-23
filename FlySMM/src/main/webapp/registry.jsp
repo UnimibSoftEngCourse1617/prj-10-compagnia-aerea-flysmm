@@ -1,5 +1,6 @@
 <html>
 <head>
+<font face="Arial"/>
 <!-- Inizio sezione per Semantic ui -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
