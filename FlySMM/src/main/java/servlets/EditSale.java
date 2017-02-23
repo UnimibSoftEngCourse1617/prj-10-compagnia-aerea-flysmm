@@ -40,7 +40,6 @@ public class EditSale extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		FrontCommand command = FrontCommand.getCommand(request, response);
-
 		if (command != null) {
 
 			command.init(getServletContext(), "Edit", request, response);
