@@ -26,8 +26,22 @@
 <body>
 	<div class="ui stackable inverted menu">
 		<a class="item">FlySMM</a> <a class="item"> About Us </a> <a
-			class="item"> Jobs </a> <a class="item"> Locations </a> <a
-			href="./logoutServlet " class="right item"> Log out </a>
+			class="item"> Jobs </a> <a class="item"> Locations </a>
+		<%
+			if (request.getSession().getAttribute("customer") == null) {
+		%>
+
+		<a href="loginPage.html" class="right item"> Login </a>
+
+		<%
+			} else {
+		%>
+
+		<a href="./logoutServlet " class="right item"> Log out </a>
+
+		<%
+			}
+		%>
 	</div>
 
 
@@ -38,9 +52,9 @@
 			</div>
 			<div class="content">Lena</div>
 		</div>
-		
-		
-		
+
+
+
 		<div class="item">
 			<div class="right floated content">
 				<div class="ui button">Add</div>
@@ -94,8 +108,8 @@
 		</tbody>
 		<tfoot></tfoot>
 	</table>
-	
-	
+
+
 	<table class="ui celled table">
 		<thead>
 			<tr>
@@ -119,12 +133,12 @@
 		</tbody>
 		<tfoot></tfoot>
 	</table>
-	
+
 	<form action="/addNewPaymentMethod.jsp" name="addPaymentMethod">
-		<input type="hidden" name="command" value="NewPayment">
-		<input type="submit" name="bntNewPayment" value="Aggiungi">
+		<input type="hidden" name="command" value="NewPayment"> <input
+			type="submit" name="bntNewPayment" value="Aggiungi">
 	</form>
-	
-	
+
+
 </body>
 </html>

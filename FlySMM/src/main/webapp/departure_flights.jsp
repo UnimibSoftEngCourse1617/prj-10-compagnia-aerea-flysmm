@@ -27,7 +27,22 @@
 	<div class="ui stackable inverted menu">
 		<div class="item">FltSMM</div>
 		<a class="item"> About Us </a> <a class="item"> Jobs </a> <a
-			class="item"> Locations </a> <a class="right item"> Sign up </a>
+			class="item"> Locations </a>
+		<%
+			if (request.getSession().getAttribute("customer") == null) {
+		%>
+
+		<a href="loginPage.html" class="right item"> Login </a>
+
+		<%
+			} else {
+		%>
+
+		<a href="./logoutServlet " class="right item"> Log out </a>
+
+		<%
+			}
+		%>
 	</div>
 	<table class="ui celled table">
 		<thead>
@@ -57,17 +72,12 @@
 					<td>${flight.price.seats.tariff}</td>
 					<td><form method="post" name="flightItems"
 							action="./GetReturnFlight">
-							<input type="submit" 
-								class="ui green button"
-								value="${flight.price.amount}" />
-							<input type="hidden"
+							<input type="submit" class="ui green button"
+								value="${flight.price.amount}" /> <input type="hidden"
 								name="chosen"
-								value="${flight.idFlight}-${flight.price.seats.tariff}" />
-							<input type="hidden"
-								name="command"
-								value="Sale" />
-						</form>
-					</td>
+								value="${flight.idFlight}-${flight.price.seats.tariff}" /> <input
+								type="hidden" name="command" value="Sale" />
+						</form></td>
 				</tr>
 
 			</c:forEach>

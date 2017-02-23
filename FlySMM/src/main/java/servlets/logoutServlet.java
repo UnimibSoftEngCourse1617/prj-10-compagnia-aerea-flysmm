@@ -33,7 +33,6 @@ public class logoutServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.getSession().invalidate();
-		System.out.println("sono arrivato");
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
 		dispatcher.forward(request, response);
 	}

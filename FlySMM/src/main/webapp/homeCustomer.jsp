@@ -10,11 +10,7 @@
 	rel="stylesheet" />
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.19.3/javascript/semantic.js">
-	$(document).ready(function() {
-		$("button").click(function() {
-			request.getSession().removeAttribute("customer");
-		});
-	});
+	
 </script>
 <!-- Fine sezione per Semantic ui -->
 <title>Home Customer</title>
@@ -24,8 +20,22 @@
 	<div class="ui stackable inverted menu">
 
 		<a href="index.jsp" class="item">FlySMM</a> <a class="item"> About
-			Us </a> <a class="item"> Jobs </a> <a class="item"> Locations </a> <a
-			href="./logoutServlet " class="right item"> Log out </a>
+			Us </a> <a class="item"> Jobs </a> <a class="item"> Locations </a>
+		<%
+			if (request.getSession().getAttribute("customer") == null) {
+		%>
+
+		<a href="loginPage.html" class="right item"> Login </a>
+
+		<%
+			} else {
+		%>
+
+		<a href="./logoutServlet " class="right item"> Log out </a>
+
+		<%
+			}
+		%>
 	</div>
 
 	<div class="ui two column grid">

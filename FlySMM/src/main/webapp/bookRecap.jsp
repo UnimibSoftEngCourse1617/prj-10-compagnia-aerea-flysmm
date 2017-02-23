@@ -30,8 +30,21 @@
 	<div class="ui stackable inverted menu">
 		<a class="item">FlySMM</a> <a class="item"> About Us </a> <a
 			class="item"> Jobs </a> <a class="item"> Locations </a>
-			<a
-			href="./logoutServlet " class="right item"> Log out </a>
+		<%
+			if (request.getSession().getAttribute("customer") == null) {
+		%>
+
+		<a href="loginPage.html" class="right item"> Login </a>
+
+		<%
+			} else {
+		%>
+
+		<a href="./logoutServlet " class="right item"> Log out </a>
+
+		<%
+			}
+		%>
 	</div>
 	<table class="ui celled table">
 		<thead>
@@ -56,19 +69,21 @@
 				</tr>
 			</c:forEach>
 		</tbody>
-		 <tr><th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th>Total Price</th>
-    <th>${totalPrice}</th>
-  </tr></tfoot>
+		<tr>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th>Total Price</th>
+			<th>${totalPrice}</th>
+		</tr>
+		</tfoot>
 	</table>
 	<form class="ui form" name="fSearchFly" method="post"
 		action="./BookServlet">
 		<input class="ui blue submit button" type="submit" value="Book!">
 		<input type="hidden" name="command" value="Book" />
 	</form>
-	
+
 </body>
 </html>

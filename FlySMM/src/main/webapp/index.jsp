@@ -26,8 +26,24 @@
 <body>
 	<div class="ui stackable inverted menu">
 		<a class="item">FlySMM</a> <a class="item"> About Us </a> <a
-			class="item"> Jobs </a> <a class="item"> Locations </a> <a
-			href="loginPage.html" class="right item"> Login </a>
+			class="item"> Jobs </a> <a class="item"> Locations </a>
+
+		<%
+			if (request.getSession().getAttribute("customer") == null) {
+		%>
+
+		<a href="loginPage.html" class="right item"> Login </a>
+
+		<%
+			} else {
+		%>
+
+		<a href="./logoutServlet " class="right item"> Log out </a>
+
+		<%
+			}
+		%>
+
 	</div>
 	<!-- INIZIO area dedicata alla ricerca di un volo -->
 

@@ -25,11 +25,23 @@
 </head>
 <body>
 	<div class="ui stackable inverted menu">
-		<a href="index.jsp" class="item">FlySMM</a>
-		<a class="item">About Us </a>
-		<a class="item"> Jobs </a>
-		<a class="item"> Locations </a>
+		<a href="index.jsp" class="item">FlySMM</a> <a class="item">About
+			Us </a> <a class="item"> Jobs </a> <a class="item"> Locations </a>
+		<%
+			if (request.getSession().getAttribute("customer") == null) {
+		%>
+
 		<a href="loginPage.html" class="right item"> Login </a>
+
+		<%
+			} else {
+		%>
+
+		<a href="./logoutServlet " class="right item"> Log out </a>
+
+		<%
+			}
+		%>
 	</div>
 	<table class="ui celled table">
 		<thead>
@@ -43,48 +55,52 @@
 			</tr>
 		</thead>
 		<tbody>
-			
-			<c:if test="${type eq 'Fidelity Customer'}">			
-			<c:forEach items="${promotion}" var="promotion">
-				<tr>
-					<td>${promotion.name}</td>
-					<td>${promotion.discountRate}</td>
-					<td>${promotion.description}</td>
-					<c:if test="${promotion.getClass() eq 'class promotion.SeasonPromotion'}">
-						<td>${promotion.startDate}</td>
-						<td>${promotion.expireDate}</td>
-						<td></td>
-					</c:if>
-					<c:if test="${promotion.getClass() eq 'class promotion.FlightPromotion'}">
-						<td></td>
-						<td></td>
-						<!-- I use New Flight() so promotion.flight = null -->
-						<td>${promotion.flight.idFlight}</td>
-					</c:if>
-				</tr>
-			</c:forEach>
+
+			<c:if test="${type eq 'Fidelity Customer'}">
+				<c:forEach items="${promotion}" var="promotion">
+					<tr>
+						<td>${promotion.name}</td>
+						<td>${promotion.discountRate}</td>
+						<td>${promotion.description}</td>
+						<c:if
+							test="${promotion.getClass() eq 'class promotion.SeasonPromotion'}">
+							<td>${promotion.startDate}</td>
+							<td>${promotion.expireDate}</td>
+							<td></td>
+						</c:if>
+						<c:if
+							test="${promotion.getClass() eq 'class promotion.FlightPromotion'}">
+							<td></td>
+							<td></td>
+							<!-- I use New Flight() so promotion.flight = null -->
+							<td>${promotion.flight.idFlight}</td>
+						</c:if>
+					</tr>
+				</c:forEach>
 			</c:if>
 			<c:if test="${type eq 'nope'}">
-			<c:if test="${promotion.fidelity eq 'false'}">
-			<c:forEach items="${promotion}" var="promotion">
-				<tr>
-					<td>${promotion.name}</td>
-					<td>${promotion.discountRate}</td>
-					<td>${promotion.description}</td>
-					<c:if test="${promotion.getClass() eq 'class promotion.SeasonPromotion'}">
-						<td>${promotion.startDate}</td>
-						<td>${promotion.expireDate}</td>
-						<td></td>
-					</c:if>
-					<c:if test="${promotion.getClass() eq 'class promotion.FlightPromotion'}">
-						<td></td>
-						<td></td>
-						<!-- I use New Flight() so promotion.flight = null -->
-						<td>${promotion.flight.idFlight}</td>
-					</c:if>
-				</tr>
-			</c:forEach>
-			</c:if>
+				<c:if test="${promotion.fidelity eq 'false'}">
+					<c:forEach items="${promotion}" var="promotion">
+						<tr>
+							<td>${promotion.name}</td>
+							<td>${promotion.discountRate}</td>
+							<td>${promotion.description}</td>
+							<c:if
+								test="${promotion.getClass() eq 'class promotion.SeasonPromotion'}">
+								<td>${promotion.startDate}</td>
+								<td>${promotion.expireDate}</td>
+								<td></td>
+							</c:if>
+							<c:if
+								test="${promotion.getClass() eq 'class promotion.FlightPromotion'}">
+								<td></td>
+								<td></td>
+								<!-- I use New Flight() so promotion.flight = null -->
+								<td>${promotion.flight.idFlight}</td>
+							</c:if>
+						</tr>
+					</c:forEach>
+				</c:if>
 			</c:if>
 		</tbody>
 		<tfoot></tfoot>
