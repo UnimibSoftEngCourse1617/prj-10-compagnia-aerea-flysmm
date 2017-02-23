@@ -21,7 +21,7 @@ public class UnfidelityState extends State implements Serializable {
 
 	@Override
 	public void changeFidelity() {
-		if ((getDateDiff(c.actualDateUnfidelity, c.startDate, TimeUnit.DAYS)) > (365 * 2)) {
+		if ((getDateDiff(c.actualDateUnfidelity, c.lastestBook, TimeUnit.DAYS)) > 365) {
 			if (this.c instanceof FidelityCustomer) {
 				this.customer = new Customer(c);
 			}

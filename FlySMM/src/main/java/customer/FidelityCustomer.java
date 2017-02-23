@@ -87,7 +87,7 @@ public class FidelityCustomer extends Customer implements Serializable {
 		if (this.point >= 1000) {
 			// inviare una email per regalo destinazione europea
 			 Mail m = new Mail();
-			 m.sendMail(this.getEmail(),"Hai raggiunto i mille punti bonus, hai vinto un viaggio per una destinazione europea a tua scelta! congratulazione");
+			 m.sendMail(this.getEmail(),"Hai raggiunto i mille punti bonus, hai vinto un viaggio per una destinazione europea a tua scelta! Congratulazioni");
 
 		}
 	}

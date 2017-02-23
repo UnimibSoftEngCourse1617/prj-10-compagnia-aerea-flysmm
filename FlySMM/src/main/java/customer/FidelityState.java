@@ -17,7 +17,7 @@ public class FidelityState extends State implements Serializable {
 	// serve per cambiare lo stato da fidelity ad unfidelity
 	public void changeFidelity() {
 
-		if ((getDateDiff(this.actualDateFidelity, c.startDate, TimeUnit.DAYS)) > 365) {
+		if ((getDateDiff(this.actualDateFidelity, c.lastestBook, TimeUnit.DAYS)) > (365*2)) {
 			c.setState(new UnfidelityState(c));
 		}
 
