@@ -129,7 +129,6 @@ public class PaymentCommand extends FrontCommand {
 
 		if (customer instanceof FidelityCustomer) {
 
-			// devo beccare i punti che ha gia
 			int sum = ((FidelityCustomer) customer).getPoint();
 			org.hibernate.Query queryFlight;
 			List<Flight> resultFlight;
