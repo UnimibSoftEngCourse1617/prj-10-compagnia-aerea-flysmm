@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import booking.Baggage;
@@ -60,9 +61,9 @@ public class AddPassengerCommand extends FrontCommand {
 			try {
 				Flight departure = (Flight) request.getSession().getAttribute("chosenDeparture");
 				Flight arrival = (Flight) request.getSession().getAttribute("chosenReturn");
-				
+
 				listFlight.add(departure);
-				if (!departure.equals(arrival)){
+				if (!departure.equals(arrival)) {
 					listFlight.add(arrival);
 				}
 
@@ -70,7 +71,7 @@ public class AddPassengerCommand extends FrontCommand {
 				listFlight.clear();
 				listFlight.add((Flight) request.getSession().getAttribute("chosenDeparture"));
 			}
-						
+
 			session.setAttribute("listFlight", listFlight);
 			session.setAttribute("Customer", c);
 
@@ -86,23 +87,35 @@ public class AddPassengerCommand extends FrontCommand {
 
 	public Integer getBaggagePriceFromDb(Passenger p) {
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
-		session.beginTransaction();
+		session.getTransaction().begin();
 		Baggage bag;
-		List result = session.createQuery("from Baggage where ID_Baggage = '" + p.getBaggageId() + "'").list();
+		List result = null;
+		Query query = session.createQuery("from Baggage " + " WHERE ID_Baggage = :baggage");
+		query.setParameter("baggage", p.getBaggageId());
+		result = query.list();
 		bag = (Baggage) result.get(0);
+		System.out.println(bag + "bagDB");
+		session.getTransaction().commit();
+
 		return bag.getPrice();
 	}
 
 	public Passenger getPassengerFromDb(Passenger p) {
-		Session session = SessionFactorySingleton.getSessionFactory().openSession();
-		session.beginTransaction();
+		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
+		session.getTransaction().begin();
 		Passenger tmp = null;
-		List result = session.createQuery("from Passenger where Fiscal_code = '" + p.getFiscal_code() + "'").list();
-		try {
-			tmp = (Passenger) result.get(0);
-		} catch (Exception e) {
-
+		List result = null;
+		Query query = session.createQuery("from Passenger " + " WHERE Fiscal_code = :fiscalCode");
+		query.setParameter("fiscalCode", p.getFiscal_code());
+		result = query.list();
+		System.out.println(result);
+		if (result.isEmpty()) {
+			session.getTransaction().commit();
+			return tmp;
 		}
+		tmp = (Passenger) result.get(0);
+		session.getTransaction().commit();
+
 		return tmp;
 	}
 
