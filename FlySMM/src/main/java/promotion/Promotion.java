@@ -5,13 +5,17 @@ import java.util.List;
 import javax.mail.MessagingException;
 
 import java.io.Serializable;
+
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import customer.Customer;
+import frontController.PromoCommand;
 import servlets.SessionFactorySingleton;
 
 public abstract class Promotion implements Serializable{
-
 	private static final long serialVersionUID = 1L;
+	private static final String SERVEXC = "An error occured";
+	private static final Logger LOG = Logger.getLogger(Promotion.class);
 	
 	protected int discountRate;
 	protected boolean fidelity;
@@ -40,7 +44,7 @@ public abstract class Promotion implements Serializable{
 			try{m.sendMail(email, text);
 				}
 			catch (MessagingException e) {
-					e.printStackTrace();
+					LOG.info(SERVEXC, e);
 					}
 		}
 		
