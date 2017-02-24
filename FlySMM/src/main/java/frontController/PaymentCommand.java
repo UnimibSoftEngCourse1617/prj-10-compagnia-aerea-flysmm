@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -131,7 +133,7 @@ public class PaymentCommand extends FrontCommand {
 		}
 
 		if (customer instanceof FidelityCustomer) {
-
+		
 			// devo beccare i punti che ha gia
 			int sum = ((FidelityCustomer) customer).getPoint();
 			org.hibernate.Query queryFlight;
@@ -155,8 +157,24 @@ public class PaymentCommand extends FrontCommand {
 			Query updatePoint = session.createQuery("UPDATE Customer " + "set point = " + sum + ", Date_last_book = '"
 					+ dataStr + "' where idCustomer =" + id);
 			updatePoint.executeUpdate();
+			
+			
+			
+			final Customer CUSTOMERRUN = (Customer) request.getSession().getAttribute("customer");
+			
+			Timer timer = new Timer();
+			TimerTask task = new TimerTask() {
+			    @Override
+			    public void run() {
+			       ((FidelityCustomer) CUSTOMERRUN).changeFidelity();
+			    }
+			    
+			};
+			timer.schedule(task, 0, (1000*60*60*24));
+			updateCustomer(CUSTOMERRUN);
 
 		}
+		
 
 		session.getTransaction().commit();
 		
@@ -170,6 +188,12 @@ public class PaymentCommand extends FrontCommand {
 		}
 	
 
+	}
+	public static void updateCustomer(Customer c) {
+		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
+		session.getTransaction().begin();
+		session.saveOrUpdate(c);
+		session.getTransaction().commit();
 	}
 
 	protected void tryPayment() throws Exception {
