@@ -17,7 +17,7 @@ import servlets.SessionFactorySingleton;
 
 public class NewCustomerCommand extends FrontCommand {
 	private static final String SERVEXC = "An error occured";
-	private static final Logger LOG = Logger.getLogger(PromoCommand.class);
+	private static final Logger LOG = Logger.getLogger(NewCustomerCommand.class);
 
 	@Override
 	public void dispatch() throws ServletException, IOException {

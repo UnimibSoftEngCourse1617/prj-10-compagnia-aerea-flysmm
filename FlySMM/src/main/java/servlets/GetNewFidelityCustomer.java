@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
 import customer.Customer;
@@ -20,19 +21,20 @@ import customer.FidelityCustomer;
 @WebServlet("/GetNewFidelityCustomer")
 public class GetNewFidelityCustomer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger LOG = Logger.getLogger(GetNewFidelityCustomer.class);
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public GetNewFidelityCustomer() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -42,6 +44,7 @@ public class GetNewFidelityCustomer extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -51,7 +54,6 @@ public class GetNewFidelityCustomer extends HttpServlet {
 
 		response.getWriter().append(cFidelity.toString());
 
-		System.out.println(cFidelity.getClass().toString());
 		request.getSession().setAttribute("customer", cFidelity);
 		// scrivo e poi cancello perchè hibernate non permette l'update del
 		// discriminatore
@@ -59,11 +61,14 @@ public class GetNewFidelityCustomer extends HttpServlet {
 		//qua inserire delete Book
 		deleteCustomer((Customer) myObject);
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/homeFidelityCustomer.jsp");
-		dispatcher.forward(request, response);
+		try {
+			dispatcher.forward(request, response);
+		} catch (Exception e) {
+			LOG.error("An error occured", e);
+		}
 	}
 
 	private void deleteCustomer(Customer c) {
-		// TODO Auto-generated method stub
 		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
 		session.getTransaction().begin();
 		session.delete(c);

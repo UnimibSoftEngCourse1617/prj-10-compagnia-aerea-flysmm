@@ -16,14 +16,14 @@ import org.hibernate.Session;
 import booking.Baggage;
 import booking.Passenger;
 import customer.Customer;
-import sale.Address;
 import sale.Flight;
 import servlets.SessionFactorySingleton;
 
 public class AddPassengerCommand extends FrontCommand {
 	private static final String SERVEXC = "An error occured";
-	private static final Logger LOG = Logger.getLogger(PromoCommand.class);
+	private static final Logger LOG = Logger.getLogger(AddPassengerCommand.class);
 
+	@Override
 	public void dispatch() throws ServletException, IOException {
 		if (caller.equals("GDF")) {
 			HttpSession session = request.getSession();
@@ -97,7 +97,6 @@ public class AddPassengerCommand extends FrontCommand {
 		query.setParameter("baggage", p.getBaggageId());
 		result = query.list();
 		bag = (Baggage) result.get(0);
-		System.out.println(bag + "bagDB");
 		session.getTransaction().commit();
 
 		return bag.getPrice();
