@@ -65,4 +65,5 @@ public class NewCustomerCommand extends FrontCommand {
 		session.save(c);
 		session.getTransaction().commit();
 	}
+	
 }
