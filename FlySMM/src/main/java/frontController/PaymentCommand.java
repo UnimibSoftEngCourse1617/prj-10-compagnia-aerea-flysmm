@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.mail.MessagingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 
@@ -17,6 +18,7 @@ import org.hibernate.Session;
 import booking.Book;
 import customer.Customer;
 import customer.FidelityCustomer;
+import promotion.Mail;
 import sale.Address;
 import sale.Flight;
 import sale.Payment;
@@ -133,7 +135,7 @@ public class PaymentCommand extends FrontCommand {
 		}
 
 		if (customer instanceof FidelityCustomer) {
-		
+
 			// devo beccare i punti che ha gia
 			int sum = ((FidelityCustomer) customer).getPoint();
 			org.hibernate.Query queryFlight;
@@ -153,31 +155,44 @@ public class PaymentCommand extends FrontCommand {
 			sdf.applyPattern("yyyy-MM-dd");
 			String dataStr = sdf.format(new Date());
 
-
 			Query updatePoint = session.createQuery("UPDATE Customer " + "set point = " + sum + ", Date_last_book = '"
 					+ dataStr + "' where idCustomer =" + id);
 			updatePoint.executeUpdate();
-			
-			
-			
+
 			final Customer CUSTOMERRUN = (Customer) request.getSession().getAttribute("customer");
-			
+
 			Timer timer = new Timer();
+			final List<Book> b = getBook();
+		
 			TimerTask task = new TimerTask() {
-			    @Override
-			    public void run() {
-			       ((FidelityCustomer) CUSTOMERRUN).changeFidelity();
-			    }
-			    
+
+				@Override
+				public void run() {
+					((FidelityCustomer) CUSTOMERRUN).changeFidelity();
+					for (Book book : b) {
+						if (book.verifyExpired()) {
+							if(book.verifyExpired()){
+								Mail m = new Mail();
+								try {
+									m.sendMail(CUSTOMERRUN.getEmail(),
+											"il volo parte tra 24 ore! Paga la tua prenotazione!");
+								} catch (MessagingException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+
+							}
+						}
+					}
+				}
 			};
-			timer.schedule(task, 0, (1000*60*60*24));
+			timer.schedule(task, 0, (1000 * 60 * 60 * 24));
 			updateCustomer(CUSTOMERRUN);
 
 		}
-		
 
 		session.getTransaction().commit();
-		
+
 		RequestDispatcher dispatcher = context.getRequestDispatcher("/GetBook?command=GetBook");
 		try {
 			dispatcher.forward(request, response);
@@ -186,9 +201,9 @@ public class PaymentCommand extends FrontCommand {
 		} catch (IOException e) {
 			LOG.error("An error occured", e);
 		}
-	
 
 	}
+
 	public static void updateCustomer(Customer c) {
 		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
 		session.getTransaction().begin();
@@ -199,5 +214,14 @@ public class PaymentCommand extends FrontCommand {
 	protected void tryPayment() throws Exception {
 		// qui va messa l'implementazione del metodo per la chiamata al
 		// sottosistema di pagamento
+	}
+
+	private List<Book> getBook() {
+		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
+		session.getTransaction().begin();
+		Query query = session.createQuery("from Book");
+		List<Book> temp = (List<Book>) query.list();
+		session.getTransaction().commit();
+		return temp;
 	}
 }
