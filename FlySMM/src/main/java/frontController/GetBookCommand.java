@@ -21,7 +21,7 @@ public class GetBookCommand extends FrontCommand {
 		List<Book> bUnpayed = getBookUnpayed(idCustomer);
 		request.setAttribute("listBookUnpayed", bUnpayed);
 		request.setAttribute("listBookPayed", getBookPayed(idCustomer));
-		
+
 		for (Book b : bUnpayed) {
 			totalPrice += b.getTotalPrice();
 		}
@@ -35,9 +35,7 @@ public class GetBookCommand extends FrontCommand {
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
 		String query1 = "from Book where User_ID = :id1 and Payed = '0'";
-		List result = session.createQuery(query1)
-				.setLong("id1",id)
-				.list();
+		List result = session.createQuery(query1).setLong("id1", id).list();
 		System.out.println(result);
 		return result;
 	}
@@ -46,10 +44,8 @@ public class GetBookCommand extends FrontCommand {
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
 		String query2 = "from Book where User_ID = :id2 and Payed = '1'";
-		List result = session.createQuery(query2)
-				.setLong("id2",id)
-				.list();
-		
+		List result = session.createQuery(query2).setLong("id2", id).list();
+
 		return result;
 	}
 }

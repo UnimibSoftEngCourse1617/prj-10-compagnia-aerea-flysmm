@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -17,21 +18,39 @@ import sale.Flight;
 import servlets.SessionFactorySingleton;
 
 public class BookCommand extends FrontCommand {
+	private static final String ERROR = "/error.jsp";
+	private static final Logger LOG = Logger.getLogger(BookCommand.class);
+	private static final String SERVEXC = "An error occured";
+	private static final String MESSAGE = "Details: The selected Passengers Have Already A reservation for this flight";
+	private static final String MSG = "message";
+	boolean err = false;
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
-		Flight departure = (Flight) request.getSession().getAttribute("chosenDeparture");
-		Flight arrival = (Flight) request.getSession().getAttribute("chosenReturn");
-		ArrayList<Book> listBook = (ArrayList<Book>) request.getSession().getAttribute("listBook");
-		for (Book b : listBook) {
-			writeBook(b);
-		}
-		for (Book b : listBook) {
-			updateSeat(b, departure, arrival);
-		}
+		try {
+			Flight departure = (Flight) request.getSession().getAttribute("chosenDeparture");
+			Flight arrival = (Flight) request.getSession().getAttribute("chosenReturn");
+			ArrayList<Book> listBook = (ArrayList<Book>) request.getSession().getAttribute("listBook");
+			for (Book b : listBook) {
+				writeBook(b);
+			}
+			for (Book b : listBook) {
+				updateSeat(b, departure, arrival);
+			}
 
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/success.html");
-		requestDispatcher.forward(request, response);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/success.html");
+			requestDispatcher.forward(request, response);
+		} catch (Exception e) {
+			err = true;
+		}
+		if (err) {
+			request.setAttribute(MSG, MESSAGE);
+			try {
+				context.getRequestDispatcher(ERROR).forward(request, response);
+			} catch (Exception e) {
+				LOG.info(SERVEXC, e);
+			}
+		}
 
 	}
 
