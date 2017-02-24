@@ -113,7 +113,7 @@
     <servlet-name>MakePayment</servlet-name>
     <url-pattern>/MakePayment</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>EditSale</servlet-name>
     <servlet-class>servlets.EditSale</servlet-class>
   </servlet>

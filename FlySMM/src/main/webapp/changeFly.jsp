@@ -77,12 +77,14 @@
 					<td>${flight.price.amount}<br></td>
 					<td>${flight.price.discountedAmount}</td>
 					<td><form method="post" name="flightItems"
-							action="./GetReturnFlight">
+							action="./Increase">
 							<input type="submit" class="ui green button" value="Choose" />
-							<input type="hidden" name="chosen"
-								value="${flight.idFlight}-${flight.price.seats.tariff}" /> <input
-								type="hidden" name="command" value="Sale" />
-						</form></td>
+							<input type="hidden" name="chosen" value="${flight.idFlight}-${flight.price.seats.tariff}" />
+							<input type="hidden" value="${flight.price.amount}" name="amount">
+							<input type="hidden" value="${flight.price.discountedAmount}" name="discounted">
+							<input type="hidden" name="command" value="Edit" />
+						</form>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
