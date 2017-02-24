@@ -116,5 +116,8 @@
 	</div>
 	<!-- FINE area dedicata alla ricerca di un volo -->
 	
+	<!-- Questa istruzione serve per aggiungere una promozione, inviando le mail di notifica
+	<a href="./AppPromotion" class="promotion.AppPromotion"> Add Promo </a> -->
+	
 </body>
 </html>

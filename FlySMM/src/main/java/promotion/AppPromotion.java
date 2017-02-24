@@ -23,18 +23,12 @@ import java.util.List;
 public class AppPromotion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public AppPromotion() {
         super();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
      @Override
-   //Method comment because it's use only for add new promotions
+   //Quando voglio aggiungere una mail mi basta togliere i commenti, gli utenti veranno automaticamente avvisati
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	 /*SeasonPromotion p1 = null;
 		try {
@@ -66,9 +60,6 @@ public class AppPromotion extends HttpServlet {
 		response.getWriter().append(p1.toString()).append(p2.toString());*/
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Empty because useless at the moment
