@@ -25,13 +25,13 @@ public class PaymentCommand extends FrontCommand {
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
-		if (caller.equals("PaymentOptions")) {
+		if ("PaymentOptions".equals(caller)) {
 			getPaymentMethodFromDB();
 		}
-		if (caller.equals("NewPayment")) {
+		if ("NewPayment".equals(caller)) {
 			addNewPaymentMethod();
 		}
-		if (caller.equals("MakePayment")) {
+		if ("MakePayment".equals(caller)) {
 			makePayment();
 		}
 
@@ -73,12 +73,11 @@ public class PaymentCommand extends FrontCommand {
 		session.beginTransaction();
 
 		Customer customer = (Customer) request.getSession().getAttribute("customer");
-		Long idCustomer = customer.getIdCustomer();
 
 		Payment newPayment = new Payment();
-		int nCard = Integer.parseInt(request.getParameter("NCard").toString());
-		String ncvv = request.getParameter("cvv").toString();
-		String nameOwner = request.getParameter("owner").toString();
+		int nCard = Integer.parseInt(request.getParameter("NCard"));
+		String ncvv = request.getParameter("cvv");
+		String nameOwner = request.getParameter("owner");
 		String expireString = request.getParameter("expiredDate");
 
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
