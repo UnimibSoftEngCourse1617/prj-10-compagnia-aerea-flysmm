@@ -12,12 +12,11 @@ import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
 import customer.Customer;
-import customer.FidelityCustomer;
 import servlets.SessionFactorySingleton;
 
 public class CustomerCommand extends FrontCommand {
 	private static final String SERVEXC = "An error occured";
-	private static final Logger LOG = Logger.getLogger(PromoCommand.class);
+	private static final Logger LOG = Logger.getLogger(CustomerCommand.class);
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
