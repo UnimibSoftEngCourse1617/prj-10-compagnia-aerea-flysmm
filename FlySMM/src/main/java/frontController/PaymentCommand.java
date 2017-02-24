@@ -38,7 +38,15 @@ public class PaymentCommand extends FrontCommand {
 		if ("MakePayment".equals(caller)) {
 			makePayment();
 		}
+		if ("LastMinute".equals(caller)) {
+			lastMinute();
+		}
 
+	}
+
+	private void lastMinute() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public void getPaymentMethodFromDB() {
@@ -163,7 +171,7 @@ public class PaymentCommand extends FrontCommand {
 
 			Timer timer = new Timer();
 			final List<Book> b = getBook();
-		
+
 			TimerTask task = new TimerTask() {
 
 				@Override
@@ -171,7 +179,7 @@ public class PaymentCommand extends FrontCommand {
 					((FidelityCustomer) CUSTOMERRUN).changeFidelity();
 					for (Book book : b) {
 						if (book.verifyExpired()) {
-							if(book.verifyExpired()){
+							if (book.verifyExpired()) {
 								Mail m = new Mail();
 								try {
 									m.sendMail(CUSTOMERRUN.getEmail(),
@@ -179,6 +187,7 @@ public class PaymentCommand extends FrontCommand {
 								} catch (MessagingException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
+									LOG.error("An error occured", e);
 								}
 
 							}
@@ -214,6 +223,7 @@ public class PaymentCommand extends FrontCommand {
 	protected void tryPayment() throws Exception {
 		// qui va messa l'implementazione del metodo per la chiamata al
 		// sottosistema di pagamento
+
 	}
 
 	private List<Book> getBook() {

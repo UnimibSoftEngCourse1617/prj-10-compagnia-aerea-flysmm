@@ -42,6 +42,7 @@ public class BookCommand extends FrontCommand {
 			requestDispatcher.forward(request, response);
 		} catch (Exception e) {
 			err = true;
+			LOG.error("An error occured", e);
 		}
 		if (err) {
 			request.setAttribute(MSG, MESSAGE);

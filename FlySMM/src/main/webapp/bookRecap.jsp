@@ -8,13 +8,14 @@
 <%@page import="com.google.gson.JsonArray"%>
 <%@page import="sale.Flight"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.Date"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
 
 <head>
-<font face="Arial"/>
+<font face="Arial" />
 <!-- Inizio sezione per Semantic ui -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -30,9 +31,9 @@
 <body>
 	<div class="ui stackable inverted menu">
 
-		<a href="index.jsp" class="item">FlySMM</a> <a class="item"> About Us </a> <a
-			class="item"> Jobs </a> <a class="item"> Locations </a>
-		
+		<a href="index.jsp" class="item">FlySMM</a> <a class="item"> About
+			Us </a> <a class="item"> Jobs </a> <a class="item"> Locations </a>
+
 		<%
 			if (request.getSession().getAttribute("customer") == null) {
 		%>
@@ -43,13 +44,20 @@
 			} else {
 		%>
 		<%
-			if (request.getSession().getAttribute("customer").getClass().toString().matches("class customer.FidelityCustomer")){
-				%> <a href="homeFidelityCustomer.jsp" class="right item"> Home </a>
-	<%}else{ %>
-		<a href="homeCustomer.jsp" class="right item"> Home </a><%} %>
+			if (request.getSession().getAttribute("customer").getClass().toString()
+						.matches("class customer.FidelityCustomer")) {
+		%>
+		<a href="homeFidelityCustomer.jsp" class="right item"> Home </a>
+		<%
+			} else {
+		%>
+		<a href="homeCustomer.jsp" class="right item"> Home </a>
+		<%
+			}
+		%>
 
-		<!-- <a href="./logoutServlet " class="right item"> Home </a> --> <a
-			href="./logoutServlet " class="right item"> Log out </a>
+		<!-- <a href="./logoutServlet " class="right item"> Home </a> -->
+		<a href="./logoutServlet " class="right item"> Log out </a>
 
 		<%
 			}
@@ -88,11 +96,40 @@
 		</tr>
 		</tfoot>
 	</table>
+
+
+	<%
+		Flight f = (Flight) request.getSession().getAttribute("chosenDeparture");
+		Date d = new Date();
+		System.out.println(d.getTime());
+		System.out.println(f.getDepartureDate().getTime());
+
+		if ((f.getDepartureDate().getTime() - d.getTime())  < (86400000*3)) {
+	%>
+	<form method="Post" action="./LastMinutePayment">
+		<input class="ui red submit button" type="submit" value="Pay!">
+		<input type="hidden" name="command" value="Payment" />
+	</form>
+	<%
+		} else {
+	%>
+
 	<form class="ui form" name="fSearchFly" method="post"
 		action="./BookServlet">
 		<input class="ui blue submit button" type="submit" value="Book!">
 		<input type="hidden" name="command" value="Book" />
 	</form>
+	<%
+		}
+	%>
+
+
+
+	<!-- <form class="ui form" name="fSearchFly" method="post"
+		action="./BookServlet">
+		<input class="ui blue submit button" type="submit" value="Book!">
+		<input type="hidden" name="command" value="Book" />
+	</form> -->
 
 </body>
 </html>
