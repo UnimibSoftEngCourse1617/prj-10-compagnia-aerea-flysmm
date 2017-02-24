@@ -38,21 +38,24 @@ public class FlightPromotion extends Promotion{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Flight getFlight() {
+	public Flight getFlight(){
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
 		
+		String query1 = "from Price where promotion_IdPromo = :id";
 		List<Price> result = session
-				.createQuery("from Price where promotion_IdPromo = '"+this.idPromo+"'")
+				.createQuery(query1)
+				.setString("id", this.idPromo)
 				.list();
-		
-		String id = result.get(0).getFlight().getIdFlight();
-		
+
+		String query2 = "from Flight where Flight_ID = :idf";
 		List<Flight> result1 = session.
-				createQuery("from Flight where Flight_ID = '"+id+"'")
+				createQuery(query2)
+				.setString("idf", result.get(0).getFlight().getIdFlight())
 				.list();
 		
-		return result1.get(0);
+		this.flight = result1.get(0);
+		return this.flight;
 	}
 	
 	public void setFlight(Flight flight) {
