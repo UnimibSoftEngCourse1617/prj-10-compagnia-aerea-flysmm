@@ -38,6 +38,7 @@ public class SaleCommand extends FrontCommand {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public void getDepartureFromDb() {
 
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
@@ -93,17 +94,16 @@ public class SaleCommand extends FrontCommand {
 			}
 		}
 
-		List<Flight> flights = new ArrayList<Flight>();
+		ArrayList<Flight> flights = new ArrayList<Flight>();
 		for (Object[] o : (List<Object[]>) result1) {
 			Price p = (Price) o[0];
 			p.setDiscountedAmount(p.getAmount());
 			Flight f = (Flight) o[1];
-			System.out.println(f.getRemainingSeats());
 			Flight fp = new Flight(f, p);
 			checkforPromos(fp);
 			flights.add(fp);
 		}
-		// session.getTransaction().commit();
+		
 		request.getSession().setAttribute("flights", flights);
 		RequestDispatcher dispatcher = context.getRequestDispatcher("/departure_flights.jsp");
 		try {
@@ -115,6 +115,7 @@ public class SaleCommand extends FrontCommand {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public void getReturnFromDb() {
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -140,7 +141,7 @@ public class SaleCommand extends FrontCommand {
 				LOG.info(SERVEXC, e);
 			}
 		}
-		List<Flight> flights = new ArrayList<Flight>();
+		ArrayList<Flight> flights = new ArrayList<Flight>();
 		for (Object[] o : (List<Object[]>) result) {
 			Price p = (Price) o[0];
 			p.setDiscountedAmount(p.getAmount());
@@ -149,7 +150,7 @@ public class SaleCommand extends FrontCommand {
 			checkforPromos(fp);
 			flights.add(fp);
 		}
-		// session.getTransaction().commit();
+		
 		request.getSession().removeAttribute(FLIGHTS);
 		request.getSession().setAttribute(FLIGHTS, flights);
 		RequestDispatcher dispatcher = context.getRequestDispatcher("/return_flights.jsp");

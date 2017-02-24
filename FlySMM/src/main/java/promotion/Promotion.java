@@ -9,7 +9,6 @@ import java.io.Serializable;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import customer.Customer;
-import frontController.PromoCommand;
 import servlets.SessionFactorySingleton;
 
 public abstract class Promotion implements Serializable{

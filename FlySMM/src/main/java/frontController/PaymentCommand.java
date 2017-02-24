@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,13 +27,13 @@ public class PaymentCommand extends FrontCommand {
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
-		if (caller.equals("PaymentOptions")) {
+		if ("PaymentOptions".equals(caller)) {
 			getPaymentMethodFromDB();
 		}
-		if (caller.equals("NewPayment")) {
+		if ("NewPayment".equals(caller)) {
 			addNewPaymentMethod();
 		}
-		if (caller.equals("MakePayment")) {
+		if ("MakePayment".equals(caller)) {
 			makePayment();
 		}
 
@@ -73,12 +75,11 @@ public class PaymentCommand extends FrontCommand {
 		session.beginTransaction();
 
 		Customer customer = (Customer) request.getSession().getAttribute("customer");
-		Long idCustomer = customer.getIdCustomer();
 
 		Payment newPayment = new Payment();
-		int nCard = Integer.parseInt(request.getParameter("NCard").toString());
-		String ncvv = request.getParameter("cvv").toString();
-		String nameOwner = request.getParameter("owner").toString();
+		int nCard = Integer.parseInt(request.getParameter("NCard"));
+		String ncvv = request.getParameter("cvv");
+		String nameOwner = request.getParameter("owner");
 		String expireString = request.getParameter("expiredDate");
 
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -132,7 +133,7 @@ public class PaymentCommand extends FrontCommand {
 		}
 
 		if (customer instanceof FidelityCustomer) {
-
+		
 			// devo beccare i punti che ha gia
 			int sum = ((FidelityCustomer) customer).getPoint();
 			org.hibernate.Query queryFlight;
@@ -156,8 +157,24 @@ public class PaymentCommand extends FrontCommand {
 			Query updatePoint = session.createQuery("UPDATE Customer " + "set point = " + sum + ", Date_last_book = '"
 					+ dataStr + "' where idCustomer =" + id);
 			updatePoint.executeUpdate();
+			
+			
+			
+			final Customer CUSTOMERRUN = (Customer) request.getSession().getAttribute("customer");
+			
+			Timer timer = new Timer();
+			TimerTask task = new TimerTask() {
+			    @Override
+			    public void run() {
+			       ((FidelityCustomer) CUSTOMERRUN).changeFidelity();
+			    }
+			    
+			};
+			timer.schedule(task, 0, (1000*60*60*24));
+			updateCustomer(CUSTOMERRUN);
 
 		}
+		
 
 		session.getTransaction().commit();
 		
@@ -171,6 +188,12 @@ public class PaymentCommand extends FrontCommand {
 		}
 	
 
+	}
+	public static void updateCustomer(Customer c) {
+		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
+		session.getTransaction().begin();
+		session.saveOrUpdate(c);
+		session.getTransaction().commit();
 	}
 
 	protected void tryPayment() throws Exception {
