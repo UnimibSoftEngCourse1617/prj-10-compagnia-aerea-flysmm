@@ -31,11 +31,12 @@ public class EditCommand extends FrontCommand {
 		if (caller.equals("Edit")) {
 			editBook();
 		}
+		if (caller.equals("Increase")) {
+			computeIncrease();
+		}
+		
 		if (caller.equals("Update")) {
 			updateBook();
-		}
-		if (caller.equals("Increase")) {
-			increaseBook();
 		}
 
 	}
@@ -65,13 +66,13 @@ public class EditCommand extends FrontCommand {
 		System.out.println("Id --> " + request.getSession().getAttribute("IDp"));
 		
 		/** 
-		 * Creo la query che estrae l'oggetto vicchia prenotazione
+		 * Creo la query che estrae l'oggetto vecchia prenotazione
 		 * */
 		Query getBook = session.createQuery("From Book b Where b.bookId = ?");
 		getBook.setParameter(0, request.getSession().getAttribute("IDp"));
-		List<Book> resultBook = getBook.list();
-		System.out.println("Book : --> " + resultBook.toString());
-		request.getSession().setAttribute("oldBook", resultBook);
+		List<Book> resultOldBook = getBook.list();
+		System.out.println("Book : --> " + resultOldBook.toString());
+		request.getSession().setAttribute("oldBook", resultOldBook.get(0));
 		
 		/**
 		 * set in parametro di sezione del oggetto vecchio Book 
@@ -83,56 +84,19 @@ public class EditCommand extends FrontCommand {
 		 * qui estraggo tutte le informazioni relative al vecchio volo 
 		 * */
 		Query getOldFlight = session.createQuery("from Flight f " + "where f.idFlight = ?");
-		getOldFlight.setParameter(0, resultBook.get(0).getFlightId());
+		getOldFlight.setParameter(0, resultOldBook.get(0).getFlightId());
 		List<Flight> resultOldFlight = getOldFlight.list();
+		
+		request.getSession().setAttribute("oldFlight", resultOldFlight.get(0));
 		
 		//////////////////////////////////////////////////////////////////////////
 		/** questa query è necessaria per ottenere il volo vecchio e il relativo prezzo */
 		
-		Query queryInnerJoin = session.createQuery("from Price p inner join p.flight f "
-				+ "where f.departureAirport.icao = ? " + "and f.arrivalAirport.icao = ? " 
-				+ "and f.departureDate = ? "
-				+ "and f.remainingSeats >= ? " 
-				+ "group by f.idFlight, p.seats.tariff");
-		
-		String arrival = resultOldFlight.get(0).getArrivalAirport().getIcao();
-		String departure = resultOldFlight.get(0).getDepartureAirport().getIcao();
-		Date oldDate = resultOldFlight.get(0).getDepartureDate();
-		
-		queryInnerJoin = queryInnerJoin.setParameter(0, departure);
-		queryInnerJoin = queryInnerJoin.setParameter(1, arrival);
-		queryInnerJoin = queryInnerJoin.setDate(2, oldDate);
-		queryInnerJoin = queryInnerJoin.setParameter(3, 1);
-		List resultGOFWP = queryInnerJoin.list();
 
-		//////////////////////////////////////////////////////////////////////////
-		/** creo l'oggetto flights e assoccio il prezzo */
-		List<Flight> flights = new ArrayList<Flight>();
-		for (Object[] o : (List<Object[]>) resultGOFWP) {
-			Price p = (Price) o[0];
-			p.setDiscountedAmount(p.getAmount());
-			Flight f = (Flight) o[1];
-			System.out.println(f.getRemainingSeats());
-			Flight fp = new Flight(f, p);
-			checkforPromos(fp);
-			flights.add(fp);
-		}
+		System.out.println("il valore di olf Flight --> " + resultOldFlight.get(0).toString());
 		
-		request.getSession().setAttribute("oldFlight", flights);
-		
-		/** FINE DEL SETTAGGIO DEI VALORI NECCESSARI PER L'EDIT */
-		
-		
-		
-		
-		
-		System.out.println("il valore di olf Flight --> " + flights.get(0).toString());
-		System.out.println("il valore di old Flight price --> " + flights.get(0).getPrice().toString());
-		
-		
-		List<Book> oldBook = (List<Book>) request.getSession().getAttribute("oldBook");
-		long idCustomer = oldBook.get(0).getCustomerId();
-		String idBook = oldBook.get(0).getBookId();
+		long idCustomer = resultOldBook.get(0).getCustomerId();
+		String idBook = resultOldBook.get(0).getBookId();
 
 		//////////////////////////////////////////////////////////////////////////
 		Query getCustomer = session.createQuery("from Customer c " + "where c.idCustomer = ?  ");
@@ -141,29 +105,44 @@ public class EditCommand extends FrontCommand {
 		Customer customer = (Customer) getCustomer.list().get(0);
 		request.getSession().setAttribute("customer", customer);
 		System.out.println("il book di update book --> " + customer.toString());
+		
+		/** FINE DEL SETTAGGIO DEI VALORI NECCESSARI PER L'EDIT */
 
-		//////////////////////////////////////////////////////////////////////////
 
-//		System.out.println("date --> " + date);
+		/** INIZIO PARTE VISUALLIZZAZIONE DEI VOLI SCELTI PER LA MODIFICA */
+		
+		String departure = resultOldFlight.get(0).getDepartureAirport().getIcao();
+		String arrival = resultOldFlight.get(0).getArrivalAirport().getIcao();
+		String dateString = request.getParameter("newDate");
+
+		org.hibernate.Query queryInnerJoin = session.createQuery("from Price p inner join p.flight f "
+				+ "where f.departureAirport.icao = ? " + "and f.arrivalAirport.icao = ? " + "and f.departureDate = ? "
+				+ "and f.remainingSeats >= ? " + "group by f.idFlight, p.seats.tariff");
+	
+		
 		queryInnerJoin = queryInnerJoin.setParameter(0, departure);
 		queryInnerJoin = queryInnerJoin.setParameter(1, arrival);
-//		queryInnerJoin = queryInnerJoin.setDate(2, date);
+		queryInnerJoin = queryInnerJoin.setDate(2, parseStringToDate(dateString));
 		queryInnerJoin = queryInnerJoin.setParameter(3, 1);
-		List result1 = queryInnerJoin.list();
 
-		System.out.println("queryInnerJoin --> " + result1.toString());
+		
+		List result1 = queryInnerJoin.list();
 		if (result1.size() == 0) {
-			String message = "Details: There are no flights matching search criteria. "
-					+ "Go back to homepage and try to change date or airports.";
+			String message = "Details: There are no flights matching search criteria. " + 
+					"Go back to homepage and try to change date or airports.";
 			request.setAttribute("message", message);
 			try {
 				context.getRequestDispatcher("/error.jsp").forward(request, response);
 			} catch (Exception e) {
-
+				LOG.error("An error occured", e);
 			}
 		}
+		
 
-		flights = new ArrayList<Flight>();
+		///##################################################################################################################################
+		///##################################################################################################################################	
+
+		List<Flight> flights = new ArrayList<Flight>();
 		for (Object[] o : (List<Object[]>) result1) {
 			Price p = (Price) o[0];
 			p.setDiscountedAmount(p.getAmount());
@@ -179,10 +158,12 @@ public class EditCommand extends FrontCommand {
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException e) {
-			e.printStackTrace();
+			LOG.error("An error occured", e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOG.error("An error occured", e);
 		}
+		
+		/** FINE PARTE VISUALLIZZAZIONE DEI VOLI SCELTI PER LA MODIFICA */
 	}
 
 	private Flight checkforPromos(Flight flight) {
@@ -205,12 +186,14 @@ public class EditCommand extends FrontCommand {
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
 
-		List<Flight> oldFlight = (List<Flight>) request.getSession().getAttribute("oldFlight");
-		String idOldFlight = oldFlight.get(0).getIdFlight();
+		//un po' di questa roba va giù
+		
+		Flight oldFlight = (Flight) request.getSession().getAttribute("oldFlight");
+		String idOldFlight = oldFlight.getIdFlight();
 
-		List<Book> oldBook = (List<Book>) request.getSession().getAttribute("oldBook");
-		long idCustomer = oldBook.get(0).getCustomerId();
-		String idBook = oldBook.get(0).getBookId();
+		Book oldBook = (Book) request.getSession().getAttribute("oldBook");
+		long idCustomer = oldBook.getCustomerId();
+		String idBook = oldBook.getBookId();
 
 		Customer customer = (customer.Customer) request.getSession().getAttribute("customer");
 
@@ -228,19 +211,19 @@ public class EditCommand extends FrontCommand {
 
 		if (customer instanceof FidelityCustomer) {
 
-			int distance = oldFlight.get(0).getDistance();
+			int distance = oldFlight.getDistance();
 			int oldPoint = ((FidelityCustomer) customer).getPoint();
 			int newPoint = (oldPoint - distance) + newFlight.get(0).getDistance();
 
-			Query updateNewBook = session.createQuery("UPDATE Customer " + "set point = :sum , "
+			Query updateNewBook = session.createQuery("UPDATE Customer " + "set point = :newPoint , "
 					+ "Date_last_book = :dataStr " + "where idCustomer = :id");
 
 			SimpleDateFormat sdf = new SimpleDateFormat();
 			sdf.applyPattern("yyyy-MM-dd");
 			String dataStr = sdf.format(new Date());
 
-			updateNewBook.setParameter("sum", newPoint);
-			updateNewBook.setParameter("dataStr", dataStr);
+			updateNewBook.setParameter("newPoint", newPoint);
+			updateNewBook.setDate("dataStr", parseStringToDate(dataStr));
 			updateNewBook.setParameter("id", idCustomer);
 
 			updateNewBook.executeUpdate();
@@ -248,8 +231,8 @@ public class EditCommand extends FrontCommand {
 		}
 
 		// aggiungere e togliere un posto
-		int oldFlightNSeats = oldFlight.get(0).getRemainingSeats() + 1;
-		int newFlightNSeats = oldFlight.get(0).getRemainingSeats() - 1;
+		int oldFlightNSeats = oldFlight.getRemainingSeats() + 1;
+		int newFlightNSeats = newFlight.get(0).getRemainingSeats() - 1;
 
 		Query updateFlightSeats = session
 				.createQuery("UPDATE Flight f " + "set f.remainingSeats = :seatNumber " + "where f.idFlight = :idF");
@@ -267,7 +250,8 @@ public class EditCommand extends FrontCommand {
 		System.out.println("Sono qui: " + newFlightNSeats);
 
 		Query updateBook = session.createQuery("Update Book " + "set Flight_Flight_ID = :newFlightId, "
-				+ "Booking_date = :newBookDate, " + "Flight_Departure_Date = :newDepartureDate");
+				+ "Booking_date = :newBookDate, " + "Flight_Departure_Date = :newDepartureDate "
+						+ "where bookId = :bookId");
 
 		updateBook.setParameter("newFlightId", idNewFlight);
 
@@ -275,53 +259,34 @@ public class EditCommand extends FrontCommand {
 		sdf.applyPattern("yyyy-MM-dd");
 		String dataStr = sdf.format(new Date());
 
-		updateBook.setParameter("newBookDate", dataStr);
-		updateBook.setParameter("newDepartureDate", newFlight.get(0).getDepartureDate());
+		updateBook.setDate("newBookDate", parseStringToDate(dataStr));
+		updateBook.setDate("newDepartureDate", newFlight.get(0).getDepartureDate());
+		updateBook.setParameter("bookId", idBook);
 		updateBook.executeUpdate();
-
+		session.getTransaction().commit();
 		System.out.println("sono qui: " + updateBook.toString());
 	}
 
-	public void increaseBook() {
+	public void computeIncrease() {
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
 
-		System.out.println("sono in increase");
-		Customer customer = (customer.Customer) request.getSession().getAttribute("customer");
-		long idCustomer = customer.getIdCustomer();
-
-		Flight oldFlight = (Flight) request.getSession().getAttribute("oldFlight");
-
-		String newPriceString = null;
-		float oldPrice = 0f;
-
-		if (customer instanceof FidelityCustomer) {
-			// differenza scontata
-			newPriceString = request.getParameter("discounted");
-			oldPrice = oldFlight.getPrice().getDiscountedAmount();
-		} else {
-			newPriceString = request.getParameter("amount");
-			oldPrice = oldFlight.getPrice().getAmount();
-		}
-
-		float newPrice = Float.parseFloat(newPriceString);
-		float diff = newPrice - oldPrice;
-
-		if (diff > 0) {
-			// caso in cui c'è da pagare
-			updateBook();
-			System.out.println("sono nel ramo sbagliato");
-		} else {
-			updateBook();
-			System.out.println("Ho finito ora spaccio ");
-			try {
-				context.getRequestDispatcher("./GetBook").forward(request, response);
-			} catch (ServletException e) {
-				LOG.error("An error occured", e);
-			} catch (IOException e) {
-				LOG.error("An error occured", e);
-			}
-		}
+		request.getSession().getAttribute("newFlight");
+		
 	}
+	
+	public Date parseStringToDate(String dateString) {
+
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String dateInString = dateString;
+		Date date = null;
+		try {
+			date = formatter.parse(dateInString);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return date;
+	}
+	
 	
 }
