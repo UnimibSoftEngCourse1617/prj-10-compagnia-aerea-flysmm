@@ -17,29 +17,23 @@ import frontController.FrontCommand;
 public class LastMinutePayment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOG = Logger.getLogger(LastMinutePayment.class);
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	
     public LastMinutePayment() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+		try {
+			response.getWriter().append("Served at: ").append(request.getContextPath());
+		} catch (Exception e) {
+			LOG.error("An error occured", e);
+		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		FrontCommand command = null;
-		System.out.println("QUAAA");
 		try {
 			command = FrontCommand.getCommand(request, response);
 		} catch (Exception e) {
@@ -56,5 +50,4 @@ public class LastMinutePayment extends HttpServlet {
 			System.out.println("CommandNotFound");
 		}
 	}
-
 }

@@ -36,7 +36,6 @@ public class GetBookCommand extends FrontCommand {
 		session.beginTransaction();
 		String query1 = "from Book where User_ID = :id1 and Payed = '0'";
 		List result = session.createQuery(query1).setLong("id1", id).list();
-		System.out.println(result);
 		return result;
 	}
 

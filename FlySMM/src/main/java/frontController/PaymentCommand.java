@@ -30,7 +30,6 @@ public class PaymentCommand extends FrontCommand {
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
-		System.out.println(request.getAttribute("lastminute"));
 
 		if ("PaymentOptions".equals(caller)) {
 			getPaymentMethodFromDB();
@@ -42,7 +41,6 @@ public class PaymentCommand extends FrontCommand {
 			makePayment();
 		}
 		if ("LastMinute".equals(caller)) {
-			System.out.println("1");
 			lastMinute();
 		}
 
@@ -55,20 +53,14 @@ public class PaymentCommand extends FrontCommand {
 		for (Book b : listBook) {
 			frontController.BookCommand.writeBook(b);
 		}
-		System.out.println("2");
 
 		for (Book b : listBook) {
 			frontController.BookCommand.updateSeat(b, departure, arrival);
 		}
-		System.out.println("3");
 
 		Customer customer = (Customer) request.getSession().getAttribute("Customer");
 		request.setAttribute("customer", customer);
 		makePayment();
-		System.out.println("5");
-		
-		
-
 
 	}
 
@@ -120,7 +112,6 @@ public class PaymentCommand extends FrontCommand {
 		Date expire = null;
 		try {
 			expire = formatter.parse(expireString);
-			System.out.println("SONO QUI");
 		} catch (Exception e) {
 			LOG.error("An error occured", e);
 		}
@@ -166,7 +157,6 @@ public class PaymentCommand extends FrontCommand {
 		}
 
 		if (customer instanceof FidelityCustomer) {
-
 			// devo beccare i punti che ha gia
 			int sum = ((FidelityCustomer) customer).getPoint();
 			org.hibernate.Query queryFlight;
@@ -185,9 +175,12 @@ public class PaymentCommand extends FrontCommand {
 			SimpleDateFormat sdf = new SimpleDateFormat();
 			sdf.applyPattern("yyyy-MM-dd");
 			String dataStr = sdf.format(new Date());
-
-			Query updatePoint = session.createQuery("UPDATE Customer " + "set point = " + sum + ", Date_last_book = '"
-					+ dataStr + "' where idCustomer =" + id);
+			
+			String query = "UPDATE Customer set point = :sum, Date_last_book = :dataStr where idCustomer :id";
+			Query updatePoint = session.createQuery(query)
+					.setLong("sum", sum)
+					.setString("dataStr", dataStr)
+					.setLong("id", id);
 			updatePoint.executeUpdate();
 
 			final Customer CUSTOMERRUN = (Customer) request.getSession().getAttribute("customer");
@@ -200,14 +193,12 @@ public class PaymentCommand extends FrontCommand {
 				@Override
 				public void run() {
 					((FidelityCustomer) CUSTOMERRUN).changeFidelity();
-
 				}
 			};
 			timer.schedule(task, 0, (1000 * 60 * 60 * 24));
 			updateCustomer(CUSTOMERRUN);
 
 		}
-
 		session.getTransaction().commit();
 
 		RequestDispatcher dispatcher = context.getRequestDispatcher("/GetBook?command=GetBook");
@@ -228,10 +219,9 @@ public class PaymentCommand extends FrontCommand {
 		session.getTransaction().commit();
 	}
 
-	protected void tryPayment() throws Exception {
+	protected void tryPayment(){
 		// qui va messa l'implementazione del metodo per la chiamata al
 		// sottosistema di pagamento
-
 	}
 
 	private List<Book> getBook() {
