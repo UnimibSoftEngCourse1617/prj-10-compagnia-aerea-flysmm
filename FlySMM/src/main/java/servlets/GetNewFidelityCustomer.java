@@ -60,6 +60,7 @@ public class GetNewFidelityCustomer extends HttpServlet {
 		// scrivo e poi cancello perchè hibernate non permette l'update del
 		// discriminatore
 		writeFidelityCustomer((FidelityCustomer) cFidelity);
+		//qua inserire delete Book
 		deleteCustomer((Customer) myObject);
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/homeFidelityCustomer.jsp");
 		dispatcher.forward(request, response);

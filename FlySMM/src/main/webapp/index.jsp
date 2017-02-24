@@ -1,6 +1,6 @@
 <html>
 <head>
-<font face="Arial"/>
+<font face="Arial" />
 <!-- Inizio sezione per Semantic ui -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -28,8 +28,8 @@
 <body>
 	<div class="ui stackable inverted menu">
 
-		<a href="index.jsp" class="item">FlySMM</a> <a class="item"> About Us </a> <a
-			class="item"> Jobs </a> <a class="item"> Locations </a>
+		<a href="index.jsp" class="item">FlySMM</a> <a class="item"> About
+			Us </a> <a class="item"> Jobs </a> <a class="item"> Locations </a>
 
 		<%
 			if (request.getSession().getAttribute("customer") == null) {
@@ -40,8 +40,14 @@
 		<%
 			} else {
 		%>
+		<%
+			if (request.getSession().getAttribute("customer").getClass().toString().matches("class customer.FidelityCustomer")){
+				%> <a href="homeFidelityCustomer.jsp" class="right item"> Home </a>
+	<%}else{ %>
+		<a href="homeCustomer.jsp" class="right item"> Home </a><%} %>
 
-		<a href="./logoutServlet " class="right item"> Log out </a>
+		<!-- <a href="./logoutServlet " class="right item"> Home </a> --> <a
+			href="./logoutServlet " class="right item"> Log out </a>
 
 		<%
 			}
@@ -49,7 +55,7 @@
 
 
 	</div>
-	
+
 	<!-- INIZIO area dedicata alla ricerca di un volo -->
 	<div class="ui two column grid">
 		<div class="column">

@@ -1,10 +1,8 @@
 package customer;
 
 import java.io.Serializable;
-import java.util.Calendar;
+
 import java.util.Date;
-import java.util.Timer;
-import java.util.concurrent.TimeUnit;
 
 import javax.mail.MessagingException;
 
@@ -36,20 +34,6 @@ public class FidelityCustomer extends Customer implements Serializable {
 		this.startDate = new Date();
 		this.state = new FidelityState(this);
 	}
-
-//	Calendar today = Calendar.getInstance();
-//
-//
-//	Timer timer = new Timer();
-//	
-//		public void run(){
-//			today.set(Calendar.HOUR_OF_DAY,2);
-//			today.set(Calendar.MINUTE,0);
-//			today.set(Calendar.SECOND,0);
-//			
-//			timer.schedule(new FidelityCustomer(),today.getTime(),TimeUnit.MILLISECONDS.convert(1,TimeUnit.DAYS)); 
-//		}
-													
 
 	public Date getActualDateUnfidelity() {
 		return actualDateUnfidelity;

@@ -31,6 +31,7 @@
 	<div class="ui stackable inverted menu">
 		<a href="index.jsp" class="item">FlySMM</a> <a class="item"> About Us </a> <a
 			class="item"> Jobs </a> <a class="item"> Locations </a>
+		
 		<%
 			if (request.getSession().getAttribute("customer") == null) {
 		%>
@@ -40,8 +41,14 @@
 		<%
 			} else {
 		%>
+		<%
+			if (request.getSession().getAttribute("customer").getClass().toString().matches("class customer.FidelityCustomer")){
+				%> <a href="homeFidelityCustomer.jsp" class="right item"> Home </a>
+	<%}else{ %>
+		<a href="homeCustomer.jsp" class="right item"> Home </a><%} %>
 
-		<a href="./logoutServlet " class="right item"> Log out </a>
+		<!-- <a href="./logoutServlet " class="right item"> Home </a> --> <a
+			href="./logoutServlet " class="right item"> Log out </a>
 
 		<%
 			}
