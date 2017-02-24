@@ -11,7 +11,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<font face="Arial"/>
+<font face="Arial" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -45,8 +45,8 @@
 		<%
 			}
 		%>
-
 	</div>
+	<h2>Choose your return flight</h2>
 	<table class="ui celled table">
 		<thead>
 			<tr>
@@ -60,6 +60,7 @@
 				<th>Tariff</th>
 				<th>Price</th>
 				<th>Fidelity Price</th>
+				<th>Remaining Seats</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -74,14 +75,12 @@
 					<td>${flight.arrivalDate}</td>
 					<td>${flight.arrivalTime}</td>
 					<td>${flight.price.seats.tariff}</td>
-
 					<td>${flight.price.amount}<br></td>
 					<td>${flight.price.discountedAmount}</td>
+					<td>${flight.remainingSeats}</td>
 					<td><form method="post" name="flightItems" action="./Gateway">
-							<input type="submit" class="ui green button"
-								value="Choose" /> <input type="hidden"
-
-								name="chosen"
+							<input type="submit" class="ui green button" value="Choose" /> <input
+								type="hidden" name="chosen"
 								value="${flight.idFlight}-${flight.price.seats.tariff}" /> <input
 								type="hidden" name="command" value="Sale" />
 						</form></td>

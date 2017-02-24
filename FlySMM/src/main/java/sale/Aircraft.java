@@ -8,7 +8,6 @@ public class Aircraft implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	// private Flight flight;
 	private int idAircraft;
 	private String constructor;
 	private long totalSize;
@@ -20,9 +19,8 @@ public class Aircraft implements Serializable{
 	}
 
 	
-	public Aircraft(/* Flight flight, */ int idAircraft, String constructor, long totalSize, float weightBound,
+	public Aircraft(int idAircraft, String constructor, long totalSize, float weightBound,
 			String model) {
-		// this.flight = flight;
 		this.idAircraft = idAircraft;
 		this.constructor = constructor;
 		this.totalSize = totalSize;
@@ -30,17 +28,9 @@ public class Aircraft implements Serializable{
 		this.model = model;
 	}
 
-	// public Flight getFlight() {
-	// return flight;
-	// }
-
 	public int getIdAircraft() {
 		return idAircraft;
 	}
-
-//	public void setFlight(Flight flight) {
-//		this.flight = flight;
-//	}
 
 	public void setIdAircraft(int idAircraft) {
 		this.idAircraft = idAircraft;

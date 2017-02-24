@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import frontController.FrontCommand;
-import frontController.UnknownCommand;
 
 public class GetPromotion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -27,7 +26,7 @@ public class GetPromotion extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.getWriter().append(request.getParameter("command")).append(request.getParameter("customertype"));
+		// TODO Auto-generated method stub
 	}
 
 	/**

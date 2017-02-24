@@ -1,6 +1,7 @@
 package frontController;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,7 +12,7 @@ import javax.swing.JOptionPane;
 import org.hibernate.Session;
 
 import customer.Customer;
-
+import customer.FidelityCustomer;
 import servlets.SessionFactorySingleton;
 
 public class CustomerCommand extends FrontCommand {
@@ -32,6 +33,7 @@ public class CustomerCommand extends FrontCommand {
 					+ " and password = '" + request.getParameter("psw") + "'").list();
 
 			if (result.size() == 1) {
+
 				customerRegistry = (Customer) result.get(0);
 
 				request.getSession().setAttribute("customer", customerRegistry);

@@ -1,17 +1,14 @@
 package frontController;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -24,6 +21,7 @@ import sale.Payment;
 import servlets.SessionFactorySingleton;
 
 public class PaymentCommand extends FrontCommand {
+	private static final Logger LOG = Logger.getLogger(PaymentCommand.class);
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
@@ -64,13 +62,13 @@ public class PaymentCommand extends FrontCommand {
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException e) {
-			e.printStackTrace();
+			LOG.error("An error occured", e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOG.error("An error occured", e);
 		}
 	}
 
-	public void addNewPaymentMethod() throws ServletException, IOException {
+	public void addNewPaymentMethod() {
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
 
@@ -90,7 +88,7 @@ public class PaymentCommand extends FrontCommand {
 			expire = formatter.parse(expireString);
 			System.out.println("SONO QUI");
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.error("An error occured", e);
 		}
 
 		newPayment.setCardNumber(nCard);
@@ -103,10 +101,16 @@ public class PaymentCommand extends FrontCommand {
 		session.getTransaction().commit();
 
 		RequestDispatcher dispatcher = context.getRequestDispatcher("/Payment_options");
-		dispatcher.forward(request, response);
+		try {
+			dispatcher.forward(request, response);
+		} catch (ServletException e) {
+			LOG.error("An error occured", e);
+		} catch (IOException e) {
+			LOG.error("An error occured", e);
+		}
 	}
 
-	public void makePayment() throws ServletException, IOException {
+	public void makePayment() {
 
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -158,13 +162,19 @@ public class PaymentCommand extends FrontCommand {
 		session.getTransaction().commit();
 		
 		RequestDispatcher dispatcher = context.getRequestDispatcher("/GetBook?command=GetBook");
-		dispatcher.forward(request, response);
+		try {
+			dispatcher.forward(request, response);
+		} catch (ServletException e) {
+			LOG.error("An error occured", e);
+		} catch (IOException e) {
+			LOG.error("An error occured", e);
+		}
 	
 
 	}
 
 	protected void tryPayment() throws Exception {
-		// qui va messo l'implementazione del metodo per la chiamata al
+		// qui va messa l'implementazione del metodo per la chiamata al
 		// sottosistema di pagamento
 	}
 }
