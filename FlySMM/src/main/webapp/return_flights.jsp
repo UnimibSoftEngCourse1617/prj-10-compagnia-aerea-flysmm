@@ -45,7 +45,7 @@
 		<%
 			}
 		%>
-
+	<h2>Choose your return flight</h2>
 	</div>
 	<table class="ui celled table">
 		<thead>
