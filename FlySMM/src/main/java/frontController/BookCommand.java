@@ -52,8 +52,11 @@ public class BookCommand extends FrontCommand {
 		}
 		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
 		session.getTransaction().begin();
-		String hql = "UPDATE Flight set Seat_Remaining = " + seat + " WHERE Flight_ID = '" + flightId + "'";
-		Query query = session.createQuery(hql);
+		Query query = session.createQuery("UPDATE Flight set Seat_Remaining = :seat " + " WHERE Flight_ID = :flightId");
+
+		query.setParameter("seat", seat);
+		query.setParameter("flightId", flightId);
+
 		query.executeUpdate();
 		session.getTransaction().commit();
 

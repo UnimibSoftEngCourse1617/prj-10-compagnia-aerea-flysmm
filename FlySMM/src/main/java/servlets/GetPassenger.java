@@ -1,48 +1,53 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import org.hibernate.Query;
-import org.hibernate.criterion.SizeExpression;
-import org.hibernate.mapping.List;
+import org.apache.log4j.Logger;
 
 import booking.Book;
 import booking.Passenger;
 import customer.Customer;
 import frontController.FrontCommand;
-import frontController.UnknownCommand;
 import sale.Flight;
 
 public class GetPassenger extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private static final Logger LOG = Logger.getLogger(GetPassenger.class);
+	
 	public GetPassenger() {
 		super();
 	}
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.getWriter().append(request.getParameter("command"));
-
+		//Empty because useless
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		FrontCommand command = FrontCommand.getCommand(request, response);
+		FrontCommand command = null;
+		try {
+			command = FrontCommand.getCommand(request, response);
+		} catch (Exception e1) {
+			LOG.error("An error in getCommand occured", e1);
+		}
 		if (command != null) {
 			command.init(getServletContext(), "GDF", request, response);
-			command.dispatch();
+			try {
+				command.dispatch();
+			} catch (Exception e2) {
+				LOG.error("An error in dispatch occured", e2);
+				}
 
 		} else {
 			System.out.println("CommandNotFound");
@@ -58,11 +63,9 @@ public class GetPassenger extends HttpServlet {
 			for (Passenger p : listPassenger) {
 				Book tmp = new Book(c, f, p);
 				if (c.getClass().toString().matches("class customer.FidelityCustomer")) {
-					System.out.println("QUI");
 					tmp.setTotalPrice(f.getPrice().getDiscountedAmount());
 				}
 				tmp.setTotalPrice(tmp.getTotalPrice() + priceBaggage.get(i));
-				System.out.println(tmp.getTotalPrice());
 				listBook.add(tmp);
 				i++;
 			}
@@ -75,6 +78,10 @@ public class GetPassenger extends HttpServlet {
 
 		request.getSession().setAttribute("listBook", listBook);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/bookRecap.jsp");
-		requestDispatcher.forward(request, response);
+		try {
+			requestDispatcher.forward(request, response);
+		} catch (Exception e3) {
+			LOG.error("An error occured", e3);
+			}
 	}
 }

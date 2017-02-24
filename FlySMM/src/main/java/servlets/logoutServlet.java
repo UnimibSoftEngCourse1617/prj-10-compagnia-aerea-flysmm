@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Session;
+import org.apache.log4j.Logger;
 
 /**
  * Servlet implementation class logoutServlet
@@ -17,34 +17,34 @@ import org.hibernate.Session;
 @WebServlet("/logoutServlet")
 public class logoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger LOG = Logger.getLogger(logoutServlet.class);
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public logoutServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.getSession().invalidate();
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
-		dispatcher.forward(request, response);
+		try {
+			dispatcher.forward(request, response);
+		} catch (Exception e) {
+			LOG.error("An error occured", e);
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-		
-		
+		//Empty because useless
 	}
-
 }

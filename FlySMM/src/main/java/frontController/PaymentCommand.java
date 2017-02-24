@@ -1,17 +1,16 @@
 package frontController;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -24,16 +23,17 @@ import sale.Payment;
 import servlets.SessionFactorySingleton;
 
 public class PaymentCommand extends FrontCommand {
+	private static final Logger LOG = Logger.getLogger(PaymentCommand.class);
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
-		if (caller.equals("PaymentOptions")) {
+		if ("PaymentOptions".equals(caller)) {
 			getPaymentMethodFromDB();
 		}
-		if (caller.equals("NewPayment")) {
+		if ("NewPayment".equals(caller)) {
 			addNewPaymentMethod();
 		}
-		if (caller.equals("MakePayment")) {
+		if ("MakePayment".equals(caller)) {
 			makePayment();
 		}
 
@@ -64,23 +64,22 @@ public class PaymentCommand extends FrontCommand {
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException e) {
-			e.printStackTrace();
+			LOG.error("An error occured", e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOG.error("An error occured", e);
 		}
 	}
 
-	public void addNewPaymentMethod() throws ServletException, IOException {
+	public void addNewPaymentMethod() {
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
 
 		Customer customer = (Customer) request.getSession().getAttribute("customer");
-		Long idCustomer = customer.getIdCustomer();
 
 		Payment newPayment = new Payment();
-		int nCard = Integer.parseInt(request.getParameter("NCard").toString());
-		String ncvv = request.getParameter("cvv").toString();
-		String nameOwner = request.getParameter("owner").toString();
+		int nCard = Integer.parseInt(request.getParameter("NCard"));
+		String ncvv = request.getParameter("cvv");
+		String nameOwner = request.getParameter("owner");
 		String expireString = request.getParameter("expiredDate");
 
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -90,7 +89,7 @@ public class PaymentCommand extends FrontCommand {
 			expire = formatter.parse(expireString);
 			System.out.println("SONO QUI");
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.error("An error occured", e);
 		}
 
 		newPayment.setCardNumber(nCard);
@@ -103,10 +102,16 @@ public class PaymentCommand extends FrontCommand {
 		session.getTransaction().commit();
 
 		RequestDispatcher dispatcher = context.getRequestDispatcher("/Payment_options");
-		dispatcher.forward(request, response);
+		try {
+			dispatcher.forward(request, response);
+		} catch (ServletException e) {
+			LOG.error("An error occured", e);
+		} catch (IOException e) {
+			LOG.error("An error occured", e);
+		}
 	}
 
-	public void makePayment() throws ServletException, IOException {
+	public void makePayment() {
 
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -128,7 +133,7 @@ public class PaymentCommand extends FrontCommand {
 		}
 
 		if (customer instanceof FidelityCustomer) {
-
+		
 			// devo beccare i punti che ha gia
 			int sum = ((FidelityCustomer) customer).getPoint();
 			org.hibernate.Query queryFlight;
@@ -152,19 +157,47 @@ public class PaymentCommand extends FrontCommand {
 			Query updatePoint = session.createQuery("UPDATE Customer " + "set point = " + sum + ", Date_last_book = '"
 					+ dataStr + "' where idCustomer =" + id);
 			updatePoint.executeUpdate();
+			
+			
+			
+			final Customer CUSTOMERRUN = (Customer) request.getSession().getAttribute("customer");
+			
+			Timer timer = new Timer();
+			TimerTask task = new TimerTask() {
+			    @Override
+			    public void run() {
+			       ((FidelityCustomer) CUSTOMERRUN).changeFidelity();
+			    }
+			    
+			};
+			timer.schedule(task, 0, (1000*60*60*24));
+			updateCustomer(CUSTOMERRUN);
 
 		}
+		
 
 		session.getTransaction().commit();
 		
 		RequestDispatcher dispatcher = context.getRequestDispatcher("/GetBook?command=GetBook");
-		dispatcher.forward(request, response);
+		try {
+			dispatcher.forward(request, response);
+		} catch (ServletException e) {
+			LOG.error("An error occured", e);
+		} catch (IOException e) {
+			LOG.error("An error occured", e);
+		}
 	
 
 	}
+	public static void updateCustomer(Customer c) {
+		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
+		session.getTransaction().begin();
+		session.saveOrUpdate(c);
+		session.getTransaction().commit();
+	}
 
 	protected void tryPayment() throws Exception {
-		// qui va messo l'implementazione del metodo per la chiamata al
+		// qui va messa l'implementazione del metodo per la chiamata al
 		// sottosistema di pagamento
 	}
 }

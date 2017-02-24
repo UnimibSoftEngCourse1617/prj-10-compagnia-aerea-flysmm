@@ -98,12 +98,11 @@ public class SaleCommand extends FrontCommand {
 			Price p = (Price) o[0];
 			p.setDiscountedAmount(p.getAmount());
 			Flight f = (Flight) o[1];
-			System.out.println(f.getRemainingSeats());
 			Flight fp = new Flight(f, p);
 			checkforPromos(fp);
 			flights.add(fp);
 		}
-		// session.getTransaction().commit();
+		
 		request.getSession().setAttribute("flights", flights);
 		RequestDispatcher dispatcher = context.getRequestDispatcher("/departure_flights.jsp");
 		try {
@@ -149,7 +148,7 @@ public class SaleCommand extends FrontCommand {
 			checkforPromos(fp);
 			flights.add(fp);
 		}
-		// session.getTransaction().commit();
+		
 		request.getSession().removeAttribute(FLIGHTS);
 		request.getSession().setAttribute(FLIGHTS, flights);
 		RequestDispatcher dispatcher = context.getRequestDispatcher("/return_flights.jsp");

@@ -8,6 +8,28 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+		<%
+			if (request.getSession().getAttribute("customer") == null) {
+		%>
+
+		<a href="loginPage.html" class="right item"> Login </a>
+
+		<%
+			} else {
+		%>
+		<%
+			if (request.getSession().getAttribute("customer").getClass().toString().matches("class customer.FidelityCustomer")){
+				%> <a href="homeFidelityCustomer.jsp" class="right item"> Home </a>
+	<%}else{ %>
+		<a href="homeCustomer.jsp" class="right item"> Home </a><%} %>
+
+		<!-- <a href="./logoutServlet " class="right item"> Home </a> --> <a
+			href="./logoutServlet " class="right item"> Log out </a>
+
+		<%
+			}
+		%>
 	<form name="newPaymentMethod" action="./AddNewPaymentMethod" method="post">
 		<div class="field">
 			<label>Numero Carta</label> <input name="NCard" type="text">

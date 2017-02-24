@@ -8,6 +8,7 @@ import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
 import customer.Customer;
@@ -15,12 +16,13 @@ import sale.Address;
 import servlets.SessionFactorySingleton;
 
 public class NewCustomerCommand extends FrontCommand {
+	private static final String SERVEXC = "An error occured";
+	private static final Logger LOG = Logger.getLogger(NewCustomerCommand.class);
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
 		if (caller.equals("GDF")) {
-			// String id = request.getParameter("id");
-			// long pollo = Long.valueOf(id).longValue();
+			
 			String name = request.getParameter("name");
 			String surname = request.getParameter("surname");
 			String email = request.getParameter("email");
@@ -45,7 +47,7 @@ public class NewCustomerCommand extends FrontCommand {
 
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOG.info(SERVEXC, e);
 			}
 
 		}
@@ -63,4 +65,5 @@ public class NewCustomerCommand extends FrontCommand {
 		session.save(c);
 		session.getTransaction().commit();
 	}
+	
 }

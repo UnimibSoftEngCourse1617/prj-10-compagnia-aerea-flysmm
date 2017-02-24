@@ -28,14 +28,15 @@ public class AppPromotion extends HttpServlet {
      */
     public AppPromotion() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+     @Override
+   //Method comment because it's use only for add new promotions
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*SeasonPromotion p1 = null;
+    	 /*SeasonPromotion p1 = null;
 		try {
 			p1 = new SeasonPromotion("1", 40, true, "winter Promo", "brrr", new Date(), new Date());
 		} catch (MessagingException e) {
@@ -68,9 +69,9 @@ public class AppPromotion extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		//Empty because useless at the moment
 	}
 	
 	public static void writeSeasonPromotion(SeasonPromotion p) {
@@ -85,6 +86,5 @@ public class AppPromotion extends HttpServlet {
 		session.beginTransaction();
 		session.save(p);
 		session.getTransaction().commit();
-		System.out.println(p);
 	}
 }
