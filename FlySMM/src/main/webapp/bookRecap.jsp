@@ -101,14 +101,13 @@
 	<%
 		Flight f = (Flight) request.getSession().getAttribute("chosenDeparture");
 		Date d = new Date();
-		System.out.println(d.getTime());
-		System.out.println(f.getDepartureDate().getTime());
-
-		if ((f.getDepartureDate().getTime() - d.getTime())  < (86400000*3)) {
+		if ((f.getDepartureDate().getTime() - d.getTime()) < (86400000 * 3)) {
 	%>
-	<form method="Post" action="./LastMinutePayment">
+	<form class="ui form" name="payment" method="post"
+		action="./Payment_options">
 		<input class="ui red submit button" type="submit" value="Pay!">
-		<input type="hidden" name="command" value="Payment" />
+		<input type="hidden" name="command" value="Payment"> <input
+			type="hidden" name="lastminute" value="lastminute">
 	</form>
 	<%
 		} else {
@@ -130,6 +129,5 @@
 		<input class="ui blue submit button" type="submit" value="Book!">
 		<input type="hidden" name="command" value="Book" />
 	</form> -->
-
 </body>
 </html>

@@ -14,7 +14,6 @@ import frontController.FrontCommand;
 /**
  * Servlet implementation class LastMinutePayment
  */
-@WebServlet("/LastMinutePayment")
 public class LastMinutePayment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOG = Logger.getLogger(LastMinutePayment.class);
@@ -40,6 +39,7 @@ public class LastMinutePayment extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		FrontCommand command = null;
+		System.out.println("QUAAA");
 		try {
 			command = FrontCommand.getCommand(request, response);
 		} catch (Exception e) {

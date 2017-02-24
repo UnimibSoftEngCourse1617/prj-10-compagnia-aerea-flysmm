@@ -2,6 +2,7 @@ package frontController;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Timer;
@@ -29,6 +30,8 @@ public class PaymentCommand extends FrontCommand {
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
+		System.out.println(request.getAttribute("lastminute"));
+
 		if ("PaymentOptions".equals(caller)) {
 			getPaymentMethodFromDB();
 		}
@@ -39,14 +42,34 @@ public class PaymentCommand extends FrontCommand {
 			makePayment();
 		}
 		if ("LastMinute".equals(caller)) {
+			System.out.println("1");
 			lastMinute();
 		}
 
 	}
 
 	private void lastMinute() {
-		// TODO Auto-generated method stub
+		Flight departure = (Flight) request.getSession().getAttribute("chosenDeparture");
+		Flight arrival = (Flight) request.getSession().getAttribute("chosenReturn");
+		ArrayList<Book> listBook = (ArrayList<Book>) request.getSession().getAttribute("listBook");
+		for (Book b : listBook) {
+			frontController.BookCommand.writeBook(b);
+		}
+		System.out.println("2");
+
+		for (Book b : listBook) {
+			frontController.BookCommand.updateSeat(b, departure, arrival);
+		}
+		System.out.println("3");
+
+		Customer customer = (Customer) request.getSession().getAttribute("Customer");
+		request.setAttribute("customer", customer);
+		makePayment();
+		System.out.println("5");
 		
+		
+
+
 	}
 
 	public void getPaymentMethodFromDB() {
@@ -122,7 +145,7 @@ public class PaymentCommand extends FrontCommand {
 	}
 
 	public void makePayment() {
-
+		 
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
 
@@ -177,22 +200,7 @@ public class PaymentCommand extends FrontCommand {
 				@Override
 				public void run() {
 					((FidelityCustomer) CUSTOMERRUN).changeFidelity();
-					for (Book book : b) {
-						if (book.verifyExpired()) {
-							if (book.verifyExpired()) {
-								Mail m = new Mail();
-								try {
-									m.sendMail(CUSTOMERRUN.getEmail(),
-											"il volo parte tra 24 ore! Paga la tua prenotazione!");
-								} catch (MessagingException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-									LOG.error("An error occured", e);
-								}
 
-							}
-						}
-					}
 				}
 			};
 			timer.schedule(task, 0, (1000 * 60 * 60 * 24));

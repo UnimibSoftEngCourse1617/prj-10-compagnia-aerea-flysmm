@@ -46,10 +46,10 @@ public class Payment_options extends HttpServlet {
 		}
 
 		if (command != null) {
-			
 			command.init(getServletContext(), "PaymentOptions", request, response);
 			try {
 				command.dispatch();
+
 			} catch (Exception e) {
 				LOG.error("An error occured", e);
 			}
@@ -57,6 +57,5 @@ public class Payment_options extends HttpServlet {
 			System.out.println("CommandNotFound");
 		}
 	}
-
 
 }
