@@ -39,8 +39,6 @@ public class Increase extends HttpServlet {
 		if (command != null) {
 			command.init(getServletContext(), "Increase", request, response);
 			command.dispatch();
-
-
 		} else {
 			System.out.println("CommandNotFound");
 		}

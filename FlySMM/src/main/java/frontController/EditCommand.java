@@ -23,78 +23,122 @@ import servlets.SessionFactorySingleton;
 
 public class EditCommand extends FrontCommand {
 
-	
 	private static final Logger LOG = Logger.getLogger(EditCommand.class);
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
+		/**
+		 * qui if sono in ordine di chiamata
+		 */
+
 		if (caller.equals("Edit")) {
 			editBook();
+			RequestDispatcher dispatcher = context.getRequestDispatcher("/changeFly.jsp");
+			try {
+				dispatcher.forward(request, response);
+			} catch (ServletException e) {
+				LOG.error("An error occured", e);
+			} catch (IOException e) {
+				LOG.error("An error occured", e);
+			}
 		}
 		if (caller.equals("Increase")) {
 			computeIncrease();
+			RequestDispatcher dispatcher = context.getRequestDispatcher("/confirm.jsp");
+			try {
+				dispatcher.forward(request, response);
+			} catch (ServletException e) {
+				LOG.error("An error occured", e);
+			} catch (IOException e) {
+				LOG.error("An error occured", e);
+			}
 		}
-		
+
 		if (caller.equals("Update")) {
-			updateBook();
+			if (updateBook()) {
+				RequestDispatcher dispatcher = context.getRequestDispatcher("/allBook");
+				try {
+					dispatcher.forward(request, response);
+				} catch (ServletException e) {
+					LOG.error("An error occured", e);
+				} catch (IOException e) {
+					LOG.error("An error occured", e);
+				}
+			} else { // TODO: questo dispatcher va cambiato ci troviamo nel caso
+						// in cui il pagamento non è andato a buonfine
+				RequestDispatcher dispatcher = context.getRequestDispatcher("/allBook");
+				try {
+					dispatcher.forward(request, response);
+				} catch (ServletException e) {
+					LOG.error("An error occured", e);
+				} catch (IOException e) {
+					LOG.error("An error occured", e);
+				}
+			}
+
 		}
 
 	}
 
 	public void editBook() {
 		/**
-		 * metodo edit book
-		 * questo metodo si occupera di settare tutti gli attributi nessesari per procedere alla modifica di una prenotazione,
-		 * inoltre farà una dispatch alla jsp che esporrà i voli diponibili per il cambio
-		 * */
-		
+		 * metodo edit book questo metodo si occupera di settare tutti gli
+		 * attributi nessesari per procedere alla modifica di una prenotazione,
+		 * inoltre farà una dispatch alla jsp che esporrà i voli diponibili per
+		 * il cambio
+		 */
+
 		/**
-		 * in input abbiamo il id del veccio book */
-		
+		 * in input abbiamo il id del veccio book
+		 */
+
 		/**
 		 * INIZIALIZZO LA SESSIONE
-		 * */
+		 */
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
-		
+
 		/** INIZIO DEL SETTAGGIO DEI VALORI NECCESSARI PER L'EDIT */
-		
+
 		/**
-		 * la sezione è stata inizializzata*/
-		
-		/**Ottengo il id della vecchia prenotazione*/
+		 * la sezione è stata inizializzata
+		 */
+
+		/** Ottengo il id della vecchia prenotazione */
 		System.out.println("Id --> " + request.getSession().getAttribute("IDp"));
-		
-		/** 
+
+		/**
 		 * Creo la query che estrae l'oggetto vecchia prenotazione
-		 * */
+		 */
 		Query getBook = session.createQuery("From Book b Where b.bookId = ?");
 		getBook.setParameter(0, request.getSession().getAttribute("IDp"));
 		List<Book> resultOldBook = getBook.list();
 		System.out.println("Book : --> " + resultOldBook.toString());
 		request.getSession().setAttribute("oldBook", resultOldBook.get(0));
-		
+
 		/**
-		 * set in parametro di sezione del oggetto vecchio Book 
-		 * */
+		 * set in parametro di sezione del oggetto vecchio Book
+		 */
 
 		//////////////////////////////////////////////////////////////////////////
-		
+
 		/**
-		 * qui estraggo tutte le informazioni relative al vecchio volo 
-		 * */
+		 * qui estraggo tutte le informazioni relative al vecchio volo
+		 */
 		Query getOldFlight = session.createQuery("from Flight f " + "where f.idFlight = ?");
 		getOldFlight.setParameter(0, resultOldBook.get(0).getFlightId());
 		List<Flight> resultOldFlight = getOldFlight.list();
-		
+
 		request.getSession().setAttribute("oldFlight", resultOldFlight.get(0));
-		
+
 		//////////////////////////////////////////////////////////////////////////
-		/** questa query è necessaria per ottenere il volo vecchio e il relativo prezzo */
-		
+		/**
+		 * questa query è necessaria per ottenere il volo vecchio e il relativo
+		 * prezzo
+		 */
 
 		System.out.println("il valore di olf Flight --> " + resultOldFlight.get(0).toString());
-		
+
 		long idCustomer = resultOldBook.get(0).getCustomerId();
 		String idBook = resultOldBook.get(0).getBookId();
 
@@ -105,12 +149,11 @@ public class EditCommand extends FrontCommand {
 		Customer customer = (Customer) getCustomer.list().get(0);
 		request.getSession().setAttribute("customer", customer);
 		System.out.println("il book di update book --> " + customer.toString());
-		
+
 		/** FINE DEL SETTAGGIO DEI VALORI NECCESSARI PER L'EDIT */
 
-
 		/** INIZIO PARTE VISUALLIZZAZIONE DEI VOLI SCELTI PER LA MODIFICA */
-		
+
 		String departure = resultOldFlight.get(0).getDepartureAirport().getIcao();
 		String arrival = resultOldFlight.get(0).getArrivalAirport().getIcao();
 		String dateString = request.getParameter("newDate");
@@ -118,18 +161,16 @@ public class EditCommand extends FrontCommand {
 		org.hibernate.Query queryInnerJoin = session.createQuery("from Price p inner join p.flight f "
 				+ "where f.departureAirport.icao = ? " + "and f.arrivalAirport.icao = ? " + "and f.departureDate = ? "
 				+ "and f.remainingSeats >= ? " + "group by f.idFlight, p.seats.tariff");
-	
-		
+
 		queryInnerJoin = queryInnerJoin.setParameter(0, departure);
 		queryInnerJoin = queryInnerJoin.setParameter(1, arrival);
 		queryInnerJoin = queryInnerJoin.setDate(2, parseStringToDate(dateString));
 		queryInnerJoin = queryInnerJoin.setParameter(3, 1);
 
-		
 		List result1 = queryInnerJoin.list();
 		if (result1.size() == 0) {
-			String message = "Details: There are no flights matching search criteria. " + 
-					"Go back to homepage and try to change date or airports.";
+			String message = "Details: There are no flights matching search criteria. "
+					+ "Go back to homepage and try to change date or airports.";
 			request.setAttribute("message", message);
 			try {
 				context.getRequestDispatcher("/error.jsp").forward(request, response);
@@ -137,10 +178,6 @@ public class EditCommand extends FrontCommand {
 				LOG.error("An error occured", e);
 			}
 		}
-		
-
-		///##################################################################################################################################
-		///##################################################################################################################################	
 
 		List<Flight> flights = new ArrayList<Flight>();
 		for (Object[] o : (List<Object[]>) result1) {
@@ -154,16 +191,50 @@ public class EditCommand extends FrontCommand {
 		}
 		// session.getTransaction().commit();
 		request.getSession().setAttribute("flights", flights);
-		RequestDispatcher dispatcher = context.getRequestDispatcher("/changeFly.jsp");
-		try {
-			dispatcher.forward(request, response);
-		} catch (ServletException e) {
-			LOG.error("An error occured", e);
-		} catch (IOException e) {
-			LOG.error("An error occured", e);
-		}
-		
+
 		/** FINE PARTE VISUALLIZZAZIONE DEI VOLI SCELTI PER LA MODIFICA */
+	}
+
+	public void computeIncrease() {
+		/**
+		 * Questo metodo calcola il valore aggiuntivo di una modifica di una
+		 * prenotasione
+		 * 
+		 * @param idFlight
+		 *            questo metodo richede il un volo che sarà ottenuto tramite
+		 *            request.getParameter("chosen") (bisogna fare la slit)
+		 * 
+		 * 
+		 * 
+		 * 
+		 */
+
+		Session session = SessionFactorySingleton.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		String[] flight = request.getParameter("chosen").split("-");
+		String idNewFlight = flight[0];
+
+		/* salvo il nuovo volo in una variabile di sessione */
+		Query queryNewFlight = session.createQuery("from Flight f " + "where f.idFlight = :idF ");
+		queryNewFlight.setParameter("idF", idNewFlight);
+		List newFlight = queryNewFlight.list();
+		request.getSession().setAttribute("newFlight", newFlight);
+
+		/**
+		 * 
+		 * 
+		 * area per il calcolo del valore aggiuntivo
+		 * 
+		 * 
+		 * 
+		 * 
+		 */
+
+		// TODO: questo valore va cambito con il valore da far pare all cliente
+		float debit = 400f;
+		request.getSession().setAttribute("debit", debit);
+
 	}
 
 	private Flight checkforPromos(Flight flight) {
@@ -181,13 +252,31 @@ public class EditCommand extends FrontCommand {
 		return flight;
 	}
 
-	public void updateBook() {
+	public boolean updateBook() {
+
+		/**
+		 * 
+		 * 
+		 * 
+		 * 
+		 * LA PRIMA COSA CHE DEVO FARE è PROCEDERE CON IL PAGAMENTO SE TUTTO VA
+		 * BENE PROSEGUO CON IL METODO E RITORNO TRUE
+		 * 
+		 * ALTRIMENTI RITORNO FALSE QUALCOSA NON è ANDATA
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 */
+
 		// pbisogna aggiornare i posti togliere e aggiungere
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
 
-		//un po' di questa roba va giù
-		
+		// un po' di questa roba va giù
+
 		Flight oldFlight = (Flight) request.getSession().getAttribute("oldFlight");
 		String idOldFlight = oldFlight.getIdFlight();
 
@@ -199,21 +288,25 @@ public class EditCommand extends FrontCommand {
 
 		System.out.println("il book di update book --> " + customer.toString());
 
-		String[] flight = request.getParameter("chosen").split("-");
-		String idNewFlight = flight[0];
+		// String[] flight = request.getParameter("chosen").split("-");
+		// String idNewFlight = flight[0];
 
-		Query queryNewFlight = session.createQuery("from Flight f " + "where f.idFlight = :idF ");
+		// questo valore abbiamo in un parametro di sesione "newFlight"
 
-		queryNewFlight.setParameter("idF", idNewFlight);
-		List<Flight> newFlight = queryNewFlight.list();
+		// Query queryNewFlight = session.createQuery("from Flight f " + "where
+		// f.idFlight = :idF ");
+		//
+		// queryNewFlight.setParameter("idF", idNewFlight);
+		// List<Flight> newFlight = queryNewFlight.list();
 
-		System.out.println("Sono qui: " + idNewFlight);
+		List<Flight> newFlight = (List) request.getSession().getAttribute("newFlight");
+		String idNewFlight = newFlight.get(0).getIdFlight();
 
 		if (customer instanceof FidelityCustomer) {
 
 			int distance = oldFlight.getDistance();
 			int oldPoint = ((FidelityCustomer) customer).getPoint();
-			int newPoint = (oldPoint - distance) + newFlight.get(0).getDistance();
+			int newPoint = (oldPoint - distance) + ((Flight) newFlight.get(0)).getDistance();
 
 			Query updateNewBook = session.createQuery("UPDATE Customer " + "set point = :newPoint , "
 					+ "Date_last_book = :dataStr " + "where idCustomer = :id");
@@ -232,7 +325,7 @@ public class EditCommand extends FrontCommand {
 
 		// aggiungere e togliere un posto
 		int oldFlightNSeats = oldFlight.getRemainingSeats() + 1;
-		int newFlightNSeats = newFlight.get(0).getRemainingSeats() - 1;
+		int newFlightNSeats = ((Flight) newFlight.get(0)).getRemainingSeats() - 1;
 
 		Query updateFlightSeats = session
 				.createQuery("UPDATE Flight f " + "set f.remainingSeats = :seatNumber " + "where f.idFlight = :idF");
@@ -249,9 +342,9 @@ public class EditCommand extends FrontCommand {
 
 		System.out.println("Sono qui: " + newFlightNSeats);
 
-		Query updateBook = session.createQuery("Update Book " + "set Flight_Flight_ID = :newFlightId, "
-				+ "Booking_date = :newBookDate, " + "Flight_Departure_Date = :newDepartureDate "
-						+ "where bookId = :bookId");
+		Query updateBook = session
+				.createQuery("Update Book " + "set Flight_Flight_ID = :newFlightId, " + "Booking_date = :newBookDate, "
+						+ "Flight_Departure_Date = :newDepartureDate " + "where bookId = :bookId");
 
 		updateBook.setParameter("newFlightId", idNewFlight);
 
@@ -265,16 +358,12 @@ public class EditCommand extends FrontCommand {
 		updateBook.executeUpdate();
 		session.getTransaction().commit();
 		System.out.println("sono qui: " + updateBook.toString());
+
+		// TODO: manca la chiamata al metodo makePayment() in payment
+
+		return true;
 	}
 
-	public void computeIncrease() {
-		Session session = SessionFactorySingleton.getSessionFactory().openSession();
-		session.beginTransaction();
-
-		request.getSession().getAttribute("newFlight");
-		
-	}
-	
 	public Date parseStringToDate(String dateString) {
 
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -287,6 +376,13 @@ public class EditCommand extends FrontCommand {
 		}
 		return date;
 	}
-	
-	
+
+	// public void computeIncrease() {
+	// Session session =
+	// SessionFactorySingleton.getSessionFactory().openSession();
+	// session.beginTransaction();
+	//
+	// request.getSession().getAttribute("newFlight");
+	//
+	// }
 }

@@ -47,6 +47,7 @@
 		%>
 
 	</div>
+	<label>Scegli il nuovo volo</label>
 	<table class="ui celled table">
 		<thead>
 			<tr>
@@ -64,7 +65,6 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${flights}" var="flight">
-
 				<tr>
 					<td>${flight.idFlight}</td>
 					<td>${flight.departureAirport.name}</td>
