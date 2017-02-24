@@ -1,7 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -13,9 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import org.hibernate.Query;
-
 import org.apache.log4j.Logger;
-
 import org.hibernate.Session;
 
 import booking.Book;
@@ -44,7 +41,7 @@ public class GetNewFidelityCustomer extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		//Empty because useless
 	}
 
 	/**
@@ -54,25 +51,25 @@ public class GetNewFidelityCustomer extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		Object myObject = request.getSession().getAttribute("customer");
 
 		FidelityCustomer cFidelity = new FidelityCustomer((Customer) myObject);
 
-		response.getWriter().append(cFidelity.toString());
+		try {
+			response.getWriter().append(cFidelity.toString());
+		} catch (Exception e) {
+			LOG.error("An error occured", e);
+		}
 
 		request.getSession().setAttribute("customer", cFidelity);
 		// scrivo e poi cancello perchè hibernate non permette l'update del
 		// discriminatore
 		
 		writeFidelityCustomer((FidelityCustomer) cFidelity);
-		//qua inserire delete Book
 		
 		Customer customerDelete = (Customer)myObject;
 		
 		List<Book> b = getBookCustomer(customerDelete.getIdCustomer());
-		System.out.println(b+" aaa ");
-		System.out.println(b);
 		deleteBook(customerDelete.getIdCustomer());
 		
 		for (Book newBook : b) {
@@ -97,9 +94,8 @@ public class GetNewFidelityCustomer extends HttpServlet {
 		session.getTransaction().begin();
 		Query query = session.createQuery("from Book WHERE User_ID = :userId");
 		query.setParameter("userId", idCustomer);
-		System.out.println(query);
+		@SuppressWarnings("unchecked")
 		List<Book> temp = (List<Book>) query.list();
-		System.out.println(query.list()+" bbb ");
 		session.getTransaction().commit();
 		return temp;
 	}

@@ -69,10 +69,10 @@ public class AddPassengerCommand extends FrontCommand {
 				if (!departure.equals(arrival)) {
 					listFlight.add(arrival);
 				}
-
 			} catch (Exception e) {
 				listFlight.clear();
 				listFlight.add((Flight) request.getSession().getAttribute("chosenDeparture"));
+				LOG.error("An error occured", e);
 			}
 
 			session.setAttribute("listFlight", listFlight);
@@ -110,7 +110,6 @@ public class AddPassengerCommand extends FrontCommand {
 		Query query = session.createQuery("from Passenger " + " WHERE Fiscal_code = :fiscalCode");
 		query.setParameter("fiscalCode", p.getFiscal_code());
 		result = query.list();
-		System.out.println(result);
 		if (result.isEmpty()) {
 			session.getTransaction().commit();
 			return tmp;
