@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
 import customer.Customer;
@@ -16,6 +17,8 @@ import customer.FidelityCustomer;
 import servlets.SessionFactorySingleton;
 
 public class CustomerCommand extends FrontCommand {
+	private static final String SERVEXC = "An error occured";
+	private static final Logger LOG = Logger.getLogger(PromoCommand.class);
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
@@ -59,7 +62,7 @@ public class CustomerCommand extends FrontCommand {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.info(SERVEXC, e);
 		}
 
 	}

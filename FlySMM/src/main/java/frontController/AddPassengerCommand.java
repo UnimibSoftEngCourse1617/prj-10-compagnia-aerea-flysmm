@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -20,6 +21,8 @@ import sale.Flight;
 import servlets.SessionFactorySingleton;
 
 public class AddPassengerCommand extends FrontCommand {
+	private static final String SERVEXC = "An error occured";
+	private static final Logger LOG = Logger.getLogger(PromoCommand.class);
 
 	public void dispatch() throws ServletException, IOException {
 		if (caller.equals("GDF")) {
@@ -43,7 +46,7 @@ public class AddPassengerCommand extends FrontCommand {
 				try {
 					dataBirth = sdf.parse(date);
 				} catch (Exception e) {
-					e.printStackTrace();
+					LOG.info(SERVEXC, e);
 				}
 				Passenger p = new Passenger(fiscalCode, name, surname, docCode, docType, dataBirth, baggage);
 				Passenger tmp = this.getPassengerFromDb(p);
