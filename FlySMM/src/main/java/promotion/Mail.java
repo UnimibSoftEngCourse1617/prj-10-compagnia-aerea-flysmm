@@ -7,7 +7,11 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.apache.log4j.Logger;
+
 public class Mail {
+	private static final String SERVEXC = "An error occured";
+	private static final Logger LOG = Logger.getLogger(Mail.class);
 	private static String host = "smtp.gmail.com";
 	private static String user = "flysmm17@gmail.com";
 	private static String pass = "flysmm2017";
@@ -37,7 +41,7 @@ public class Mail {
 		    Transport.send(msg, user, pass);
 		} catch (MessagingException e) {
 			// Error.
-			e.printStackTrace();
+			LOG.info(SERVEXC, e);
 			}
 		}
 	

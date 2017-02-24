@@ -76,6 +76,13 @@
 					<td>${bookU.departureDate}</td>
 					<td>${bookU.airplaneId}</td>
 					<td>${bookU.totalPrice}</td>
+					<td><form method="post" name="flightItems"
+							action="./DeleteBook">
+							<input type="submit" class="ui red button" value="Delete" /> <input
+								type="hidden" name="chosenId" value="${bookU.bookId}" /> <input
+								type="hidden" name="chosenF" value="${bookU.flightId}" /> <input
+								type="hidden" name="command" value="DeleteBook" />
+						</form></td>
 				</tr>
 			</c:forEach>
 		</tbody>

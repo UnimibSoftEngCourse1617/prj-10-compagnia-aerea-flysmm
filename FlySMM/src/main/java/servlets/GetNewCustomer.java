@@ -6,9 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import customer.Customer;
 import frontController.FrontCommand;
-import frontController.UnknownCommand;
 
 public class GetNewCustomer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -20,7 +18,7 @@ public class GetNewCustomer extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.getWriter().append(request.getParameter("command"));
+		// TODO Auto-generated method stub
 
 	}
 

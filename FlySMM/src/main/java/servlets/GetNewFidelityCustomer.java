@@ -13,7 +13,6 @@ import org.hibernate.Session;
 
 import customer.Customer;
 import customer.FidelityCustomer;
-import sale.Address;
 
 /**
  * Servlet implementation class GetNewFidelityCustomer
@@ -37,7 +36,6 @@ public class GetNewFidelityCustomer extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -47,8 +45,6 @@ public class GetNewFidelityCustomer extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
-
 		Object myObject = request.getSession().getAttribute("customer");
 
 		FidelityCustomer cFidelity = new FidelityCustomer((Customer) myObject);

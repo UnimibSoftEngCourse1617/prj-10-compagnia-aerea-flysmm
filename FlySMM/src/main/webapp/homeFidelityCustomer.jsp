@@ -19,8 +19,10 @@
 <body>
 	<div class="ui stackable inverted menu">
 
-		<a href="index.jsp" class="item">FlySMM</a> <a class="item"> About
-			Us </a> <a class="item"> Jobs </a> <a class="item"> Locations </a>
+		<a href="index.jsp" class="item">FlySMM</a>
+		<a class="item"> About Us </a>
+		<a class="item"> Jobs </a>
+		<a class="item"> Locations </a>
 		<%
 			if (request.getSession().getAttribute("customer") == null) {
 		%>
@@ -57,8 +59,8 @@
 						Email : ${customer.email}<br> Phone number :
 						${customer.phoneNumber}<br> Start Date Program :
 						${customer.startDate}<br> Latest Book :
-						${customer.lastestBook}<br> Points Accumulated <i
-							class="star icon"></i> : ${customer.point}<br>
+						${customer.lastestBook}<br> Points Accumulated
+						<i class="star icon"></i> : ${customer.point}<br>
 					</div>
 
 				</form>

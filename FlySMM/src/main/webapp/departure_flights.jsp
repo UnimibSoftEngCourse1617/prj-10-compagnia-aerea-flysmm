@@ -27,7 +27,7 @@
 <body>
 	<div class="ui stackable inverted menu">
 
-		<div href="index.jsp" class="item">FltSMM</div>
+		<div href="index.jsp" class="item">FlySMM</div>
 		<a class="item"> About Us </a> <a class="item"> Jobs </a> <a
 			class="item"> Locations </a>
 		
@@ -52,8 +52,8 @@
 		<%
 			}
 		%>
-
 	</div>
+	<h2>Choose your departure flight</h2>
 	<table class="ui celled table">
 		<thead>
 			<tr>
@@ -67,6 +67,7 @@
 				<th>Tariff</th>
 				<th>Price</th>
 				<th>Fidelity Price</th>
+				<th>Remaining Seats</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -83,6 +84,7 @@
 					<td>${flight.price.seats.tariff}</td>
 					<td>${flight.price.amount}<br></td>
 					<td>${flight.price.discountedAmount}</td>
+					<td>${flight.remainingSeats}</td>
 					<td><form method="post" name="flightItems"
 							action="./GetReturnFlight">
 							<input type="submit" class="ui green button" value="Choose" />

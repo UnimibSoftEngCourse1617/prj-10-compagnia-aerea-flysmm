@@ -6,16 +6,18 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
 import promotion.*;
 import servlets.SessionFactorySingleton;
 
 public class PromoCommand extends FrontCommand {
+	private static final String SERVEXC = "An error occured";
+	private static final Logger LOG = Logger.getLogger(PromoCommand.class);
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		if (caller.equals("GP")) {
 			getPromotionFromDb();
 		}
@@ -37,9 +39,9 @@ public class PromoCommand extends FrontCommand {
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException e) {
-			e.printStackTrace();
+			LOG.info(SERVEXC, e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOG.info(SERVEXC, e);
 		}
 	}
 

@@ -1,4 +1,4 @@
-package Test;
+package test;
 
 import java.sql.Time;
 import java.util.Date;
@@ -17,7 +17,7 @@ import sale.Price;
 
 public class TestBookPackage extends TestCase {
 	Date date = new Date();
-	Time time = new Time(0, 0, 0);
+	Time time = new Time(0);
 	Address address = new Address(1, "via Roma", "12", "200841", "Carate Brianza", "Italy");
 	Customer customer = new Customer(1, "Mario", "Rossi", address, "mario.rossi@gmail.com", "1234", "3331234567", date);
 	Aircraft aircraft = new Aircraft(1, "Boeing", 85, 1234, "737");

@@ -7,43 +7,47 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import frontController.FrontCommand;
-import frontController.UnknownCommand;
 
 public class GetPromotion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger LOG = Logger.getLogger(GetPromotion.class);
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public GetPromotion() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.getWriter().append(request.getParameter("command")).append(request.getParameter("customertype"));
+		//Empty because useless at the moment
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		FrontCommand command = FrontCommand.getCommand(request, response);
+		FrontCommand command = null;
+		try {
+			command = FrontCommand.getCommand(request, response);
+		} catch (Exception e1) {
+			LOG.error("An error in getCommand occured", e1);
+		}
 		if (command != null) {
 			command.init(getServletContext(), "GP", request, response);
-			command.dispatch();
+			try {
+				command.dispatch();
+			} catch (Exception e2) {
+				LOG.error("An error in dispatch occured", e2);
+				}
 		}
 		else {
-			System.out.println("CommandNotFound");
+			System.err.append("CommandNotFound");
 		}
 	}
 

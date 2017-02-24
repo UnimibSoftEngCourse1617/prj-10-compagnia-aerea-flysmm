@@ -5,6 +5,8 @@ import java.util.Date;
 import customer.Customer;
 
 public class Payment implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private int cardNumber;
 	private Customer customer;
 	private String cvv;
