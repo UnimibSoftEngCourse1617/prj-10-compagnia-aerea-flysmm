@@ -20,7 +20,7 @@ public class CustomerCommand extends FrontCommand {
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
-		if (caller.equals("GDF")) {
+		if (caller.equals("GUP")) {
 			getCustomerFromDb();
 		}
 	}

@@ -21,7 +21,7 @@ public class NewCustomerCommand extends FrontCommand {
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
-		if (caller.equals("GDF")) {
+		if (caller.equals("GNC")) {
 			
 			String name = request.getParameter("name");
 			String surname = request.getParameter("surname");
