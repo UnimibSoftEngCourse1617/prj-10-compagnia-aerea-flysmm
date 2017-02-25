@@ -2,15 +2,25 @@ package test;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.mail.MessagingException;
+
+import org.junit.Test;
+
+import frontController.SaleCommand;
 import junit.framework.TestCase;
+import promotion.Promotion;
+import promotion.SeasonPromotion;
 import sale.Aircraft;
 import sale.Airport;
 import sale.Flight;
 import sale.Price;
 import sale.Seat;
+import servlets.GetReturnFlight;
 
-public class SaleTest extends TestCase {
+public class TestSale extends TestCase {
 
 	Seat s1 = new Seat(1, "A", "base", new Aircraft());
 	Seat s2 = new Seat(1, "B", "base", new Aircraft());
@@ -27,6 +37,16 @@ public class SaleTest extends TestCase {
 	
 	Flight f1 = new Flight(f,p1);
 	Flight f2 = new Flight(f,p2);
-
 	
+	List<Flight> flights = new ArrayList<Flight>();
+	
+	@Test
+	public void testFindFlightFromIdAndTariff() {
+		flights.add(f1);
+		flights.add(f2);
+		assertEquals(f1,GetReturnFlight.findFlightFromIdAndTariff(flights,"mh51","base"));
+		assertEquals(f2,GetReturnFlight.findFlightFromIdAndTariff(flights,"mh51","premium"));
+		assertEquals(null,GetReturnFlight.findFlightFromIdAndTariff(flights,"mh3532","base"));
+		assertEquals(null,GetReturnFlight.findFlightFromIdAndTariff(flights,"mh51","business"));
+	}
 }

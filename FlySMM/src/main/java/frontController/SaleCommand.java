@@ -163,7 +163,7 @@ public class SaleCommand extends FrontCommand {
 		}
 	}
 
-	public Date parseStringToDate(String option) {
+	private Date parseStringToDate(String option) {
 
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		String dateInString = (String) request.getSession().getAttribute(option);
