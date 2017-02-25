@@ -29,7 +29,7 @@
 		<mapping resource="payment.hbm.xml"/> 
 		<mapping resource="address.hbm.xml" />
 		<mapping resource="passenger.hbm.xml" />
-    <mapping resource="airport.hbm.xml" />
+    	<mapping resource="airport.hbm.xml" />
 
 	</session-factory>
 
