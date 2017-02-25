@@ -27,7 +27,7 @@ public class GetUsernamePassword extends HttpServlet {
 		FrontCommand command = FrontCommand.getCommand(request, response);
 
 		if (command != null) {
-			command.init(getServletContext(), "GDF", request, response);
+			command.init(getServletContext(), "GUP", request, response);
 			command.dispatch();
 
 		} else {

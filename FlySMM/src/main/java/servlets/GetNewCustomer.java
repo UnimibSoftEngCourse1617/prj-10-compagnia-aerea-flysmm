@@ -27,7 +27,7 @@ public class GetNewCustomer extends HttpServlet {
 		FrontCommand command = FrontCommand.getCommand(request, response);
 
 		if (command != null) {
-			command.init(getServletContext(), "GDF", request, response);
+			command.init(getServletContext(), "GNC", request, response);
 			command.dispatch();
 		} else {
 			System.out.println("CommandNotFound");
