@@ -28,7 +28,6 @@ public class DeleteBookCommand extends FrontCommand {
 			requestDispatcher = request.getRequestDispatcher("/homeFidelityCustomer.jsp");
 		} else {
 			requestDispatcher = request.getRequestDispatcher("/homeCustomer.jsp");
-
 		}
 		requestDispatcher.forward(request, response);
 	}

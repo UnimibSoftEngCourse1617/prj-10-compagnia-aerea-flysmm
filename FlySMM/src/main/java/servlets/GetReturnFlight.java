@@ -82,7 +82,7 @@ public class GetReturnFlight extends HttpServlet {
 		}
 	}
 
-	private Flight findFlightFromIdAndTariff(List<Flight> flights, String id, String tariff) {
+	public static Flight findFlightFromIdAndTariff(List<Flight> flights, String id, String tariff) {
 		for (Flight temp : flights) {
 			if (temp.getIdFlight().equals(id) && temp.getPrice().getSeats().getTariff().equals(tariff))
 				return temp;

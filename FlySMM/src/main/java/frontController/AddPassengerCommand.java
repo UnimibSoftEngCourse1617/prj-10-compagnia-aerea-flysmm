@@ -9,18 +9,21 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import booking.Baggage;
 import booking.Passenger;
 import customer.Customer;
-import sale.Address;
 import sale.Flight;
 import servlets.SessionFactorySingleton;
 
 public class AddPassengerCommand extends FrontCommand {
+	private static final String SERVEXC = "An error occured";
+	private static final Logger LOG = Logger.getLogger(AddPassengerCommand.class);
 
+	@Override
 	public void dispatch() throws ServletException, IOException {
 		if (caller.equals("GDF")) {
 			HttpSession session = request.getSession();
@@ -43,7 +46,7 @@ public class AddPassengerCommand extends FrontCommand {
 				try {
 					dataBirth = sdf.parse(date);
 				} catch (Exception e) {
-					e.printStackTrace();
+					LOG.info(SERVEXC, e);
 				}
 				Passenger p = new Passenger(fiscalCode, name, surname, docCode, docType, dataBirth, baggage);
 				Passenger tmp = this.getPassengerFromDb(p);
@@ -66,10 +69,10 @@ public class AddPassengerCommand extends FrontCommand {
 				if (!departure.equals(arrival)) {
 					listFlight.add(arrival);
 				}
-
 			} catch (Exception e) {
 				listFlight.clear();
 				listFlight.add((Flight) request.getSession().getAttribute("chosenDeparture"));
+				LOG.error("An error occured", e);
 			}
 
 			session.setAttribute("listFlight", listFlight);
@@ -94,7 +97,6 @@ public class AddPassengerCommand extends FrontCommand {
 		query.setParameter("baggage", p.getBaggageId());
 		result = query.list();
 		bag = (Baggage) result.get(0);
-		System.out.println(bag + "bagDB");
 		session.getTransaction().commit();
 
 		return bag.getPrice();
@@ -108,7 +110,6 @@ public class AddPassengerCommand extends FrontCommand {
 		Query query = session.createQuery("from Passenger " + " WHERE Fiscal_code = :fiscalCode");
 		query.setParameter("fiscalCode", p.getFiscal_code());
 		result = query.list();
-		System.out.println(result);
 		if (result.isEmpty()) {
 			session.getTransaction().commit();
 			return tmp;

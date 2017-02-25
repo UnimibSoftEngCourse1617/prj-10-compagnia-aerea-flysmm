@@ -6,9 +6,14 @@ import java.util.concurrent.TimeUnit;
 
 import javax.mail.MessagingException;
 
+import org.apache.log4j.Logger;
+
 import promotion.Mail;
 
 public class FidelityState extends State implements Serializable {
+	private static final long serialVersionUID = 1L;
+	private static final String SERVEXC = "An error occured";
+	private static final Logger LOG = Logger.getLogger(FidelityState.class);
 
 	private Date actualDateFidelity;
 
@@ -18,6 +23,7 @@ public class FidelityState extends State implements Serializable {
 		c.type = this.type();
 	}
 
+	@Override
 	// serve per cambiare lo stato da fidelity ad unfidelity
 	public void changeFidelity() {
 
@@ -28,8 +34,7 @@ public class FidelityState extends State implements Serializable {
 			try {
 				m.sendMail(c.getEmail(), "Le comunichiamo che sono passati due anni dal suo ultimo acquisto. Il suo stato attuale è Infedele");
 			} catch (MessagingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOG.info(SERVEXC, e);
 			}
 		}
 

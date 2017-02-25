@@ -3,10 +3,11 @@ package sale;
 import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
+import java.util.List;
 
 public class Flight implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Aircraft aircraft;
 	private String idFlight;
 	private Date departureDate;
@@ -45,7 +46,7 @@ public class Flight implements Serializable {
 		this.price = price;
 		this.remainingSeats = remainingSeats;
 	}
-	
+
 	public Flight(Flight f, Price p) {
 		this.aircraft = f.getAircraft();
 		this.idFlight = f.getIdFlight();
@@ -58,7 +59,7 @@ public class Flight implements Serializable {
 		this.price = p;
 		this.remainingSeats = f.getRemainingSeats();
 	}
-	
+
 	public Flight(String idFlight, Airport departureAirport, Airport arrivalAirport) {
 		super();
 		this.idFlight = idFlight;
@@ -117,7 +118,7 @@ public class Flight implements Serializable {
 	public void setAircraft(Aircraft aircraft) {
 		this.aircraft = aircraft;
 	}
-  
+
 	public void setIdFlight(String idFlight) {
 		this.idFlight = idFlight;
 	}
@@ -137,13 +138,21 @@ public class Flight implements Serializable {
 	public void setArrivalAirport(Airport arrivalAirport) {
 		this.arrivalAirport = arrivalAirport;
 	}
-	
+
 	public int getDistance() {
 		return distance;
 	}
 
 	public void setDistance(int distance) {
 		this.distance = distance;
+	}
+
+	public Flight findFlightFromIdAndTariff(List<Flight> flights, String id, String tariff) {
+		for (Flight temp : flights) {
+			if (temp.getIdFlight().equals(id) && temp.getPrice().getSeats().getTariff().equals(tariff))
+				return temp;
+		}
+		return null;
 	}
 
 }

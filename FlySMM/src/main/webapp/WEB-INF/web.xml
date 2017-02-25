@@ -113,14 +113,20 @@
     <servlet-name>MakePayment</servlet-name>
     <url-pattern>/MakePayment</url-pattern>
   </servlet-mapping>
-
   <servlet>
-		<servlet-name>DeleteBook</servlet-name>
-		<servlet-class>servlets.DeleteBook</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>DeleteBook</servlet-name>
-		<url-pattern>/DeleteBook</url-pattern>
-	</servlet-mapping>
-
+    <servlet-name>EditSale</servlet-name>
+    <servlet-class>servlets.EditSale</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditSale</servlet-name>
+    <url-pattern>/EditSale</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Increase</servlet-name>
+    <servlet-class>servlets.Increase</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Increase</servlet-name>
+    <url-pattern>/Increase</url-pattern>
+  </servlet-mapping>
 </web-app>

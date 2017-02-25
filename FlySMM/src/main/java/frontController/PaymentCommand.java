@@ -1,16 +1,17 @@
 package frontController;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 
-import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -19,22 +20,42 @@ import customer.Customer;
 import customer.FidelityCustomer;
 import sale.Address;
 import sale.Flight;
-import sale.Payment;
+import sale.Payment_methods;
 import servlets.SessionFactorySingleton;
 
+//import java.util.List;
+//import java.util.ArrayList;
+//import java.util.Iterator;
+//
+//import com.paypal.api.payments.Amount;
+//import com.paypal.api.payments.Details;
+//import com.paypal.api.payments.Links;
+//import com.paypal.api.payments.Payer;
+//import com.paypal.api.payments.Payment;
+//import com.paypal.api.payments.PaymentExecution;
+//import com.paypal.api.payments.RedirectUrls;
+//import com.paypal.api.payments.Transaction;
+
 public class PaymentCommand extends FrontCommand {
-	private static final Logger LOG = Logger.getLogger(PaymentCommand.class);
+	
+	private Customer customer;
+	
+	public PaymentCommand(Customer customer) {
+		this.customer = customer;
+	}
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
-		if ("PaymentOptions".equals(caller)) {
+		if (caller.equals("PaymentOptions")) {
 			getPaymentMethodFromDB();
 		}
-		if ("NewPayment".equals(caller)) {
+		if (caller.equals("NewPayment")) {
 			addNewPaymentMethod();
 		}
-		if ("MakePayment".equals(caller)) {
+		if (caller.equals("MakePayment")) {
 			makePayment();
+			RequestDispatcher dispatcher = context.getRequestDispatcher("/GetBook?command=GetBook");
+			dispatcher.forward(request, response);
 		}
 
 	}
@@ -58,28 +79,29 @@ public class PaymentCommand extends FrontCommand {
 		session.getTransaction().commit();
 
 		request.setAttribute("address", (List<Address>) resultAddress);
-		request.setAttribute("payment", (List<Payment>) resultPayment);
+		request.setAttribute("payment", (List<Payment_methods>) resultPayment);
 
 		RequestDispatcher dispatcher = context.getRequestDispatcher("/payment_methods.jsp");
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException e) {
-			LOG.error("An error occured", e);
+			e.printStackTrace();
 		} catch (IOException e) {
-			LOG.error("An error occured", e);
+			e.printStackTrace();
 		}
 	}
 
-	public void addNewPaymentMethod() {
+	public void addNewPaymentMethod() throws ServletException, IOException {
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
 
 		Customer customer = (Customer) request.getSession().getAttribute("customer");
+		Long idCustomer = customer.getIdCustomer();
 
-		Payment newPayment = new Payment();
-		int nCard = Integer.parseInt(request.getParameter("NCard"));
-		String ncvv = request.getParameter("cvv");
-		String nameOwner = request.getParameter("owner");
+		Payment_methods newPayment = new Payment_methods();
+		int nCard = Integer.parseInt(request.getParameter("NCard").toString());
+		String ncvv = request.getParameter("cvv").toString();
+		String nameOwner = request.getParameter("owner").toString();
 		String expireString = request.getParameter("expiredDate");
 
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -89,7 +111,7 @@ public class PaymentCommand extends FrontCommand {
 			expire = formatter.parse(expireString);
 			System.out.println("SONO QUI");
 		} catch (Exception e) {
-			LOG.error("An error occured", e);
+			e.printStackTrace();
 		}
 
 		newPayment.setCardNumber(nCard);
@@ -102,21 +124,14 @@ public class PaymentCommand extends FrontCommand {
 		session.getTransaction().commit();
 
 		RequestDispatcher dispatcher = context.getRequestDispatcher("/Payment_options");
-		try {
-			dispatcher.forward(request, response);
-		} catch (ServletException e) {
-			LOG.error("An error occured", e);
-		} catch (IOException e) {
-			LOG.error("An error occured", e);
-		}
+		dispatcher.forward(request, response);
 	}
 
-	public void makePayment() {
+	public void makePayment() throws ServletException, IOException {
 
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
-
-		Customer customer = (Customer) request.getSession().getAttribute("customer");
+		
 		Long id = customer.getIdCustomer();
 
 		org.hibernate.Query queryGetBook = session.createQuery("FROM Book b " + "WHERE b.customerId = ? ");
@@ -133,8 +148,7 @@ public class PaymentCommand extends FrontCommand {
 		}
 
 		if (customer instanceof FidelityCustomer) {
-		
-			// devo beccare i punti che ha gia
+
 			int sum = ((FidelityCustomer) customer).getPoint();
 			org.hibernate.Query queryFlight;
 			List<Flight> resultFlight;
@@ -153,51 +167,101 @@ public class PaymentCommand extends FrontCommand {
 			sdf.applyPattern("yyyy-MM-dd");
 			String dataStr = sdf.format(new Date());
 
-
 			Query updatePoint = session.createQuery("UPDATE Customer " + "set point = " + sum + ", Date_last_book = '"
 					+ dataStr + "' where idCustomer =" + id);
 			updatePoint.executeUpdate();
-			
-			
-			
-			final Customer CUSTOMERRUN = (Customer) request.getSession().getAttribute("customer");
-			
-			Timer timer = new Timer();
-			TimerTask task = new TimerTask() {
-			    @Override
-			    public void run() {
-			       ((FidelityCustomer) CUSTOMERRUN).changeFidelity();
-			    }
-			    
-			};
-			timer.schedule(task, 0, (1000*60*60*24));
-			updateCustomer(CUSTOMERRUN);
 
 		}
-		
 
 		session.getTransaction().commit();
+
 		
-		RequestDispatcher dispatcher = context.getRequestDispatcher("/GetBook?command=GetBook");
-		try {
-			dispatcher.forward(request, response);
-		} catch (ServletException e) {
-			LOG.error("An error occured", e);
-		} catch (IOException e) {
-			LOG.error("An error occured", e);
-		}
-	
 
 	}
-	public static void updateCustomer(Customer c) {
-		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
-		session.getTransaction().begin();
-		session.saveOrUpdate(c);
-		session.getTransaction().commit();
-	}
 
-	protected void tryPayment() throws Exception {
-		// qui va messa l'implementazione del metodo per la chiamata al
-		// sottosistema di pagamento
+	public boolean authorizePayment(float amount) throws Exception {
+		
+		
+		System.out.println("sono nel authorizePayment");
+		makePayment();
+		//makePayment();
+		return true;
+		
+//		// Set payer details
+//		Payer payer = new Payer();
+//		payer.setPaymentMethod("paypal");
+//
+//		// Set redirect URLs
+//		RedirectUrls redirectUrls = new RedirectUrls();
+//		redirectUrls.setCancelUrl("http://localhost:3000/cancel");
+//		redirectUrls.setReturnUrl("http://localhost:3000/process");
+//
+//		// Set payment details
+//		Details details = new Details();
+//		details.setShipping("0");
+//		details.setSubtotal(amount);
+//		details.setTax("0");
+//
+//		// Payment amount
+//		Amount amount = new Amount();
+//		amount.setCurrency("EUR");
+//		// Total must be equal to sum of shipping, tax and subtotal.
+//		amount.setTotal(amount);
+//		amount.setDetails(details);
+//
+//		// Transaction information
+//		Transaction transaction = new Transaction();
+//		transaction.setAmount(amount);
+//		transaction
+//		  .setDescription("This is the payment transaction description.");
+//
+//		// Add transaction to a list
+//		List<Transaction> transactions = new ArrayList<Transaction>();
+//		transactions.add(transaction);
+//
+//		// Add payment details
+//		Payment payment = new Payment();
+//		payment.setIntent("sale");
+//		payment.setPayer(payer);
+//		payment.setRedirectUrls(redirectUrls);
+//		payment.setTransactions(transactions);
+//		
+//		
+//		// Create payment
+//		try {
+//		  Payment createdPayment = payment.create(apiContext);
+//
+//		  Iterator links = createdPayment.getLinks().iterator();
+//		  while (links.hasNext()) {
+//		    Links link = links.next();
+//		    if (link.getRel().equalsIgnoreCase("approval_url")) {
+//		      // REDIRECT USER TO link.getHref()
+//		    }
+//		  }
+//		} catch (PayPalRESTException e) {
+//		    System.err.println(e.getDetails());
+//		}
+//		
+//		Payment payment = new Payment();
+//		payment.setId(req.getParameter("paymentId"));
+//
+//		PaymentExecution paymentExecution = new PaymentExecution();
+//		paymentExecution.setPayerId(req.getParameter("PayerID"));
+//		try {
+//		  Payment createdPayment = payment.execute(apiContext, paymentExecution);
+//		  System.out.println(createdPayment);
+//		} catch (PayPalRESTException e) {
+//		  System.err.println(e.getDetails());
+//		}
+//		
+//		PaymentExecution paymentExecution = new PaymentExecution();
+//		paymentExecution.setPayerId(req.getParameter("PayerID"));
+//		try {
+//			Payment_methods createdPayment = payment.execute(apiContext, paymentExecution);
+//			System.out.println(createdPayment);
+//		} catch (PayPalRESTException e) {
+//			System.err.println(e.getDetails());
+//		}
+
 	}
 }

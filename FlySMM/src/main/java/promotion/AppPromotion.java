@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
 import promotion.SeasonPromotion;
@@ -22,33 +23,31 @@ import java.util.List;
  */
 public class AppPromotion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String SERVEXC = "An error occured";
+	private static final Logger LOG = Logger.getLogger(AppPromotion.class);
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public AppPromotion() {
         super();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
      @Override
-   //Method comment because it's use only for add new promotions
+   //Quando voglio aggiungere una mail mi basta togliere i commenti, gli utenti veranno automaticamente avvisati
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	 /*SeasonPromotion p1 = null;
+    	/*SeasonPromotion p1 = null;
 		try {
 			p1 = new SeasonPromotion("1", 40, true, "winter Promo", "brrr", new Date(), new Date());
 		} catch (MessagingException e) {
-			e.printStackTrace();
+			LOG.info(SERVEXC, e);
 		}
 		
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
-
+		
+		String query1 = "from Flight where Flight_ID = :id";
 		@SuppressWarnings("unchecked")
 		List<Flight> result = session
-				.createQuery("from Flight where Flight_ID = 'mh51'")
+				.createQuery(query1)
+				.setString("id", "mh51")
 				.list();
 		
 		Flight f = result.get(0);
@@ -58,7 +57,7 @@ public class AppPromotion extends HttpServlet {
 			p2 = new FlightPromotion("2", 35, false, "Boieng 777 Promo", "w le yeezy",
 								 f);
 		} catch (MessagingException e) {
-			e.printStackTrace();
+			LOG.info(SERVEXC, e);
 		}
 		writeSeasonPromotion(p1);
 		writeFlightPromotion(p2);
@@ -66,9 +65,6 @@ public class AppPromotion extends HttpServlet {
 		response.getWriter().append(p1.toString()).append(p2.toString());*/
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Empty because useless at the moment

@@ -27,11 +27,10 @@
 
 <body>
 	<div class="ui stackable inverted menu">
-
-
-		<a href="index.jsp" class="item">FlySMM</a> <a class="item"> About
-			Us </a> <a class="item"> Jobs </a> <a class="item"> Locations </a>
-
+		<a href="index.jsp" class="item">FlySMM</a>
+		<a class="item"> About Us </a>
+		<a class="item"> Jobs </a>
+		<a class="item"> Locations </a>
 
 		<%
 			if (request.getSession().getAttribute("customer") == null) {
@@ -54,8 +53,6 @@
 		<%
 			}
 		%>
-
-
 	</div>
 
 	<!-- INIZIO area dedicata alla ricerca di un volo -->
@@ -115,6 +112,9 @@
 		</div>
 	</div>
 	<!-- FINE area dedicata alla ricerca di un volo -->
+	
+	<!-- Questa istruzione serve per aggiungere una promozione, inviando le mail di notifica
+	<a href="./AppPromotion" class="promotion.AppPromotion"> Add Promo </a> -->
 	
 </body>
 </html>
