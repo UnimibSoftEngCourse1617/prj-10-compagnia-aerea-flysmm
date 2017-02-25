@@ -121,7 +121,7 @@
     <servlet-name>EditSale</servlet-name>
     <url-pattern>/EditSale</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>Increase</servlet-name>
     <servlet-class>servlets.Increase</servlet-class>
   </servlet>

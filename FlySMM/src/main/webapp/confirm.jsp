@@ -7,10 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form   >
+	<form method="post" action="./PayEdit"  >
 		<label>accetti di cambiari il parametri del tuo volo?</label> 
 		<label>${debit}</label>
 		<input type="submit" name="submit" value="confirm">
+		<input type="hidden" name="command" value="Edit">
 	</form>
 	<form action="./GetBook" method="post">
 		<input type="submit" name="cancel" value="cancel">

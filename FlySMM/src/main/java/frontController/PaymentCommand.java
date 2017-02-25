@@ -37,6 +37,12 @@ import servlets.SessionFactorySingleton;
 //import com.paypal.api.payments.Transaction;
 
 public class PaymentCommand extends FrontCommand {
+	
+	private Customer customer;
+	
+	public PaymentCommand(Customer customer) {
+		this.customer = customer;
+	}
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
@@ -48,6 +54,8 @@ public class PaymentCommand extends FrontCommand {
 		}
 		if (caller.equals("MakePayment")) {
 			makePayment();
+			RequestDispatcher dispatcher = context.getRequestDispatcher("/GetBook?command=GetBook");
+			dispatcher.forward(request, response);
 		}
 
 	}
@@ -123,8 +131,7 @@ public class PaymentCommand extends FrontCommand {
 
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
-
-		Customer customer = (Customer) request.getSession().getAttribute("customer");
+		
 		Long id = customer.getIdCustomer();
 
 		org.hibernate.Query queryGetBook = session.createQuery("FROM Book b " + "WHERE b.customerId = ? ");
@@ -168,15 +175,18 @@ public class PaymentCommand extends FrontCommand {
 
 		session.getTransaction().commit();
 
-		RequestDispatcher dispatcher = context.getRequestDispatcher("/GetBook?command=GetBook");
-		dispatcher.forward(request, response);
+		
 
 	}
 
-	private boolean authorizePayment(float amount) throws Exception {
-
-
-
+	public boolean authorizePayment(float amount) throws Exception {
+		
+		
+		System.out.println("sono nel authorizePayment");
+		makePayment();
+		//makePayment();
+		return true;
+		
 //		// Set payer details
 //		Payer payer = new Payer();
 //		payer.setPaymentMethod("paypal");
