@@ -104,10 +104,9 @@
 		if ((f.getDepartureDate().getTime() - d.getTime()) < (86400000 * 3)) {
 	%>
 	<form class="ui form" name="payment" method="post"
-		action="./Payment_options">
+		action="./LastMinutePayment">
 		<input class="ui red submit button" type="submit" value="Pay!">
-		<input type="hidden" name="command" value="Payment"> <input
-			type="hidden" name="lastminute" value="lastminute">
+		<input type="hidden" name="command" value="Payment"> 
 	</form>
 	<%
 		} else {

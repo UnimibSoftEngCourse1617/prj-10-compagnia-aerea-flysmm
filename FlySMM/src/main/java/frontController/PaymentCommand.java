@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -37,10 +38,16 @@ import servlets.SessionFactorySingleton;
 //import com.paypal.api.payments.Transaction;
 
 public class PaymentCommand extends FrontCommand {
-	
+
 	private Customer customer;
-	
+	List<Book> book;
+
 	public PaymentCommand(Customer customer) {
+		this.customer = customer;
+	}
+
+	public PaymentCommand(List<Book> book, Customer customer) {
+		this.book = book;
 		this.customer = customer;
 	}
 
@@ -56,6 +63,25 @@ public class PaymentCommand extends FrontCommand {
 			makePayment();
 			RequestDispatcher dispatcher = context.getRequestDispatcher("/GetBook?command=GetBook");
 			dispatcher.forward(request, response);
+		}
+		if (caller.equals("lastMinute")) {
+			System.out.println("ciao");
+			lastMinutePayment();
+			makePayment();
+			RequestDispatcher dispatcher = context.getRequestDispatcher("/");
+			dispatcher.forward(request, response);
+		}
+
+	}
+
+	private void lastMinutePayment() {
+		Flight departure = (Flight) request.getSession().getAttribute("chosenDeparture");
+		Flight arrival = (Flight) request.getSession().getAttribute("chosenReturn");
+		for (Book b : book) {
+			frontController.BookCommand.writeBook(b);
+		}
+		for (Book b : book) {
+			frontController.BookCommand.updateSeat(b, departure, arrival);
 		}
 
 	}
@@ -131,7 +157,7 @@ public class PaymentCommand extends FrontCommand {
 
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
-		
+
 		Long id = customer.getIdCustomer();
 
 		org.hibernate.Query queryGetBook = session.createQuery("FROM Book b " + "WHERE b.customerId = ? ");
@@ -175,93 +201,92 @@ public class PaymentCommand extends FrontCommand {
 
 		session.getTransaction().commit();
 
-		
-
 	}
 
 	public boolean authorizePayment(float amount) throws Exception {
-		
-		
+
 		System.out.println("sono nel authorizePayment");
 		makePayment();
-		//makePayment();
+		// makePayment();
 		return true;
-		
-//		// Set payer details
-//		Payer payer = new Payer();
-//		payer.setPaymentMethod("paypal");
-//
-//		// Set redirect URLs
-//		RedirectUrls redirectUrls = new RedirectUrls();
-//		redirectUrls.setCancelUrl("http://localhost:3000/cancel");
-//		redirectUrls.setReturnUrl("http://localhost:3000/process");
-//
-//		// Set payment details
-//		Details details = new Details();
-//		details.setShipping("0");
-//		details.setSubtotal(amount);
-//		details.setTax("0");
-//
-//		// Payment amount
-//		Amount amount = new Amount();
-//		amount.setCurrency("EUR");
-//		// Total must be equal to sum of shipping, tax and subtotal.
-//		amount.setTotal(amount);
-//		amount.setDetails(details);
-//
-//		// Transaction information
-//		Transaction transaction = new Transaction();
-//		transaction.setAmount(amount);
-//		transaction
-//		  .setDescription("This is the payment transaction description.");
-//
-//		// Add transaction to a list
-//		List<Transaction> transactions = new ArrayList<Transaction>();
-//		transactions.add(transaction);
-//
-//		// Add payment details
-//		Payment payment = new Payment();
-//		payment.setIntent("sale");
-//		payment.setPayer(payer);
-//		payment.setRedirectUrls(redirectUrls);
-//		payment.setTransactions(transactions);
-//		
-//		
-//		// Create payment
-//		try {
-//		  Payment createdPayment = payment.create(apiContext);
-//
-//		  Iterator links = createdPayment.getLinks().iterator();
-//		  while (links.hasNext()) {
-//		    Links link = links.next();
-//		    if (link.getRel().equalsIgnoreCase("approval_url")) {
-//		      // REDIRECT USER TO link.getHref()
-//		    }
-//		  }
-//		} catch (PayPalRESTException e) {
-//		    System.err.println(e.getDetails());
-//		}
-//		
-//		Payment payment = new Payment();
-//		payment.setId(req.getParameter("paymentId"));
-//
-//		PaymentExecution paymentExecution = new PaymentExecution();
-//		paymentExecution.setPayerId(req.getParameter("PayerID"));
-//		try {
-//		  Payment createdPayment = payment.execute(apiContext, paymentExecution);
-//		  System.out.println(createdPayment);
-//		} catch (PayPalRESTException e) {
-//		  System.err.println(e.getDetails());
-//		}
-//		
-//		PaymentExecution paymentExecution = new PaymentExecution();
-//		paymentExecution.setPayerId(req.getParameter("PayerID"));
-//		try {
-//			Payment_methods createdPayment = payment.execute(apiContext, paymentExecution);
-//			System.out.println(createdPayment);
-//		} catch (PayPalRESTException e) {
-//			System.err.println(e.getDetails());
-//		}
+
+		// // Set payer details
+		// Payer payer = new Payer();
+		// payer.setPaymentMethod("paypal");
+		//
+		// // Set redirect URLs
+		// RedirectUrls redirectUrls = new RedirectUrls();
+		// redirectUrls.setCancelUrl("http://localhost:3000/cancel");
+		// redirectUrls.setReturnUrl("http://localhost:3000/process");
+		//
+		// // Set payment details
+		// Details details = new Details();
+		// details.setShipping("0");
+		// details.setSubtotal(amount);
+		// details.setTax("0");
+		//
+		// // Payment amount
+		// Amount amount = new Amount();
+		// amount.setCurrency("EUR");
+		// // Total must be equal to sum of shipping, tax and subtotal.
+		// amount.setTotal(amount);
+		// amount.setDetails(details);
+		//
+		// // Transaction information
+		// Transaction transaction = new Transaction();
+		// transaction.setAmount(amount);
+		// transaction
+		// .setDescription("This is the payment transaction description.");
+		//
+		// // Add transaction to a list
+		// List<Transaction> transactions = new ArrayList<Transaction>();
+		// transactions.add(transaction);
+		//
+		// // Add payment details
+		// Payment payment = new Payment();
+		// payment.setIntent("sale");
+		// payment.setPayer(payer);
+		// payment.setRedirectUrls(redirectUrls);
+		// payment.setTransactions(transactions);
+		//
+		//
+		// // Create payment
+		// try {
+		// Payment createdPayment = payment.create(apiContext);
+		//
+		// Iterator links = createdPayment.getLinks().iterator();
+		// while (links.hasNext()) {
+		// Links link = links.next();
+		// if (link.getRel().equalsIgnoreCase("approval_url")) {
+		// // REDIRECT USER TO link.getHref()
+		// }
+		// }
+		// } catch (PayPalRESTException e) {
+		// System.err.println(e.getDetails());
+		// }
+		//
+		// Payment payment = new Payment();
+		// payment.setId(req.getParameter("paymentId"));
+		//
+		// PaymentExecution paymentExecution = new PaymentExecution();
+		// paymentExecution.setPayerId(req.getParameter("PayerID"));
+		// try {
+		// Payment createdPayment = payment.execute(apiContext,
+		// paymentExecution);
+		// System.out.println(createdPayment);
+		// } catch (PayPalRESTException e) {
+		// System.err.println(e.getDetails());
+		// }
+		//
+		// PaymentExecution paymentExecution = new PaymentExecution();
+		// paymentExecution.setPayerId(req.getParameter("PayerID"));
+		// try {
+		// Payment_methods createdPayment = payment.execute(apiContext,
+		// paymentExecution);
+		// System.out.println(createdPayment);
+		// } catch (PayPalRESTException e) {
+		// System.err.println(e.getDetails());
+		// }
 
 	}
 }
