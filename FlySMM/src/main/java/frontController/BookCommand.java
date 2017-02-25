@@ -38,7 +38,7 @@ public class BookCommand extends FrontCommand {
 				updateSeat(b, departure, arrival);
 			}
 
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/success.html");
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/success.jsp");
 			requestDispatcher.forward(request, response);
 		} catch (Exception e) {
 			err = true;
