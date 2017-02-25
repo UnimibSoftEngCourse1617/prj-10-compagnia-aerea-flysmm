@@ -2,20 +2,22 @@ package sale;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import customer.Customer;
 
-public class Payment implements Serializable{
+
+public class Payment_methods implements Serializable{
 	private int cardNumber;
 	private Customer customer;
 	private String cvv;
 	private String owner;
 	private Date expiredDate;
 
-	public Payment() {
+	public Payment_methods() {
 		super();
 	}
 
-	public Payment(int cardNumber, Customer customer, String cvv, String owner, Date expiredDate) {
+	public Payment_methods(int cardNumber, Customer customer, String cvv, String owner, Date expiredDate) {
 		super();
 		this.cardNumber = cardNumber;
 		this.customer = customer;

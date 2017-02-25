@@ -4,7 +4,7 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="sale.Payment" table="payment_methods">
+	<class name="sale.Payment_methods" table="payment_methods">
 		<composite-id>
 			<key-property name="cardNumber" column="No_card" type="int"></key-property>
 			<key-many-to-one name="customer" class="customer.Customer">

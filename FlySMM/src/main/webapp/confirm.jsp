@@ -9,7 +9,12 @@
 <body>
 	<form   >
 		<label>accetti di cambiari il parametri del tuo volo?</label> 
+		<label>${debit}</label>
 		<input type="submit" name="submit" value="confirm">
+	</form>
+	<form action="./GetBook" method="post">
+		<input type="submit" name="cancel" value="cancel">
+		<input type="hidden" name="command" value="GetBook"> 
 	</form>
 
 </body>

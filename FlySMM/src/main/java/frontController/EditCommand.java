@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 
@@ -196,18 +197,6 @@ public class EditCommand extends FrontCommand {
 	}
 
 	public void computeIncrease() {
-		/**
-		 * Questo metodo calcola il valore aggiuntivo di una modifica di una
-		 * prenotasione
-		 * 
-		 * @param idFlight
-		 *            questo metodo richede il un volo che sarà ottenuto tramite
-		 *            request.getParameter("chosen") (bisogna fare la slit)
-		 * 
-		 * 
-		 * 
-		 * 
-		 */
 
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -218,21 +207,20 @@ public class EditCommand extends FrontCommand {
 		/* salvo il nuovo volo in una variabile di sessione */
 		Query queryNewFlight = session.createQuery("from Flight f " + "where f.idFlight = :idF ");
 		queryNewFlight.setParameter("idF", idNewFlight);
-		List newFlight = queryNewFlight.list();
+		List<Flight> newFlight = queryNewFlight.list();
 		request.getSession().setAttribute("newFlight", newFlight);
+		
+		
+		Flight oldFlight = (Flight) request.getSession().getAttribute("oldFlight");
+		int oldDistance = oldFlight.getDistance();
+		int newDistance = newFlight.get(0).getDistance();
+		
+		int diff = newDistance - oldDistance;
+		if (diff < 0){
+			diff = 0;
+		}
 
-		/**
-		 * 
-		 * 
-		 * area per il calcolo del valore aggiuntivo
-		 * 
-		 * 
-		 * 
-		 * 
-		 */
-
-		// TODO: questo valore va cambito con il valore da far pare all cliente
-		float debit = 400f;
+		int debit = diff;
 		request.getSession().setAttribute("debit", debit);
 
 	}
@@ -254,6 +242,10 @@ public class EditCommand extends FrontCommand {
 
 	public boolean updateBook() {
 
+		
+		
+		
+		
 		/**
 		 * 
 		 * 
