@@ -44,32 +44,35 @@
 			}
 		%>
 	</div>
-	<form name="newPaymentMethod" action="./AddNewPaymentMethod"
-		method="post">
-		<div class="fields">
-			<div class="field">
-				<label>Numero Carta</label> 
-				<input name="NCard" type="text">
+	<div class="ui two column grid">
+		<div class="column">
+			<div class="ui raised segment">
+
+				<form name="newPaymentMethod" class="ui form"
+					action="./AddNewPaymentMethod" method="post">
+					<div class="fields">
+						<div class="field">
+							<label>Numero Carta</label> <input name="NCard" type="text">
+						</div>
+						<div class="field">
+							<label>cvv</label> <input name="cvv" type="text">
+						</div>
+						<div class="field">
+							<label>owner</label> <input name="owner" type="text">
+						</div>
+						<div class="field">
+							<label>Data di scadenza</label> <input name="expiredDate"
+								type="date">
+						</div>
+						<div class="field">
+							<label>street</label> <input name="street" type="text">
+						</div>
+					
+						<input type="hidden" name="command" value="Payment"> <input
+								class="ui red button" type="submit" name="invia" value="invia">
+					</div>
+				</form>
 			</div>
-			<div class="field">
-				<label>cvv</label> 
-				<input name="cvv" type="text">
-			</div>
-			<div class="field">
-				<label>owner</label> 
-				<input name="owner" type="text">
-			</div>
-			<div class="field">
-				<label>Data di scadenza</label> 
-				<input name="expiredDate" type="date">
-			</div>
-			<div class="field">
-				<label>street</label> 
-				<input name="street" type="text">
-			</div>
-			<input type="hidden" name="command" value="Payment"> <input
-				type="submit" name="invia" value="invia">
 		</div>
-	</form>
 </body>
 </html>
