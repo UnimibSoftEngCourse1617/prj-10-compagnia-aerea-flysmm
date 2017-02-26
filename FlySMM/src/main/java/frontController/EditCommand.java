@@ -101,16 +101,12 @@ public class EditCommand extends FrontCommand {
 		 * la sezione è stata inizializzata
 		 */
 
-		/** Ottengo il id della vecchia prenotazione */
-		System.out.println("Id --> " + request.getSession().getAttribute("IDp"));
-
 		/**
 		 * Creo la query che estrae l'oggetto vecchia prenotazione
 		 */
 		Query getBook = session.createQuery("From Book b Where b.bookId = ?");
 		getBook.setParameter(0, request.getSession().getAttribute("IDp"));
 		List<Book> resultOldBook = getBook.list();
-		System.out.println("Book : --> " + resultOldBook.toString());
 		request.getSession().setAttribute("oldBook", resultOldBook.get(0));
 
 		/**
@@ -133,8 +129,6 @@ public class EditCommand extends FrontCommand {
 		 * questa query è necessaria per ottenere il volo vecchio e il relativo
 		 * prezzo
 		 */
-
-		System.out.println("il valore di olf Flight --> " + resultOldFlight.get(0).toString());
 
 		long idCustomer = resultOldBook.get(0).getCustomerId();
 		String idBook = resultOldBook.get(0).getBookId();
@@ -164,7 +158,7 @@ public class EditCommand extends FrontCommand {
 		queryInnerJoin = queryInnerJoin.setParameter(3, 1);
 
 		List result1 = queryInnerJoin.list();
-		if (result1.size() == 0) {
+		if (result1.isEmpty()) {
 			String message = "Details: There are no flights matching search criteria. "
 					+ "Go back to homepage and try to change date or airports.";
 			request.setAttribute("message", message);
@@ -175,7 +169,7 @@ public class EditCommand extends FrontCommand {
 			}
 		}
 
-		List<Flight> flights = new ArrayList<Flight>();
+		ArrayList<Flight> flights = new ArrayList<Flight>();
 		for (Object[] o : (List<Object[]>) result1) {
 			Price p = (Price) o[0];
 			p.setDiscountedAmount(p.getAmount());
@@ -233,15 +227,9 @@ public class EditCommand extends FrontCommand {
 	}
 
 	public boolean updateBook() {
-		
-		System.out.println("sono in updatebook");
-		
 		Customer c = (Customer) request.getSession().getAttribute("customer");
 		request.getSession().removeAttribute("customer");
 		request.getSession().setAttribute("customer", c);
-		
-		//request.getSession().setAttribute("customer", arg1);
-		System.out.println("customer di authorizePayment "+ request.getSession().getAttribute("customer").toString());
 		
 		float debit = (Float) request.getSession().getAttribute("debit");
 		PaymentCommand p = new PaymentCommand(c);
@@ -250,22 +238,17 @@ public class EditCommand extends FrontCommand {
 		if (debit > 0) {
 			try {
 				status = p.authorizePayment(debit);
-				System.out.println(" questo è il valore che restituice p.authorizePayment " + p.authorizePayment(debit));
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOG.info("Error in autorizePayment", e);
 			}
 		}
 		
-		System.out.println("ho uno status = " + status);
 		if (status) {
-			
-			// pbisogna aggiornare i posti togliere e aggiungere
+			// bisogna aggiornare i posti togliere e aggiungere
 			Session session = SessionFactorySingleton.getSessionFactory().openSession();
 			session.beginTransaction();
 
 			// un po' di questa roba va giù
-
 			Flight oldFlight = (Flight) request.getSession().getAttribute("oldFlight");
 			String idOldFlight = oldFlight.getIdFlight();
 
@@ -274,8 +257,6 @@ public class EditCommand extends FrontCommand {
 			String idBook = oldBook.getBookId();
 
 			Customer customer = (customer.Customer) request.getSession().getAttribute("customer");
-
-			System.out.println("il book di update book --> " + customer.toString());
 
 			// String[] flight = request.getParameter("chosen").split("-");
 			// String idNewFlight = flight[0];
@@ -326,13 +307,9 @@ public class EditCommand extends FrontCommand {
 			updateFlightSeats.setParameter("idF", idOldFlight);
 			updateFlightSeats.executeUpdate();
 
-			System.out.println("Sono qui: " + oldFlightNSeats);
-
 			updateFlightSeats.setParameter("seatNumber", newFlightNSeats);
 			updateFlightSeats.setParameter("idF", idNewFlight);
 			updateFlightSeats.executeUpdate();
-
-			System.out.println("Sono qui: " + newFlightNSeats);
 
 			Query updateBook = session.createQuery(
 					"Update Book " + "set Flight_Flight_ID = :newFlightId, " + "Booking_date = :newBookDate, "
@@ -349,10 +326,9 @@ public class EditCommand extends FrontCommand {
 			updateBook.setParameter("bookId", idBook);
 			updateBook.executeUpdate();
 			session.getTransaction().commit();
-			System.out.println("sono qui ultima riga di update book: " + updateBook.toString());
 
 			// TODO: manca la chiamata al metodo makePayment() in payment
-
+			
 		}
 		return status;
 	}
@@ -365,9 +341,8 @@ public class EditCommand extends FrontCommand {
 		try {
 			date = formatter.parse(dateInString);
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.info("Error during date parsing", e);
 		}
 		return date;
 	}
-
 }

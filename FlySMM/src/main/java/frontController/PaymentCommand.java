@@ -13,6 +13,7 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -37,7 +38,8 @@ import servlets.SessionFactorySingleton;
 //import com.paypal.api.payments.RedirectUrls;
 //import com.paypal.api.payments.Transaction;
 
-public class PaymentCommand extends FrontCommand {
+public class PaymentCommand extends FrontCommand {	
+	private static final Logger LOG = Logger.getLogger(PaymentCommand.class);
 
 	private Customer customer;
 	List<Book> book;
@@ -65,7 +67,6 @@ public class PaymentCommand extends FrontCommand {
 			dispatcher.forward(request, response);
 		}
 		if (caller.equals("lastMinute")) {
-			System.out.println("ciao");
 			lastMinutePayment();
 			makePayment();
 			RequestDispatcher dispatcher = context.getRequestDispatcher("/");
@@ -111,9 +112,9 @@ public class PaymentCommand extends FrontCommand {
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException e) {
-			e.printStackTrace();
+			LOG.info("Error occurred in forward", e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOG.info("Error occurred in forward", e);
 		}
 	}
 
@@ -135,9 +136,8 @@ public class PaymentCommand extends FrontCommand {
 		Date expire = null;
 		try {
 			expire = formatter.parse(expireString);
-			System.out.println("SONO QUI");
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.info("Error occurred during date parse", e);
 		}
 
 		newPayment.setCardNumber(nCard);
@@ -192,22 +192,19 @@ public class PaymentCommand extends FrontCommand {
 			SimpleDateFormat sdf = new SimpleDateFormat();
 			sdf.applyPattern("yyyy-MM-dd");
 			String dataStr = sdf.format(new Date());
-
-			Query updatePoint = session.createQuery("UPDATE Customer " + "set point = " + sum + ", Date_last_book = '"
-					+ dataStr + "' where idCustomer =" + id);
+			String query = "UPDATE Customer " + "set point = :sum, Date_last_book = :dataStr where idCustomer = :id";
+			Query updatePoint = session.createQuery(query)
+					.setLong("sum", sum)
+					.setString("dataStr", dataStr)
+					.setLong("id", id);
 			updatePoint.executeUpdate();
-
 		}
-
 		session.getTransaction().commit();
-
 	}
 
-	public boolean authorizePayment(float amount) throws Exception {
-
-		System.out.println("sono nel authorizePayment");
+	public boolean authorizePayment(float amount) throws ServletException, IOException  {
 		makePayment();
-		// makePayment();
+		
 		return true;
 
 		// // Set payer details
@@ -287,6 +284,5 @@ public class PaymentCommand extends FrontCommand {
 		// } catch (PayPalRESTException e) {
 		// System.err.println(e.getDetails());
 		// }
-
 	}
 }
