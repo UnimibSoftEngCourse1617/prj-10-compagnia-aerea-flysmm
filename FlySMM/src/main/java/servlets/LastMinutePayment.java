@@ -12,6 +12,8 @@ import org.apache.log4j.Logger;
 
 import booking.Book;
 import customer.Customer;
+import frontcontroller.FrontCommand;
+import frontcontroller.PaymentCommand;
 
 /**
  * Servlet implementation class LastMinutePayment
@@ -40,7 +42,14 @@ public class LastMinutePayment extends HttpServlet {
 		List<Book> book = (List<Book>) request.getSession().getAttribute("listBook");
 		Customer customer = (Customer) request.getSession().getAttribute("Customer");
 
-		ServletUtility.initAndDispatch(getServletContext(), request, response, "lastMinute");
-
+		FrontCommand command = new PaymentCommand(book, customer);
+		if (command != null) {
+			command.init(getServletContext(), "lastMinute", request, response);
+			try {
+				command.dispatch();
+			} catch (Exception e) {
+				LOG.error("An error occured", e);
+			}
+		}
 	}
 }

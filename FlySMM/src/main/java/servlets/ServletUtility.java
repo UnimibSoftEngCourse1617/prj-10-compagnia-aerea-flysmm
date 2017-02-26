@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 import frontcontroller.FrontCommand;
 
 public class ServletUtility {
-	
+
 	private static final Logger LOG = Logger.getLogger(ServletUtility.class);
 
 	public static void initAndDispatch(ServletContext context, HttpServletRequest request, HttpServletResponse response,
@@ -24,7 +24,7 @@ public class ServletUtility {
 			command.init(context, caller, request, response);
 			try {
 				command.dispatch();
-			} catch (Exception e){
+			} catch (Exception e) {
 				LOG.error("An error occured", e);
 			}
 		} else {

@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import org.hibernate.Query;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
@@ -41,7 +40,7 @@ public class GetNewFidelityCustomer extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//Empty because useless
+		// Empty because useless
 	}
 
 	/**
@@ -64,19 +63,19 @@ public class GetNewFidelityCustomer extends HttpServlet {
 		request.getSession().setAttribute("customer", cFidelity);
 		// scrivo e poi cancello perchè hibernate non permette l'update del
 		// discriminatore
-		
+
 		writeFidelityCustomer((FidelityCustomer) cFidelity);
-		
-		Customer customerDelete = (Customer)myObject;
-		
+
+		Customer customerDelete = (Customer) myObject;
+
 		List<Book> b = getBookCustomer(customerDelete.getIdCustomer());
 		deleteBook(customerDelete.getIdCustomer());
-		
+
 		for (Book newBook : b) {
 			newBook.setCustomerId(cFidelity.getIdCustomer());
 			writeBook(newBook);
 		}
-		
+
 		deleteCustomer((Customer) myObject);
 		request.getSession().setAttribute("Customer", cFidelity);
 
@@ -99,6 +98,7 @@ public class GetNewFidelityCustomer extends HttpServlet {
 		session.getTransaction().commit();
 		return temp;
 	}
+
 	public static void writeBook(Book b) {
 		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
 		session.getTransaction().begin();
@@ -111,7 +111,7 @@ public class GetNewFidelityCustomer extends HttpServlet {
 		session.getTransaction().begin();
 		session.delete(c);
 		session.getTransaction().commit();
-		
+
 	}
 
 	public void writeFidelityCustomer(FidelityCustomer c) {
@@ -120,6 +120,7 @@ public class GetNewFidelityCustomer extends HttpServlet {
 		session.save(c);
 		session.getTransaction().commit();
 	}
+
 	public static void deleteBook(long idCustomer) {
 		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
 		session.getTransaction().begin();
