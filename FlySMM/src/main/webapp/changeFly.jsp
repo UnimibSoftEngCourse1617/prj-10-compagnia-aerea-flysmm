@@ -11,7 +11,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<font face="Arial"/>
+<font face="Arial" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -28,7 +28,7 @@
 	<div class="ui stackable inverted menu">
 
 		<div href="index.jsp" class="item">FlySMM</div>
-		
+
 		<%
 			if (request.getSession().getAttribute("customer") == null) {
 		%>
@@ -46,7 +46,8 @@
 		%>
 
 	</div>
-	<label>Scegli il nuovo volo</label>
+	<h2>Choose new flight</h2>
+
 	<table class="ui celled table">
 		<thead>
 			<tr>
@@ -75,15 +76,15 @@
 					<td>${flight.price.seats.tariff}</td>
 					<td>${flight.price.amount}<br></td>
 					<td>${flight.price.discountedAmount}</td>
-					<td><form method="post" name="flightItems"
-							action="./Increase">
-							<input type="submit" class="ui green button" value="Choose" />
-							<input type="hidden" name="chosen" value="${flight.idFlight}-${flight.price.seats.tariff}" />
-							<input type="hidden" value="${flight.price.amount}" name="amount">
-							<input type="hidden" value="${flight.price.discountedAmount}" name="discounted">
-							<input type="hidden" name="command" value="Edit" />
-						</form>
-					</td>
+					<td><form method="post" name="flightItems" action="./Increase">
+							<input type="submit" class="ui green button" value="Choose" /> <input
+								type="hidden" name="chosen"
+								value="${flight.idFlight}-${flight.price.seats.tariff}" /> <input
+								type="hidden" value="${flight.price.amount}" name="amount">
+							<input type="hidden" value="${flight.price.discountedAmount}"
+								name="discounted"> <input type="hidden" name="command"
+								value="Edit" />
+						</form></td>
 				</tr>
 			</c:forEach>
 		</tbody>
