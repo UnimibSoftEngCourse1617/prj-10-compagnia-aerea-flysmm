@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import frontcontroller.FrontCommand;
 
 /**
@@ -14,6 +16,7 @@ import frontcontroller.FrontCommand;
  */
 public class EditSale extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger LOG = Logger.getLogger(BookServlet.class);
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -29,8 +32,7 @@ public class EditSale extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// Empty because useless
 	}
 
 	/**
@@ -39,11 +41,20 @@ public class EditSale extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		FrontCommand command = FrontCommand.getCommand(request, response);
-		if (command != null) {
 
+		FrontCommand command = null;
+		try {
+			command = FrontCommand.getCommand(request, response);
+		} catch (Exception e1) {
+			LOG.error("An error in getCommand occured", e1);
+		}
+		if (command != null) {
 			command.init(getServletContext(), "Edit", request, response);
-			command.dispatch();
+			try {
+				command.dispatch();
+			} catch (Exception e2) {
+				LOG.error("An error in dispatch occured", e2);
+			}
 		} else {
 			System.out.println("CommandNotFound");
 		}

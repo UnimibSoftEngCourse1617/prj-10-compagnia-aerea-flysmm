@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import frontcontroller.FrontCommand;
 
 /**
@@ -15,21 +17,23 @@ import frontcontroller.FrontCommand;
 @WebServlet("/UpdateFly")
 public class UpdateFly extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UpdateFly() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	private static final Logger LOG = Logger.getLogger(BookServlet.class);
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public UpdateFly() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.getWriter().append(request.getParameter("command"));
+		// Empty because useless
 
 	}
 
@@ -39,13 +43,20 @@ public class UpdateFly extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		FrontCommand command = FrontCommand.getCommand(request, response);
 
+		FrontCommand command = null;
+		try {
+			command = FrontCommand.getCommand(request, response);
+		} catch (Exception e1) {
+			LOG.error("An error in getCommand occured", e1);
+		}
 		if (command != null) {
-			
 			command.init(getServletContext(), "Update", request, response);
-			command.dispatch();
+			try {
+				command.dispatch();
+			} catch (Exception e2) {
+				LOG.error("An error in dispatch occured", e2);
+			}
 		} else {
 			System.out.println("CommandNotFound");
 		}

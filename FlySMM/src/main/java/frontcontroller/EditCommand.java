@@ -27,6 +27,7 @@ public class EditCommand extends FrontCommand {
 	private static final String ERROR = "An error occured";
 	private static final String OLDBOOK = "oldBook";
 	private static final String CUSTOMER = "customer";
+	private static final String DATEPATTERN = "yyyy-MM-dd";
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
@@ -64,8 +65,7 @@ public class EditCommand extends FrontCommand {
 				} catch (IOException e) {
 					LOG.error(ERROR, e);
 				}
-			} else { // TODO: questo dispatcher va cambiato ci troviamo nel caso
-						// in cui il pagamento non è andato a buonfine
+			} else {
 				RequestDispatcher dispatcher = context.getRequestDispatcher("/error.jsp");
 				try {
 					dispatcher.forward(request, response);
@@ -260,7 +260,7 @@ public class EditCommand extends FrontCommand {
 						+ "Date_last_book = :dataStr " + "where idCustomer = :id");
 
 				SimpleDateFormat sdf = new SimpleDateFormat();
-				sdf.applyPattern("yyyy-MM-dd");
+				sdf.applyPattern(DATEPATTERN);
 				String dataStr = sdf.format(new Date());
 
 				updateNewBook.setParameter("newPoint", newPoint);
@@ -293,7 +293,7 @@ public class EditCommand extends FrontCommand {
 			updateBook.setParameter("newFlightId", idNewFlight);
 
 			SimpleDateFormat sdf = new SimpleDateFormat();
-			sdf.applyPattern("yyyy-MM-dd");
+			sdf.applyPattern(DATEPATTERN);
 			String dataStr = sdf.format(new Date());
 
 			updateBook.setDate("newBookDate", parseStringToDate(dataStr));
@@ -308,7 +308,7 @@ public class EditCommand extends FrontCommand {
 
 	public Date parseStringToDate(String dateString) {
 
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat formatter = new SimpleDateFormat(DATEPATTERN);
 		String dateInString = dateString;
 		Date date = null;
 		try {

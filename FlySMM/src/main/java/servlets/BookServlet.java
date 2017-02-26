@@ -22,7 +22,7 @@ public class BookServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//Empty because useless
+		// Empty because useless
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class BookServlet extends HttpServlet {
 				command.dispatch();
 			} catch (Exception e2) {
 				LOG.error("An error in dispatch occured", e2);
-				}
+			}
 
 		} else {
 			System.out.println("CommandNotFound");
