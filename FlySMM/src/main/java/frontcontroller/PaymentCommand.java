@@ -1,4 +1,4 @@
-package frontController;
+package frontcontroller;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -79,10 +79,10 @@ public class PaymentCommand extends FrontCommand {
 		Flight departure = (Flight) request.getSession().getAttribute("chosenDeparture");
 		Flight arrival = (Flight) request.getSession().getAttribute("chosenReturn");
 		for (Book b : book) {
-			frontController.BookCommand.writeBook(b);
+			frontcontroller.BookCommand.writeBook(b);
 		}
 		for (Book b : book) {
-			frontController.BookCommand.updateSeat(b, departure, arrival);
+			frontcontroller.BookCommand.updateSeat(b, departure, arrival);
 		}
 
 	}

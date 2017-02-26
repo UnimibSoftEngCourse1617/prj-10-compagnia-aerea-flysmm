@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import frontController.FrontCommand;
+import frontcontroller.FrontCommand;
 
 /**
  * Servlet implementation class MakePayment

@@ -14,7 +14,7 @@ import org.apache.log4j.Logger;
 import booking.Book;
 import booking.Passenger;
 import customer.Customer;
-import frontController.FrontCommand;
+import frontcontroller.FrontCommand;
 import sale.Flight;
 
 public class GetPassenger extends HttpServlet {
