@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `flysmmdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `flysmmdb`;
--- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.9, for Win32 (AMD64)
 --
 -- Host: 127.0.0.1    Database: flysmmdb
 -- ------------------------------------------------------
--- Server version	5.7.12-log
+-- Server version	5.7.11-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -326,7 +326,7 @@ CREATE TABLE `price` (
 
 LOCK TABLES `price` WRITE;
 /*!40000 ALTER TABLE `price` DISABLE KEYS */;
-INSERT INTO `price` VALUES ('adsci','2017-09-22',8,7,'C',10,NULL,160),('amtfd','2017-09-22',8,4,'A',8,NULL,69),('bkbil','2017-08-29',6,3,'C',4,NULL,96),('bnklu','2017-08-24',7,9,'B',4,NULL,191),('coser','2017-03-02',7,8,'C',9,NULL,72),('dolor','2017-09-22',8,9,'B',2,NULL,164),('eiuod','2017-03-02',7,5,'B',3,NULL,17),('elidt','2017-03-02',7,5,'B',2,NULL,74),('hbibj','2017-06-05',10,10,'A',2,NULL,163),('ipsum','2017-03-02',7,3,'A',6,NULL,80),('kbukb','2017-06-23',2,3,'A',6,NULL,81),('lorem','2017-07-21',4,6,'A',1,NULL,48),('mhuhn','2017-09-22',8,7,'C',2,NULL,66),('mlkml','2017-09-10',1,1,'A',1,NULL,16),('ndinj','2017-06-23',2,5,'C',4,NULL,81),('njmhd','2017-03-02',7,3,'B',1,NULL,70),('nniou','2017-03-31',9,10,'B',8,NULL,185),('nuhmp','2017-08-04',5,2,'B',3,NULL,80),('sedrw','2017-09-22',8,6,'A',2,NULL,68),('sinkt','2017-03-02',7,4,'B',5,NULL,79),('tepor','2017-09-22',8,4,'C',7,NULL,63);
+INSERT INTO `price` VALUES ('adsci','2017-09-22',8,7,'C',10,2,160),('amtfd','2017-09-22',8,4,'A',8,2,69),('bkbil','2017-08-29',6,3,'C',4,4,96),('bnklu','2017-08-24',7,9,'B',4,4,191),('coser','2017-03-02',7,8,'C',9,7,72),('dolor','2017-09-22',8,9,'B',2,2,164),('eiuod','2017-03-02',7,5,'B',3,5,17),('elidt','2017-03-02',7,5,'B',2,5,74),('hbibj','2017-06-05',10,10,'A',2,3,163),('ipsum','2017-03-02',7,3,'A',6,5,80),('kbukb','2017-06-23',2,3,'A',6,8,81),('lorem','2017-07-21',4,6,'A',1,6,48),('mhuhn','2017-09-22',8,7,'C',2,2,66),('mlkml','2017-09-10',1,1,'A',1,4,16),('ndinj','2017-06-23',2,5,'C',4,6,81),('njmhd','2017-03-02',7,3,'B',1,5,70),('nniou','2017-03-31',9,10,'B',8,3,185),('nuhmp','2017-08-04',5,2,'B',3,4,80),('sedrw','2017-09-22',8,6,'A',2,2,68),('sinkt','2017-03-02',7,4,'B',5,5,79),('tepor','2017-09-22',8,4,'C',7,2,63);
 /*!40000 ALTER TABLE `price` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -347,7 +347,7 @@ CREATE TABLE `promotion` (
   `Description` varchar(255) DEFAULT NULL,
   `promo_type` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`IdPromo`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -356,6 +356,7 @@ CREATE TABLE `promotion` (
 
 LOCK TABLES `promotion` WRITE;
 /*!40000 ALTER TABLE `promotion` DISABLE KEYS */;
+INSERT INTO `promotion` VALUES (1,'Carnival Promo','2017-02-28',40,'2017-02-12',1,'40% Offer! Enjoy your Carnival!','season'),(2,'Autumn Promo','2017-12-20',50,'2017-09-21',1,'Leafs fall? You Fly! Enjoy our 50% Offer!','season'),(3,'Spring Promo','2017-06-20',30,'2017-03-21',0,'In this season you can fly with 30% discount','season'),(4,'Summer Promo','2017-09-20',30,'2017-06-21',1,'It\'s time to flight! You have an 30% of discount only for you!','season'),(5,'Winter Promo','2017-03-20',20,'2017-12-21',0,'Too cold? Flight to a hot destination, enjoy our 20% Offer!','season'),(6,'LIMC-LIRF Promo',NULL,40,NULL,1,'Malpensa-Fiumicino il 2017-08-04: 40% of discount!','flight'),(7,'LIRF-LIMC Promo',NULL,40,NULL,1,'Fiumicino-Malpensa il 2017-03-02: 40% of discount!','flight'),(8,'LIMC-LIRF Promo',NULL,40,NULL,0,'Malpensa-Fiumicino il 2017-06-23: 40% of discount!','flight');
 /*!40000 ALTER TABLE `promotion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -420,4 +421,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-25 17:10:47
+-- Dump completed on 2017-02-26 16:19:22
