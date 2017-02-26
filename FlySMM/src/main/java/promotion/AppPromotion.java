@@ -33,13 +33,21 @@ public class AppPromotion extends HttpServlet {
      @Override
    //Quando voglio aggiungere una mail mi basta togliere i commenti, gli utenti veranno automaticamente avvisati
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	/*SeasonPromotion p1 = null;
+    	SeasonPromotion p1 = null;
+    	  SeasonPromotion p2 = null;
+    	  SeasonPromotion p3 = null;
+    	  SeasonPromotion p4 = null;
+    	  SeasonPromotion p5 = null;
 		try {
-			p1 = new SeasonPromotion("1", 40, true, "winter Promo", "brrr", new Date(), new Date());
+			p1 = new SeasonPromotion("1", 40, true, "Carnival Promo", "40% Offer! Enjoy your Carnival!", new Date(), new Date());
+			p2 = new SeasonPromotion("2", 50, true, "Autumn Promo", "Leaf fall? You Fly! Enjoy our 50% Offer!", new Date(), new Date());
+			p3 = new SeasonPromotion("3", 30, false, "Spring Promo", "In this season you can fly with 30", new Date(), new Date());
+			p4 = new SeasonPromotion("4", 30, true, "Summer Promo", "It's time to flight! You have an 30% Offer only for you!", new Date(), new Date());
+			p5 = new SeasonPromotion("5", 20, false, "Winter Promo", "Too cold? Flight to a hot destination, enjoy our 20% Offer!", new Date(), new Date());
 		} catch (MessagingException e) {
 			LOG.info(SERVEXC, e);
 		}
-		
+		/*
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
 		
@@ -58,11 +66,11 @@ public class AppPromotion extends HttpServlet {
 								 f);
 		} catch (MessagingException e) {
 			LOG.info(SERVEXC, e);
-		}
+		}*/
 		writeSeasonPromotion(p1);
-		writeFlightPromotion(p2);
+		//writeFlightPromotion(p2);
 		
-		response.getWriter().append(p1.toString()).append(p2.toString());*/
+		response.getWriter().append(p1.toString());
 	}
 
 	@Override
