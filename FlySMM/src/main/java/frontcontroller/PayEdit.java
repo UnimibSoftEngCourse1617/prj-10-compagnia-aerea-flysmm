@@ -1,4 +1,4 @@
-package frontController;
+package frontcontroller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -19,18 +19,18 @@ public class PayEdit extends HttpServlet {
      */
     public PayEdit() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doPost(request, response);
 		
 	}
-
+    @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

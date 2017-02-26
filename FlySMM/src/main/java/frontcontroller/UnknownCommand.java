@@ -1,4 +1,4 @@
-package frontController;
+package frontcontroller;
 
 public class UnknownCommand {
 

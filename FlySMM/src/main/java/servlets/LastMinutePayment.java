@@ -13,8 +13,8 @@ import org.apache.log4j.Logger;
 
 import booking.Book;
 import customer.Customer;
-import frontController.FrontCommand;
-import frontController.PaymentCommand;
+import frontcontroller.FrontCommand;
+import frontcontroller.PaymentCommand;
 
 /**
  * Servlet implementation class LastMinutePayment

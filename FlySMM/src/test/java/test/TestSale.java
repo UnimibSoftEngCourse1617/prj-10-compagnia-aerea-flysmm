@@ -9,7 +9,7 @@ import javax.mail.MessagingException;
 
 import org.junit.Test;
 
-import frontController.SaleCommand;
+import frontcontroller.SaleCommand;
 import junit.framework.TestCase;
 import promotion.Promotion;
 import promotion.SeasonPromotion;
