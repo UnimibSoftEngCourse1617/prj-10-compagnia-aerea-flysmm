@@ -28,7 +28,7 @@ public class EditCommand extends FrontCommand {
 	@Override
 	public void dispatch() throws ServletException, IOException {
 
-		if (caller.equals("Edit")) {
+		if (("Edit").equals(caller)) {
 			editBook();
 			RequestDispatcher dispatcher = context.getRequestDispatcher("/changeFly.jsp");
 			try {
@@ -39,7 +39,7 @@ public class EditCommand extends FrontCommand {
 				LOG.error("An error occured", e);
 			}
 		}
-		if (caller.equals("Increase")) {
+		if ("Increase".equals(caller)) {
 			computeIncrease();
 			RequestDispatcher dispatcher = context.getRequestDispatcher("/confirm.jsp");
 			try {
@@ -51,7 +51,7 @@ public class EditCommand extends FrontCommand {
 			}
 		}
 
-		if (caller.equals("Update")) {
+		if (("Update").equals(caller)) {
 			if (updateBook()) {
 				RequestDispatcher dispatcher = context.getRequestDispatcher("/index.jsp");
 				try {
@@ -78,16 +78,7 @@ public class EditCommand extends FrontCommand {
 	}
 
 	public void editBook() {
-		/**
-		 * metodo edit book questo metodo si occupera di settare tutti gli
-		 * attributi nessesari per procedere alla modifica di una prenotazione,
-		 * inoltre farà una dispatch alla jsp che esporrà i voli diponibili per
-		 * il cambio
-		 */
 
-		/**
-		 * in input abbiamo il id del veccio book
-		 */
 
 		/**
 		 * INIZIALIZZO LA SESSIONE
@@ -113,7 +104,6 @@ public class EditCommand extends FrontCommand {
 		 * set in parametro di sezione del oggetto vecchio Book
 		 */
 
-		//////////////////////////////////////////////////////////////////////////
 
 		/**
 		 * qui estraggo tutte le informazioni relative al vecchio volo
@@ -123,17 +113,13 @@ public class EditCommand extends FrontCommand {
 		List<Flight> resultOldFlight = getOldFlight.list();
 
 		request.getSession().setAttribute("oldFlight", resultOldFlight.get(0));
-
-		//////////////////////////////////////////////////////////////////////////
 		/**
 		 * questa query è necessaria per ottenere il volo vecchio e il relativo
 		 * prezzo
 		 */
 
 		long idCustomer = resultOldBook.get(0).getCustomerId();
-		String idBook = resultOldBook.get(0).getBookId();
 
-		//////////////////////////////////////////////////////////////////////////
 		Query getCustomer = session.createQuery("from Customer c " + "where c.idCustomer = ?  ");
 
 		getCustomer.setParameter(0, idCustomer);
@@ -199,9 +185,6 @@ public class EditCommand extends FrontCommand {
 		List<Flight> newFlight = queryNewFlight.list();
 		request.getSession().setAttribute("newFlight", newFlight);
 
-		Flight oldFlight = (Flight) request.getSession().getAttribute("oldFlight");
-		int oldDistance = oldFlight.getDistance();
-		int newDistance = newFlight.get(0).getDistance();
 		
 		Book oldBook = (Book) request.getSession().getAttribute("oldBook");
 
@@ -258,17 +241,6 @@ public class EditCommand extends FrontCommand {
 
 			Customer customer = (customer.Customer) request.getSession().getAttribute("customer");
 
-			// String[] flight = request.getParameter("chosen").split("-");
-			// String idNewFlight = flight[0];
-
-			// questo valore abbiamo in un parametro di sesione "newFlight"
-
-			// Query queryNewFlight = session.createQuery("from Flight f " +
-			// "where
-			// f.idFlight = :idF ");
-			//
-			// queryNewFlight.setParameter("idF", idNewFlight);
-			// List<Flight> newFlight = queryNewFlight.list();
 
 			List<Flight> newFlight = (List) request.getSession().getAttribute("newFlight");
 			String idNewFlight = newFlight.get(0).getIdFlight();
@@ -326,8 +298,6 @@ public class EditCommand extends FrontCommand {
 			updateBook.setParameter("bookId", idBook);
 			updateBook.executeUpdate();
 			session.getTransaction().commit();
-
-			// TODO: manca la chiamata al metodo makePayment() in payment
 			
 		}
 		return status;

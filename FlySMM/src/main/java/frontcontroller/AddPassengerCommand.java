@@ -92,10 +92,9 @@ public class AddPassengerCommand extends FrontCommand {
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.getTransaction().begin();
 		Baggage bag;
-		List result = null;
 		Query query = session.createQuery("from Baggage " + " WHERE ID_Baggage = :baggage");
 		query.setParameter("baggage", p.getBaggageId());
-		result = query.list();
+		List result = query.list();
 		bag = (Baggage) result.get(0);
 		session.getTransaction().commit();
 
@@ -105,11 +104,10 @@ public class AddPassengerCommand extends FrontCommand {
 	public Passenger getPassengerFromDb(Passenger p) {
 		Session session = SessionFactorySingleton.getSessionFactory().getCurrentSession();
 		session.getTransaction().begin();
-		Passenger tmp = null;
-		List result = null;
 		Query query = session.createQuery("from Passenger " + " WHERE Fiscal_code = :fiscalCode");
 		query.setParameter("fiscalCode", p.getFiscal_code());
-		result = query.list();
+		List result = query.list();
+		Passenger tmp = null;
 		if (result.isEmpty()) {
 			session.getTransaction().commit();
 			return tmp;
