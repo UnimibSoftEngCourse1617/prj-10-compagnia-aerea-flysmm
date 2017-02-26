@@ -6,7 +6,6 @@ import java.util.concurrent.TimeUnit;
 
 public class UnfidelityState extends State implements Serializable {
 
-	
 	/**
 	 * 
 	 */
@@ -24,10 +23,7 @@ public class UnfidelityState extends State implements Serializable {
 
 		long temp = getDateDiff(c.actualDateUnfidelity, c.lastestBook, TimeUnit.DAYS);
 		if (temp > 365) {
-
-			if (this.c instanceof FidelityCustomer) {
-				this.customer = new Customer(c);
-			}
+			this.customer = new Customer(c);
 		} else {
 			c.setState(new FidelityState(c));
 		}
