@@ -49,11 +49,7 @@ public class SaleCommand extends FrontCommand {
 		List result = query.list();
 		if (result.isEmpty()) {
 			request.setAttribute(MSG, MESSAGE);
-			try {
-				context.getRequestDispatcher(ERROR).forward(request, response);
-			} catch (Exception e) {
-				LOG.info(SERVEXC, e);
-			}
+			forward(ERROR);
 		}
 		String departure = (String) result.get(0);
 
@@ -63,11 +59,7 @@ public class SaleCommand extends FrontCommand {
 		result = queryArrivalAirport.list();
 		if (result.isEmpty()) {
 			request.setAttribute(MSG, MESSAGE);
-			try {
-				context.getRequestDispatcher(ERROR).forward(request, response);
-			} catch (Exception e) {
-				LOG.info(SERVEXC, e);
-			}
+			forward(ERROR);
 		}
 		String arrival = (String) result.get(0);
 
@@ -87,11 +79,7 @@ public class SaleCommand extends FrontCommand {
 		List result1 = queryInnerJoin.list();
 		if (result1.isEmpty()) {
 			request.setAttribute(MSG, MESSAGE);
-			try {
-				context.getRequestDispatcher(ERROR).forward(request, response);
-			} catch (Exception e) {
-				LOG.info(SERVEXC, e);
-			}
+			forward(ERROR);
 		}
 
 		ArrayList<Flight> flights = new ArrayList<Flight>();
@@ -135,11 +123,7 @@ public class SaleCommand extends FrontCommand {
 		List result = queryFlyPrice.list();
 		if (result.isEmpty()) {
 			request.setAttribute(MSG, MESSAGE);
-			try {
-				context.getRequestDispatcher(ERROR).forward(request, response);
-			} catch (Exception e) {
-				LOG.info(SERVEXC, e);
-			}
+			forward(ERROR);
 		}
 		ArrayList<Flight> flights = new ArrayList<Flight>();
 		for (Object[] o : (List<Object[]>) result) {

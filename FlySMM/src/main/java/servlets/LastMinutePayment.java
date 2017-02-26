@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,8 +12,6 @@ import org.apache.log4j.Logger;
 
 import booking.Book;
 import customer.Customer;
-import frontcontroller.FrontCommand;
-import frontcontroller.PaymentCommand;
 
 /**
  * Servlet implementation class LastMinutePayment
@@ -43,12 +40,7 @@ public class LastMinutePayment extends HttpServlet {
 		List<Book> book = (List<Book>) request.getSession().getAttribute("listBook");
 		Customer customer = (Customer) request.getSession().getAttribute("Customer");
 
-		FrontCommand command = new PaymentCommand(book, customer);
-		command.init(getServletContext(), "lastMinute", request, response);
-		try {
-			command.dispatch();
-		} catch (Exception e) {
-			LOG.error("An error occured", e);
-		}
+		ServletUtility.initAndDispatch(getServletContext(), request, response, "lastMinute");
+
 	}
 }

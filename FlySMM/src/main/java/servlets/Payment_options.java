@@ -7,13 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
-
-import frontcontroller.FrontCommand;
-
 public class Payment_options extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger LOG = Logger.getLogger(MakePayment.class);
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -38,24 +33,8 @@ public class Payment_options extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		FrontCommand command = null;
-		try {
-			command = FrontCommand.getCommand(request, response);
-		} catch (Exception e) {
-			LOG.error("An error occured", e);
-		}
+		ServletUtility.initAndDispatch(getServletContext(), request, response, "PaymentOptions");
 
-		if (command != null) {
-			command.init(getServletContext(), "PaymentOptions", request, response);
-			try {
-				command.dispatch();
-
-			} catch (Exception e) {
-				LOG.error("An error occured", e);
-			}
-		} else {
-			System.out.println("CommandNotFound");
-		}
 	}
 
 }

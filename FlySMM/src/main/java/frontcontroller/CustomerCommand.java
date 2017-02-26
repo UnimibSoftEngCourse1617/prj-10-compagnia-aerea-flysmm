@@ -48,8 +48,9 @@ public class CustomerCommand extends FrontCommand {
 					} else {
 						dispatcher = context.getRequestDispatcher("/homeCustomer.jsp");
 					}
-				} else
+				} else{
 					dispatcher = context.getRequestDispatcher("/addPassenger.jsp");
+				}
 				dispatcher.forward(request, response);
 			} else {
 				RequestDispatcher dispatcher = context.getRequestDispatcher("/loginPage.html");

@@ -14,13 +14,12 @@ import org.apache.log4j.Logger;
 import booking.Book;
 import booking.Passenger;
 import customer.Customer;
-import frontcontroller.FrontCommand;
 import sale.Flight;
 
 public class GetPassenger extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOG = Logger.getLogger(GetPassenger.class);
-	
+
 	public GetPassenger() {
 		super();
 	}
@@ -28,30 +27,15 @@ public class GetPassenger extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//Empty because useless
+		// Empty because useless
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		FrontCommand command = null;
-		try {
-			command = FrontCommand.getCommand(request, response);
-		} catch (Exception e1) {
-			LOG.error("An error in getCommand occured", e1);
-		}
-		if (command != null) {
-			command.init(getServletContext(), "GDF", request, response);
-			try {
-				command.dispatch();
-			} catch (Exception e2) {
-				LOG.error("An error in dispatch occured", e2);
-				}
+		ServletUtility.initAndDispatch(getServletContext(), request, response, "GDF");
 
-		} else {
-			System.out.println("CommandNotFound");
-		}
 		Customer c = (Customer) request.getSession().getAttribute("Customer");
 		ArrayList<Passenger> listPassenger = (ArrayList<Passenger>) request.getSession().getAttribute("listPassenger");
 		ArrayList<Flight> listFlight = (ArrayList<Flight>) request.getSession().getAttribute("listFlight");
@@ -82,6 +66,6 @@ public class GetPassenger extends HttpServlet {
 			requestDispatcher.forward(request, response);
 		} catch (Exception e3) {
 			LOG.error("An error occured", e3);
-			}
+		}
 	}
 }

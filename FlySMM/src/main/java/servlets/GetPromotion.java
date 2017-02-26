@@ -7,13 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
-
-import frontcontroller.FrontCommand;
-
 public class GetPromotion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger LOG = Logger.getLogger(GetPromotion.class);
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -25,30 +20,14 @@ public class GetPromotion extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//Empty because useless at the moment
+		// Empty because useless at the moment
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		FrontCommand command = null;
-		try {
-			command = FrontCommand.getCommand(request, response);
-		} catch (Exception e1) {
-			LOG.error("An error in getCommand occured", e1);
-		}
-		if (command != null) {
-			command.init(getServletContext(), "GP", request, response);
-			try {
-				command.dispatch();
-			} catch (Exception e2) {
-				LOG.error("An error in dispatch occured", e2);
-				}
-		}
-		else {
-			System.err.append("CommandNotFound");
-		}
+
+		ServletUtility.initAndDispatch(getServletContext(), request, response, "GP");
 	}
 
 }
