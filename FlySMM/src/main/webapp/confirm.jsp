@@ -7,6 +7,27 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div class="ui stackable inverted menu">
+
+		<div href="index.jsp" class="item">FlySMM</div>
+		
+		<%
+			if (request.getSession().getAttribute("customer") == null) {
+		%>
+
+		<a href="loginPage.html" class="right item"> Login </a>
+
+		<%
+			} else {
+		%>
+
+		<a href="./logoutServlet " class="right item"> Log out </a>
+
+		<%
+			}
+		%>
+
+	</div>
 	<form method="post" action="./PayEdit"  >
 		<label>accetti di cambiari il parametri del tuo volo?</label> 
 		<label>${debit}</label>

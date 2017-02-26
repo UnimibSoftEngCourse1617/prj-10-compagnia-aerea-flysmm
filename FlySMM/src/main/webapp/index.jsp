@@ -28,9 +28,7 @@
 <body>
 	<div class="ui stackable inverted menu">
 		<a href="index.jsp" class="item">FlySMM</a>
-		<a class="item"> About Us </a>
-		<a class="item"> Jobs </a>
-		<a class="item"> Locations </a>
+
 
 		<%
 			if (request.getSession().getAttribute("customer") == null) {

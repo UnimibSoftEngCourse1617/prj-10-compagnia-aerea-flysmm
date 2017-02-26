@@ -7,6 +7,28 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+	<div class="ui stackable inverted menu">
+
+		<div href="index.jsp" class="item">FlySMM</div>
+		
+		<%
+			if (request.getSession().getAttribute("customer") == null) {
+		%>
+
+		<a href="loginPage.html" class="right item"> Login </a>
+
+		<%
+			} else {
+		%>
+
+		<a href="./logoutServlet " class="right item"> Log out </a>
+
+		<%
+			}
+		%>
+
+	</div>
 	<form action="./EditSale" method="post">
 		<input type="hidden" name="command" value="Edit" />
 		
