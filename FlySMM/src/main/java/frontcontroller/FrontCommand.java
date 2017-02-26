@@ -12,6 +12,8 @@ import org.apache.log4j.Logger;
 
 public abstract class FrontCommand  {
 	private static final Logger LOG =Logger.getLogger(FrontCommand.class);
+	private static final String SERVEXC = "An error occured";
+	
 	protected ServletContext context;
 	protected String caller;
 	protected HttpServletRequest request;
@@ -50,6 +52,14 @@ public abstract class FrontCommand  {
 			LOG.error("An error occured", e);
 		}
 		return result;
+	}
+	
+	protected void forward(String target) {
+		try {
+			context.getRequestDispatcher(target).forward(request, response);
+		} catch (Exception e) {
+			LOG.info(SERVEXC, e);
+		}
 	}
 
 }

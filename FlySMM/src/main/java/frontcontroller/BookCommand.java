@@ -37,20 +37,14 @@ public class BookCommand extends FrontCommand {
 			for (Book b : listBook) {
 				updateSeat(b, departure, arrival);
 			}
-
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/success.jsp");
-			requestDispatcher.forward(request, response);
+			forward("/success.jsp");
 		} catch (Exception e) {
 			err = true;
 			LOG.error("An error occured", e);
 		}
 		if (err) {
 			request.setAttribute(MSG, MESSAGE);
-			try {
-				context.getRequestDispatcher(ERROR).forward(request, response);
-			} catch (Exception e) {
-				LOG.info(SERVEXC, e);
-			}
+			forward(ERROR);
 		}
 
 	}

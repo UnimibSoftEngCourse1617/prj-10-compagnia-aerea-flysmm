@@ -27,7 +27,7 @@ public class DeleteBook extends HttpServlet {
 		} catch (Exception e) {
 			LOG.error("An error occured", e);
 		}
-		
+
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class DeleteBook extends HttpServlet {
 				command.dispatch();
 			} catch (Exception e2) {
 				LOG.error("An error in dispatch occured", e2);
-				}
+			}
 
 		} else {
 			System.out.println("CommandNotFound");

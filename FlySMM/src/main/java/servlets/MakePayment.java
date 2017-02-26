@@ -16,18 +16,20 @@ import frontcontroller.FrontCommand;
 public class MakePayment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOG = Logger.getLogger(MakePayment.class);
-       
-    public MakePayment() {
-        super();
-    }
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Empty because useless
+	public MakePayment() {
+		super();
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// Empty because useless
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		FrontCommand command = null;
 		try {
 			command = FrontCommand.getCommand(request, response);

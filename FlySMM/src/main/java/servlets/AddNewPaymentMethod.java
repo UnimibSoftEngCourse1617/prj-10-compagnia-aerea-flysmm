@@ -51,7 +51,7 @@ public class AddNewPaymentMethod extends HttpServlet {
 			command.init(getServletContext(), "NewPayment", request, response);
 			try {
 				command.dispatch();
-			} catch (Exception e){
+			} catch (Exception e) {
 				LOG.error("An error occured", e);
 			}
 		} else {

@@ -20,7 +20,7 @@ import sale.Flight;
 public class GetPassenger extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOG = Logger.getLogger(GetPassenger.class);
-	
+
 	public GetPassenger() {
 		super();
 	}
@@ -28,7 +28,7 @@ public class GetPassenger extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//Empty because useless
+		// Empty because useless
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class GetPassenger extends HttpServlet {
 				command.dispatch();
 			} catch (Exception e2) {
 				LOG.error("An error in dispatch occured", e2);
-				}
+			}
 
 		} else {
 			System.out.println("CommandNotFound");
@@ -82,6 +82,6 @@ public class GetPassenger extends HttpServlet {
 			requestDispatcher.forward(request, response);
 		} catch (Exception e3) {
 			LOG.error("An error occured", e3);
-			}
+		}
 	}
 }

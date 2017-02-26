@@ -21,13 +21,13 @@ public class GetNewCustomer extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//Empty because useless
+		// Empty because useless
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		FrontCommand command = null;
 		try {
 			command = FrontCommand.getCommand(request, response);
@@ -37,14 +37,12 @@ public class GetNewCustomer extends HttpServlet {
 		if (command != null) {
 
 			command.init(getServletContext(), "GNC", request, response);
-			
 
-			
 			try {
 				command.dispatch();
 			} catch (Exception e2) {
 				LOG.error("An error in dispatch occured", e2);
-				}
+			}
 
 		} else {
 			System.out.println("CommandNotFound");

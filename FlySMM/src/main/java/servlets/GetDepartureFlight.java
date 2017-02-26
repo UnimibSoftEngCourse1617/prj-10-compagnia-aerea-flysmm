@@ -19,15 +19,15 @@ public class GetDepartureFlight extends HttpServlet {
 	private static final String DDATE = "dDate";
 	private static final String PASSENGERS = "passengers";
 	private static final Logger LOG = Logger.getLogger(GetDepartureFlight.class);
-	
+
 	public GetDepartureFlight() {
 		super();
 	}
-	
-	 @Override
+
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//Empty because useless
+		// Empty because useless
 	}
 
 	@Override
@@ -50,8 +50,7 @@ public class GetDepartureFlight extends HttpServlet {
 			} catch (Exception e) {
 				LOG.error("An error occured", e);
 			}
-		}
-		else {
+		} else {
 			System.out.println("CommandNotFound");
 		}
 	}

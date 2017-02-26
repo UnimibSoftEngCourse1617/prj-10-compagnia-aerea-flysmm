@@ -25,13 +25,13 @@ public class GetPromotion extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//Empty because useless at the moment
+		// Empty because useless at the moment
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		FrontCommand command = null;
 		try {
 			command = FrontCommand.getCommand(request, response);
@@ -44,9 +44,8 @@ public class GetPromotion extends HttpServlet {
 				command.dispatch();
 			} catch (Exception e2) {
 				LOG.error("An error in dispatch occured", e2);
-				}
-		}
-		else {
+			}
+		} else {
 			System.err.append("CommandNotFound");
 		}
 	}
