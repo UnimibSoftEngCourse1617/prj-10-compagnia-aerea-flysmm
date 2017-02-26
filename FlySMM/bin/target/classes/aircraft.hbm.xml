@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="sale.Aircraft" table="aircraft">
+      <id name="idAircraft" type="int" column="ID_aircraft">
+         <generator class="native"/>
+      </id>
+      <property name="model" column="Model" type="string"/>
+      <property name="totalSize" column="Seat_Number" type="int"/>
+      <property name="weightBound" column="Weight_Bound" type="float"/>
+      <property name="constructor" column="Constructor" type="string"/>
+      
+   </class>
+</hibernate-mapping>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="promotion.Promotion" table="promotion">
+		<id name="idPromo" type="string" column="IdPromo">
+			<generator class="native" />
+		</id>
+		
+		<discriminator column="promo_type" type="string" />
+
+		<property name="name" column="Name" type="string" />
+		<property name="discountRate" column="Discount_rate" type="int" />
+		<property name="fidelity" column="Fidelity" type="boolean" />
+		<property name="description" column="Description" type="string" />
+		
+		<subclass name="promotion.SeasonPromotion" discriminator-value="season">
+        	<property name="startDate" column="Start_Date" type="date" />
+			<property name="expireDate" column="Expire_Date" type="date" />
+		</subclass>
+        
+        <subclass name="promotion.FlightPromotion" discriminator-value="flight">
+        	<one-to-one name="flight" class="sale.Flight"/>
+        </subclass>
+        
+	</class>
+</hibernate-mapping>
