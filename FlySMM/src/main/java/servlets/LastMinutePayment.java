@@ -43,13 +43,11 @@ public class LastMinutePayment extends HttpServlet {
 		Customer customer = (Customer) request.getSession().getAttribute("Customer");
 
 		FrontCommand command = new PaymentCommand(book, customer);
-		if (command != null) {
-			command.init(getServletContext(), "lastMinute", request, response);
-			try {
-				command.dispatch();
-			} catch (Exception e) {
-				LOG.error("An error occured", e);
-			}
+		command.init(getServletContext(), "lastMinute", request, response);
+		try {
+			command.dispatch();
+		} catch (Exception e) {
+			LOG.error("An error occured", e);
 		}
 	}
 }
