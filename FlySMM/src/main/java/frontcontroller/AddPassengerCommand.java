@@ -25,7 +25,7 @@ public class AddPassengerCommand extends FrontCommand {
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
-		if (caller.equals("GDF")) {
+		if (("GDF").equals(caller)) {
 			HttpSession session = request.getSession();
 			ArrayList<Passenger> listPassenger = new ArrayList<Passenger>();
 			ArrayList<Integer> priceBaggage = new ArrayList<Integer>();

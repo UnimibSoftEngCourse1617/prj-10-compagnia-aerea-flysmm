@@ -18,7 +18,7 @@ public class PromoCommand extends FrontCommand {
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
-		if (caller.equals("GP")) {
+		if (("GP").equals(caller)) {
 			getPromotionFromDb();
 		}
 	}
