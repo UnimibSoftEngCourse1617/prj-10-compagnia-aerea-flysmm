@@ -24,6 +24,9 @@ import servlets.SessionFactorySingleton;
 public class EditCommand extends FrontCommand {
 
 	private static final Logger LOG = Logger.getLogger(EditCommand.class);
+	private static final String ERROR = "An error occured";
+	private static final String OLDBOOK = "oldBook";
+	private static final String CUSTOMER = "customer";
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
@@ -34,9 +37,9 @@ public class EditCommand extends FrontCommand {
 			try {
 				dispatcher.forward(request, response);
 			} catch (ServletException e) {
-				LOG.error("An error occured", e);
+				LOG.error(ERROR, e);
 			} catch (IOException e) {
-				LOG.error("An error occured", e);
+				LOG.error(ERROR, e);
 			}
 		}
 		if ("Increase".equals(caller)) {
@@ -45,9 +48,9 @@ public class EditCommand extends FrontCommand {
 			try {
 				dispatcher.forward(request, response);
 			} catch (ServletException e) {
-				LOG.error("An error occured", e);
+				LOG.error(ERROR, e);
 			} catch (IOException e) {
-				LOG.error("An error occured", e);
+				LOG.error(ERROR, e);
 			}
 		}
 
@@ -57,9 +60,9 @@ public class EditCommand extends FrontCommand {
 				try {
 					dispatcher.forward(request, response);
 				} catch (ServletException e) {
-					LOG.error("An error occured", e);
+					LOG.error(ERROR, e);
 				} catch (IOException e) {
-					LOG.error("An error occured", e);
+					LOG.error(ERROR, e);
 				}
 			} else { // TODO: questo dispatcher va cambiato ci troviamo nel caso
 						// in cui il pagamento non è andato a buonfine
@@ -67,9 +70,9 @@ public class EditCommand extends FrontCommand {
 				try {
 					dispatcher.forward(request, response);
 				} catch (ServletException e) {
-					LOG.error("An error occured", e);
+					LOG.error(ERROR, e);
 				} catch (IOException e) {
-					LOG.error("An error occured", e);
+					LOG.error(ERROR, e);
 				}
 			}
 
@@ -98,7 +101,7 @@ public class EditCommand extends FrontCommand {
 		Query getBook = session.createQuery("From Book b Where b.bookId = ?");
 		getBook.setParameter(0, request.getSession().getAttribute("IDp"));
 		List<Book> resultOldBook = getBook.list();
-		request.getSession().setAttribute("oldBook", resultOldBook.get(0));
+		request.getSession().setAttribute(OLDBOOK, resultOldBook.get(0));
 
 		/**
 		 * set in parametro di sezione del oggetto vecchio Book
@@ -124,7 +127,7 @@ public class EditCommand extends FrontCommand {
 
 		getCustomer.setParameter(0, idCustomer);
 		Customer customer = (Customer) getCustomer.list().get(0);
-		request.getSession().setAttribute("customer", customer);
+		request.getSession().setAttribute(CUSTOMER, customer);
 
 		/** FINE DEL SETTAGGIO DEI VALORI NECCESSARI PER L'EDIT */
 
@@ -186,7 +189,7 @@ public class EditCommand extends FrontCommand {
 		request.getSession().setAttribute("newFlight", newFlight);
 
 		
-		Book oldBook = (Book) request.getSession().getAttribute("oldBook");
+		Book oldBook = (Book) request.getSession().getAttribute(OLDBOOK);
 
 		float debit = oldBook.getTotalPrice() * 0.08f;
 		
@@ -210,9 +213,9 @@ public class EditCommand extends FrontCommand {
 	}
 
 	public boolean updateBook() {
-		Customer c = (Customer) request.getSession().getAttribute("customer");
-		request.getSession().removeAttribute("customer");
-		request.getSession().setAttribute("customer", c);
+		Customer c = (Customer) request.getSession().getAttribute(CUSTOMER);
+		request.getSession().removeAttribute(CUSTOMER);
+		request.getSession().setAttribute(CUSTOMER, c);
 		
 		float debit = (Float) request.getSession().getAttribute("debit");
 		PaymentCommand p = new PaymentCommand(c);
@@ -235,11 +238,11 @@ public class EditCommand extends FrontCommand {
 			Flight oldFlight = (Flight) request.getSession().getAttribute("oldFlight");
 			String idOldFlight = oldFlight.getIdFlight();
 
-			Book oldBook = (Book) request.getSession().getAttribute("oldBook");
+			Book oldBook = (Book) request.getSession().getAttribute(OLDBOOK);
 			long idCustomer = oldBook.getCustomerId();
 			String idBook = oldBook.getBookId();
 
-			Customer customer = (customer.Customer) request.getSession().getAttribute("customer");
+			Customer customer = (customer.Customer) request.getSession().getAttribute(CUSTOMER);
 
 
 			List<Flight> newFlight = (List) request.getSession().getAttribute("newFlight");
