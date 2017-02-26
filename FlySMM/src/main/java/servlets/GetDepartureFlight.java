@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import frontController.FrontCommand;
+import frontcontroller.FrontCommand;
 
 /**
  * Servlet implementation class GetDepartureFlight
@@ -20,27 +20,17 @@ public class GetDepartureFlight extends HttpServlet {
 	private static final String PASSENGERS = "passengers";
 	private static final Logger LOG = Logger.getLogger(GetDepartureFlight.class);
 	
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public GetDepartureFlight() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+	
+	 @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		//Empty because useless
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

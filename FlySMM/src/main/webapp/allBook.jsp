@@ -29,8 +29,7 @@
 </head>
 <body>
 	<div class="ui stackable inverted menu">
-		<a href="index.jsp" class="item">FlySMM</a> <a class="item"> About Us </a> <a
-			class="item"> Jobs </a> <a class="item"> Locations </a>
+		<a href="index.jsp" class="item">FlySMM</a>
 		
 		<%
 			if (request.getSession().getAttribute("customer") == null) {
@@ -123,11 +122,11 @@
 					<td>${bookP.departureDate}</td>
 					<td>${bookP.airplaneId}</td>
 					<td>${bookP.totalPrice}</td>
-					<td><form method="post" name="flightItems" action="./#">
-							<input type="submit" class="ui blue button" value="Edit" /> <input
-								type="hidden" name="chosen" value="${bookP.bookId}" /> <input
-								type="hidden" name="command" value="nnnnnnnnnnn" />
-						</form></td>
+					<td><form method="Post" name="flightItems" action="./changeForm.jsp">
+						 <c:set var="IDp" value="${bookP.bookId}" scope="session" />
+							<input type="submit" class="ui blue button" value="Edit" /> 
+						</form>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>

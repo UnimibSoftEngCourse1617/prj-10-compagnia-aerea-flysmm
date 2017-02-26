@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import frontController.FrontCommand;
+import frontcontroller.FrontCommand;
 
 public class GetUsernamePassword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -22,7 +22,7 @@ public class GetUsernamePassword extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		//Empty because useless
 	}
 
 	@Override
@@ -37,12 +37,15 @@ public class GetUsernamePassword extends HttpServlet {
 		}
 
 		if (command != null) {
-			command.init(getServletContext(), "GDF", request, response);
+
+			command.init(getServletContext(), "GUP", request, response);
+			
 			try {
 				command.dispatch();
 			} catch (Exception e2) {
 				LOG.error("An error in dispatch occured", e2);
 				}
+
 
 		} else {
 			System.out.println("CommandNotFound");

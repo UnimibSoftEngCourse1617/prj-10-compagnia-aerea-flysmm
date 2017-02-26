@@ -1,4 +1,4 @@
-package frontController;
+package frontcontroller;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,7 +20,7 @@ public class CustomerCommand extends FrontCommand {
 
 	@Override
 	public void dispatch() throws ServletException, IOException {
-		if (caller.equals("GDF")) {
+		if (caller.equals("GUP")) {
 			getCustomerFromDb();
 		}
 	}

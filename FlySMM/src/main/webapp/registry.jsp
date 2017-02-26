@@ -15,8 +15,7 @@
 </head>
 <body>
 	<div class="ui stackable inverted menu">
-		<a class="item">FlySMM</a> <a class="item"> About Us </a> <a
-			class="item"> Jobs </a> <a class="item"> Locations </a>
+		<a class="item">FlySMM</a> 
 		<%
 			if (request.getSession().getAttribute("customer") == null) {
 		%>

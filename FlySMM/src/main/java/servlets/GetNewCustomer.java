@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import frontController.FrontCommand;
+import frontcontroller.FrontCommand;
 
 public class GetNewCustomer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -35,12 +35,17 @@ public class GetNewCustomer extends HttpServlet {
 			LOG.error("An error in getCommand occured", e1);
 		}
 		if (command != null) {
-			command.init(getServletContext(), "GDF", request, response);
+
+			command.init(getServletContext(), "GNC", request, response);
+			
+
+			
 			try {
 				command.dispatch();
 			} catch (Exception e2) {
 				LOG.error("An error in dispatch occured", e2);
 				}
+
 		} else {
 			System.out.println("CommandNotFound");
 		}

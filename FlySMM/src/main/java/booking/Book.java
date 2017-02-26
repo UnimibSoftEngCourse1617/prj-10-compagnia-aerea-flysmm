@@ -57,7 +57,6 @@ public class Book implements Serializable {
 		this.departureDate = f.getDepartureDate();
 		this.documentP = p.getFiscal_code();
 		this.flightId = f.getIdFlight();
-
 	}
 
 	public String getBookId() {

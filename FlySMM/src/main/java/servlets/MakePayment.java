@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import frontController.FrontCommand;
+import frontcontroller.FrontCommand;
 
 /**
  * Servlet implementation class MakePayment
@@ -17,24 +17,16 @@ public class MakePayment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOG = Logger.getLogger(MakePayment.class);
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public MakePayment() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		//Empty because useless
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		FrontCommand command = null;
 		try {
@@ -53,5 +45,4 @@ public class MakePayment extends HttpServlet {
 			System.out.println("CommandNotFound");
 		}
 	}
-
 }

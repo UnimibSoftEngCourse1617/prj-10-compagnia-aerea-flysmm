@@ -1,13 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@page import="com.google.gson.JsonObject"%>
-<%@page import="com.google.gson.JsonElement"%>
-<%@page import="com.google.gson.JsonArray"%>
-<%@page import="sale.Flight"%>
-<%@page import="java.util.List"%>
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,11 +16,12 @@
 
 <title>FlySMM</title>
 </head>
-
-<body background="images/Error.jpg">
+<body>
 	<div class="ui stackable inverted menu">
-		<a href="index.jsp" class="item">FlySMM</a> 
-		 <%
+
+		<div href="index.jsp" class="item">FlySMM</div>
+
+		<%
 			if (request.getSession().getAttribute("customer") == null) {
 		%>
 
@@ -37,23 +30,32 @@
 		<%
 			} else {
 		%>
-		<%
-			if (request.getSession().getAttribute("customer").getClass().toString().matches("class customer.FidelityCustomer")){
-				%> <a href="homeFidelityCustomer.jsp" class="right item"> Home </a>
-	<%}else{ %>
-		<a href="homeCustomer.jsp" class="right item"> Home </a><%} %>
 
-		<!-- <a href="./logoutServlet " class="right item"> Home </a> --> <a
-			href="./logoutServlet " class="right item"> Log out </a>
+		<a href="./logoutServlet " class="right item"> Log out </a>
 
 		<%
 			}
 		%>
+
 	</div>
-	<div
-		style="position: relative; width: 600px; height: 550px;">
-		<div style="position: absolute; bottom: 5px;">
-			<h3><c:out value="${message}"></c:out></h3>
+	<h2>Do you accept to change your flight parameters?</h2>
+	<div class="ui two column grid">
+		<div class="column">
+			<form method="post" action="./PayEdit">
+
+				<label>${debit}</label> <input class="ui green submit button"
+					type="submit" name="submit" value="confirm"> <input
+					type="hidden" name="command" value="Edit">
+			</form>
+
+		</div>
+		<div class="column">
+			<form action="./GetBook" method="post">
+				<input class="ui red submit button" type="submit" name="cancel"
+					value="cancel"> <input type="hidden" name="command"
+					value="GetBook">
+			</form>
+
 		</div>
 	</div>
 </body>
