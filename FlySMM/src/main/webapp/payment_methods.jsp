@@ -74,8 +74,8 @@
 						<td>${payment.cvv}</td>
 						<td>${payment.owner}</td>
 						<td>${payment.expiredDate}</td>
-						<td><input type="submit" class="ui green button" value="Usa" name="invio"> <input
-							type="hidden" value="${payment.cardNumber}"></td>
+						<td><input type="submit" class="ui green button" value="Usa" name="invio"> 
+						<input type="hidden" value="${payment.cardNumber}"></td>
 					</tr>
 				</c:forEach>
 			</tbody>

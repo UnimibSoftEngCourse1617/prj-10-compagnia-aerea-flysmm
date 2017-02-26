@@ -43,7 +43,6 @@ public abstract class FrontCommand  {
 	private static Class getCommandClass(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Class result;
 		final String commandClassName = "frontcontroller." + (String) request.getParameter("command") + "Command";
-		System.out.println(commandClassName);
 		try {
 			result = Class.forName(commandClassName);
 		} catch (ClassNotFoundException e) {

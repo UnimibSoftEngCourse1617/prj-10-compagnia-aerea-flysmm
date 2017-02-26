@@ -38,11 +38,15 @@ import servlets.SessionFactorySingleton;
 //import com.paypal.api.payments.RedirectUrls;
 //import com.paypal.api.payments.Transaction;
 
-public class PaymentCommand extends FrontCommand {	
+public class PaymentCommand extends FrontCommand {
 	private static final Logger LOG = Logger.getLogger(PaymentCommand.class);
 
 	private Customer customer;
 	List<Book> book;
+
+	public PaymentCommand() {
+		super();
+	}
 
 	public PaymentCommand(Customer customer) {
 		this.customer = customer;
@@ -57,11 +61,16 @@ public class PaymentCommand extends FrontCommand {
 	public void dispatch() throws ServletException, IOException {
 		if (("PaymentOptions").equals(caller)) {
 			getPaymentMethodFromDB();
+			RequestDispatcher dispatcher = context.getRequestDispatcher("/payment_methods.jsp");
+			dispatcher.forward(request, response);
 		}
-		if (("NewPayment").equals(caller)){
+		if (("NewPayment").equals(caller)) {
 			addNewPaymentMethod();
+			RequestDispatcher dispatcher = context.getRequestDispatcher("/payment_methods.jsp");
+			dispatcher.forward(request, response);
 		}
 		if (("MakePayment").equals(caller)) {
+			this.customer = (Customer) request.getSession().getAttribute("customer");
 			makePayment();
 			RequestDispatcher dispatcher = context.getRequestDispatcher("/GetBook?command=GetBook");
 			dispatcher.forward(request, response);
@@ -90,7 +99,6 @@ public class PaymentCommand extends FrontCommand {
 	public void getPaymentMethodFromDB() {
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
-
 		Customer customer = (Customer) request.getSession().getAttribute("customer");
 		Long idCustomer = customer.getIdCustomer();
 
@@ -98,30 +106,30 @@ public class PaymentCommand extends FrontCommand {
 				.createQuery("SELECT address " + "FROM Customer c " + "WHERE c.idCustomer =?");
 		addressQuery = addressQuery.setParameter(0, idCustomer);
 		List resultAddress = addressQuery.list();
-
-		org.hibernate.Query queryPayment = session.createQuery("FROM Payment p " + "WHERE p.customer.idCustomer=? ");
+		org.hibernate.Query queryPayment = session
+				.createQuery("FROM Payment_methods p " + "WHERE p.customer.idCustomer=? ");
 		queryPayment = queryPayment.setParameter(0, idCustomer);
 		List resultPayment = queryPayment.list();
 
 		session.getTransaction().commit();
-
 		request.setAttribute("address", (List<Address>) resultAddress);
 		request.setAttribute("payment", (List<Payment_methods>) resultPayment);
 
-		RequestDispatcher dispatcher = context.getRequestDispatcher("/payment_methods.jsp");
-		try {
-			dispatcher.forward(request, response);
-		} catch (ServletException e) {
-			LOG.info("Error occurred in forward", e);
-		} catch (IOException e) {
-			LOG.info("Error occurred in forward", e);
-		}
+		// RequestDispatcher dispatcher =
+		// context.getRequestDispatcher("/payment_methods.jsp");
+		// try {
+		// dispatcher.forward(request, response);
+		// } catch (ServletException e) {
+		// LOG.info("Error occurred in forward", e);
+		// } catch (IOException e) {
+		// LOG.info("Error occurred in forward", e);
+		// }
 	}
 
 	public void addNewPaymentMethod() throws ServletException, IOException {
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
-
+		
 		Customer customer = (Customer) request.getSession().getAttribute("customer");
 
 		Payment_methods newPayment = new Payment_methods();
@@ -148,21 +156,17 @@ public class PaymentCommand extends FrontCommand {
 		session.save(newPayment);
 		session.getTransaction().commit();
 
-		RequestDispatcher dispatcher = context.getRequestDispatcher("/Payment_options");
-		dispatcher.forward(request, response);
 	}
 
 	public void makePayment() throws ServletException, IOException {
 
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
-
+		
 		Long id = customer.getIdCustomer();
-
 		org.hibernate.Query queryGetBook = session.createQuery("FROM Book b " + "WHERE b.customerId = ? ");
 		queryGetBook.setParameter(0, customer.getIdCustomer());
 		List<Book> resultGetBook = queryGetBook.list();
-
 		org.hibernate.Query updateBook;
 
 		for (int i = 0; i < resultGetBook.size(); i++) {
@@ -192,18 +196,17 @@ public class PaymentCommand extends FrontCommand {
 			sdf.applyPattern("yyyy-MM-dd");
 			String dataStr = sdf.format(new Date());
 			String query = "UPDATE Customer " + "set point = :sum, Date_last_book = :dataStr where idCustomer = :id";
-			Query updatePoint = session.createQuery(query)
-					.setLong("sum", sum)
-					.setString("dataStr", dataStr)
+			Query updatePoint = session.createQuery(query).setLong("sum", sum).setString("dataStr", dataStr)
 					.setLong("id", id);
 			updatePoint.executeUpdate();
 		}
 		session.getTransaction().commit();
+
 	}
 
-	public boolean authorizePayment(float amount) throws ServletException, IOException  {
+	public boolean authorizePayment(float amount) throws ServletException, IOException {
 		makePayment();
-		
+
 		return true;
 
 		// // Set payer details
