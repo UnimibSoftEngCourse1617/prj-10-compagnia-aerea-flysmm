@@ -66,7 +66,7 @@ public class PaymentCommand extends FrontCommand {
 		}
 		if (("NewPayment").equals(caller)) {
 			addNewPaymentMethod();
-			RequestDispatcher dispatcher = context.getRequestDispatcher("/payment_methods.jsp");
+			RequestDispatcher dispatcher = context.getRequestDispatcher("/Payment_options");
 			dispatcher.forward(request, response);
 		}
 		if (("MakePayment").equals(caller)) {

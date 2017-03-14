@@ -11,7 +11,7 @@
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/flysmmdb</property>
 		<property name="hibernate.connection.username">flysmmDB</property>
-		<property name="hibernate.connection.password">Flysmm.db</property>
+		<property name="hibernate.connection.password">Flysmm.db1</property>
 
 		<!-- SQL dialect -->
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>

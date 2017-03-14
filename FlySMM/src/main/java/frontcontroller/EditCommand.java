@@ -92,7 +92,7 @@ public class EditCommand extends FrontCommand {
 		/** INIZIO DEL SETTAGGIO DEI VALORI NECCESSARI PER L'EDIT */
 
 		/**
-		 * la sezione è stata inizializzata
+		 * la sezione ï¿½ stata inizializzata
 		 */
 
 		/**
@@ -117,7 +117,7 @@ public class EditCommand extends FrontCommand {
 
 		request.getSession().setAttribute("oldFlight", resultOldFlight.get(0));
 		/**
-		 * questa query è necessaria per ottenere il volo vecchio e il relativo
+		 * questa query ï¿½ necessaria per ottenere il volo vecchio e il relativo
 		 * prezzo
 		 */
 
@@ -139,7 +139,7 @@ public class EditCommand extends FrontCommand {
 
 		org.hibernate.Query queryInnerJoin = session.createQuery("from Price p inner join p.flight f "
 				+ "where f.departureAirport.icao = ? " + "and f.arrivalAirport.icao = ? " + "and f.departureDate = ? "
-				+ "and f.remainingSeats >= ? " + "group by f.idFlight, p.seats.tariff");
+				+ "and f.remainingSeats >= ? " + "");
 
 		queryInnerJoin = queryInnerJoin.setParameter(0, departure);
 		queryInnerJoin = queryInnerJoin.setParameter(1, arrival);
@@ -234,7 +234,7 @@ public class EditCommand extends FrontCommand {
 			Session session = SessionFactorySingleton.getSessionFactory().openSession();
 			session.beginTransaction();
 
-			// un po' di questa roba va giù
+			// un po' di questa roba va giï¿½
 			Flight oldFlight = (Flight) request.getSession().getAttribute("oldFlight");
 			String idOldFlight = oldFlight.getIdFlight();
 

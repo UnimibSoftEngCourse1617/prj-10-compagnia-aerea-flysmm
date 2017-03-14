@@ -66,14 +66,21 @@ public class SaleCommand extends FrontCommand {
 		request.getSession().setAttribute("aIcao", arrival);
 		request.getSession().setAttribute("dIcao", departure);
 
-		org.hibernate.Query queryInnerJoin = session.createQuery("from Price p inner join p.flight f "
-				+ "where f.departureAirport.icao = ? " + "and f.arrivalAirport.icao = ? " + "and f.departureDate = ? "
-				+ "and f.remainingSeats >= ? " + "group by f.idFlight, p.seats.tariff");
+		
+		org.hibernate.Query queryInnerJoin = session.createQuery("FROM Price p INNER JOIN p.flight f "
+				+ "WHERE f.departureAirport.icao = :departure " + "AND f.arrivalAirport.icao = :arrival " + "AND f.departureDate = :ddate "
+				+ "AND f.remainingSeats >= :s " + "");
+		
+		
+		
+//		org.hibernate.Query queryInnerJoin = session.createQuery("from Price p inner join p.flight f "
+//				+ "where f.departureAirport.icao = ? " + "and f.arrivalAirport.icao = ? " + "and f.departureDate = ? "
+//				+ "and f.remainingSeats >= ? " + "group by f.idFlight, p.seats.tariff");
 
-		queryInnerJoin = queryInnerJoin.setParameter(0, departure);
-		queryInnerJoin = queryInnerJoin.setParameter(1, arrival);
-		queryInnerJoin = queryInnerJoin.setDate(2, parseStringToDate(DDATE));
-		queryInnerJoin = queryInnerJoin.setParameter(3,
+		queryInnerJoin = queryInnerJoin.setParameter("departure", departure);
+		queryInnerJoin = queryInnerJoin.setParameter("arrival", arrival);
+		queryInnerJoin = queryInnerJoin.setDate("ddate", parseStringToDate(DDATE));
+		queryInnerJoin = queryInnerJoin.setParameter("s",
 				Integer.parseInt((String) request.getSession().getAttribute("passengers")));
 
 		List result1 = queryInnerJoin.list();
@@ -112,7 +119,7 @@ public class SaleCommand extends FrontCommand {
 
 		org.hibernate.Query queryFlyPrice = session.createQuery("from Price p inner join p.flight f "
 				+ "where f.departureAirport.icao = ? " + "and f.arrivalAirport.icao = ? " + "and f.departureDate = ? "
-				+ "and f.remainingSeats >= ? " + "group by f.idFlight, p.seats.tariff");
+				+ "and f.remainingSeats >= ? " + "");
 
 		queryFlyPrice = queryFlyPrice.setParameter(0, departure);
 		queryFlyPrice = queryFlyPrice.setParameter(1, arrival);

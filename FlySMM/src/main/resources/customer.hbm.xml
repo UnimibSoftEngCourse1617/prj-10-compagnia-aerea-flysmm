@@ -4,7 +4,7 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="customer.Customer" table="Customer" discriminator-value="Customer State">
+	<class name="customer.Customer" table="customer" discriminator-value="Customer State">
 		<id name="idCustomer" type="long" column="ID_Customer">
 			<generator class="native" />
 		</id>
