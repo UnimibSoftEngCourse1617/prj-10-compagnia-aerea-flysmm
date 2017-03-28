@@ -5,14 +5,10 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.mail.MessagingException;
 
 import org.junit.Test;
 
-import frontcontroller.SaleCommand;
 import junit.framework.TestCase;
-import promotion.Promotion;
-import promotion.SeasonPromotion;
 import sale.Aircraft;
 import sale.Airport;
 import sale.Flight;

@@ -31,19 +31,19 @@ public class GetBookCommand extends FrontCommand {
 		requestDispatcher.forward(request, response);
 	}
 
-	public List getBookUnpayed(long id) {
+	public List<Book> getBookUnpayed(long id) {
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
 		String query1 = "from Book where User_ID = :id1 and Payed = '0'";
-		List result = session.createQuery(query1).setLong("id1", id).list();
+		List<Book> result = session.createQuery(query1).setLong("id1", id).list();
 		return result;
 	}
 
-	public List getBookPayed(long id) {
+	public List<Book> getBookPayed(long id) {
 		Session session = SessionFactorySingleton.getSessionFactory().openSession();
 		session.beginTransaction();
 		String query2 = "from Book where User_ID = :id2 and Payed = '1'";
-		List result = session.createQuery(query2).setLong("id2", id).list();
+		List<Book> result = session.createQuery(query2).setLong("id2", id).list();
 
 		return result;
 	}

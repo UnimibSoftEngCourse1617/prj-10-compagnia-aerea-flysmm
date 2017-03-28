@@ -9,7 +9,6 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 
-import org.hamcrest.core.IsInstanceOf;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.jboss.logging.Logger;

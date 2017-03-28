@@ -2,18 +2,14 @@ package frontcontroller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import booking.Baggage;
 import booking.Book;
-import booking.Passenger;
 import sale.Flight;
 import servlets.SessionFactorySingleton;
 
